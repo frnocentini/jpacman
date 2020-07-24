@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProvaPacman">
+    <output-path>$PROJECT_DIR$/out/artifacts/ProvaPacman</output-path>
+    <root id="archive" name="ProvaPacman.jar">
+      <element id="module-output" name="ProvaPacman" />
+    </root>
+  </artifact>
+</component>
