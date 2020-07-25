@@ -10,6 +10,8 @@ public class Constants {
     public static final int SCALE = 1;
     public static final int PACMAN_WIDTH = 20;
     public static final int PACMAN_HEIGHT = 20;
+    public static final int PILL_WIDTH = 6;
+    public static final int PILL_HEIGHT = 6;
 
     //speed of the application
     public static final int GAME_SPEED = 10;

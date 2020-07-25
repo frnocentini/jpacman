@@ -1,15 +1,21 @@
 package utility;
 
 import constants.Constants;
+import model.Maze;
+import model.Pacman;
+import model.Pill;
+import model.Sprite;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 
 public class CoordManager {
-    public static char[][] maze;
+
+    public static Maze maze;
 
     public static void createMaze(int level) {
-        maze = new char[21][19];
+        char[][] inputMaze = new char[21][19];
         try {
             FileReader lvlFile = new FileReader(new File("levels/level"+level+".txt"));
             BufferedReader br = new BufferedReader(lvlFile);  //Creation of BufferedReader object
@@ -22,11 +28,12 @@ public class CoordManager {
                     j = 0;
                 }else{
                     if(character != '\r'){
-                        maze[i][j] = character;
+                        inputMaze[i][j] = character;
                         j++;
                     }
                 }
             }
+            CoordManager.maze = new Maze(inputMaze);
         } catch (FileNotFoundException e) {
             System.err.println("Il file del livello non è stato trovato");
             e.printStackTrace();
@@ -38,9 +45,9 @@ public class CoordManager {
 
     public static Coordinate getObjCoord(char c){
         Coordinate co = new Coordinate(-1,-1);
-        for (int i=0;i<CoordManager.maze.length;i++){
-            for(int j=0;j<CoordManager.maze[0].length;j++){
-                if(maze[i][j] == c){
+        for (int i=0;i<CoordManager.maze.getMazeHeight();i++){
+            for(int j=0;j<CoordManager.maze.getMazeWidth();j++){
+                if(CoordManager.maze.getMazeValue(i,j) == c){
                     co = convertCoords(j,i);
                     return co;
                 }
@@ -55,7 +62,7 @@ public class CoordManager {
 
     public static char whichBlock(int x, int y) {
         //System.out.println(x+" "+y);
-        return maze[y / Constants.BLOCK_DIM][x / Constants.BLOCK_DIM];
+        return CoordManager.maze.getMazeValue(y / Constants.BLOCK_DIM,x / Constants.BLOCK_DIM);
     }
 
     public static boolean canIMove(int x, int y){
@@ -93,6 +100,35 @@ public class CoordManager {
                     return true;
                 break;
         }
+        return false;
+    }
+
+    public static boolean checkCollision(Sprite a, Sprite b) {
+        /*// Find the bounds of the rectangle intersection
+        int top = Math.max(a.getY(), b.getY());
+        int bottom = Math.min(a.getY()+a.getH(), b.getY()+b.getH());
+        int left = Math.max(a.getX(), b.getX());
+        int right = Math.min(a.getX()+a.getW(), b.getX()+b.getW());
+
+        // Check every point within the intersection bounds
+        for (int y = top; y < bottom; y++)
+        {
+            for (int x = left; x < right; x++)
+            {
+                // Get the color of both pixels at this point
+                Color colorA = dataA[(x - rectangleA.Left) +
+                        (y - rectangleA.Top) * rectangleA.Width];
+                Color colorB = dataB[(x - rectangleB.Left) +
+                        (y - rectangleB.Top) * rectangleB.Width];
+
+                // If both pixels are not completely transparent,
+                if (colorA.A != 0 && colorB.A != 0)
+                {
+                    // then an intersection has been found
+                    return true;
+                }
+            }
+        }*/
         return false;
     }
 }

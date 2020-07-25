@@ -3,6 +3,8 @@ package ui;
 import callbacks.GameEventListener;
 import constants.Constants;
 import model.Pacman;
+import model.Pill;
+import utility.CoordManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,6 +42,7 @@ public class GamePanel extends JPanel {
 
     private void doDrawing(Graphics g){
         if(inGame){
+            drawPills(g);
             drawPacman(g);
         } else{
             if(timer.isRunning()){
@@ -48,6 +51,18 @@ public class GamePanel extends JPanel {
         }
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void drawPills(Graphics g) {
+        for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
+            Pill p = CoordManager.maze.getPill(i);
+            if(CoordManager.checkCollision(pacman,p)){
+                p.setDead(true);
+            }
+            if(!p.isDead()){
+                g.drawImage(p.getImage(), p.getX(), p.getY(), this);
+            }
+        }
     }
 
     private void drawPacman(Graphics g) {

@@ -10,11 +10,11 @@ public abstract class Sprite {
     private boolean dead;
     protected int x;
     protected int y;
+    protected int w;
+    protected int h;
     protected int dx;
     protected int dy;
     protected Direction dir;
-
-    public abstract void move();
 
     public Sprite() {
         this.dead = false;
@@ -78,5 +78,21 @@ public abstract class Sprite {
 
     public void setDir(Direction dir) {
         this.dir = dir;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
     }
 }

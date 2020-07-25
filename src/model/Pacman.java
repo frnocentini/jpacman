@@ -26,18 +26,19 @@ public class Pacman extends Sprite {
 
         Coordinate start = CoordManager.getObjCoord('P');
 
+        setX(start.getX());
+        setY(start.getY());
+        setW(Constants.PACMAN_WIDTH);
+        setH(Constants.PACMAN_HEIGHT);
+
         this.timer = new Timer(1,new PacmanLoop(this));
 
         dir = LEFT;
 
         dx = -Constants.PACMAN_SPEED;
         dy = 0;
-
-        setX(start.getX());
-        setY(start.getY());
     }
 
-    @Override
     public void move() {
         if(CoordManager.checkEmpty(x,y,dir)){
             x += dx;
