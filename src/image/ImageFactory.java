@@ -11,8 +11,17 @@ public class ImageFactory {
         ImageIcon imageIcon = null;
 
         switch (image){
-            case PACMAN:
-                imageIcon = new ImageIcon(Constants.PACMAN_IMAGE_URL);
+            case PACMAN_UP:
+                imageIcon = new ImageIcon(Constants.PACMAN_UP_IMAGE_URL);
+                break;
+            case PACMAN_DOWN:
+                imageIcon = new ImageIcon(Constants.PACMAN_DOWN_IMAGE_URL);
+                break;
+            case PACMAN_LEFT:
+                imageIcon = new ImageIcon(Constants.PACMAN_LEFT_IMAGE_URL);
+                break;
+            case PACMAN_RIGHT:
+                imageIcon = new ImageIcon(Constants.PACMAN_RIGHT_IMAGE_URL);
                 break;
             case EMPTY:
                 imageIcon = new ImageIcon(Constants.EMPTY_IMAGE_URL);

@@ -13,17 +13,25 @@ import static utility.Direction.*;
 
 public class Pacman extends Sprite {
 
+    private Timer timer;
+    private int keyPressed;
+
     public Pacman(){
         initialize();
     }
 
     private void initialize(){
-        ImageIcon imageIcon = ImageFactory.createImage(Image.PACMAN);
+        ImageIcon imageIcon = ImageFactory.createImage(Image.PACMAN_LEFT);
         setImage(imageIcon.getImage());
 
         Coordinate start = CoordManager.getObjCoord('P');
 
-        dir = RIGHT;
+        this.timer = new Timer(1,new PacmanLoop(this));
+
+        dir = LEFT;
+
+        dx = -Constants.PACMAN_SPEED;
+        dy = 0;
 
         setX(start.getX());
         setY(start.getY());
@@ -31,11 +39,10 @@ public class Pacman extends Sprite {
 
     @Override
     public void move() {
-        /*if(CoordManager.checkWall(x,y,dir)){
-
-        }*/
-        x += dx;
-        y += dy;
+        if(CoordManager.checkEmpty(x,y,dir)){
+            x += dx;
+            y += dy;
+        }
         if(x<0){
             x = 0;
         }
@@ -51,43 +58,78 @@ public class Pacman extends Sprite {
     }
 
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
+        this.keyPressed = e.getKeyCode();
+        if(timer.isRunning()){
+            timer.stop();
+        }
+        timer.start();
+    }
+
+    public void keyReleased(KeyEvent e) {
+        //int key = e.getKeyCode();
+        if(timer.isRunning()){
+            timer.stop();
+        }
+    }
+
+    public void changeLoop(){
         int speed = Constants.PACMAN_SPEED;
-        switch (key) {
+        ImageIcon imageIcon = null;
+        switch (this.keyPressed) {
             case KeyEvent.VK_UP:
+                if(dir != UP && dir != DOWN){
+                    if(!CoordManager.canIMove(x,y) || !CoordManager.checkEmpty(x,y,UP)){
+                        break;
+                    }
+                }
                 dy = -speed;
                 dx = 0;
                 setDir(UP);
+                imageIcon = ImageFactory.createImage(Image.PACMAN_UP);
+                setImage(imageIcon.getImage());
                 break;
             case KeyEvent.VK_DOWN:
+                if(dir != UP && dir != DOWN){
+                    if(!CoordManager.canIMove(x,y) || !CoordManager.checkEmpty(x,y,DOWN)){
+                        break;
+                    }
+                }
                 dy = speed;
                 dx = 0;
                 setDir(DOWN);
+                imageIcon = ImageFactory.createImage(Image.PACMAN_DOWN);
+                setImage(imageIcon.getImage());
                 break;
             case KeyEvent.VK_RIGHT:
+                if(dir != RIGHT && dir != LEFT){
+                    if(!CoordManager.canIMove(x,y) || !CoordManager.checkEmpty(x,y,RIGHT)){
+                        break;
+                    }
+                }
                 dx = speed;
                 dy = 0;
                 setDir(RIGHT);
+                imageIcon = ImageFactory.createImage(Image.PACMAN_RIGHT);
+                setImage(imageIcon.getImage());
                 break;
             case KeyEvent.VK_LEFT:
+                if(dir != RIGHT && dir != LEFT){
+                    if(!CoordManager.canIMove(x,y)|| !CoordManager.checkEmpty(x,y,LEFT)){
+                        break;
+                    }
+                }
                 dx = -speed;
                 dy = 0;
                 setDir(LEFT);
+                imageIcon = ImageFactory.createImage(Image.PACMAN_LEFT);
+                setImage(imageIcon.getImage());
                 break;
         }
     }
 
-    /*public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-        switch (key) {
-            case KeyEvent.VK_UP:
-            case KeyEvent.VK_DOWN:
-                dy = 0;
-                break;
-            case KeyEvent.VK_RIGHT:
-            case KeyEvent.VK_LEFT:
-                dx = 0;
-                break;
+    public void doOneLoop() {
+        if(timer.isRunning()){
+            changeLoop();
         }
-    }*/
+    }
 }

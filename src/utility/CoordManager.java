@@ -58,6 +58,10 @@ public class CoordManager {
         return maze[y / Constants.BLOCK_DIM][x / Constants.BLOCK_DIM];
     }
 
+    public static boolean canIMove(int x, int y){
+        return canIMove(new Coordinate(x,y));
+    }
+
     public static boolean canIMove(Coordinate co){
         if((co.getX() % 20) == 0 && (co.getY() % 20) == 0){
             return true;
@@ -65,11 +69,11 @@ public class CoordManager {
         return false;
     }
 
-    public static boolean checkWall(int x, int y, Direction d){
-        return checkWall(new Coordinate(x,y),d);
+    public static boolean checkEmpty(int x, int y, Direction d){
+        return checkEmpty(new Coordinate(x,y),d);
     }
 
-    public static boolean checkWall(Coordinate co, Direction d){
+    public static boolean checkEmpty(Coordinate co, Direction d){
         //System.out.println(d);
         switch(d){
             case UP:
