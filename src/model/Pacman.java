@@ -65,13 +65,6 @@ public class Pacman extends Sprite {
         timer.start();
     }
 
-    public void keyReleased(KeyEvent e) {
-        //int key = e.getKeyCode();
-        if(timer.isRunning()){
-            timer.stop();
-        }
-    }
-
     public void changeLoop(){
         int speed = Constants.PACMAN_SPEED;
         ImageIcon imageIcon = null;

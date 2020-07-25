@@ -70,6 +70,6 @@ public class GamePanel extends JPanel {
     }
 
     public void keyReleased(KeyEvent e) {
-        //this.pacman.keyReleased(e);
+
     }
 }
