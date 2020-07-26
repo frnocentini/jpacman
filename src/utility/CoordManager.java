@@ -8,6 +8,7 @@ import model.Sprite;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.io.*;
 
 public class CoordManager {
@@ -104,31 +105,12 @@ public class CoordManager {
     }
 
     public static boolean checkCollision(Sprite a, Sprite b) {
-        /*// Find the bounds of the rectangle intersection
-        int top = Math.max(a.getY(), b.getY());
-        int bottom = Math.min(a.getY()+a.getH(), b.getY()+b.getH());
-        int left = Math.max(a.getX(), b.getX());
-        int right = Math.min(a.getX()+a.getW(), b.getX()+b.getW());
-
-        // Check every point within the intersection bounds
-        for (int y = top; y < bottom; y++)
-        {
-            for (int x = left; x < right; x++)
-            {
-                // Get the color of both pixels at this point
-                Color colorA = dataA[(x - rectangleA.Left) +
-                        (y - rectangleA.Top) * rectangleA.Width];
-                Color colorB = dataB[(x - rectangleB.Left) +
-                        (y - rectangleB.Top) * rectangleB.Width];
-
-                // If both pixels are not completely transparent,
-                if (colorA.A != 0 && colorB.A != 0)
-                {
-                    // then an intersection has been found
-                    return true;
-                }
-            }
-        }*/
+        // Find the bounds of the rectangle intersection
+        Rectangle2D ar = new Rectangle2D.Double(a.getX(), a.getY(), a.getW(), a.getH());
+        Rectangle2D br = new Rectangle2D.Double(b.getX(), b.getY(), b.getW(), b.getH());
+        if(ar.intersects(br)){
+            return true;
+        }
         return false;
     }
 }

@@ -12,20 +12,29 @@ import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel {
 
+    private GameMainFrame frame;
     private Pacman pacman;
     boolean inGame;
     private Timer timer;
+    private boolean pacmanStart;
+    private long startTime;
+    private int level;
 
-    public GamePanel(){
-        initializeVariables();
+    public GamePanel(GameMainFrame frame, int level){
+        this.frame = frame;
+        initializeVariables(level);
         initializeLayout();
     }
 
-    private void initializeVariables() {
+    private void initializeVariables(int level) {
+        this.level = level;
+        System.out.println(level);
         this.inGame = true;
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
         this.pacman = new Pacman();
+        this.pacmanStart = false;
+        this.startTime = System.currentTimeMillis();
     }
 
     private void initializeLayout() {
@@ -56,11 +65,19 @@ public class GamePanel extends JPanel {
     private void drawPills(Graphics g) {
         for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
             Pill p = CoordManager.maze.getPill(i);
+            // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
             if(CoordManager.checkCollision(pacman,p)){
+                if(!p.isDead()){
+                    CoordManager.maze.removeAlivePill();
+                }
                 p.setDead(true);
-            }
-            if(!p.isDead()){
+            } else if(!p.isDead()){
                 g.drawImage(p.getImage(), p.getX(), p.getY(), this);
+            }
+            if(CoordManager.maze.getAlivePills() == 0){
+                this.inGame = false;
+                frame.getContentPane().removeAll();
+                frame.initializeLayout();
             }
         }
     }
@@ -77,7 +94,14 @@ public class GamePanel extends JPanel {
     }
 
     private void update() {
-        this.pacman.move();
+        if(this.pacmanStart){
+            this.pacman.move();
+        }else{
+            long test = System.currentTimeMillis();
+            if(test >= (this.startTime + 3*1000)) { //multiply by 1000 to get milliseconds
+                this.pacmanStart=true;
+            }
+        }
     }
 
     public void keyPressed(KeyEvent e) {

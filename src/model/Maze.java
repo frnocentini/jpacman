@@ -9,8 +9,10 @@ public class Maze {
 
     private char[][] maze;
     private ArrayList<Pill> pills;
+    private int alivePills;
 
     public Maze(char[][] maze) {
+        this.alivePills=0;
         this.pills = new ArrayList<>();
         this.maze = new char[21][19];
         for (int i = 0; i< maze.length; i++) {
@@ -21,11 +23,16 @@ public class Maze {
     }
 
     public void addPill(int x, int y){
-        pills.add(new Pill(x,y, Constants.PILL_WIDTH, Constants.PILL_WIDTH ,100,""));
+        pills.add(new Pill(x,y, Constants.PILL_WIDTH, Constants.PILL_HEIGHT ,100,""));
+        alivePills++;
     }
 
     public Pill getPill(int i){
         return pills.get(i);
+    }
+
+    public void removeAlivePill(){
+        alivePills--;
     }
 
     public int getPillsNum(){
@@ -42,5 +49,13 @@ public class Maze {
 
     public int getMazeHeight() {
         return maze.length;
+    }
+
+    public int getAlivePills() {
+        return alivePills;
+    }
+
+    public void setAlivePills(int alivePills) {
+        this.alivePills = alivePills;
     }
 }
