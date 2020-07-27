@@ -2,6 +2,7 @@ package ui;
 
 import callbacks.GameEventListener;
 import constants.Constants;
+import model.Blinky;
 import model.Pacman;
 import model.Pill;
 import utility.CoordManager;
@@ -14,6 +15,7 @@ public class GamePanel extends JPanel {
 
     private GameMainFrame frame;
     private Pacman pacman;
+    private Blinky blinky;
     boolean inGame;
     private Timer timer;
     private boolean pacmanStart;
@@ -33,6 +35,7 @@ public class GamePanel extends JPanel {
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
         this.pacman = new Pacman();
+        this.blinky = new Blinky(this.pacman);
         this.pacmanStart = false;
         this.startTime = System.currentTimeMillis();
     }
@@ -52,6 +55,7 @@ public class GamePanel extends JPanel {
     private void doDrawing(Graphics g){
         if(inGame){
             drawPills(g);
+            drawBlinky(g);
             drawPacman(g);
         } else{
             if(timer.isRunning()){
@@ -86,6 +90,10 @@ public class GamePanel extends JPanel {
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), this);
     }
 
+    private void drawBlinky(Graphics g) {
+        g.drawImage(blinky.getImage(), blinky.getX(), blinky.getY(), this);
+    }
+
     public void doOneLoop() {
         update();
         //System.out.println("Update");
@@ -96,6 +104,7 @@ public class GamePanel extends JPanel {
     private void update() {
         if(this.pacmanStart){
             this.pacman.move();
+            this.blinky.move();
         }else{
             long test = System.currentTimeMillis();
             if(test >= (this.startTime + 3*1000)) { //multiply by 1000 to get milliseconds

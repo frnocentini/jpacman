@@ -16,6 +16,7 @@ public class Constants {
     //speed of the application
     public static final int GAME_SPEED = 10;
     public static final int PACMAN_SPEED = 1;
+    public static final int GHOST_SPEED = 1;
 
     //Ghost related constants
     public static final int GHOST_HEIGHT = 20;
@@ -31,5 +32,4 @@ public class Constants {
     public static final String BLINKY_IMAGE_URL = "images/blinky.png";
     public static final String PILL_IMAGE_URL = "images/pill.png";
     public static final String POWERPILL_IMAGE_URL = "images/powerpill.png";
-
 }
