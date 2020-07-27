@@ -60,28 +60,34 @@ public abstract class Ghost extends Sprite {
         }
         switch(dir){
             case UP:
-                dirs.remove(DOWN);
-                dirs.put(DOWN,false);
+                if(dirs.get(UP) || dirs.get(LEFT) || dirs.get(RIGHT)){
+                    dirs.remove(DOWN);
+                    dirs.put(DOWN,false);
+                }
                 break;
             case DOWN:
-                dirs.remove(UP);
-                dirs.put(UP,false);
+                if(dirs.get(DOWN) || dirs.get(LEFT) || dirs.get(RIGHT)){
+                    dirs.remove(UP);
+                    dirs.put(UP,false);
+                }
                 break;
             case LEFT:
-                dirs.remove(RIGHT);
-                dirs.put(RIGHT,false);
-                break;
+                if(dirs.get(UP) || dirs.get(DOWN) || dirs.get(LEFT)){
+                    dirs.remove(RIGHT);
+                    dirs.put(RIGHT,false);
+                }
             case RIGHT:
-                dirs.remove(LEFT);
-                dirs.put(LEFT,false);
-                break;
+                if(dirs.get(UP) || dirs.get(DOWN) || dirs.get(RIGHT)){
+                    dirs.remove(LEFT);
+                    dirs.put(LEFT,false);
+                }
         }
         int maxValue, tempDist;
-        maxValue = 0;
+        maxValue = Integer.MAX_VALUE;
         for (Direction dir : Direction.values()) {
             if(dirs.get(dir)){
                 tempDist = calcDist(dir);
-                if(tempDist > maxValue){
+                if(tempDist < maxValue){
                     maxValue = tempDist;
                     this.dir = dir;
                 }
@@ -106,7 +112,9 @@ public abstract class Ghost extends Sprite {
                 x += Constants.BLOCK_DIM;
                 break;
         }
-        return (Math.abs(x-target.getX())^2+Math.abs(y-target.getY())^2);
+        System.out.println("x: "+ (Math.abs(x-target.getX())));
+        System.out.println("y: "+ (Math.abs(y-target.getY())));
+        return (Math.abs(x-target.getX())+Math.abs(y-target.getY()));
     }
 
     public abstract void setTarget();
