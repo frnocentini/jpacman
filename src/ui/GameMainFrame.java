@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class GameMainFrame extends JFrame{
 
-    private int level;
+    public static int level;
 
     public GameMainFrame(){
         level = 1;

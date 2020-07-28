@@ -20,16 +20,17 @@ import static utility.State.FRIGHTENED;
 
 public abstract class Ghost extends Sprite {
 
-    State state;
-    Coordinate target;
-    Coordinate scatterTarget;
-    Coordinate spawnPoint;
-    Pacman pacman;
+    protected State state;
+    protected Coordinate target;
+    protected Coordinate scatterTarget;
+    protected Coordinate spawnPoint;
+    protected Pacman pacman;
+    public Timer timer;
 
     public Ghost(Pacman pacman) {
         setW(Constants.GHOST_WIDTH);
         setH(Constants.GHOST_HEIGHT);
-        this.state = CHASE;
+        this.timer = new Timer(1,new GhostLoop(this));
         this.pacman = pacman;
         this.target = new Coordinate(0,0);
     }
@@ -157,8 +158,6 @@ public abstract class Ghost extends Sprite {
                 x += Constants.BLOCK_DIM;
                 break;
         }
-        System.out.println("x: "+ (Math.abs(x-target.getX())));
-        System.out.println("y: "+ (Math.abs(y-target.getY())));
         return (Math.abs(x-target.getX())+Math.abs(y-target.getY()));
     }
 
@@ -177,4 +176,52 @@ public abstract class Ghost extends Sprite {
     }
 
     public abstract void setChaseTarget();
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public Coordinate getTarget() {
+        return target;
+    }
+
+    public void setTarget(Coordinate target) {
+        this.target = target;
+    }
+
+    public Coordinate getScatterTarget() {
+        return scatterTarget;
+    }
+
+    public void setScatterTarget(Coordinate scatterTarget) {
+        this.scatterTarget = scatterTarget;
+    }
+
+    public Coordinate getSpawnPoint() {
+        return spawnPoint;
+    }
+
+    public void setSpawnPoint(Coordinate spawnPoint) {
+        this.spawnPoint = spawnPoint;
+    }
+
+    public Pacman getPacman() {
+        return pacman;
+    }
+
+    public void setPacman(Pacman pacman) {
+        this.pacman = pacman;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
 }

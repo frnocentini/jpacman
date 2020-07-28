@@ -9,11 +9,15 @@ public class Maze {
 
     private char[][] maze;
     private ArrayList<Pill> pills;
+    private ArrayList<PowerPill> powerPills;
     private int alivePills;
+    private int alivePowerPills;
 
     public Maze(char[][] maze) {
         this.alivePills=0;
+        this.alivePowerPills=0;
         this.pills = new ArrayList<>();
+        this.powerPills = new ArrayList<>();
         this.maze = new char[21][19];
         for (int i = 0; i< maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
@@ -39,6 +43,39 @@ public class Maze {
         return pills.size();
     }
 
+    public int getAlivePills() {
+        return alivePills;
+    }
+
+    public void setAlivePills(int alivePills) {
+        this.alivePills = alivePills;
+    }
+
+    public void addPowerPill(int x, int y){
+        powerPills.add(new PowerPill(x,y, Constants.POWERILL_WIDTH, Constants.POWERILL_HEIGHT ,500,""));
+        alivePowerPills++;
+    }
+
+    public PowerPill getPowerPill(int i){
+        return powerPills.get(i);
+    }
+
+    public void removeAlivePowerPill(){
+        alivePowerPills--;
+    }
+
+    public int getPowerPillsNum(){
+        return powerPills.size();
+    }
+
+    public int getAlivePowerPills() {
+        return alivePowerPills;
+    }
+
+    public void setAlivePowerPills(int alivePowerPills) {
+        this.alivePowerPills = alivePowerPills;
+    }
+
     public char getMazeValue(int i, int j) {
         return maze[i][j];
     }
@@ -49,13 +86,5 @@ public class Maze {
 
     public int getMazeHeight() {
         return maze.length;
-    }
-
-    public int getAlivePills() {
-        return alivePills;
-    }
-
-    public void setAlivePills(int alivePills) {
-        this.alivePills = alivePills;
     }
 }

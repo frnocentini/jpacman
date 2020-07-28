@@ -24,7 +24,7 @@ public class Pacman extends Sprite {
         ImageIcon imageIcon = ImageFactory.createImage(Image.PACMAN_LEFT);
         setImage(imageIcon.getImage());
 
-        Coordinate start = CoordManager.getObjCoord('P');
+        Coordinate start = CoordManager.getObjCoord('S');
 
         setX(start.getX());
         setY(start.getY());

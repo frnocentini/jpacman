@@ -81,7 +81,7 @@ public class GamePanel extends JPanel {
             } else if(!p.isDead()){
                 g.drawImage(p.getImage(), p.getX(), p.getY(), this);
             }
-            if(CoordManager.maze.getAlivePills() == 150){
+            if(CoordManager.maze.getAlivePills() == 0){
                 this.inGame = false;
                 frame.getContentPane().removeAll();
                 this.gameEventListener = null;
@@ -123,6 +123,7 @@ public class GamePanel extends JPanel {
             }
             if(test >= (this.startTime + 3*1000)) { //multiply by 1000 to get milliseconds
                 this.pacmanStart=true;
+                this.blinky.timer.start();
             }
         }
     }

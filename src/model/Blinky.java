@@ -27,7 +27,7 @@ public class Blinky extends Ghost{
         setY(start.getY());
 
         this.spawnPoint = new Coordinate(start.getX(), start.getY());
-        this.scatterTarget = new Coordinate(0,Constants.BOARD_WIDTH);
+        this.scatterTarget = new Coordinate(Constants.BOARD_WIDTH,0);
 
         dir = UP;
     }

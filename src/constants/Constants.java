@@ -12,6 +12,8 @@ public class Constants {
     public static final int PACMAN_HEIGHT = 20;
     public static final int PILL_WIDTH = 6;
     public static final int PILL_HEIGHT = 6;
+    public static final int POWERILL_WIDTH = 20;
+    public static final int POWERILL_HEIGHT = 20;
 
     //speed of the application
     public static final int GAME_SPEED = 10;
@@ -32,4 +34,9 @@ public class Constants {
     public static final String BLINKY_IMAGE_URL = "images/blinky.png";
     public static final String PILL_IMAGE_URL = "images/pill.png";
     public static final String POWERPILL_IMAGE_URL = "images/powerpill.png";
+
+    //tempi chase-scatter dei livelli
+    public static final long[] FIRST_TIMES = {7000,20000,7000,20000,5000,20000,5000};
+    public static final long[] SECOND_TIMES = {7000,20000,7000,20000,5000,18314,1};
+    public static final long[] FIFTH_TIMES = {5000,20000,5000,20000,5000,18314,1};
 }
