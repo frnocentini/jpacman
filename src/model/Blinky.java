@@ -27,12 +27,13 @@ public class Blinky extends Ghost{
         setY(start.getY());
 
         this.spawnPoint = new Coordinate(start.getX(), start.getY());
+        this.scatterTarget = new Coordinate(0,Constants.BOARD_WIDTH);
 
         dir = UP;
     }
 
     @Override
-    public void setTarget() {
+    public void setChaseTarget() {
         this.target.setX(this.pacman.getX());
         this.target.setY(this.pacman.getY());
     }

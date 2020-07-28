@@ -11,15 +11,18 @@ import utility.State;
 import javax.swing.*;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import static utility.Direction.*;
 import static utility.Direction.UP;
 import static utility.State.CHASE;
+import static utility.State.FRIGHTENED;
 
 public abstract class Ghost extends Sprite {
 
     State state;
     Coordinate target;
+    Coordinate scatterTarget;
     Coordinate spawnPoint;
     Pacman pacman;
 
@@ -35,7 +38,11 @@ public abstract class Ghost extends Sprite {
         int speed = Constants.GHOST_SPEED;
         setTarget();
         if(CoordManager.canIMove(x,y)){
-            changeDir();
+            if(this.state != FRIGHTENED){
+                changeDir();
+            } else {
+                changeToRandDir();
+            }
         }
         switch(dir){
             case UP:
@@ -51,6 +58,44 @@ public abstract class Ghost extends Sprite {
                 x += speed;
                 break;
         }
+    }
+
+    private void changeToRandDir() {
+        boolean trapped = false;
+        boolean check = false;
+        Direction dir = null;
+        while(!check){
+            int pick = new Random().nextInt(Direction.values().length);
+            dir = Direction.values()[pick];
+            check = CoordManager.checkEmpty(this.x,this.y,dir);
+            switch(dir){
+                case UP:
+                    trapped = !CoordManager.checkEmpty(this.x,this.y,DOWN) && !CoordManager.checkEmpty(this.x,this.y,RIGHT) && !CoordManager.checkEmpty(this.x,this.y,LEFT);
+                    if(this.dir == DOWN){
+                        check = false;
+                    }
+                    break;
+                case DOWN:
+                    trapped = !CoordManager.checkEmpty(this.x,this.y,UP) && !CoordManager.checkEmpty(this.x,this.y,RIGHT) && !CoordManager.checkEmpty(this.x,this.y,LEFT);
+                    if(this.dir == UP && !trapped){
+                        check = false;
+                    }
+                    break;
+                case LEFT:
+                    trapped = !CoordManager.checkEmpty(this.x,this.y,UP) && !CoordManager.checkEmpty(this.x,this.y,DOWN) && !CoordManager.checkEmpty(this.x,this.y,RIGHT);
+                    if(this.dir == RIGHT && !trapped){
+                        check = false;
+                    }
+                    break;
+                case RIGHT:
+                    trapped = !CoordManager.checkEmpty(this.x,this.y,UP) && !CoordManager.checkEmpty(this.x,this.y,LEFT) && !CoordManager.checkEmpty(this.x,this.y,DOWN);
+                    if(this.dir == LEFT && !trapped){
+                        check = false;
+                    }
+                    break;
+            }
+        }
+        this.dir = dir;
     }
 
     private void changeDir() {
@@ -117,5 +162,19 @@ public abstract class Ghost extends Sprite {
         return (Math.abs(x-target.getX())+Math.abs(y-target.getY()));
     }
 
-    public abstract void setTarget();
+    private void setTarget() {
+        switch(this.state){
+            case CHASE:
+                setChaseTarget();
+                break;
+            case SCATTER:
+                this.target = this.scatterTarget;
+                break;
+            case EATEN:
+                this.target = this.spawnPoint;
+                break;
+        }
+    }
+
+    public abstract void setChaseTarget();
 }
