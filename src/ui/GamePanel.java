@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 public class GamePanel extends JPanel {
 
     private GameMainFrame frame;
+    private GameEventListener gameEventListener;
     private Pacman pacman;
     private Blinky blinky;
     boolean inGame;
@@ -41,8 +42,10 @@ public class GamePanel extends JPanel {
     }
 
     private void initializeLayout() {
-        addKeyListener(new GameEventListener(this));
+        this.gameEventListener = new GameEventListener(this);
+        addKeyListener(this.gameEventListener);
         setFocusable(true);
+        requestFocusInWindow();
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE));
     }
 
@@ -78,9 +81,17 @@ public class GamePanel extends JPanel {
             } else if(!p.isDead()){
                 g.drawImage(p.getImage(), p.getX(), p.getY(), this);
             }
-            if(CoordManager.maze.getAlivePills() == 0){
+            if(CoordManager.maze.getAlivePills() == 150){
                 this.inGame = false;
                 frame.getContentPane().removeAll();
+                this.gameEventListener = null;
+                System.gc();
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                frame.dispose();
                 frame.initializeLayout();
             }
         }
@@ -107,6 +118,9 @@ public class GamePanel extends JPanel {
             this.blinky.move();
         }else{
             long test = System.currentTimeMillis();
+            for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
+                CoordManager.maze.getPill(i).setDead(false);
+            }
             if(test >= (this.startTime + 3*1000)) { //multiply by 1000 to get milliseconds
                 this.pacmanStart=true;
             }
