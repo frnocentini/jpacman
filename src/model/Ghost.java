@@ -25,12 +25,15 @@ public abstract class Ghost extends Sprite {
     protected Coordinate scatterTarget;
     protected Coordinate spawnPoint;
     protected Pacman pacman;
+    protected GhostLoop ghostLoop;
+    protected long frightTime;
     public Timer timer;
 
     public Ghost(Pacman pacman) {
         setW(Constants.GHOST_WIDTH);
         setH(Constants.GHOST_HEIGHT);
-        this.timer = new Timer(1,new GhostLoop(this));
+        ghostLoop = new GhostLoop(this);
+        this.timer = new Timer(1,ghostLoop);
         this.pacman = pacman;
         this.target = new Coordinate(0,0);
     }
@@ -61,7 +64,7 @@ public abstract class Ghost extends Sprite {
         }
     }
 
-    private void changeToRandDir() {
+    public void changeToRandDir() {
         boolean trapped = false;
         boolean check = false;
         Direction dir = null;
@@ -99,7 +102,7 @@ public abstract class Ghost extends Sprite {
         this.dir = dir;
     }
 
-    private void changeDir() {
+    public void changeDir() {
         HashMap<Direction, Boolean> dirs = new HashMap<Direction, Boolean>();
         for (Direction dir : Direction.values()) {
             dirs.put(dir,CoordManager.checkEmpty(x,y,dir));
@@ -141,7 +144,7 @@ public abstract class Ghost extends Sprite {
         }
     }
 
-    private int calcDist(Direction dir) {
+    public int calcDist(Direction dir) {
         int x = this.x;
         int y = this.y;
         switch(dir){
@@ -161,7 +164,7 @@ public abstract class Ghost extends Sprite {
         return (Math.abs(x-target.getX())+Math.abs(y-target.getY()));
     }
 
-    private void setTarget() {
+    public void setTarget() {
         switch(this.state){
             case CHASE:
                 setChaseTarget();
@@ -172,10 +175,19 @@ public abstract class Ghost extends Sprite {
             case EATEN:
                 this.target = this.spawnPoint;
                 break;
+            case FRIGHTENED:
+                break;
         }
     }
 
     public abstract void setChaseTarget();
+
+    public abstract void resetImage();
+
+    public void setFrightenedImage(){
+        ImageIcon imageIcon = ImageFactory.createImage(Image.FRIGHTENED_GHOST);
+        setImage(imageIcon.getImage());
+    }
 
     public State getState() {
         return state;
@@ -183,6 +195,9 @@ public abstract class Ghost extends Sprite {
 
     public void setState(State state) {
         this.state = state;
+        if(state == FRIGHTENED){
+            ghostLoop.resetTimeLost();
+        }
     }
 
     public Coordinate getTarget() {
@@ -223,5 +238,13 @@ public abstract class Ghost extends Sprite {
 
     public void setTimer(Timer timer) {
         this.timer = timer;
+    }
+
+    public long getFrightTime() {
+        return frightTime;
+    }
+
+    public void setFrightTime() {
+        this.frightTime = System.currentTimeMillis();
     }
 }

@@ -52,7 +52,7 @@ public class Maze {
     }
 
     public void addPowerPill(int x, int y){
-        powerPills.add(new PowerPill(x,y, Constants.POWERILL_WIDTH, Constants.POWERILL_HEIGHT ,500,""));
+        powerPills.add(new PowerPill(x,y, Constants.POWERPILL_WIDTH, Constants.POWERPILL_HEIGHT ,500,""));
         alivePowerPills++;
     }
 

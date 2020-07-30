@@ -18,8 +18,7 @@ public class Blinky extends Ghost{
     }
 
     private void initialize(){
-        ImageIcon imageIcon = ImageFactory.createImage(Image.BLINKY);
-        setImage(imageIcon.getImage());
+        resetImage();
 
         Coordinate start = CoordManager.getObjCoord('1');
 
@@ -36,5 +35,11 @@ public class Blinky extends Ghost{
     public void setChaseTarget() {
         this.target.setX(this.pacman.getX());
         this.target.setY(this.pacman.getY());
+    }
+
+    @Override
+    public void resetImage() {
+        ImageIcon imageIcon = ImageFactory.createImage(Image.BLINKY);
+        setImage(imageIcon.getImage());
     }
 }

@@ -7,8 +7,7 @@ import utility.State;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static utility.State.CHASE;
-import static utility.State.SCATTER;
+import static utility.State.*;
 
 public class GhostLoop implements ActionListener {
 
@@ -16,6 +15,8 @@ public class GhostLoop implements ActionListener {
     private long[] times;
     private int counter;
     private long startTime;
+    private long timeLost;
+    private State backupState;
 
     public GhostLoop(Ghost ghost){
         this.ghost = ghost;
@@ -33,31 +34,48 @@ public class GhostLoop implements ActionListener {
                 this.times[i] = Constants.FIFTH_TIMES[i];
             }
         }
-        this.ghost.setState(CHASE);
+        this.ghost.setState(SCATTER);
+        this.backupState = SCATTER;
         this.counter = -1;
+        this.timeLost = 0;
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        if(counter == -1){
-            counter++;
-            this.startTime = System.currentTimeMillis();
-        } else if(counter < 7) {
-            if (System.currentTimeMillis() >= startTime+times[counter]) {
+        if(ghost.getState() == SCATTER || ghost.getState() == CHASE) {
+            if (counter == -1) {
                 counter++;
                 this.startTime = System.currentTimeMillis();
-                if (this.ghost.getState() == CHASE){
-                    System.out.println("Passo a scatter");
-                    this.ghost.setState(SCATTER);
-                } else {
-                    System.out.println("Passo a chase");
-                    this.ghost.setState(CHASE);
+            } else if (counter < 7) {
+                if (System.currentTimeMillis() >= startTime + times[counter]) {
+                    counter++;
+                    this.startTime = System.currentTimeMillis();
+                    if (this.ghost.getState() == CHASE) {
+                        System.out.println("Passo a scatter");
+                        this.ghost.setState(SCATTER);
+                        this.backupState = SCATTER;
+                    } else {
+                        System.out.println("Passo a chase");
+                        this.ghost.setState(CHASE);
+                        this.backupState = CHASE;
+                    }
                 }
             }
-        } else if (counter == 7){
-            System.out.println("Passo a chase");
-            this.ghost.setState(CHASE);
-            counter++;
+        } else if(this.ghost.getState() == FRIGHTENED){
+            ghost.setFrightenedImage();
+            long temp = System.currentTimeMillis()-ghost.getFrightTime();
+            this.startTime += temp - this.timeLost;
+            this.timeLost = temp;
+            System.out.println(temp);
+            if(System.currentTimeMillis() >= ghost.getFrightTime()+8000){
+                System.out.println("Esco da frightened con backupState: "+this.backupState);
+                this.ghost.setState(this.backupState);
+                ghost.resetImage();
+            }
         }
+    }
+
+    public void resetTimeLost(){
+        this.timeLost = 0;
     }
 }

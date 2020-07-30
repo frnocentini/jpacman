@@ -38,15 +38,15 @@ public class BGPanel extends JPanel {
                 }else{
                     label.setIcon(empty);
                 }
-                Coordinate co = CoordManager.convertCoords(j+1,i+1);
+                Coordinate co = CoordManager.convertCoords(j,i);
                 switch(CoordManager.maze.getMazeValue(i,j)){
                     case 'O':
-                        int x = co.getX()-Constants.BLOCK_DIM/2 - Constants.PILL_WIDTH/2;
-                        int y = co.getY()-Constants.BLOCK_DIM/2 - Constants.PILL_HEIGHT/2;
+                        int x = co.getX()+Constants.BLOCK_DIM/2 - Constants.PILL_WIDTH/2;
+                        int y = co.getY()+Constants.BLOCK_DIM/2 - Constants.PILL_HEIGHT/2;
                         CoordManager.maze.addPill(x,y);
                         break;
                     case 'P':
-                        CoordManager.maze.addPill(co.getX(),co.getY());
+                        CoordManager.maze.addPowerPill(co.getX(),co.getY());
                         break;
                 }
             }

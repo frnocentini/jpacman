@@ -38,6 +38,9 @@ public class ImageFactory {
             case POWERPILL:
                 imageIcon = new ImageIcon(Constants.POWERPILL_IMAGE_URL);
                 break;
+            case FRIGHTENED_GHOST:
+                imageIcon = new ImageIcon(Constants.FRIGHTENED_GHOST_IMAGE_URL);
+                break;
             default:
                 return null;
         }

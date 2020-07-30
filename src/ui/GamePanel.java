@@ -5,11 +5,15 @@ import constants.Constants;
 import model.Blinky;
 import model.Pacman;
 import model.Pill;
+import model.PowerPill;
 import utility.CoordManager;
+import utility.State;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+
+import static utility.State.FRIGHTENED;
 
 public class GamePanel extends JPanel {
 
@@ -58,8 +62,9 @@ public class GamePanel extends JPanel {
     private void doDrawing(Graphics g){
         if(inGame){
             drawPills(g);
-            drawBlinky(g);
+            drawPowerPills(g);
             drawPacman(g);
+            drawBlinky(g);
         } else{
             if(timer.isRunning()){
                 timer.stop();
@@ -67,6 +72,24 @@ public class GamePanel extends JPanel {
         }
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void drawPowerPills(Graphics g) {
+        for(int i = 0; i< CoordManager.maze.getPowerPillsNum(); i++){
+            PowerPill pp = CoordManager.maze.getPowerPill(i);
+            // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
+            if(CoordManager.checkCollision(pacman,pp)){
+                if(!pp.isDead()){
+                    CoordManager.maze.removeAlivePowerPill();
+                    blinky.setState(FRIGHTENED);
+                    blinky.setFrightTime();
+                    System.out.println("Passo a frightened");
+                }
+                pp.setDead(true);
+            } else if(!pp.isDead()){
+                g.drawImage(pp.getImage(), pp.getX(), pp.getY(), this);
+            }
+        }
     }
 
     private void drawPills(Graphics g) {

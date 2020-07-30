@@ -18,7 +18,7 @@ public class CoordManager {
     public static void createMaze(int level) {
         char[][] inputMaze = new char[21][19];
         try {
-            FileReader lvlFile = new FileReader(new File("levels/level"+level+".txt"));
+            FileReader lvlFile = new FileReader(new File("mazes/maze"+level+".txt"));
             BufferedReader br = new BufferedReader(lvlFile);  //Creation of BufferedReader object
             int c,i,j;
             c = i = j = 0;
