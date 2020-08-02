@@ -27,7 +27,7 @@ public class Maze {
     }
 
     public void addPill(int x, int y){
-        pills.add(new Pill(x,y, Constants.PILL_WIDTH, Constants.PILL_HEIGHT ,100,""));
+        pills.add(new Pill(x,y, Constants.PILL_WIDTH, Constants.PILL_HEIGHT ,100,"sounds/munch_1.wav"));
         alivePills++;
     }
 

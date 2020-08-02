@@ -15,21 +15,21 @@ public class Eatable extends Sprite {
         setY(y);
         setW(w);
         setH(h);
-        /*try {
+        try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(audioFilename).getAbsoluteFile());
-            Clip audio = AudioSystem.getClip();
-            audio.open(audioInputStream);
+            this.audio = AudioSystem.getClip();
+            this.audio.open(audioInputStream);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public void makeSound(){
-        audio.start();
+        this.audio.start();
     }
 
     public int getPoints() {

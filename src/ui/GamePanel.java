@@ -99,6 +99,7 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,p)){
                 if(!p.isDead()){
                     CoordManager.maze.removeAlivePill();
+                    p.makeSound();
                 }
                 p.setDead(true);
             } else if(!p.isDead()){
