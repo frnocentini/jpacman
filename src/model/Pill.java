@@ -7,8 +7,8 @@ import javax.swing.*;
 
 public class Pill extends Eatable{
 
-    public Pill(int x, int y, int w, int h, int points, String audioFilename) {
-        super(x, y, w, h, points, audioFilename);
+    public Pill(int x, int y, int w, int h, int points) {
+        super(x, y, w, h, points);
         ImageIcon imageIcon = ImageFactory.createImage(Image.PILL);
         setImage(imageIcon.getImage());
     }

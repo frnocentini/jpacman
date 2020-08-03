@@ -27,7 +27,7 @@ public class Maze {
     }
 
     public void addPill(int x, int y){
-        pills.add(new Pill(x,y, Constants.PILL_WIDTH, Constants.PILL_HEIGHT ,100,"sounds/munch_1.wav"));
+        pills.add(new Pill(x,y, Constants.PILL_WIDTH, Constants.PILL_HEIGHT ,100));
         alivePills++;
     }
 
@@ -52,7 +52,7 @@ public class Maze {
     }
 
     public void addPowerPill(int x, int y){
-        powerPills.add(new PowerPill(x,y, Constants.POWERPILL_WIDTH, Constants.POWERPILL_HEIGHT ,500,""));
+        powerPills.add(new PowerPill(x,y, Constants.POWERPILL_WIDTH, Constants.POWERPILL_HEIGHT ,500));
         alivePowerPills++;
     }
 

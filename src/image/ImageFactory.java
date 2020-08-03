@@ -41,6 +41,9 @@ public class ImageFactory {
             case FRIGHTENED_GHOST:
                 imageIcon = new ImageIcon(Constants.FRIGHTENED_GHOST_IMAGE_URL);
                 break;
+            case EATEN_GHOST:
+                imageIcon = new ImageIcon(Constants.EATEN_GHOST_IMAGE_URL);
+                break;
             default:
                 return null;
         }

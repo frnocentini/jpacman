@@ -31,4 +31,8 @@ public class Coordinate {
         }
         return false;
     }
+
+    public boolean equals(int x, int y){
+        return equals(new Coordinate(x,y));
+    }
 }

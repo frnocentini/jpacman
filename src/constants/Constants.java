@@ -17,7 +17,7 @@ public class Constants {
 
     //speed of the application
     public static final int GAME_SPEED = 10;
-    public static final int PACMAN_SPEED = 2;
+    public static final int PACMAN_SPEED = 1;
     public static final int GHOST_SPEED = 1;
 
     //Ghost related constants
@@ -35,6 +35,23 @@ public class Constants {
     public static final String PILL_IMAGE_URL = "images/pill.png";
     public static final String POWERPILL_IMAGE_URL = "images/powerpill.png";
     public static final String FRIGHTENED_GHOST_IMAGE_URL = "images/frightened.png";
+    public static final String EATEN_GHOST_IMAGE_URL = "images/eaten.png";
+
+    //sounds
+    public static final String CREDIT_URL = "sounds/credit.wav";
+    public static final String DEATH_URL = "sounds/death.wav";
+    public static final String EAT_FRUIT_URL = "sounds/eat_fruit.wav";
+    public static final String EAT_GHOST_URL = "sounds/eat_ghost.wav";
+    public static final String GAME_START_URL = "sounds/game_start.wav";
+    public static final String MUNCH_1_URL = "sounds/munch_1.wav";
+    public static final String MUNCH_2_URL = "sounds/munch_2.wav";
+    public static final String FRIGHT_SOUND_URL = "sounds/fright_sound.wav";
+    public static final String EATEN_SOUND_URL = "sounds/eaten_sound.wav";
+    public static final String SIREN_1_URL = "sounds/siren_1.wav";
+    public static final String SIREN_2_URL = "sounds/siren_2.wav";
+    public static final String SIREN_3_URL = "sounds/siren_3.wav";
+    public static final String SIREN_4_URL = "sounds/siren_4.wav";
+    public static final String SIREN_5_URL = "sounds/siren_5.wav";
 
     //tempi chase-scatter dei livelli
     public static final long[] FIRST_TIMES = {7000,20000,7000,20000,5000,20000,5000};

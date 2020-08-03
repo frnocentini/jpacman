@@ -15,8 +15,7 @@ import java.util.Random;
 
 import static utility.Direction.*;
 import static utility.Direction.UP;
-import static utility.State.CHASE;
-import static utility.State.FRIGHTENED;
+import static utility.State.*;
 
 public abstract class Ghost extends Sprite {
 
@@ -178,6 +177,12 @@ public abstract class Ghost extends Sprite {
             case FRIGHTENED:
                 break;
         }
+    }
+
+    public void becomeEaten(){
+        this.state = EATEN;
+        ImageIcon imageIcon = ImageFactory.createImage(Image.EATEN_GHOST);
+        setImage(imageIcon.getImage());
     }
 
     public abstract void setChaseTarget();

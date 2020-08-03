@@ -6,6 +6,8 @@ import model.Blinky;
 import model.Pacman;
 import model.Pill;
 import model.PowerPill;
+import sound.Sound;
+import sound.SoundFactory;
 import utility.CoordManager;
 import utility.State;
 
@@ -13,7 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static utility.State.FRIGHTENED;
+import static sound.Sound.*;
+import static utility.State.*;
 
 public class GamePanel extends JPanel {
 
@@ -26,6 +29,7 @@ public class GamePanel extends JPanel {
     private boolean pacmanStart;
     private long startTime;
     private int level;
+    private boolean munch;
 
     public GamePanel(GameMainFrame frame, int level){
         this.frame = frame;
@@ -39,6 +43,9 @@ public class GamePanel extends JPanel {
         this.inGame = true;
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
+        this.munch = true;
+        SoundFactory.chooseSound(GAME_START);
+        SoundFactory.playSound();
         this.pacman = new Pacman();
         this.blinky = new Blinky(this.pacman);
         this.pacmanStart = false;
@@ -81,9 +88,11 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,pp)){
                 if(!pp.isDead()){
                     CoordManager.maze.removeAlivePowerPill();
-                    blinky.setState(FRIGHTENED);
-                    blinky.setFrightTime();
-                    System.out.println("Passo a frightened");
+                    if(blinky.getState() != EATEN){
+                        blinky.setState(FRIGHTENED);
+                        blinky.setFrightTime();
+                        System.out.println("Passo a frightened");
+                    }
                 }
                 pp.setDead(true);
             } else if(!pp.isDead()){
@@ -99,7 +108,14 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,p)){
                 if(!p.isDead()){
                     CoordManager.maze.removeAlivePill();
-                    p.makeSound();
+                    if(munch){
+                        SoundFactory.chooseSound(MUNCH_1);
+                        munch = false;
+                    } else {
+                        SoundFactory.chooseSound(MUNCH_2);
+                        munch = true;
+                    }
+                    SoundFactory.playSound();
                 }
                 p.setDead(true);
             } else if(!p.isDead()){
@@ -127,6 +143,11 @@ public class GamePanel extends JPanel {
 
     private void drawBlinky(Graphics g) {
         g.drawImage(blinky.getImage(), blinky.getX(), blinky.getY(), this);
+        if(CoordManager.checkCollision(pacman,blinky)){
+            if(blinky.getState() == FRIGHTENED){
+                blinky.becomeEaten();
+            }
+        }
     }
 
     public void doOneLoop() {
@@ -145,9 +166,11 @@ public class GamePanel extends JPanel {
             for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
                 CoordManager.maze.getPill(i).setDead(false);
             }
-            if(test >= (this.startTime + 3*1000)) { //multiply by 1000 to get milliseconds
+            if(test >= (this.startTime + 4*1000)) { //multiply by 1000 to get milliseconds
                 this.pacmanStart=true;
                 this.blinky.timer.start();
+                SoundFactory.chooseSound(SIREN_1);
+                SoundFactory.loopSound();
             }
         }
     }

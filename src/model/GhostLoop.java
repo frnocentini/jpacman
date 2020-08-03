@@ -2,6 +2,7 @@ package model;
 
 import constants.Constants;
 import ui.GameMainFrame;
+import utility.Coordinate;
 import utility.State;
 
 import java.awt.event.ActionEvent;
@@ -68,6 +69,13 @@ public class GhostLoop implements ActionListener {
             this.timeLost = temp;
             if(System.currentTimeMillis() >= ghost.getFrightTime()+8000){
                 System.out.println("Esco da frightened con backupState: "+this.backupState);
+                this.ghost.setState(this.backupState);
+                ghost.resetImage();
+            }
+        } else if (this.ghost.getState() == EATEN){
+            Coordinate sp = this.ghost.getSpawnPoint();
+            if(sp.equals(this.ghost.getX(),this.ghost.getY())){
+                System.out.println("Esco da eaten con backupState: "+this.backupState);
                 this.ghost.setState(this.backupState);
                 ghost.resetImage();
             }
