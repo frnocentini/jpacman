@@ -16,7 +16,7 @@ public class Constants {
     public static final int POWERPILL_HEIGHT = 20;
 
     //speed of the application
-    public static final int GAME_SPEED = 4;
+    public static final int GAME_SPEED = 10;
     public static final int PACMAN_SPEED = 1;
     public static final int GHOST_SPEED = 1;
 
@@ -37,6 +37,8 @@ public class Constants {
     public static final String FRIGHTENED_GHOST_IMAGE_URL = "images/frightened.png";
     public static final String EATEN_GHOST_IMAGE_URL = "images/eaten.png";
     public static final String MENU_IMAGE_URL = "images/menu.png";
+    public static final String BLUE_PORTAL_IMAGE_URL = "images/blue_portal.png";
+    public static final String RED_PORTAL_IMAGE_URL = "images/red_portal.png";
 
     //sounds
     public static final String CREDIT_URL = "sounds/credit.wav";

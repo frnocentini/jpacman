@@ -42,7 +42,6 @@ public class MenuPanel extends JPanel {
         b.setFocusPainted(false);
         b.setBorder(new LineBorder(Color.RED));
         b.setFont(new Font("Tahoma", Font.BOLD, 12));
-        b.setPreferredSize(new Dimension(200, 60));
         b.setBounds(90,200,200,60);
         b.addActionListener(new ActionListener() {
             @Override

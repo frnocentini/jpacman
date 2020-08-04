@@ -47,6 +47,12 @@ public class ImageFactory {
             case MENU:
                 imageIcon = new ImageIcon(Constants.MENU_IMAGE_URL);
                 break;
+            case BLUE_PORTAL:
+                imageIcon = new ImageIcon(Constants.BLUE_PORTAL_IMAGE_URL);
+                break;
+            case RED_PORTAL:
+                imageIcon = new ImageIcon(Constants.RED_PORTAL_IMAGE_URL);
+                break;
             default:
                 return null;
         }

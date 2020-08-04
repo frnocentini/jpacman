@@ -180,10 +180,12 @@ public abstract class Ghost extends Sprite {
                 setChaseTarget();
                 break;
             case SCATTER:
-                this.target = this.scatterTarget;
+                this.target.setX(this.scatterTarget.getX());
+                this.target.setY(this.scatterTarget.getY());
                 break;
             case EATEN:
-                this.target = this.spawnPoint;
+                this.target.setX(this.spawnPoint.getX());
+                this.target.setY(this.spawnPoint.getY());
                 break;
             case FRIGHTENED:
                 break;
