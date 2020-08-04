@@ -13,7 +13,24 @@ public class GameMainFrame extends JFrame{
 
     public GameMainFrame(){
         level = 1;
-        initializeLayout();
+        initializeGameMenu();
+    }
+
+    public void initializeGameMenu() {
+
+        MenuPanel menuPanel = new MenuPanel(this);
+        menuPanel.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
+        this.setIconImage((ImageFactory.createImage(Image.PACMAN_LEFT).getImage()));
+        this.setContentPane(menuPanel);
+        this.setVisible(true);
+        this.setTitle(Constants.TITLE);
+
+        this.pack();
+
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+
     }
 
     public void initializeLayout(){
@@ -34,10 +51,10 @@ public class GameMainFrame extends JFrame{
 
         //Imposto la trasparenza la grandezza del gamePanel e lo inserisco nello strato successivo del layeredPane
         gamePanel.setOpaque(false);
-        gamePanel.setBounds(0, 0, Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE);
+        gamePanel.setBounds(0, 0, Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40);
         layeredPane.add(gamePanel, JLayeredPane.PALETTE_LAYER);
 
-        layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE) );
+        layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
         this.setContentPane(layeredPane);
         this.setVisible(true);
         this.setTitle(Constants.TITLE);

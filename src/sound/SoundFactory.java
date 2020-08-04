@@ -57,6 +57,9 @@ public class SoundFactory {
             case SIREN_5:
                 audio = createStream(SIREN_5_URL);
                 break;
+            case STARTUP:
+                audio = createStream(STARTUP_URL);
+                break;
         }
 
     }
@@ -82,7 +85,11 @@ public class SoundFactory {
     }
 
     public static void stopSound(){
-        audio.stop();
+        if (audio.isOpen()) {
+            audio.stop();
+            audio.flush();
+            audio.close();
+        }
     }
 
     public static void loopSound(){

@@ -39,6 +39,11 @@ public abstract class Ghost extends Sprite {
 
     public void move(){
         int speed = Constants.GHOST_SPEED;
+        if(this.state == EATEN){
+            speed *= 2;
+            x -= x%(Constants.GHOST_SPEED*2);
+            y -= y%(Constants.GHOST_SPEED*2);
+        }
         setTarget();
         if(CoordManager.canIMove(x,y)){
             if(this.state != FRIGHTENED){
@@ -74,7 +79,7 @@ public abstract class Ghost extends Sprite {
             switch(dir){
                 case UP:
                     trapped = !CoordManager.checkEmpty(this.x,this.y,DOWN) && !CoordManager.checkEmpty(this.x,this.y,RIGHT) && !CoordManager.checkEmpty(this.x,this.y,LEFT);
-                    if(this.dir == DOWN){
+                    if(this.dir == DOWN && !trapped){
                         check = false;
                     }
                     break;
@@ -106,7 +111,7 @@ public abstract class Ghost extends Sprite {
         for (Direction dir : Direction.values()) {
             dirs.put(dir,CoordManager.checkEmpty(x,y,dir));
         }
-        switch(dir){
+        switch(this.dir){
             case UP:
                 if(dirs.get(UP) || dirs.get(LEFT) || dirs.get(RIGHT)){
                     dirs.remove(DOWN);
@@ -124,23 +129,27 @@ public abstract class Ghost extends Sprite {
                     dirs.remove(RIGHT);
                     dirs.put(RIGHT,false);
                 }
+                break;
             case RIGHT:
                 if(dirs.get(UP) || dirs.get(DOWN) || dirs.get(RIGHT)){
                     dirs.remove(LEFT);
                     dirs.put(LEFT,false);
                 }
+                break;
         }
-        int maxValue, tempDist;
-        maxValue = Integer.MAX_VALUE;
+        int minValue, tempDist;
+        Direction tempDir = null;
+        minValue = Integer.MAX_VALUE;
         for (Direction dir : Direction.values()) {
             if(dirs.get(dir)){
                 tempDist = calcDist(dir);
-                if(tempDist < maxValue){
-                    maxValue = tempDist;
-                    this.dir = dir;
+                if(tempDist < minValue){
+                    minValue = tempDist;
+                    tempDir = dir;
                 }
             }
         }
+        this.dir = tempDir;
     }
 
     public int calcDist(Direction dir) {
@@ -160,7 +169,9 @@ public abstract class Ghost extends Sprite {
                 x += Constants.BLOCK_DIM;
                 break;
         }
-        return (Math.abs(x-target.getX())+Math.abs(y-target.getY()));
+        int diffx = Math.abs(x-target.getX())^2;
+        int diffy = Math.abs(y-target.getY())^2;
+        return diffx+diffy;
     }
 
     public void setTarget() {

@@ -74,7 +74,9 @@ public class GhostLoop implements ActionListener {
             }
         } else if (this.ghost.getState() == EATEN){
             Coordinate sp = this.ghost.getSpawnPoint();
-            if(sp.equals(this.ghost.getX(),this.ghost.getY())){
+            Coordinate co = new Coordinate(this.ghost.getX(),this.ghost.getY());
+            if(sp.equals(co)){
+                System.out.println(this.ghost.getX() +" "+ this.ghost.getY());
                 System.out.println("Esco da eaten con backupState: "+this.backupState);
                 this.ghost.setState(this.backupState);
                 ghost.resetImage();

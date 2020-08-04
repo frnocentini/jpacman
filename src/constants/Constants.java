@@ -16,7 +16,7 @@ public class Constants {
     public static final int POWERPILL_HEIGHT = 20;
 
     //speed of the application
-    public static final int GAME_SPEED = 10;
+    public static final int GAME_SPEED = 4;
     public static final int PACMAN_SPEED = 1;
     public static final int GHOST_SPEED = 1;
 
@@ -36,6 +36,7 @@ public class Constants {
     public static final String POWERPILL_IMAGE_URL = "images/powerpill.png";
     public static final String FRIGHTENED_GHOST_IMAGE_URL = "images/frightened.png";
     public static final String EATEN_GHOST_IMAGE_URL = "images/eaten.png";
+    public static final String MENU_IMAGE_URL = "images/menu.png";
 
     //sounds
     public static final String CREDIT_URL = "sounds/credit.wav";
@@ -52,6 +53,7 @@ public class Constants {
     public static final String SIREN_3_URL = "sounds/siren_3.wav";
     public static final String SIREN_4_URL = "sounds/siren_4.wav";
     public static final String SIREN_5_URL = "sounds/siren_5.wav";
+    public static final String STARTUP_URL = "sounds/startup.wav";
 
     //tempi chase-scatter dei livelli
     public static final long[] FIRST_TIMES = {7000,20000,7000,20000,5000,20000,5000};

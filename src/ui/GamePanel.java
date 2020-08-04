@@ -126,6 +126,7 @@ public class GamePanel extends JPanel {
                 frame.getContentPane().removeAll();
                 this.gameEventListener = null;
                 System.gc();
+                System.out.println("fine livello");
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {

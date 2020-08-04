@@ -44,6 +44,9 @@ public class ImageFactory {
             case EATEN_GHOST:
                 imageIcon = new ImageIcon(Constants.EATEN_GHOST_IMAGE_URL);
                 break;
+            case MENU:
+                imageIcon = new ImageIcon(Constants.MENU_IMAGE_URL);
+                break;
             default:
                 return null;
         }

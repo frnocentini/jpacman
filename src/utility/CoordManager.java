@@ -62,7 +62,6 @@ public class CoordManager {
     }
 
     public static char whichBlock(int x, int y) {
-        //System.out.println(x+" "+y);
         return CoordManager.maze.getMazeValue(y / Constants.BLOCK_DIM,x / Constants.BLOCK_DIM);
     }
 
@@ -71,7 +70,7 @@ public class CoordManager {
     }
 
     public static boolean canIMove(Coordinate co){
-        if((co.getX() % 20) == 0 && (co.getY() % 20) == 0){
+        if((co.getX() % Constants.BLOCK_DIM) == 0 && (co.getY() % Constants.BLOCK_DIM) == 0){
             return true;
         }
         return false;
@@ -106,8 +105,8 @@ public class CoordManager {
 
     public static boolean checkCollision(Sprite a, Sprite b) {
         // Find the bounds of the rectangle intersection
-        Rectangle2D ar = new Rectangle2D.Double(a.getX(), a.getY(), a.getW(), a.getH());
-        Rectangle2D br = new Rectangle2D.Double(b.getX(), b.getY(), b.getW(), b.getH());
+        Rectangle2D ar = new Rectangle2D.Double(a.getX()+a.getW()/4, a.getY()+a.getH()/4, 3 * a.getW() / 4, 3 * a.getH() / 4);
+        Rectangle2D br = new Rectangle2D.Double(b.getX()+a.getW()/4, b.getY()+a.getH()/4, 3 * b.getW() / 4, 3 * b.getH() / 4);
         if(ar.intersects(br)){
             return true;
         }
