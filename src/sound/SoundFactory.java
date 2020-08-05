@@ -10,9 +10,9 @@ import static sound.Sound.*;
 
 public class SoundFactory {
 
-    private static Clip audio;
-
-    public static void chooseSound(Sound sound){
+    public Clip chooseSound(Sound sound){
+        
+        Clip audio = null;
 
         switch(sound){
             case CREDIT:
@@ -60,11 +60,17 @@ public class SoundFactory {
             case STARTUP:
                 audio = createStream(STARTUP_URL);
                 break;
+            case BLUE_PORTAL_SOUND:
+                audio = createStream(BLUE_PORTAL_SOUND_URL);
+                break;
+            case RED_PORTAL_SOUND:
+                audio = createStream(RED_PORTAL_SOUND_URL);
+                break;
         }
-
+        return audio;
     }
 
-    private static Clip createStream(String audioFilename){
+    private Clip createStream(String audioFilename){
         Clip audio = null;
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(audioFilename).getAbsoluteFile());
@@ -80,20 +86,20 @@ public class SoundFactory {
         return audio;
     }
 
-    public static void playSound(){
-        audio.start();
+    public void playSound(Clip c){
+        c.start();
     }
 
-    public static void stopSound(){
-        if (audio.isOpen()) {
-            audio.stop();
-            audio.flush();
-            audio.close();
+    public void stopSound(Clip c){
+        if (c.isOpen()) {
+            c.stop();
+            c.flush();
+            c.close();
         }
     }
 
-    public static void loopSound(){
-        audio.loop(Clip.LOOP_CONTINUOUSLY);
+    public void loopSound(Clip c){
+         c.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
 }

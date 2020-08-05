@@ -3,6 +3,7 @@ package ui;
 import image.Image;
 import image.ImageFactory;
 import sound.SoundFactory;
+import sound.SoundPlayer;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -19,8 +20,7 @@ public class MenuPanel extends JPanel {
     public MenuPanel(GameMainFrame gameMainFrame){
         this.gameMainFrame = gameMainFrame;
         setLayout(null);
-        SoundFactory.chooseSound(STARTUP);
-        SoundFactory.playSound();
+        SoundPlayer.playMusic(STARTUP);
     }
 
     @Override
@@ -41,14 +41,13 @@ public class MenuPanel extends JPanel {
         b.setForeground(Color.RED);
         b.setFocusPainted(false);
         b.setBorder(new LineBorder(Color.RED));
-        b.setFont(new Font("Tahoma", Font.BOLD, 12));
+        b.setFont(new Font("Tahoma", Font.BOLD, 18));
         b.setBounds(90,200,200,60);
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SoundFactory.stopSound();
-                SoundFactory.chooseSound(CREDIT);
-                SoundFactory.playSound();
+                SoundPlayer.stopMusic(STARTUP);
+                SoundPlayer.playEffect(CREDIT);
                 gameMainFrame.dispose();
                 gameMainFrame.initializeLayout();
             }

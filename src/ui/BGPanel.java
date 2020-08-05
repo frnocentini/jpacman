@@ -5,6 +5,7 @@ import constants.Constants;
 import image.Image;
 import image.ImageFactory;
 import model.Pacman;
+import model.Portal;
 import utility.CoordManager;
 import utility.Coordinate;
 
@@ -29,6 +30,8 @@ public class BGPanel extends JPanel {
         CoordManager.createMaze(level);
         ImageIcon empty = ImageFactory.createImage(Image.EMPTY);
         ImageIcon wall = ImageFactory.createImage(Image.WALL);
+        Portal bluePortal = null;
+        Portal redPortal = null;
         for (int i=0;i<CoordManager.maze.getMazeHeight();i++){
             for(int j=0;j<CoordManager.maze.getMazeWidth();j++){
                 JLabel label = new JLabel();
@@ -48,9 +51,21 @@ public class BGPanel extends JPanel {
                     case 'P':
                         CoordManager.maze.addPowerPill(co.getX(),co.getY());
                         break;
+                    case 'B':
+                        bluePortal = new Portal(co.getX(),co.getY(), 20, 20, "BLUE");
+
+                        break;
+                    case 'R':
+                        redPortal = new Portal(co.getX(),co.getY(), 20, 20, "RED");
+
+                        break;
                 }
             }
         }
+        bluePortal.setOther(redPortal);
+        redPortal.setOther(bluePortal);
+        CoordManager.maze.setBluePortal(bluePortal);
+        CoordManager.maze.setRedPortal(redPortal);
     }
 
 

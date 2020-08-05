@@ -12,6 +12,8 @@ public class Maze {
     private ArrayList<PowerPill> powerPills;
     private int alivePills;
     private int alivePowerPills;
+    private Portal bluePortal;
+    private Portal redPortal;
 
     public Maze(char[][] maze) {
         this.alivePills=0;
@@ -86,5 +88,21 @@ public class Maze {
 
     public int getMazeHeight() {
         return maze.length;
+    }
+
+    public Portal getBluePortal() {
+        return bluePortal;
+    }
+
+    public void setBluePortal(Portal bluePortal) {
+        this.bluePortal = bluePortal;
+    }
+
+    public Portal getRedPortal() {
+        return redPortal;
+    }
+
+    public void setRedPortal(Portal redPortal) {
+        this.redPortal = redPortal;
     }
 }

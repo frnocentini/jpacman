@@ -3,6 +3,7 @@ package ui;
 import constants.Constants;
 import image.Image;
 import image.ImageFactory;
+import sound.SoundPlayer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,7 @@ public class GameMainFrame extends JFrame{
 
     public GameMainFrame(){
         level = 1;
+        SoundPlayer.initialize();
         initializeGameMenu();
     }
 

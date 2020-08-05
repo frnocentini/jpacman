@@ -17,8 +17,8 @@ public class Constants {
 
     //speed of the application
     public static final int GAME_SPEED = 10;
-    public static final int PACMAN_SPEED = 1;
-    public static final int GHOST_SPEED = 1;
+    public static final int PACMAN_SPEED = 2;
+    public static final int GHOST_SPEED = 2;
 
     //Ghost related constants
     public static final int GHOST_HEIGHT = 20;
@@ -56,6 +56,8 @@ public class Constants {
     public static final String SIREN_4_URL = "sounds/siren_4.wav";
     public static final String SIREN_5_URL = "sounds/siren_5.wav";
     public static final String STARTUP_URL = "sounds/startup.wav";
+    public static final String BLUE_PORTAL_SOUND_URL = "sounds/blue_portal_sound.wav";
+    public static final String RED_PORTAL_SOUND_URL = "sounds/red_portal_sound.wav";
 
     //tempi chase-scatter dei livelli
     public static final long[] FIRST_TIMES = {7000,20000,7000,20000,5000,20000,5000};

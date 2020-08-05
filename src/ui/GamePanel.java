@@ -2,12 +2,10 @@ package ui;
 
 import callbacks.GameEventListener;
 import constants.Constants;
-import model.Blinky;
-import model.Pacman;
-import model.Pill;
-import model.PowerPill;
+import model.*;
 import sound.Sound;
 import sound.SoundFactory;
+import sound.SoundPlayer;
 import utility.CoordManager;
 import utility.State;
 
@@ -15,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import static java.awt.event.KeyEvent.VK_ENTER;
 import static sound.Sound.*;
 import static utility.State.*;
 
@@ -28,6 +27,7 @@ public class GamePanel extends JPanel {
     private Timer timer;
     private boolean pacmanStart;
     private long startTime;
+    private long portalTime;
     private int level;
     private boolean munch;
 
@@ -44,12 +44,11 @@ public class GamePanel extends JPanel {
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
         this.munch = true;
-        SoundFactory.chooseSound(GAME_START);
-        SoundFactory.playSound();
+        SoundPlayer.playEffect(GAME_START);
         this.pacman = new Pacman();
         this.blinky = new Blinky(this.pacman);
         this.pacmanStart = false;
-        this.startTime = System.currentTimeMillis();
+        this.startTime = this.portalTime = System.currentTimeMillis();
     }
 
     private void initializeLayout() {
@@ -70,6 +69,7 @@ public class GamePanel extends JPanel {
         if(inGame){
             drawPills(g);
             drawPowerPills(g);
+            drawPortals(g);
             drawPacman(g);
             drawBlinky(g);
         } else{
@@ -79,6 +79,37 @@ public class GamePanel extends JPanel {
         }
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void drawPortals(Graphics g) {
+        Portal bluePortal = CoordManager.maze.getBluePortal();
+        Portal redPortal = CoordManager.maze.getRedPortal();
+        g.drawImage(bluePortal.getImage(), bluePortal.getX(), bluePortal.getY(), this);
+        g.drawImage(redPortal.getImage(), redPortal.getX(), redPortal.getY(), this);
+        //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
+        //System.out.println("Le coordinate del blu sono: "+redPortal.getOther().getX()+" e "+redPortal.getOther().getY());
+        if(System.currentTimeMillis() >= (this.portalTime + 300)){
+            if(CoordManager.checkCollision(pacman,bluePortal)){
+                teleport(pacman,bluePortal);
+            }else if(CoordManager.checkCollision(pacman,redPortal)){
+                teleport(pacman,redPortal);
+            }else if(CoordManager.checkCollision(blinky,bluePortal)){
+                teleport(blinky,bluePortal);
+            }else if(CoordManager.checkCollision(blinky,redPortal)){
+                teleport(blinky,redPortal);
+            }
+        }
+    }
+
+    private void teleport(Sprite a, Portal p){
+        a.setX(p.getOther().getX());
+        a.setY(p.getOther().getY());
+        if(p.getColor().equals("BLUE")){
+            SoundPlayer.playEffect(BLUE_PORTAL_SOUND);
+        }else{
+            SoundPlayer.playEffect(RED_PORTAL_SOUND);
+        }
+        this.portalTime = System.currentTimeMillis();
     }
 
     private void drawPowerPills(Graphics g) {
@@ -109,13 +140,12 @@ public class GamePanel extends JPanel {
                 if(!p.isDead()){
                     CoordManager.maze.removeAlivePill();
                     if(munch){
-                        SoundFactory.chooseSound(MUNCH_1);
+                        SoundPlayer.playEffect(MUNCH_1);
                         munch = false;
                     } else {
-                        SoundFactory.chooseSound(MUNCH_2);
+                        SoundPlayer.playEffect(MUNCH_2);
                         munch = true;
                     }
-                    SoundFactory.playSound();
                 }
                 p.setDead(true);
             } else if(!p.isDead()){
@@ -170,14 +200,20 @@ public class GamePanel extends JPanel {
             if(test >= (this.startTime + 4*1000)) { //multiply by 1000 to get milliseconds
                 this.pacmanStart=true;
                 this.blinky.timer.start();
-                SoundFactory.chooseSound(SIREN_1);
-                SoundFactory.loopSound();
             }
         }
     }
 
     public void keyPressed(KeyEvent e) {
         this.pacman.keyPressed(e);
+        int keyPressed = e.getKeyCode();
+        if(keyPressed == VK_ENTER){
+            if(timer.isRunning()){
+                timer.stop();
+            } else {
+                timer.start();
+            }
+        }
     }
 
     public void keyReleased(KeyEvent e) {

@@ -15,6 +15,7 @@ public class Pacman extends Sprite {
 
     private Timer timer;
     private int keyPressed;
+    private int lives;
 
     public Pacman(){
         initialize();
