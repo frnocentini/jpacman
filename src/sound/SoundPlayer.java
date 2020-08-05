@@ -33,6 +33,14 @@ public class SoundPlayer {
         }
     }
 
+    public static void loopMusic(Sound sound) {
+        if(!muteMusic){
+            Clip c = sf.chooseSound(sound);
+            sf.loopSound(c);
+            library.put(sound,c);
+        }
+    }
+
     public static void stopMusic(Sound sound) {
         Clip c = library.get(sound);
         sf.stopSound(c);
