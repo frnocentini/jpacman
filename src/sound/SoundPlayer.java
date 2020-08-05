@@ -42,8 +42,10 @@ public class SoundPlayer {
     }
 
     public static void stopMusic(Sound sound) {
-        Clip c = library.get(sound);
-        sf.stopSound(c);
-        library.remove(sound);
+        if(library.containsKey(sound)) {
+            Clip c = library.get(sound);
+            sf.stopSound(c);
+            library.remove(sound);
+        }
     }
 }

@@ -44,7 +44,7 @@ public class GamePanel extends JPanel {
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
         this.munch = true;
-        SoundPlayer.playEffect(GAME_START);
+        SoundPlayer.playMusic(GAME_START);
         this.pacman = new Pacman();
         this.blinky = new Blinky(this.pacman);
         this.pacmanStart = false;

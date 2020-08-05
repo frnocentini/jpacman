@@ -32,6 +32,9 @@ public class ImageFactory {
             case BLINKY:
                 imageIcon = new ImageIcon(Constants.BLINKY_IMAGE_URL);
                 break;
+            case PINKY:
+                imageIcon = new ImageIcon(Constants.PINKY_IMAGE_URL);
+                break;
             case PILL:
                 imageIcon = new ImageIcon(Constants.PILL_IMAGE_URL);
                 break;

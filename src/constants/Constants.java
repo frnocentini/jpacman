@@ -32,6 +32,7 @@ public class Constants {
     public static final String EMPTY_IMAGE_URL = "images/empty.png";
     public static final String WALL_IMAGE_URL = "images/wall.png";
     public static final String BLINKY_IMAGE_URL = "images/blinky.png";
+    public static final String PINKY_IMAGE_URL = "images/pinky.png";
     public static final String PILL_IMAGE_URL = "images/pill.png";
     public static final String POWERPILL_IMAGE_URL = "images/powerpill.png";
     public static final String FRIGHTENED_GHOST_IMAGE_URL = "images/frightened.png";
