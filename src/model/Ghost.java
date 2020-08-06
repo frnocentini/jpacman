@@ -202,9 +202,36 @@ public abstract class Ghost extends Sprite {
 
     public abstract void resetImage();
 
-    public void setFrightenedImage(){
-        ImageIcon imageIcon = ImageFactory.createImage(Image.FRIGHTENED_GHOST);
-        setImage(imageIcon.getImage());
+    public void becomeFrightened(){
+        if(this.state != FRIGHTENED){
+            ImageIcon imageIcon = ImageFactory.createImage(Image.FRIGHTENED_GHOST);
+            setImage(imageIcon.getImage());
+            switch(this.dir){
+                case UP:
+                    if(CoordManager.checkEmpty(x,y,DOWN)){
+                        this.dir = DOWN;
+                    }
+                    break;
+                case RIGHT:
+                    if(CoordManager.checkEmpty(x,y,LEFT)){
+                        this.dir = LEFT;
+                    }
+                    break;
+                case DOWN:
+                    if(CoordManager.checkEmpty(x,y,UP)){
+                        this.dir = UP;
+                    }
+                    break;
+                case LEFT:
+                    if(CoordManager.checkEmpty(x,y,RIGHT)){
+                        this.dir = RIGHT;
+                    }
+                    break;
+            }
+        }
+        ghostLoop.resetTimeLost();
+        setFrightTime();
+        this.state = FRIGHTENED;
     }
 
     public State getState() {
@@ -213,9 +240,6 @@ public abstract class Ghost extends Sprite {
 
     public void setState(State state) {
         this.state = state;
-        if(state == FRIGHTENED){
-            ghostLoop.resetTimeLost();
-        }
     }
 
     public Coordinate getTarget() {

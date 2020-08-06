@@ -16,7 +16,7 @@ public class Constants {
     public static final int POWERPILL_HEIGHT = 20;
 
     //speed of the application
-    public static final int GAME_SPEED = 10;
+    public static final int GAME_SPEED = 20;
     public static final int PACMAN_SPEED = 2;
     public static final int GHOST_SPEED = 2;
 

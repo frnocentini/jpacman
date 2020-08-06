@@ -48,10 +48,10 @@ public class GamePanel extends JPanel {
         SoundPlayer.playMusic(GAME_START);
         this.pacman = new Pacman();
         this.ghosts = new ArrayList<>();
-        Blinky blinky = new Blinky(this.pacman);
         Pinky pinky = new Pinky(this.pacman);
-        this.ghosts.add(blinky);
+        Blinky blinky = new Blinky(this.pacman);
         this.ghosts.add(pinky);
+        this.ghosts.add(blinky);
         this.pacmanStart = false;
         this.startTime = this.portalTime = System.currentTimeMillis();
     }
@@ -130,8 +130,7 @@ public class GamePanel extends JPanel {
                     CoordManager.maze.removeAlivePowerPill();
                     for(Ghost ghost : this.ghosts) {
                         if (ghost.getState() != EATEN) {
-                            ghost.setState(FRIGHTENED);
-                            ghost.setFrightTime();
+                            ghost.becomeFrightened();
                             System.out.println("Passo a frightened");
                         }
                     }

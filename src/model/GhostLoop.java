@@ -63,7 +63,6 @@ public class GhostLoop implements ActionListener {
                 }
             }
         } else if(this.ghost.getState() == FRIGHTENED){
-            ghost.setFrightenedImage();
             long temp = System.currentTimeMillis()-ghost.getFrightTime();
             this.startTime += temp - this.timeLost;
             this.timeLost = temp;
