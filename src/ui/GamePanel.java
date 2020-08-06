@@ -12,6 +12,7 @@ import utility.State;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import static java.awt.event.KeyEvent.VK_ENTER;
 import static sound.Sound.*;
@@ -22,7 +23,7 @@ public class GamePanel extends JPanel {
     private GameMainFrame frame;
     private GameEventListener gameEventListener;
     private Pacman pacman;
-    private Blinky blinky;
+    private ArrayList<Ghost> ghosts;
     boolean inGame;
     private Timer timer;
     private boolean pacmanStart;
@@ -46,7 +47,11 @@ public class GamePanel extends JPanel {
         this.munch = true;
         SoundPlayer.playMusic(GAME_START);
         this.pacman = new Pacman();
-        this.blinky = new Blinky(this.pacman);
+        this.ghosts = new ArrayList<>();
+        Blinky blinky = new Blinky(this.pacman);
+        Pinky pinky = new Pinky(this.pacman);
+        this.ghosts.add(blinky);
+        this.ghosts.add(pinky);
         this.pacmanStart = false;
         this.startTime = this.portalTime = System.currentTimeMillis();
     }
@@ -71,7 +76,7 @@ public class GamePanel extends JPanel {
             drawPowerPills(g);
             drawPortals(g);
             drawPacman(g);
-            drawBlinky(g);
+            drawGhosts(g);
         } else{
             if(timer.isRunning()){
                 timer.stop();
@@ -93,10 +98,14 @@ public class GamePanel extends JPanel {
                 teleport(pacman,bluePortal);
             }else if(CoordManager.checkCollision(pacman,redPortal)){
                 teleport(pacman,redPortal);
-            }else if(CoordManager.checkCollision(blinky,bluePortal)){
-                teleport(blinky,bluePortal);
-            }else if(CoordManager.checkCollision(blinky,redPortal)){
-                teleport(blinky,redPortal);
+            }else{
+                for(Ghost ghost : this.ghosts) {
+                    if (CoordManager.checkCollision(ghost, bluePortal)) {
+                        teleport(ghost, bluePortal);
+                    } else if (CoordManager.checkCollision(ghost, redPortal)) {
+                        teleport(ghost, redPortal);
+                    }
+                }
             }
         }
     }
@@ -119,10 +128,12 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,pp)){
                 if(!pp.isDead()){
                     CoordManager.maze.removeAlivePowerPill();
-                    if(blinky.getState() != EATEN){
-                        blinky.setState(FRIGHTENED);
-                        blinky.setFrightTime();
-                        System.out.println("Passo a frightened");
+                    for(Ghost ghost : this.ghosts) {
+                        if (ghost.getState() != EATEN) {
+                            ghost.setState(FRIGHTENED);
+                            ghost.setFrightTime();
+                            System.out.println("Passo a frightened");
+                        }
                     }
                 }
                 pp.setDead(true);
@@ -172,11 +183,13 @@ public class GamePanel extends JPanel {
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), this);
     }
 
-    private void drawBlinky(Graphics g) {
-        g.drawImage(blinky.getImage(), blinky.getX(), blinky.getY(), this);
-        if(CoordManager.checkCollision(pacman,blinky)){
-            if(blinky.getState() == FRIGHTENED){
-                blinky.becomeEaten();
+    private void drawGhosts(Graphics g) {
+        for(Ghost ghost : this.ghosts){
+            g.drawImage(ghost.getImage(), ghost.getX(), ghost.getY(), this);
+            if(CoordManager.checkCollision(pacman,ghost)){
+                if(ghost.getState() == FRIGHTENED){
+                    ghost.becomeEaten();
+                }
             }
         }
     }
@@ -191,7 +204,9 @@ public class GamePanel extends JPanel {
     private void update() {
         if(this.pacmanStart){
             this.pacman.move();
-            this.blinky.move();
+            for(Ghost ghost : this.ghosts) {
+                ghost.move();
+            }
         }else{
             long test = System.currentTimeMillis();
             for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
@@ -199,7 +214,9 @@ public class GamePanel extends JPanel {
             }
             if(test >= (this.startTime + 4*1000)) { //multiply by 1000 to get milliseconds
                 this.pacmanStart=true;
-                this.blinky.timer.start();
+                for(Ghost ghost : this.ghosts) {
+                    ghost.getTimer().start();
+                }
             }
         }
     }

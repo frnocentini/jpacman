@@ -26,7 +26,7 @@ public abstract class Ghost extends Sprite {
     protected Pacman pacman;
     protected GhostLoop ghostLoop;
     protected long frightTime;
-    public Timer timer;
+    protected Timer timer;
 
     public Ghost(Pacman pacman) {
         setW(Constants.GHOST_WIDTH);
