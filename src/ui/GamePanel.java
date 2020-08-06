@@ -34,13 +34,13 @@ public class GamePanel extends JPanel {
     private int consecutiveGhosts;
     private JLabel pointsLabel;
 
-    public GamePanel(GameMainFrame frame, int level){
+    public GamePanel(GameMainFrame frame, int level, int points){
         this.frame = frame;
-        initializeVariables(level);
+        initializeVariables(level,points);
         initializeLayout();
     }
 
-    private void initializeVariables(int level) {
+    private void initializeVariables(int level, int points) {
         this.level = level;
         System.out.println(level);
         this.inGame = true;
@@ -49,12 +49,13 @@ public class GamePanel extends JPanel {
         this.munch = true;
         SoundPlayer.playMusic(GAME_START);
         this.pacman = new Pacman();
+        pacman.setPoints(points);
         this.ghosts = new ArrayList<>();
         Pinky pinky = new Pinky(this.pacman);
         Blinky blinky = new Blinky(this.pacman);
         this.ghosts.add(pinky);
         this.ghosts.add(blinky);
-        this.pointsLabel = new JLabel("");
+        this.pointsLabel = new JLabel("Points: "+points);
         pointsLabel.setBounds(10,440,100,20);
         add(pointsLabel);
         this.pacmanStart = false;
@@ -179,6 +180,7 @@ public class GamePanel extends JPanel {
                 frame.getContentPane().removeAll();
                 this.gameEventListener = null;
                 System.gc();
+                frame.gamePoints = this.pacman.getPoints();
                 System.out.println("fine livello");
                 try {
                     Thread.sleep(10);

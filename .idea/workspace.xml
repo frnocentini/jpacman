@@ -2,55 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fd17f21-6d30-4510-835d-8aaf3d36ae62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ProvaPacman.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ProvaPacman.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ProvaPacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ProvaPacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/callbacks/GameEventListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/callbacks/GameEventListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/constants/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/constants/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/image/Image.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Blinky.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Blinky.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Eatable.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/GhostLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/GhostLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Maze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/PacmanLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/PacmanLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pill.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Portal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Portal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/PowerPill.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/PowerPill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Sprite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Sprite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/Sound.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/BGPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/BGPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameLoop.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameMainFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Coordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Coordinate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Direction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Eatable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Maze.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PowerPill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PowerPill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameMainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameMainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +49,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1596728037464</updated>
-      <workItem from="1596728040654" duration="5333000" />
+      <workItem from="1596728040654" duration="6188000" />
     </task>
     <servers />
   </component>
@@ -120,22 +77,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1596728890735" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1596733008000">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1596734290777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1596733008000">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1596734290777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1596733008000">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1596734290777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1596733008000">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1596734290777">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
     <state x="477" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1596728041173">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
