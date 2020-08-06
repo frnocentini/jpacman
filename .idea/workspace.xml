@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7fd17f21-6d30-4510-835d-8aaf3d36ae62" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/ProvaPacman.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ProvaPacman.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ProvaPacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ProvaPacman.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/callbacks/GameEventListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/callbacks/GameEventListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/constants/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/constants/Constants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/Image.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/image/Image.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Blinky.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Blinky.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Eatable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/GhostLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/GhostLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Maze.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pacman.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/PacmanLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/PacmanLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pill.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pill.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Portal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Portal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/PowerPill.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/PowerPill.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Sprite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Sprite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/Sound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/BGPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/BGPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameMainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Coordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Coordinate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Direction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/utility/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Eatable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Ghost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Maze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pacman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PowerPill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PowerPill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GamePanel.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1fjOSgMLPmy8x2UN7NEoepTnNMz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ProvaPacman" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ProvaPacman" />
+      <module name="provapacman" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7fd17f21-6d30-4510-835d-8aaf3d36ae62" name="Default Changelist" comment="" />
+      <created>1596728037464</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596728037464</updated>
+      <workItem from="1596728040654" duration="5333000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="495" y="81" key="#Unnamed" timestamp="1596729015216">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="495" y="81" key="#Unnamed/0.0.1536.824@0.0.1536.824" timestamp="1596729015216" />
+    <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596729004561">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1596729004561" />
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1596728851921">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1596728851921" />
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1596729013457">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1596729013457" />
+    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596728890735">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1596728890735" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1596733008000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1596733008000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1596733008000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1596733008000">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596733008000" />
+    <state x="477" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1596728041173">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="477" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1596728041173" />
+  </component>
+</project>

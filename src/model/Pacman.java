@@ -35,7 +35,7 @@ public class Pacman extends Sprite {
         this.timer = new Timer(1,new PacmanLoop(this));
 
         dir = LEFT;
-
+        this.points = 0;
         dx = -Constants.PACMAN_SPEED;
         dy = 0;
     }
@@ -126,5 +126,9 @@ public class Pacman extends Sprite {
         if(timer.isRunning()){
             changeLoop();
         }
+    }
+
+    public void addPoints(int points){
+        this.points += points;
     }
 }

@@ -32,6 +32,7 @@ public abstract class Ghost extends Sprite {
         setW(Constants.GHOST_WIDTH);
         setH(Constants.GHOST_HEIGHT);
         ghostLoop = new GhostLoop(this);
+        this.points = Constants.GHOSTPOINTS;
         this.timer = new Timer(1,ghostLoop);
         this.pacman = pacman;
         this.target = new Coordinate(0,0);

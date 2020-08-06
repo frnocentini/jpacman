@@ -5,7 +5,7 @@ import image.ImageFactory;
 
 import javax.swing.*;
 
-public class PowerPill extends Eatable{
+public class PowerPill extends Sprite{
 
     public PowerPill(int x, int y, int w, int h, int points) {
         super(x, y, w, h, points);

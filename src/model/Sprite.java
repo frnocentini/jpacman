@@ -4,7 +4,7 @@ import utility.Direction;
 
 import java.awt.*;
 
-public abstract class Sprite {
+public class Sprite {
 
     private Image image;
     private boolean dead;
@@ -15,6 +15,16 @@ public abstract class Sprite {
     protected int dx;
     protected int dy;
     protected Direction dir;
+    protected int points;
+
+    public Sprite(int x, int y, int w, int h, int points) {
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.dead = false;
+        this.points = points;
+    }
 
     public Sprite() {
         this.dead = false;
@@ -94,5 +104,13 @@ public abstract class Sprite {
 
     public void setH(int h) {
         this.h = h;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

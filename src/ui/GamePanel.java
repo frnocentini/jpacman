@@ -31,6 +31,8 @@ public class GamePanel extends JPanel {
     private long portalTime;
     private int level;
     private boolean munch;
+    private int consecutiveGhosts;
+    private JLabel pointsLabel;
 
     public GamePanel(GameMainFrame frame, int level){
         this.frame = frame;
@@ -52,6 +54,9 @@ public class GamePanel extends JPanel {
         Blinky blinky = new Blinky(this.pacman);
         this.ghosts.add(pinky);
         this.ghosts.add(blinky);
+        this.pointsLabel = new JLabel("");
+        pointsLabel.setBounds(10,440,100,20);
+        add(pointsLabel);
         this.pacmanStart = false;
         this.startTime = this.portalTime = System.currentTimeMillis();
     }
@@ -60,6 +65,7 @@ public class GamePanel extends JPanel {
         this.gameEventListener = new GameEventListener(this);
         addKeyListener(this.gameEventListener);
         setFocusable(true);
+        setLayout(null);
         requestFocusInWindow();
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE));
     }
@@ -72,6 +78,7 @@ public class GamePanel extends JPanel {
 
     private void doDrawing(Graphics g){
         if(inGame){
+            drawPoints();
             drawPills(g);
             drawPowerPills(g);
             drawPortals(g);
@@ -84,6 +91,9 @@ public class GamePanel extends JPanel {
         }
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
+    }
+    private void drawPoints(){
+        pointsLabel.setText("Points: "+this.pacman.getPoints());
     }
 
     private void drawPortals(Graphics g) {
@@ -128,6 +138,8 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,pp)){
                 if(!pp.isDead()){
                     CoordManager.maze.removeAlivePowerPill();
+                    this.pacman.addPoints(pp.getPoints());
+                    this.consecutiveGhosts = 0;
                     for(Ghost ghost : this.ghosts) {
                         if (ghost.getState() != EATEN) {
                             ghost.becomeFrightened();
@@ -149,6 +161,7 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,p)){
                 if(!p.isDead()){
                     CoordManager.maze.removeAlivePill();
+                    this.pacman.addPoints(p.getPoints());
                     if(munch){
                         SoundPlayer.playEffect(MUNCH_1);
                         munch = false;
@@ -188,6 +201,8 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,ghost)){
                 if(ghost.getState() == FRIGHTENED){
                     ghost.becomeEaten();
+                    this.pacman.addPoints(ghost.getPoints() * (2^this.consecutiveGhosts));
+                    this.consecutiveGhosts++;
                 }
             }
         }

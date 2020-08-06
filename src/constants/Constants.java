@@ -18,7 +18,7 @@ public class Constants {
     //speed of the application
     public static final int GAME_SPEED = 20;
     public static final int PACMAN_SPEED = 2;
-    public static final int GHOST_SPEED = 2;
+    public static final int GHOST_SPEED = 1;
 
     //Ghost related constants
     public static final int GHOST_HEIGHT = 20;
@@ -64,4 +64,9 @@ public class Constants {
     public static final long[] FIRST_TIMES = {7000,20000,7000,20000,5000,20000,5000};
     public static final long[] SECOND_TIMES = {7000,20000,7000,20000,5000,18314,1};
     public static final long[] FIFTH_TIMES = {5000,20000,5000,20000,5000,18314,1};
+
+    //punti
+    public static final int PILLPOINTS = 10;
+    public static final int POWERPILLPOINTS = 50;
+    public static final int GHOSTPOINTS = 200;
 }

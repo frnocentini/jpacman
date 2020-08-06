@@ -5,7 +5,7 @@ import image.ImageFactory;
 
 import javax.swing.*;
 
-public class Pill extends Eatable{
+public class Pill extends Sprite{
 
     public Pill(int x, int y, int w, int h, int points) {
         super(x, y, w, h, points);
