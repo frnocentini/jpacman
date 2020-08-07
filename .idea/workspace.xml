@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7fd17f21-6d30-4510-835d-8aaf3d36ae62" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameMainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameMainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameMainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/SoundPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GamePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,10 +17,10 @@
   <component name="ProjectId" id="1fjOSgMLPmy8x2UN7NEoepTnNMz" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -50,11 +46,12 @@
       <option name="presentableId" value="Default" />
       <updated>1596728037464</updated>
       <workItem from="1596728040654" duration="6188000" />
+      <workItem from="1596788336349" duration="2043000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="495" y="81" key="#Unnamed" timestamp="1596729015216">

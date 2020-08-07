@@ -34,7 +34,7 @@ public class SoundPlayer {
     }
 
     public static void loopMusic(Sound sound) {
-        if(!muteMusic){
+        if(!muteMusic && !isPlaying(sound)){
             Clip c = sf.chooseSound(sound);
             sf.loopSound(c);
             library.put(sound,c);
@@ -42,8 +42,25 @@ public class SoundPlayer {
     }
 
     public static void stopMusic(Sound sound) {
-        if(library.containsKey(sound)) {
+        if(isPlaying(sound)) {
             Clip c = library.get(sound);
+            sf.stopSound(c);
+            library.remove(sound);
+        }
+    }
+
+    private static boolean isPlaying(Sound sound){
+        if(library.containsKey(sound)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void stopAll(){
+        for(HashMap.Entry<Sound, Clip> entry : library.entrySet()) {
+            Sound sound = entry.getKey();
+            Clip c = entry.getValue();
+
             sf.stopSound(c);
             library.remove(sound);
         }

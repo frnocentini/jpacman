@@ -176,21 +176,26 @@ public class GamePanel extends JPanel {
                 g.drawImage(p.getImage(), p.getX(), p.getY(), this);
             }
             if(CoordManager.maze.getAlivePills() == 0){
-                this.inGame = false;
-                frame.getContentPane().removeAll();
-                this.gameEventListener = null;
-                System.gc();
-                frame.gamePoints = this.pacman.getPoints();
-                System.out.println("fine livello");
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                frame.dispose();
-                frame.initializeLayout();
+                endGame();
             }
         }
+    }
+
+    private void endGame(){
+        SoundPlayer.stopAll();
+        this.inGame = false;
+        frame.getContentPane().removeAll();
+        this.gameEventListener = null;
+        System.gc();
+        frame.gamePoints = this.pacman.getPoints();
+        System.out.println("fine livello");
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        frame.dispose();
+        frame.initializeLayout();
     }
 
     private void drawPacman(Graphics g) {
