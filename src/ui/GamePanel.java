@@ -44,10 +44,12 @@ public class GamePanel extends JPanel {
         this.level = level;
         System.out.println(level);
         this.inGame = true;
+        this.pacmanStart = false;
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
         this.munch = true;
         SoundPlayer.playMusic(GAME_START);
+        this.startTime = this.portalTime = System.currentTimeMillis();
         this.pacman = new Pacman();
         pacman.setPoints(points);
         this.ghosts = new ArrayList<>();
@@ -58,8 +60,6 @@ public class GamePanel extends JPanel {
         this.pointsLabel = new JLabel("Points: "+points);
         pointsLabel.setBounds(10,440,100,20);
         add(pointsLabel);
-        this.pacmanStart = false;
-        this.startTime = this.portalTime = System.currentTimeMillis();
     }
 
     private void initializeLayout() {
@@ -104,7 +104,7 @@ public class GamePanel extends JPanel {
         g.drawImage(redPortal.getImage(), redPortal.getX(), redPortal.getY(), this);
         //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
         //System.out.println("Le coordinate del blu sono: "+redPortal.getOther().getX()+" e "+redPortal.getOther().getY());
-        if(System.currentTimeMillis() >= (this.portalTime + 300)){
+        if(System.currentTimeMillis() >= (this.portalTime + 400)){
             if(CoordManager.checkCollision(pacman,bluePortal)){
                 teleport(pacman,bluePortal);
             }else if(CoordManager.checkCollision(pacman,redPortal)){
@@ -175,9 +175,6 @@ public class GamePanel extends JPanel {
             } else if(!p.isDead()){
                 g.drawImage(p.getImage(), p.getX(), p.getY(), this);
             }
-            if(CoordManager.maze.getAlivePills() == 0){
-                endGame();
-            }
         }
     }
 
@@ -208,6 +205,7 @@ public class GamePanel extends JPanel {
             if(CoordManager.checkCollision(pacman,ghost)){
                 if(ghost.getState() == FRIGHTENED){
                     ghost.becomeEaten();
+                    SoundPlayer.playEffect(EAT_GHOST);
                     this.pacman.addPoints(ghost.getPoints() * (2^this.consecutiveGhosts));
                     this.consecutiveGhosts++;
                 }
@@ -224,9 +222,21 @@ public class GamePanel extends JPanel {
 
     private void update() {
         if(this.pacmanStart){
+            boolean frightened = false;
+            boolean eaten = false;
             this.pacman.move();
             for(Ghost ghost : this.ghosts) {
                 ghost.move();
+                if(ghost.getState() == FRIGHTENED){
+                    frightened = true;
+                }
+                if(ghost.getState() == EATEN){
+                    eaten = true;
+                }
+            }
+            SoundPlayer.playBackgroundMusic(frightened,eaten);
+            if(CoordManager.maze.getAlivePills() == 0){
+                endGame();
             }
         }else{
             long test = System.currentTimeMillis();

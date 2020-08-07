@@ -1,8 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="provapacman:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7fd17f21-6d30-4510-835d-8aaf3d36ae62" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/provapacman_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ProvaPacman/ProvaPacman.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/META-INF/provapacman.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ProvaPacman.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/callbacks/GameEventListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/constants/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/Image.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/image/ImageFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Blinky.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Ghost.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/GhostLoop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Maze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pacman.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/PacmanLoop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pill.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Pinky.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Portal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/PowerPill.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/model/Sprite.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/Sound.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/sound/SoundPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/BGPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameLoop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GameMainFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/GamePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/ui/MenuPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/CoordManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Coordinate.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/Direction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProvaPacman/utility/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProvaPacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProvaPacman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sound/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/SoundPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GamePanel.java" afterDir="false" />
     </list>
@@ -25,15 +89,34 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ProvaPacman">
     <configuration name="ProvaPacman" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ProvaPacman" />
       <module name="provapacman" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="provapacman.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/provapacman_jar/provapacman.jar" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.ProvaPacman" />
+      <item itemvalue="JAR Application.provapacman.jar" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JAR Application.provapacman.jar" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -46,50 +129,97 @@
       <option name="presentableId" value="Default" />
       <updated>1596728037464</updated>
       <workItem from="1596728040654" duration="6188000" />
-      <workItem from="1596788336349" duration="2043000" />
+      <workItem from="1596788336349" duration="9932000" />
+      <workItem from="1596802968756" duration="875000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="495" y="81" key="#Unnamed" timestamp="1596729015216">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="495" y="81" key="#Unnamed/0.0.1536.824@0.0.1536.824" timestamp="1596729015216" />
-    <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596729004561">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="279" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596798804871">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="223" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1596729004561" />
+    <state x="279" y="88" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596798804871" />
     <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser" timestamp="1596728851921">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1596728851921" />
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1596729013457">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="623" y="255" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1596799125719">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1596729013457" />
+    <state x="623" y="255" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596799125719" />
     <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596728890735">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="162" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1596728890735" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1596734290777">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="757" y="405" key="DetectedRootsChooserDialog" timestamp="1596798961617">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="757" y="405" key="DetectedRootsChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1596798961617" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1596799129755">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1596799129755" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1596803856187">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1596734290777">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1596803856187" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1596803856187">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1596734290777">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1596803856187" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1596803856187">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1596734290777">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1596803856187" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1596803856187">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596734290777" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1596803856187" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1596799804265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1596799804265" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1596799804265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1596799804265" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1596799804265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1596799804265" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1596799804265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1596799804265" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1596799134342">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1596799134342" />
     <state x="477" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1596728041173">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

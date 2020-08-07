@@ -9,6 +9,7 @@ public class ProvaPacman {
         EventQueue.invokeLater( () -> {
             new GameMainFrame();
         });
+        
 
     }
 }

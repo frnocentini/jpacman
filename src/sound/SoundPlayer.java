@@ -1,7 +1,12 @@
 package sound;
 
+import utility.CoordManager;
+
 import javax.sound.sampled.Clip;
 import java.util.HashMap;
+
+import static sound.Sound.*;
+import static sound.Sound.SIREN_5;
 
 public class SoundPlayer {
 
@@ -24,7 +29,6 @@ public class SoundPlayer {
         }
     }
 
-
     public static void playMusic(Sound sound) {
         if(!muteMusic){
             Clip c = sf.chooseSound(sound);
@@ -33,8 +37,9 @@ public class SoundPlayer {
         }
     }
 
-    public static void loopMusic(Sound sound) {
-        if(!muteMusic && !isPlaying(sound)){
+    public static void loopEffect(Sound sound) {
+        if(!muteEffects && !isPlaying(sound)){
+            stopAll();
             Clip c = sf.chooseSound(sound);
             sf.loopSound(c);
             library.put(sound,c);
@@ -63,6 +68,26 @@ public class SoundPlayer {
 
             sf.stopSound(c);
             library.remove(sound);
+        }
+    }
+
+    public static void playBackgroundMusic(boolean frightened, boolean eaten) {
+        if(eaten){
+            SoundPlayer.loopEffect(EATEN_SOUND);
+        } else if (frightened){
+            SoundPlayer.loopEffect(FRIGHT_SOUND);
+        }else if(CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() * 4/5){
+            SoundPlayer.loopEffect(SIREN_1);
+        } else if (CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() * 3/5) {
+            SoundPlayer.loopEffect(SIREN_2);
+        } else if (CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() * 2/5) {
+            SoundPlayer.loopEffect(SIREN_3);
+        } else if (CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() / 5) {
+            SoundPlayer.loopEffect(SIREN_4);
+        } else if (CoordManager.maze.getAlivePills() > 0) {
+            SoundPlayer.loopEffect(SIREN_5);
+        } else if(CoordManager.maze.getAlivePills() == 0){
+            SoundPlayer.stopAll();
         }
     }
 }
