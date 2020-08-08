@@ -16,16 +16,19 @@ public class Maze {
     private Portal redPortal;
 
     public Maze(char[][] maze) {
-        this.alivePills=0;
-        this.alivePowerPills=0;
-        this.pills = new ArrayList<>();
-        this.powerPills = new ArrayList<>();
         this.maze = new char[21][19];
         for (int i = 0; i< maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
                 this.maze[i][j] = maze[i][j];
             }
         }
+    }
+
+    public void initializeMaze(){
+        this.alivePills=0;
+        this.alivePowerPills=0;
+        this.pills = new ArrayList<>();
+        this.powerPills = new ArrayList<>();
     }
 
     public void addPill(int x, int y){

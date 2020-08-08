@@ -24,16 +24,16 @@ public class SoundPlayer {
 
     public static void playEffect(Sound sound){
         if(!muteEffects){
-            Clip c = sf.chooseSound(sound);
-            sf.playSound(c);
+            SoundClip sc = sf.chooseSound(sound);
+            sf.playSound(sc);
         }
     }
 
     public static void playMusic(Sound sound) {
         if(!muteMusic){
-            Clip c = sf.chooseSound(sound);
-            sf.playSound(c);
-            library.add(new SoundClip(sound,c));
+            SoundClip sc = sf.chooseSound(sound);
+            sf.playSound(sc);
+            library.add(new SoundClip(sound,sc.getClip(),sc.getAis()));
         }
     }
 
@@ -43,17 +43,17 @@ public class SoundPlayer {
             if(sound != SIREN_1){
                 stopAll();
             }
-            Clip c = sf.chooseSound(sound);
-            sf.loopSound(c);
-            library.add(new SoundClip(sound,c));
+            SoundClip sc = sf.chooseSound(sound);
+            sf.loopSound(sc);
+            library.add(new SoundClip(sound,sc.getClip(),sc.getAis()));
         }
     }
 
     public static void stopMusic(Sound sound) {
         int index = isPlaying(sound);
         if(index > -1) {
-            Clip c = library.get(index).getClip();
-            sf.stopSound(c);
+            SoundClip sc = library.get(index);
+            sf.stopSound(sc);
             library.remove(index);
         }
     }
@@ -70,8 +70,7 @@ public class SoundPlayer {
 
     public static void stopAll(){
         for(SoundClip sc : library){
-            Clip c = sc.getClip();
-            sf.stopSound(c);
+            sf.stopSound(sc);
         }
         library.clear();
     }
@@ -91,6 +90,8 @@ public class SoundPlayer {
             SoundPlayer.loopEffect(SIREN_4);
         } else if (CoordManager.maze.getAlivePills() > 0) {
             SoundPlayer.loopEffect(SIREN_5);
+        } else if (CoordManager.maze.getAlivePills() == 0){
+            SoundPlayer.stopAll();
         }
     }
 }

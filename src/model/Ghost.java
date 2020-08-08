@@ -22,7 +22,6 @@ public abstract class Ghost extends Character {
     protected State state;
     protected Coordinate target;
     protected Coordinate scatterTarget;
-    protected Coordinate spawnPoint;
     protected Pacman pacman;
     protected GhostLoop ghostLoop;
     protected long frightTime;
@@ -258,14 +257,6 @@ public abstract class Ghost extends Character {
 
     public void setScatterTarget(Coordinate scatterTarget) {
         this.scatterTarget = scatterTarget;
-    }
-
-    public Coordinate getSpawnPoint() {
-        return spawnPoint;
-    }
-
-    public void setSpawnPoint(Coordinate spawnPoint) {
-        this.spawnPoint = spawnPoint;
     }
 
     public Pacman getPacman() {

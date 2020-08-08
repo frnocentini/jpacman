@@ -1,10 +1,7 @@
 package utility;
 
 import constants.Constants;
-import model.Maze;
-import model.Pacman;
-import model.Pill;
-import model.Sprite;
+import model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +12,10 @@ public class CoordManager {
 
     public static Maze maze;
 
-    public static void createMaze(int level) {
+    public static void createMaze(int mazeNum) {
         char[][] inputMaze = new char[21][19];
         try {
-            FileReader lvlFile = new FileReader(new File("mazes/maze"+level+".txt"));
+            FileReader lvlFile = new FileReader(new File("mazes/maze"+mazeNum+".txt"));
             BufferedReader br = new BufferedReader(lvlFile);  //Creation of BufferedReader object
             int c,i,j;
             c = i = j = 0;
@@ -42,6 +39,37 @@ public class CoordManager {
             System.err.println("Errore nella lettura dei file su disco");
             e.printStackTrace();
         }
+    }
+
+    public static void populateMaze() {
+        CoordManager.maze.initializeMaze();
+        Portal bluePortal = null;
+        Portal redPortal = null;
+        for (int i=0;i<CoordManager.maze.getMazeHeight();i++){
+            for(int j=0;j<CoordManager.maze.getMazeWidth();j++){
+                Coordinate co = CoordManager.convertCoords(j,i);
+                switch(CoordManager.maze.getMazeValue(i,j)){
+                    case 'O':
+                        int x = co.getX()+Constants.BLOCK_DIM/2 - Constants.PILL_WIDTH/2;
+                        int y = co.getY()+Constants.BLOCK_DIM/2 - Constants.PILL_HEIGHT/2;
+                        CoordManager.maze.addPill(x,y);
+                        break;
+                    case 'P':
+                        CoordManager.maze.addPowerPill(co.getX(),co.getY());
+                        break;
+                    case 'B':
+                        bluePortal = new Portal(co.getX(),co.getY(), 20, 20, "BLUE");
+                        break;
+                    case 'R':
+                        redPortal = new Portal(co.getX(),co.getY(), 20, 20, "RED");
+                        break;
+                }
+            }
+        }
+        bluePortal.setOther(redPortal);
+        redPortal.setOther(bluePortal);
+        CoordManager.maze.setBluePortal(bluePortal);
+        CoordManager.maze.setRedPortal(redPortal);
     }
 
     public static Coordinate getObjCoord(char c){

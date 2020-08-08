@@ -42,7 +42,7 @@ public class GameMainFrame extends JFrame{
         //Sottoclasse di JPanel che attraverso un GridLayout crea il labirinto
         BGPanel bgPanel = new BGPanel(new GridLayout(21, 19),1);
         //Sottoclasse di JPanel dove posizioniamo le entità della mappa (Pac-Man, fantasmi, frutta, ecc...)
-        GamePanel gamePanel = new GamePanel(this,this.level,this.gamePoints);
+        GamePanel gamePanel = new GamePanel(this);
         this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         //Creiamo il JPanel stratificato
         JLayeredPane layeredPane = new JLayeredPane();
@@ -68,7 +68,6 @@ public class GameMainFrame extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.level++;
 
     }
 

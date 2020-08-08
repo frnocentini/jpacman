@@ -15,10 +15,10 @@ import java.awt.event.KeyEvent;
 
 public class BGPanel extends JPanel {
 
-    public BGPanel(GridLayout gridLayout, int level){
+    public BGPanel(GridLayout gridLayout, int mazeNum){
         super(gridLayout);
         initializeLayout();
-        initializeMaze(level);
+        initializeMaze(mazeNum);
     }
 
     private void initializeLayout() {
@@ -26,12 +26,10 @@ public class BGPanel extends JPanel {
         setPreferredSize(new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE));
     }
 
-    private void initializeMaze(int level) {
-        CoordManager.createMaze(level);
+    private void initializeMaze(int mazeNum) {
+        CoordManager.createMaze(mazeNum);
         ImageIcon empty = ImageFactory.createImage(Image.EMPTY);
         ImageIcon wall = ImageFactory.createImage(Image.WALL);
-        Portal bluePortal = null;
-        Portal redPortal = null;
         for (int i=0;i<CoordManager.maze.getMazeHeight();i++){
             for(int j=0;j<CoordManager.maze.getMazeWidth();j++){
                 JLabel label = new JLabel();
@@ -41,31 +39,8 @@ public class BGPanel extends JPanel {
                 }else{
                     label.setIcon(empty);
                 }
-                Coordinate co = CoordManager.convertCoords(j,i);
-                switch(CoordManager.maze.getMazeValue(i,j)){
-                    case 'O':
-                        int x = co.getX()+Constants.BLOCK_DIM/2 - Constants.PILL_WIDTH/2;
-                        int y = co.getY()+Constants.BLOCK_DIM/2 - Constants.PILL_HEIGHT/2;
-                        CoordManager.maze.addPill(x,y);
-                        break;
-                    case 'P':
-                        CoordManager.maze.addPowerPill(co.getX(),co.getY());
-                        break;
-                    case 'B':
-                        bluePortal = new Portal(co.getX(),co.getY(), 20, 20, "BLUE");
-
-                        break;
-                    case 'R':
-                        redPortal = new Portal(co.getX(),co.getY(), 20, 20, "RED");
-
-                        break;
-                }
             }
         }
-        bluePortal.setOther(redPortal);
-        redPortal.setOther(bluePortal);
-        CoordManager.maze.setBluePortal(bluePortal);
-        CoordManager.maze.setRedPortal(redPortal);
     }
 
 

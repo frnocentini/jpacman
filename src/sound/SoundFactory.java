@@ -10,9 +10,9 @@ import static sound.Sound.*;
 
 public class SoundFactory {
 
-    public Clip chooseSound(Sound sound){
+    public SoundClip chooseSound(Sound sound){
         
-        Clip audio = null;
+        SoundClip audio = null;
 
         switch(sound){
             case CREDIT:
@@ -67,15 +67,17 @@ public class SoundFactory {
                 audio = createStream(RED_PORTAL_SOUND_URL);
                 break;
         }
+        audio.setName(sound);
         return audio;
     }
 
-    private Clip createStream(String audioFilename){
-        Clip audio = null;
+    private SoundClip createStream(String audioFilename){
+        SoundClip audio = null;
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(audioFilename).getAbsoluteFile());
-            audio = AudioSystem.getClip();
-            audio.open(audioInputStream);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File(audioFilename).getAbsoluteFile());
+            DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
+            Clip c = (Clip) AudioSystem.getLine(info);
+            audio = new SoundClip(null,c,ais);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -86,20 +88,41 @@ public class SoundFactory {
         return audio;
     }
 
-    public void playSound(Clip c){
-        c.start();
-    }
-
-    public void stopSound(Clip c){
-        if (c.isOpen()) {
-            c.stop();
-            c.flush();
-            c.close();
+    public void playSound(SoundClip sc){
+        stopSound(sc);
+        Clip c = sc.getClip();
+        try {
+            c.open(sc.getAis());
+            c.start();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void loopSound(Clip c){
-         c.loop(Clip.LOOP_CONTINUOUSLY);
+    public void stopSound(SoundClip sc){
+        Clip c = sc.getClip();
+        if (c.isOpen()) {
+            c.close();
+            try {
+                sc.getAis().close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void loopSound(SoundClip sc){
+        Clip c = sc.getClip();
+        try {
+            c.open(sc.getAis());
+            c.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

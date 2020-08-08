@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import static java.awt.event.KeyEvent.VK_ENTER;
 import static sound.Sound.*;
+import static utility.Direction.*;
 import static utility.State.*;
 
 public class GamePanel extends JPanel {
@@ -34,13 +35,16 @@ public class GamePanel extends JPanel {
     private int consecutiveGhosts;
     private JLabel pointsLabel;
 
-    public GamePanel(GameMainFrame frame, int level, int points){
+    public GamePanel(GameMainFrame frame){
         this.frame = frame;
+        int level = this.frame.level;
+        int points = this.frame.gamePoints;
         initializeVariables(level,points);
         initializeLayout();
     }
 
     private void initializeVariables(int level, int points) {
+        CoordManager.populateMaze();
         this.level = level;
         System.out.println(level);
         this.inGame = true;
@@ -61,6 +65,23 @@ public class GamePanel extends JPanel {
         this.pointsLabel = new JLabel("Points: "+points);
         pointsLabel.setBounds(10,440,100,20);
         add(pointsLabel);
+    }
+
+    private void restartLevel(){
+        this.level++;
+        CoordManager.populateMaze();
+        System.out.println(level);
+        this.inGame = true;
+        this.munch = true;
+        SoundPlayer.playMusic(GAME_START);
+        this.startTime = System.currentTimeMillis();
+        this.portalTime = System.currentTimeMillis();
+        this.pacman.setDir(LEFT);
+        this.pacman.returnToSpawnPoint();
+        for(Ghost ghost : this.ghosts) {
+            ghost.returnToSpawnPoint();
+        }
+        timer.start();
     }
 
     private void initializeLayout() {
@@ -179,22 +200,6 @@ public class GamePanel extends JPanel {
         }
     }
 
-    private void endGame(){
-        this.inGame = false;
-        frame.getContentPane().removeAll();
-        this.gameEventListener = null;
-        System.gc();
-        frame.gamePoints = this.pacman.getPoints();
-        System.out.println("fine livello");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        frame.dispose();
-        frame.initializeLayout();
-    }
-
     private void drawPacman(Graphics g) {
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), this);
     }
@@ -221,7 +226,7 @@ public class GamePanel extends JPanel {
     }
 
     private void update() {
-        if(this.pacmanStart){
+        if(this.pacmanStart && this.inGame){
             boolean frightened = false;
             boolean eaten = false;
             this.pacman.move();
@@ -236,6 +241,7 @@ public class GamePanel extends JPanel {
             }
             SoundPlayer.playBackgroundMusic(frightened,eaten);
             if(CoordManager.maze.getAlivePills() == 0){
+                SoundPlayer.stopAll();
                 endGame();
             }
         }else{
@@ -252,14 +258,32 @@ public class GamePanel extends JPanel {
         }
     }
 
+    private void endGame(){
+        System.out.println("fine livello");
+        this.pacmanStart = false;
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        restartLevel();
+    }
+
     public void keyPressed(KeyEvent e) {
-        this.pacman.keyPressed(e);
-        int keyPressed = e.getKeyCode();
-        if(keyPressed == VK_ENTER){
-            if(timer.isRunning()){
-                timer.stop();
-            } else {
-                timer.start();
+        if(inGame){
+            this.pacman.keyPressed(e);
+            int keyPressed = e.getKeyCode();
+            if(keyPressed == VK_ENTER){
+                if(timer.isRunning()){
+                    timer.stop();
+                } else {
+                    timer.start();
+                }
             }
         }
     }

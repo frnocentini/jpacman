@@ -31,10 +31,10 @@ public class Pacman extends Character {
         ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
-        Coordinate start = CoordManager.getObjCoord('S');
+        this.spawnPoint = CoordManager.getObjCoord('S');
 
-        setX(start.getX());
-        setY(start.getY());
+        setX(this.spawnPoint.getX());
+        setY(this.spawnPoint.getY());
         setW(Constants.PACMAN_WIDTH);
         setH(Constants.PACMAN_HEIGHT);
 
@@ -152,5 +152,11 @@ public class Pacman extends Character {
 
     public void addPoints(int points){
         this.points += points;
+    }
+
+    public void returnToSpawnPoint(){
+        super.returnToSpawnPoint();
+        ImageIcon imageIcon = this.imageSet.getFrameAt(1,dir);
+        setImage(imageIcon.getImage());
     }
 }

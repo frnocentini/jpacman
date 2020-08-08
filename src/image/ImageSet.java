@@ -54,4 +54,23 @@ public class ImageSet {
         }
         return frame;
     }
+
+    public ImageIcon getFrameAt(int i, Direction dir) {
+        ArrayList<ImageIcon> movement = null;
+        switch(dir){
+            case UP:
+                movement = this.up;
+                break;
+            case RIGHT:
+                movement = this.right;
+                break;
+            case DOWN:
+                movement = this.down;
+                break;
+            case LEFT:
+                movement = this.left;
+                break;
+        }
+        return movement.get(i);
+    }
 }
