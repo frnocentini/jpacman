@@ -25,10 +25,15 @@ public class Constants {
     public static final int GHOST_WIDTH = 20;
 
     //images for the objects
-    public static final String PACMAN_UP_IMAGE_URL = "images/pacman_up.png";
-    public static final String PACMAN_DOWN_IMAGE_URL = "images/pacman_down.png";
-    public static final String PACMAN_LEFT_IMAGE_URL = "images/pacman_left.png";
-    public static final String PACMAN_RIGHT_IMAGE_URL = "images/pacman_right.png";
+    public static final String PACMAN_A0_URL = "images/pacman/a0.png";
+    public static final String PACMAN_R1_URL = "images/pacman/r1.png";
+    public static final String PACMAN_R2_URL = "images/pacman/r2.png";
+    public static final String PACMAN_U1_URL = "images/pacman/u1.png";
+    public static final String PACMAN_U2_URL = "images/pacman/u2.png";
+    public static final String PACMAN_L1_URL = "images/pacman/l1.png";
+    public static final String PACMAN_L2_URL = "images/pacman/l2.png";
+    public static final String PACMAN_D1_URL = "images/pacman/d1.png";
+    public static final String PACMAN_D2_URL = "images/pacman/d2.png";
     public static final String EMPTY_IMAGE_URL = "images/empty.png";
     public static final String WALL_IMAGE_URL = "images/wall.png";
     public static final String BLINKY_IMAGE_URL = "images/blinky.png";

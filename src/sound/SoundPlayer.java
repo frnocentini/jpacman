@@ -3,23 +3,23 @@ package sound;
 import utility.CoordManager;
 
 import javax.sound.sampled.Clip;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static sound.Sound.*;
-import static sound.Sound.SIREN_5;
 
 public class SoundPlayer {
 
     private static SoundFactory sf;
     private static boolean muteEffects;
     private static boolean muteMusic;
-    private static HashMap<Sound, Clip> library;
+    private static ArrayList<SoundClip> library;
 
     public static void initialize(){
         SoundPlayer.sf = new SoundFactory();
         SoundPlayer.muteEffects = false;
         SoundPlayer.muteMusic = false;
-        library = new HashMap<>();
+        library = new ArrayList<>();
     }
 
     public static void playEffect(Sound sound){
@@ -33,42 +33,47 @@ public class SoundPlayer {
         if(!muteMusic){
             Clip c = sf.chooseSound(sound);
             sf.playSound(c);
-            library.put(sound,c);
+            library.add(new SoundClip(sound,c));
         }
     }
 
     public static void loopEffect(Sound sound) {
-        if(!muteEffects && !isPlaying(sound)){
-            stopAll();
+        int index = isPlaying(sound);
+        if(!muteEffects && index == -1){
+            if(sound != SIREN_1){
+                stopAll();
+            }
             Clip c = sf.chooseSound(sound);
             sf.loopSound(c);
-            library.put(sound,c);
+            library.add(new SoundClip(sound,c));
         }
     }
 
     public static void stopMusic(Sound sound) {
-        if(isPlaying(sound)) {
-            Clip c = library.get(sound);
+        int index = isPlaying(sound);
+        if(index > -1) {
+            Clip c = library.get(index).getClip();
             sf.stopSound(c);
-            library.remove(sound);
+            library.remove(index);
         }
     }
 
-    private static boolean isPlaying(Sound sound){
-        if(library.containsKey(sound)) {
-            return true;
+    private static int isPlaying(Sound sound){
+        for(int i=0;i<library.size();i++){
+            SoundClip sc = library.get(i);
+            if(sc.getName().equals(sound)){
+                return i;
+            }
         }
-        return false;
+        return -1;
     }
 
     public static void stopAll(){
-        for(HashMap.Entry<Sound, Clip> entry : library.entrySet()) {
-            Sound sound = entry.getKey();
-            Clip c = entry.getValue();
-
+        for(SoundClip sc : library){
+            Clip c = sc.getClip();
             sf.stopSound(c);
-            library.remove(sound);
         }
+        library.clear();
     }
 
     public static void playBackgroundMusic(boolean frightened, boolean eaten) {
@@ -86,8 +91,6 @@ public class SoundPlayer {
             SoundPlayer.loopEffect(SIREN_4);
         } else if (CoordManager.maze.getAlivePills() > 0) {
             SoundPlayer.loopEffect(SIREN_5);
-        } else if(CoordManager.maze.getAlivePills() == 0){
-            SoundPlayer.stopAll();
         }
     }
 }

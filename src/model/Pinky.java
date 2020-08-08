@@ -71,4 +71,8 @@ public class Pinky extends Ghost{
         setImage(imageIcon.getImage());
     }
 
+    @Override
+    public void addImageSet() {
+
+    }
 }

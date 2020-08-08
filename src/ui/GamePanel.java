@@ -48,6 +48,7 @@ public class GamePanel extends JPanel {
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
         this.munch = true;
+        SoundPlayer.stopAll();
         SoundPlayer.playMusic(GAME_START);
         this.startTime = this.portalTime = System.currentTimeMillis();
         this.pacman = new Pacman();
@@ -179,7 +180,6 @@ public class GamePanel extends JPanel {
     }
 
     private void endGame(){
-        SoundPlayer.stopAll();
         this.inGame = false;
         frame.getContentPane().removeAll();
         this.gameEventListener = null;
@@ -187,7 +187,7 @@ public class GamePanel extends JPanel {
         frame.gamePoints = this.pacman.getPoints();
         System.out.println("fine livello");
         try {
-            Thread.sleep(10);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -24,7 +24,7 @@ public class GameMainFrame extends JFrame{
 
         MenuPanel menuPanel = new MenuPanel(this);
         menuPanel.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
-        this.setIconImage((ImageFactory.createImage(Image.PACMAN_LEFT).getImage()));
+        this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         this.setContentPane(menuPanel);
         this.setVisible(true);
         this.setTitle(Constants.TITLE);
@@ -43,7 +43,7 @@ public class GameMainFrame extends JFrame{
         BGPanel bgPanel = new BGPanel(new GridLayout(21, 19),1);
         //Sottoclasse di JPanel dove posizioniamo le entità della mappa (Pac-Man, fantasmi, frutta, ecc...)
         GamePanel gamePanel = new GamePanel(this,this.level,this.gamePoints);
-        this.setIconImage((ImageFactory.createImage(Image.PACMAN_LEFT).getImage()));
+        this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         //Creiamo il JPanel stratificato
         JLayeredPane layeredPane = new JLayeredPane();
 

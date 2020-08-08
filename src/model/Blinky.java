@@ -42,4 +42,9 @@ public class Blinky extends Ghost{
         ImageIcon imageIcon = ImageFactory.createImage(Image.BLINKY);
         setImage(imageIcon.getImage());
     }
+
+    @Override
+    public void addImageSet() {
+
+    }
 }

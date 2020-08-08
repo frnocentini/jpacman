@@ -17,7 +17,7 @@ import static utility.Direction.*;
 import static utility.Direction.UP;
 import static utility.State.*;
 
-public abstract class Ghost extends Sprite {
+public abstract class Ghost extends Character {
 
     protected State state;
     protected Coordinate target;
@@ -38,6 +38,7 @@ public abstract class Ghost extends Sprite {
         this.target = new Coordinate(0,0);
     }
 
+    @Override
     public void move(){
         int speed = Constants.GHOST_SPEED;
         if(this.state == EATEN){

@@ -3,15 +3,17 @@ package model;
 import constants.Constants;
 import image.Image;
 import image.ImageFactory;
+import image.ImageSet;
 import utility.CoordManager;
 import utility.Coordinate;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import static utility.Direction.*;
 
-public class Pacman extends Sprite {
+public class Pacman extends Character {
 
     private Timer timer;
     private int keyPressed;
@@ -22,7 +24,11 @@ public class Pacman extends Sprite {
     }
 
     private void initialize(){
-        ImageIcon imageIcon = ImageFactory.createImage(Image.PACMAN_LEFT);
+
+        addImageSet();
+
+        dir = LEFT;
+        ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
         Coordinate start = CoordManager.getObjCoord('S');
@@ -34,15 +40,19 @@ public class Pacman extends Sprite {
 
         this.timer = new Timer(1,new PacmanLoop(this));
 
-        dir = LEFT;
         dx = -Constants.PACMAN_SPEED;
         dy = 0;
     }
 
+    @Override
     public void move() {
         if(CoordManager.checkEmpty(x,y,dir)){
             x += dx;
             y += dy;
+            if(dx != 0 || dy != 0){
+                ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+                setImage(imageIcon.getImage());
+            }
         }
         if(x<0){
             x = 0;
@@ -58,6 +68,28 @@ public class Pacman extends Sprite {
         }
     }
 
+    @Override
+    public void addImageSet() {
+        ArrayList<ImageIcon> up = new ArrayList<>();
+        ArrayList<ImageIcon> down = new ArrayList<>();
+        ArrayList<ImageIcon> left = new ArrayList<>();
+        ArrayList<ImageIcon> right = new ArrayList<>();
+        ImageIcon a0 = ImageFactory.createImage(Image.PACMAN_A0);
+        up.add(a0);
+        up.add(ImageFactory.createImage(Image.PACMAN_U1));
+        up.add(ImageFactory.createImage(Image.PACMAN_U2));
+        down.add(a0);
+        down.add(ImageFactory.createImage(Image.PACMAN_D1));
+        down.add(ImageFactory.createImage(Image.PACMAN_D2));
+        left.add(a0);
+        left.add(ImageFactory.createImage(Image.PACMAN_L1));
+        left.add(ImageFactory.createImage(Image.PACMAN_L2));
+        right.add(a0);
+        right.add(ImageFactory.createImage(Image.PACMAN_R1));
+        right.add(ImageFactory.createImage(Image.PACMAN_R2));
+        this.imageSet = new ImageSet(up,down,left,right,1);
+    }
+
     public void keyPressed(KeyEvent e) {
         this.keyPressed = e.getKeyCode();
         if(timer.isRunning()){
@@ -68,7 +100,6 @@ public class Pacman extends Sprite {
 
     public void changeLoop(){
         int speed = Constants.PACMAN_SPEED;
-        ImageIcon imageIcon = null;
         switch (this.keyPressed) {
             case KeyEvent.VK_UP:
                 if(dir != UP && dir != DOWN){
@@ -79,8 +110,6 @@ public class Pacman extends Sprite {
                 dy = -speed;
                 dx = 0;
                 setDir(UP);
-                imageIcon = ImageFactory.createImage(Image.PACMAN_UP);
-                setImage(imageIcon.getImage());
                 break;
             case KeyEvent.VK_DOWN:
                 if(dir != UP && dir != DOWN){
@@ -91,8 +120,6 @@ public class Pacman extends Sprite {
                 dy = speed;
                 dx = 0;
                 setDir(DOWN);
-                imageIcon = ImageFactory.createImage(Image.PACMAN_DOWN);
-                setImage(imageIcon.getImage());
                 break;
             case KeyEvent.VK_RIGHT:
                 if(dir != RIGHT && dir != LEFT){
@@ -103,8 +130,6 @@ public class Pacman extends Sprite {
                 dx = speed;
                 dy = 0;
                 setDir(RIGHT);
-                imageIcon = ImageFactory.createImage(Image.PACMAN_RIGHT);
-                setImage(imageIcon.getImage());
                 break;
             case KeyEvent.VK_LEFT:
                 if(dir != RIGHT && dir != LEFT){
@@ -115,8 +140,6 @@ public class Pacman extends Sprite {
                 dx = -speed;
                 dy = 0;
                 setDir(LEFT);
-                imageIcon = ImageFactory.createImage(Image.PACMAN_LEFT);
-                setImage(imageIcon.getImage());
                 break;
         }
     }

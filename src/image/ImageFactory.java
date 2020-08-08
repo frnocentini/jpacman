@@ -11,18 +11,6 @@ public class ImageFactory {
         ImageIcon imageIcon = null;
 
         switch (image){
-            case PACMAN_UP:
-                imageIcon = new ImageIcon(Constants.PACMAN_UP_IMAGE_URL);
-                break;
-            case PACMAN_DOWN:
-                imageIcon = new ImageIcon(Constants.PACMAN_DOWN_IMAGE_URL);
-                break;
-            case PACMAN_LEFT:
-                imageIcon = new ImageIcon(Constants.PACMAN_LEFT_IMAGE_URL);
-                break;
-            case PACMAN_RIGHT:
-                imageIcon = new ImageIcon(Constants.PACMAN_RIGHT_IMAGE_URL);
-                break;
             case EMPTY:
                 imageIcon = new ImageIcon(Constants.EMPTY_IMAGE_URL);
                 break;
@@ -55,6 +43,33 @@ public class ImageFactory {
                 break;
             case RED_PORTAL:
                 imageIcon = new ImageIcon(Constants.RED_PORTAL_IMAGE_URL);
+                break;
+            case PACMAN_A0:
+                imageIcon = new ImageIcon(Constants.PACMAN_A0_URL);
+                break;
+            case PACMAN_R1:
+                imageIcon = new ImageIcon(Constants.PACMAN_R1_URL);
+                break;
+            case PACMAN_R2:
+                imageIcon = new ImageIcon(Constants.PACMAN_R2_URL);
+                break;
+            case PACMAN_U1:
+                imageIcon = new ImageIcon(Constants.PACMAN_U1_URL);
+                break;
+            case PACMAN_U2:
+                imageIcon = new ImageIcon(Constants.PACMAN_U2_URL);
+                break;
+            case PACMAN_L1:
+                imageIcon = new ImageIcon(Constants.PACMAN_L1_URL);
+                break;
+            case PACMAN_L2:
+                imageIcon = new ImageIcon(Constants.PACMAN_L2_URL);
+                break;
+            case PACMAN_D1:
+                imageIcon = new ImageIcon(Constants.PACMAN_D1_URL);
+                break;
+            case PACMAN_D2:
+                imageIcon = new ImageIcon(Constants.PACMAN_D2_URL);
                 break;
             default:
                 return null;
