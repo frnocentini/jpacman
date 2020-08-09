@@ -71,6 +71,39 @@ public class ImageFactory {
             case PACMAN_D2:
                 imageIcon = new ImageIcon(Constants.PACMAN_D2_URL);
                 break;
+            case PACMAN_DEATH0:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH0_URL);
+                break;
+            case PACMAN_DEATH1:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH1_URL);
+                break;
+            case PACMAN_DEATH2:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH2_URL);
+                break;
+            case PACMAN_DEATH3:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH3_URL);
+                break;
+            case PACMAN_DEATH4:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH4_URL);
+                break;
+            case PACMAN_DEATH5:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH5_URL);
+                break;
+            case PACMAN_DEATH6:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH6_URL);
+                break;
+            case PACMAN_DEATH7:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH7_URL);
+                break;
+            case PACMAN_DEATH8:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH8_URL);
+                break;
+            case PACMAN_DEATH9:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH9_URL);
+                break;
+            case PACMAN_DEATH10:
+                imageIcon = new ImageIcon(Constants.PACMAN_DEATH10_URL);
+                break;
             default:
                 return null;
         }

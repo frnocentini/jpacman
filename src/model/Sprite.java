@@ -17,7 +17,6 @@ public class Sprite {
     protected int dy;
     protected Direction dir;
     protected int points;
-    protected Coordinate spawnPoint;
 
     public Sprite(int x, int y, int w, int h, int points) {
         this.x = x;
@@ -114,20 +113,5 @@ public class Sprite {
 
     public void setPoints(int points) {
         this.points = points;
-    }
-
-    public Coordinate getSpawnPoint() {
-        return spawnPoint;
-    }
-
-    public void setSpawnPoint(Coordinate spawnPoint) {
-        this.spawnPoint = spawnPoint;
-    }
-
-    public void returnToSpawnPoint() {
-        this.x = this.spawnPoint.getX();
-        this.y = this.spawnPoint.getY();
-        this.dx = 0;
-        this.dy = 0;
     }
 }

@@ -154,8 +154,10 @@ public class Pacman extends Character {
         this.points += points;
     }
 
+    @Override
     public void returnToSpawnPoint(){
         super.returnToSpawnPoint();
+        this.dir = LEFT;
         ImageIcon imageIcon = this.imageSet.getFrameAt(1,dir);
         setImage(imageIcon.getImage());
     }

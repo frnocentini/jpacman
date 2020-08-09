@@ -24,7 +24,7 @@ public class Constants {
     public static final int GHOST_HEIGHT = 20;
     public static final int GHOST_WIDTH = 20;
 
-    //images for the objects
+    //images for pacman
     public static final String PACMAN_A0_URL = "images/pacman/a0.png";
     public static final String PACMAN_R1_URL = "images/pacman/r1.png";
     public static final String PACMAN_R2_URL = "images/pacman/r2.png";
@@ -34,6 +34,45 @@ public class Constants {
     public static final String PACMAN_L2_URL = "images/pacman/l2.png";
     public static final String PACMAN_D1_URL = "images/pacman/d1.png";
     public static final String PACMAN_D2_URL = "images/pacman/d2.png";
+    public static final String PACMAN_DEATH0_URL = "images/pacman/death/0.png";
+    public static final String PACMAN_DEATH1_URL = "images/pacman/death/1.png";
+    public static final String PACMAN_DEATH2_URL = "images/pacman/death/2.png";
+    public static final String PACMAN_DEATH3_URL = "images/pacman/death/3.png";
+    public static final String PACMAN_DEATH4_URL = "images/pacman/death/4.png";
+    public static final String PACMAN_DEATH5_URL = "images/pacman/death/5.png";
+    public static final String PACMAN_DEATH6_URL = "images/pacman/death/6.png";
+    public static final String PACMAN_DEATH7_URL = "images/pacman/death/7.png";
+    public static final String PACMAN_DEATH8_URL = "images/pacman/death/8.png";
+    public static final String PACMAN_DEATH9_URL = "images/pacman/death/9.png";
+    public static final String PACMAN_DEATH10_URL = "images/pacman/death/10.png";
+
+    //images for ghosts
+    public static final String BLINKY_R1_URL = "images/blinky/r1.png";
+    public static final String BLINKY_R2_URL = "images/blinky/r2.png";
+    public static final String BLINKY_U1_URL = "images/blinky/u1.png";
+    public static final String BLINKY_U2_URL = "images/blinky/u2.png";
+    public static final String BLINKY_L1_URL = "images/blinky/l1.png";
+    public static final String BLINKY_L2_URL = "images/blinky/l2.png";
+    public static final String BLINKY_D1_URL = "images/blinky/d1.png";
+    public static final String BLINKY_D2_URL = "images/blinky/d2.png";
+    public static final String PINKY_R1_URL = "images/pinky/r1.png";
+    public static final String PINKY_R2_URL = "images/pinky/r2.png";
+    public static final String PINKY_U1_URL = "images/pinky/u1.png";
+    public static final String PINKY_U2_URL = "images/pinky/u2.png";
+    public static final String PINKY_L1_URL = "images/pinky/l1.png";
+    public static final String PINKY_L2_URL = "images/pinky/l2.png";
+    public static final String PINKY_D1_URL = "images/pinky/d1.png";
+    public static final String PINKY_D2_URL = "images/pinky/d2.png";
+    public static final String FRIGHTENED0_URL = "images/frightened/0.png";
+    public static final String FRIGHTENED1_URL = "images/frightened/1.png";
+    public static final String FRIGHTENED2_URL = "images/frightened/2.png";
+    public static final String FRIGHTENED3_URL = "images/frightened/3.png";
+    public static final String EATEN_U_URL = "images/eaten/u.png";
+    public static final String EATEN_D_URL = "images/eaten/d.png";
+    public static final String EATEN_L_URL = "images/eaten/l.png";
+    public static final String EATEN_R_URL = "images/eaten/r.png";
+
+    //images for the objects
     public static final String EMPTY_IMAGE_URL = "images/empty.png";
     public static final String WALL_IMAGE_URL = "images/wall.png";
     public static final String BLINKY_IMAGE_URL = "images/blinky.png";

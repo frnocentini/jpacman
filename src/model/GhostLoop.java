@@ -19,19 +19,22 @@ public class GhostLoop implements ActionListener {
     private long timeLost;
     private State backupState;
 
-    public GhostLoop(Ghost ghost){
+    public GhostLoop(Ghost ghost, int level){
         this.ghost = ghost;
         this.times = new long[7];
-        if(GameMainFrame.level == 1){
+        if(level == 1){
+            System.out.println("Primo liv.");
             for(int i=0;i<7;i++){
                 this.times[i] = Constants.FIRST_TIMES[i];
             }
-        } else if (GameMainFrame.level < 5){
+        } else if (level < 5){
+            System.out.println("secondo liv.");
             for(int i=0;i<7;i++){
                 this.times[i] = Constants.SECOND_TIMES[i];
             }
         } else {
             for(int i=0;i<7;i++){
+                System.out.println("quinto liv.");
                 this.times[i] = Constants.FIFTH_TIMES[i];
             }
         }

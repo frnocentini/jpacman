@@ -35,10 +35,8 @@ public class GamePanel extends JPanel {
     private int consecutiveGhosts;
     private JLabel pointsLabel;
 
-    public GamePanel(GameMainFrame frame){
+    public GamePanel(GameMainFrame frame, int level, int points){
         this.frame = frame;
-        int level = this.frame.level;
-        int points = this.frame.gamePoints;
         initializeVariables(level,points);
         initializeLayout();
     }
@@ -76,10 +74,9 @@ public class GamePanel extends JPanel {
         SoundPlayer.playMusic(GAME_START);
         this.startTime = System.currentTimeMillis();
         this.portalTime = System.currentTimeMillis();
-        this.pacman.setDir(LEFT);
         this.pacman.returnToSpawnPoint();
         for(Ghost ghost : this.ghosts) {
-            ghost.returnToSpawnPoint();
+            ghost.returnToSpawnPoint(this.level);
         }
         timer.start();
     }

@@ -30,7 +30,7 @@ public abstract class Ghost extends Character {
     public Ghost(Pacman pacman) {
         setW(Constants.GHOST_WIDTH);
         setH(Constants.GHOST_HEIGHT);
-        ghostLoop = new GhostLoop(this);
+        ghostLoop = new GhostLoop(this,1);
         this.points = Constants.GHOSTPOINTS;
         this.timer = new Timer(1,ghostLoop);
         this.pacman = pacman;
@@ -233,6 +233,16 @@ public abstract class Ghost extends Character {
         ghostLoop.resetTimeLost();
         setFrightTime();
         this.state = FRIGHTENED;
+    }
+
+    public void returnToSpawnPoint(int level){
+        super.returnToSpawnPoint();
+        this.timer.stop();
+        this.ghostLoop = null;
+        this.ghostLoop = new GhostLoop(this,level);
+        this.timer = new Timer(1,ghostLoop);
+        //ImageIcon imageIcon = this.imageSet.getFrameAt(0,dir);
+        //setImage(imageIcon.getImage());
     }
 
     public State getState() {
