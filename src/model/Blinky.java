@@ -1,12 +1,16 @@
 package model;
 
 import constants.Constants;
+import image.GhostImageSet;
 import image.Image;
 import image.ImageFactory;
+import image.ImageSet;
 import utility.CoordManager;
 import utility.Coordinate;
 
 import javax.swing.*;
+
+import java.util.ArrayList;
 
 import static utility.Direction.*;
 
@@ -18,7 +22,11 @@ public class Blinky extends Ghost{
     }
 
     private void initialize(){
-        resetImage();
+        addImageSet();
+
+        dir = UP;
+        ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+        setImage(imageIcon.getImage());
 
         Coordinate start = CoordManager.getObjCoord('1');
 
@@ -28,7 +36,32 @@ public class Blinky extends Ghost{
         this.spawnPoint = new Coordinate(start.getX(), start.getY());
         this.scatterTarget = new Coordinate(Constants.BOARD_WIDTH,0);
 
-        dir = UP;
+    }
+
+    @Override
+    public void addImageSet() {
+        ArrayList<ImageIcon> up = new ArrayList<>();
+        ArrayList<ImageIcon> down = new ArrayList<>();
+        ArrayList<ImageIcon> left = new ArrayList<>();
+        ArrayList<ImageIcon> right = new ArrayList<>();
+        ArrayList<ImageIcon> frightened = new ArrayList<>();
+        up.add(ImageFactory.createImage(Image.BLINKY_U1));
+        up.add(ImageFactory.createImage(Image.BLINKY_U2));
+        down.add(ImageFactory.createImage(Image.BLINKY_D1));
+        down.add(ImageFactory.createImage(Image.BLINKY_D2));
+        left.add(ImageFactory.createImage(Image.BLINKY_L1));
+        left.add(ImageFactory.createImage(Image.BLINKY_L2));
+        right.add(ImageFactory.createImage(Image.BLINKY_R1));
+        right.add(ImageFactory.createImage(Image.BLINKY_R2));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED0));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED1));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED2));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED3));
+        ImageIcon eatenUp = ImageFactory.createImage(Image.EATEN_U);
+        ImageIcon eatenDown = ImageFactory.createImage(Image.EATEN_D);
+        ImageIcon eatenLeft = ImageFactory.createImage(Image.EATEN_L);
+        ImageIcon eatenRight = ImageFactory.createImage(Image.EATEN_R);
+        this.imageSet = new GhostImageSet(up,down,left,right,frightened,eatenUp,eatenDown,eatenLeft,eatenRight);
     }
 
     @Override
@@ -37,14 +70,4 @@ public class Blinky extends Ghost{
         this.target.setY(this.pacman.getY());
     }
 
-    @Override
-    public void resetImage() {
-        ImageIcon imageIcon = ImageFactory.createImage(Image.BLINKY);
-        setImage(imageIcon.getImage());
-    }
-
-    @Override
-    public void addImageSet() {
-
-    }
 }

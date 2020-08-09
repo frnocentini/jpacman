@@ -72,14 +72,12 @@ public class GhostLoop implements ActionListener {
             if(System.currentTimeMillis() >= ghost.getFrightTime()+8000){
                 System.out.println("Esco da frightened con backupState: "+this.backupState);
                 this.ghost.setState(this.backupState);
-                ghost.resetImage();
             }
         } else if (this.ghost.getState() == EATEN){
             Coordinate sp = this.ghost.getSpawnPoint();
             Coordinate co = new Coordinate(this.ghost.getX(),this.ghost.getY());
             if(sp.equals(co)){
                 this.ghost.setState(this.backupState);
-                ghost.resetImage();
             }
         }
     }

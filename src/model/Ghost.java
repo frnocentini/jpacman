@@ -1,8 +1,10 @@
 package model;
 
 import constants.Constants;
+import image.GhostImageSet;
 import image.Image;
 import image.ImageFactory;
+import image.ImageSet;
 import utility.CoordManager;
 import utility.Coordinate;
 import utility.Direction;
@@ -19,6 +21,7 @@ import static utility.State.*;
 
 public abstract class Ghost extends Character {
 
+    protected GhostImageSet imageSet;
     protected State state;
     protected Coordinate target;
     protected Coordinate scatterTarget;
@@ -31,7 +34,7 @@ public abstract class Ghost extends Character {
         setW(Constants.GHOST_WIDTH);
         setH(Constants.GHOST_HEIGHT);
         ghostLoop = new GhostLoop(this,1);
-        this.points = Constants.GHOSTPOINTS;
+        this.points = Constants.GHOST_POINTS;
         this.timer = new Timer(1,ghostLoop);
         this.pacman = pacman;
         this.target = new Coordinate(0,0);
@@ -48,11 +51,26 @@ public abstract class Ghost extends Character {
         setTarget();
         if(CoordManager.canIMove(x,y)){
             if(this.state != FRIGHTENED){
+                if(this.state != EATEN){
+                    ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+                    setImage(imageIcon.getImage());
+                } else {
+                    ImageIcon imageIcon = this.imageSet.getNextFrameEaten(dir);
+                    setImage(imageIcon.getImage());
+                }
                 changeDir();
             } else {
+                if(System.currentTimeMillis() > this.frightTime + 6000){
+                    ImageIcon imageIcon = this.imageSet.getNextFrameFrightened(true);
+                    setImage(imageIcon.getImage());
+                } else {
+                    ImageIcon imageIcon = this.imageSet.getNextFrameFrightened(false);
+                    setImage(imageIcon.getImage());
+                }
                 changeToRandDir();
             }
         }
+
         switch(dir){
             case UP:
                 y -= speed;
@@ -195,18 +213,12 @@ public abstract class Ghost extends Character {
 
     public void becomeEaten(){
         this.state = EATEN;
-        ImageIcon imageIcon = ImageFactory.createImage(Image.EATEN_GHOST);
-        setImage(imageIcon.getImage());
     }
 
     public abstract void setChaseTarget();
 
-    public abstract void resetImage();
-
     public void becomeFrightened(){
         if(this.state != FRIGHTENED){
-            ImageIcon imageIcon = ImageFactory.createImage(Image.FRIGHTENED_GHOST);
-            setImage(imageIcon.getImage());
             switch(this.dir){
                 case UP:
                     if(CoordManager.checkEmpty(x,y,DOWN)){

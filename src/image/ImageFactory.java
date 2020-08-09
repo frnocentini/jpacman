@@ -104,10 +104,81 @@ public class ImageFactory {
             case PACMAN_DEATH10:
                 imageIcon = new ImageIcon(Constants.PACMAN_DEATH10_URL);
                 break;
+            case BLINKY_R1:
+                imageIcon = new ImageIcon(Constants.BLINKY_R1_URL);
+                break;
+            case BLINKY_R2:
+                imageIcon = new ImageIcon(Constants.BLINKY_R2_URL);
+                break;
+            case BLINKY_U1:
+                imageIcon = new ImageIcon(Constants.BLINKY_U1_URL);
+                break;
+            case BLINKY_U2:
+                imageIcon = new ImageIcon(Constants.BLINKY_U2_URL);
+                break;
+            case BLINKY_L1:
+                imageIcon = new ImageIcon(Constants.BLINKY_L1_URL);
+                break;
+            case BLINKY_L2:
+                imageIcon = new ImageIcon(Constants.BLINKY_L2_URL);
+                break;
+            case BLINKY_D1:
+                imageIcon = new ImageIcon(Constants.BLINKY_D1_URL);
+                break;
+            case BLINKY_D2:
+                imageIcon = new ImageIcon(Constants.BLINKY_D2_URL);
+                break;
+            case PINKY_R1:
+                imageIcon = new ImageIcon(Constants.PINKY_R1_URL);
+                break;
+            case PINKY_R2:
+                imageIcon = new ImageIcon(Constants.PINKY_R2_URL);
+                break;
+            case PINKY_U1:
+                imageIcon = new ImageIcon(Constants.PINKY_U1_URL);
+                break;
+            case PINKY_U2:
+                imageIcon = new ImageIcon(Constants.PINKY_U2_URL);
+                break;
+            case PINKY_L1:
+                imageIcon = new ImageIcon(Constants.PINKY_L1_URL);
+                break;
+            case PINKY_L2:
+                imageIcon = new ImageIcon(Constants.PINKY_L2_URL);
+                break;
+            case PINKY_D1:
+                imageIcon = new ImageIcon(Constants.PINKY_D1_URL);
+                break;
+            case PINKY_D2:
+                imageIcon = new ImageIcon(Constants.PINKY_D2_URL);
+                break;
+            case FRIGHTENED0:
+                imageIcon = new ImageIcon(Constants.FRIGHTENED0_URL);
+                break;
+            case FRIGHTENED1:
+                imageIcon = new ImageIcon(Constants.FRIGHTENED1_URL);
+                break;
+            case FRIGHTENED2:
+                imageIcon = new ImageIcon(Constants.FRIGHTENED2_URL);
+                break;
+            case FRIGHTENED3:
+                imageIcon = new ImageIcon(Constants.FRIGHTENED3_URL);
+                break;
+            case EATEN_U:
+                imageIcon = new ImageIcon(Constants.EATEN_U_URL);
+                break;
+            case EATEN_D:
+                imageIcon = new ImageIcon(Constants.EATEN_D_URL);
+                break;
+            case EATEN_L:
+                imageIcon = new ImageIcon(Constants.EATEN_L_URL);
+                break;
+            case EATEN_R:
+                imageIcon = new ImageIcon(Constants.EATEN_R_URL);
+                break;
             default:
                 return null;
         }
-
         return imageIcon;
     }
 }

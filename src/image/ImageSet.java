@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class ImageSet {
 
-    private ArrayList<ImageIcon> up;
-    private ArrayList<ImageIcon> down;
-    private ArrayList<ImageIcon> left;
-    private ArrayList<ImageIcon> right;
-    private int index;
-    private final int SIZE;
-    private boolean forward;
+    protected ArrayList<ImageIcon> up;
+    protected ArrayList<ImageIcon> down;
+    protected ArrayList<ImageIcon> left;
+    protected ArrayList<ImageIcon> right;
+    protected int index;
+    protected final int SIZE;
+    protected boolean forward;
 
     public ImageSet(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int index) {
         this.up = up;

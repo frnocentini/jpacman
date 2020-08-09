@@ -5,7 +5,6 @@ import utility.Coordinate;
 
 public abstract class Character extends Sprite{
 
-    protected ImageSet imageSet;
     protected Coordinate spawnPoint;
 
     public abstract void move();

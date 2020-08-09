@@ -15,6 +15,7 @@ import static utility.Direction.*;
 
 public class Pacman extends Character {
 
+    private ImageSet imageSet;
     private Timer timer;
     private int keyPressed;
     private int lives;

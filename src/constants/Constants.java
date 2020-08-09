@@ -110,7 +110,7 @@ public class Constants {
     public static final long[] FIFTH_TIMES = {5000,20000,5000,20000,5000,18314,1};
 
     //punti
-    public static final int PILLPOINTS = 10;
-    public static final int POWERPILLPOINTS = 50;
-    public static final int GHOSTPOINTS = 200;
+    public static final int PILL_POINTS = 10;
+    public static final int POWERPILL_POINTS = 50;
+    public static final int GHOST_POINTS = 200;
 }
