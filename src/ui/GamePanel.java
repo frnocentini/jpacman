@@ -257,21 +257,7 @@ public class GamePanel extends JPanel {
     }
 
     private void restartApplication() {
-        StringBuilder cmd = new StringBuilder();
-        cmd.append(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java ");
-        for (String jvmArg : ManagementFactory.getRuntimeMXBean().getInputArguments()) {
-            cmd.append(jvmArg + " ");
-        }
-        cmd.append("-cp ").append(ManagementFactory.getRuntimeMXBean().getClassPath()).append(" ");
-        cmd.append(Window.class.getName()).append(" ");
-
-        try {
-            Runtime.getRuntime().exec(cmd.toString());
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.exit(0);
+        frame.dispose();
     }
 
     public void doOneLoop() {

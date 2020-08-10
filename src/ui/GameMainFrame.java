@@ -36,7 +36,6 @@ public class GameMainFrame extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-
     }
 
     public void initializeLayout(){

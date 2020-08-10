@@ -48,18 +48,18 @@ public class Pacman extends Character {
 
     @Override
     public void move() {
-        if(CoordManager.checkEmpty(x,y,dir)){
-            if(!this.dead){
+        if(!this.dead){
+            if(CoordManager.checkEmpty(x,y,dir)) {
                 x += dx;
                 y += dy;
-                if(dx != 0 || dy != 0){
+                if (dx != 0 || dy != 0) {
                     ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
                     setImage(imageIcon.getImage());
                 }
-            } else {
-                ImageIcon imageIcon = this.imageSet.getNextFrameDeath();
-                setImage(imageIcon.getImage());
             }
+        } else {
+            ImageIcon imageIcon = this.imageSet.getNextFrameDeath();
+            setImage(imageIcon.getImage());
         }
         if(x<0){
             x = 0;
@@ -177,6 +177,8 @@ public class Pacman extends Character {
     public void returnToSpawnPoint(){
         super.returnToSpawnPoint();
         this.dir = LEFT;
+        dx = -Constants.PACMAN_SPEED;
+        dy = 0;
         ImageIcon imageIcon = this.imageSet.getFrameAt(1,dir);
         setImage(imageIcon.getImage());
     }

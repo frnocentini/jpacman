@@ -74,7 +74,10 @@ public class SoundFactory {
     private SoundClip createStream(String audioFilename){
         SoundClip audio = null;
         try {
+            // IDE
             AudioInputStream ais = AudioSystem.getAudioInputStream(new File(audioFilename).getAbsoluteFile());
+            // JAR
+            //AudioInputStream ais = AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(audioFilename));
             DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
             Clip c = (Clip) AudioSystem.getLine(info);
             audio = new SoundClip(null,c,ais);

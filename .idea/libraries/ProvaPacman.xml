@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="ProvaPacman">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/out/artifacts/ProvaPacman/ProvaPacman.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

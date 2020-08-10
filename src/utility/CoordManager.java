@@ -3,6 +3,8 @@ package utility;
 import constants.Constants;
 import model.*;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -15,8 +17,11 @@ public class CoordManager {
     public static void createMaze(int mazeNum) {
         char[][] inputMaze = new char[21][19];
         try {
-            FileReader lvlFile = new FileReader(new File("mazes/maze"+mazeNum+".txt"));
+            // IDE
+            FileReader lvlFile = new FileReader(new File("resources/mazes/maze"+mazeNum+".txt"));
             BufferedReader br = new BufferedReader(lvlFile);  //Creation of BufferedReader object
+            // JAR
+            //BufferedReader br = new BufferedReader(new InputStreamReader(CoordManager.class.getClassLoader().getResourceAsStream("resources/mazes/maze"+mazeNum+".txt")));
             int c,i,j;
             c = i = j = 0;
             while((c = br.read()) != -1){
