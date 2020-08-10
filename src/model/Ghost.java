@@ -49,24 +49,31 @@ public abstract class Ghost extends Character {
             y -= y%(Constants.GHOST_SPEED*2);
         }
         setTarget();
+        ImageIcon imageIcon = null;
+        switch(this.state){
+            case CHASE:
+            case SCATTER:
+                imageIcon = this.imageSet.getNextFrame(dir);
+                setImage(imageIcon.getImage());
+                break;
+            case FRIGHTENED:
+                if(System.currentTimeMillis() > this.frightTime + 6000){
+                    imageIcon = this.imageSet.getNextFrameFrightened(true);
+                    setImage(imageIcon.getImage());
+                } else {
+                    imageIcon = this.imageSet.getNextFrameFrightened(false);
+                    setImage(imageIcon.getImage());
+                }
+                break;
+            case EATEN:
+                imageIcon = this.imageSet.getNextFrameEaten(dir);
+                setImage(imageIcon.getImage());
+                break;
+        }
         if(CoordManager.canIMove(x,y)){
             if(this.state != FRIGHTENED){
-                if(this.state != EATEN){
-                    ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
-                    setImage(imageIcon.getImage());
-                } else {
-                    ImageIcon imageIcon = this.imageSet.getNextFrameEaten(dir);
-                    setImage(imageIcon.getImage());
-                }
                 changeDir();
             } else {
-                if(System.currentTimeMillis() > this.frightTime + 6000){
-                    ImageIcon imageIcon = this.imageSet.getNextFrameFrightened(true);
-                    setImage(imageIcon.getImage());
-                } else {
-                    ImageIcon imageIcon = this.imageSet.getNextFrameFrightened(false);
-                    setImage(imageIcon.getImage());
-                }
                 changeToRandDir();
             }
         }

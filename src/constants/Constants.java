@@ -47,22 +47,22 @@ public class Constants {
     public static final String PACMAN_DEATH10_URL = "images/pacman/death/10.png";
 
     //images for ghosts
+    public static final String BLINKY_R0_URL = "images/blinky/r0.png";
     public static final String BLINKY_R1_URL = "images/blinky/r1.png";
-    public static final String BLINKY_R2_URL = "images/blinky/r2.png";
-    public static final String BLINKY_U1_URL = "images/blinky/u1.png";
-    public static final String BLINKY_U2_URL = "images/blinky/u2.png";
+    public static final String BLINKY_L0_URL = "images/blinky/l0.png";
     public static final String BLINKY_L1_URL = "images/blinky/l1.png";
-    public static final String BLINKY_L2_URL = "images/blinky/l2.png";
+    public static final String BLINKY_U0_URL = "images/blinky/u0.png";
+    public static final String BLINKY_U1_URL = "images/blinky/u1.png";
+    public static final String BLINKY_D0_URL = "images/blinky/d0.png";
     public static final String BLINKY_D1_URL = "images/blinky/d1.png";
-    public static final String BLINKY_D2_URL = "images/blinky/d2.png";
+    public static final String PINKY_R0_URL = "images/pinky/r0.png";
     public static final String PINKY_R1_URL = "images/pinky/r1.png";
-    public static final String PINKY_R2_URL = "images/pinky/r2.png";
-    public static final String PINKY_U1_URL = "images/pinky/u1.png";
-    public static final String PINKY_U2_URL = "images/pinky/u2.png";
+    public static final String PINKY_L0_URL = "images/pinky/l0.png";
     public static final String PINKY_L1_URL = "images/pinky/l1.png";
-    public static final String PINKY_L2_URL = "images/pinky/l2.png";
+    public static final String PINKY_U0_URL = "images/pinky/u0.png";
+    public static final String PINKY_U1_URL = "images/pinky/u1.png";
+    public static final String PINKY_D0_URL = "images/pinky/d0.png";
     public static final String PINKY_D1_URL = "images/pinky/d1.png";
-    public static final String PINKY_D2_URL = "images/pinky/d2.png";
     public static final String FRIGHTENED0_URL = "images/frightened/0.png";
     public static final String FRIGHTENED1_URL = "images/frightened/1.png";
     public static final String FRIGHTENED2_URL = "images/frightened/2.png";

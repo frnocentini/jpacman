@@ -40,7 +40,7 @@ public class SoundPlayer {
     public static void loopEffect(Sound sound) {
         int index = isPlaying(sound);
         if(!muteEffects && index == -1){
-            if(sound != SIREN_1){
+            if(isPlaying(GAME_START) > -1){
                 stopAll();
             }
             SoundClip sc = sf.chooseSound(sound);
@@ -61,7 +61,8 @@ public class SoundPlayer {
     private static int isPlaying(Sound sound){
         for(int i=0;i<library.size();i++){
             SoundClip sc = library.get(i);
-            if(sc.getName().equals(sound)){
+            System.out.println("Is now playing: "+sc.getName()+" contro il sound: "+sound);
+            if(sc.getName() == sound){
                 return i;
             }
         }

@@ -45,14 +45,14 @@ public class Blinky extends Ghost{
         ArrayList<ImageIcon> left = new ArrayList<>();
         ArrayList<ImageIcon> right = new ArrayList<>();
         ArrayList<ImageIcon> frightened = new ArrayList<>();
+        up.add(ImageFactory.createImage(Image.BLINKY_U0));
         up.add(ImageFactory.createImage(Image.BLINKY_U1));
-        up.add(ImageFactory.createImage(Image.BLINKY_U2));
+        down.add(ImageFactory.createImage(Image.BLINKY_D0));
         down.add(ImageFactory.createImage(Image.BLINKY_D1));
-        down.add(ImageFactory.createImage(Image.BLINKY_D2));
+        left.add(ImageFactory.createImage(Image.BLINKY_L0));
         left.add(ImageFactory.createImage(Image.BLINKY_L1));
-        left.add(ImageFactory.createImage(Image.BLINKY_L2));
+        right.add(ImageFactory.createImage(Image.BLINKY_R0));
         right.add(ImageFactory.createImage(Image.BLINKY_R1));
-        right.add(ImageFactory.createImage(Image.BLINKY_R2));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED0));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED1));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED2));

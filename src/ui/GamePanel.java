@@ -247,6 +247,7 @@ public class GamePanel extends JPanel {
                 CoordManager.maze.getPill(i).setDead(false);
             }
             if(test >= (this.startTime + 4*1000)) { //multiply by 1000 to get milliseconds
+                SoundPlayer.stopMusic(STARTUP);
                 this.pacmanStart=true;
                 for(Ghost ghost : this.ghosts) {
                     ghost.getTimer().start();

@@ -107,50 +107,50 @@ public class ImageFactory {
             case BLINKY_R1:
                 imageIcon = new ImageIcon(Constants.BLINKY_R1_URL);
                 break;
-            case BLINKY_R2:
-                imageIcon = new ImageIcon(Constants.BLINKY_R2_URL);
+            case BLINKY_R0:
+                imageIcon = new ImageIcon(Constants.BLINKY_R0_URL);
                 break;
             case BLINKY_U1:
                 imageIcon = new ImageIcon(Constants.BLINKY_U1_URL);
                 break;
-            case BLINKY_U2:
-                imageIcon = new ImageIcon(Constants.BLINKY_U2_URL);
+            case BLINKY_U0:
+                imageIcon = new ImageIcon(Constants.BLINKY_U0_URL);
                 break;
             case BLINKY_L1:
                 imageIcon = new ImageIcon(Constants.BLINKY_L1_URL);
                 break;
-            case BLINKY_L2:
-                imageIcon = new ImageIcon(Constants.BLINKY_L2_URL);
+            case BLINKY_L0:
+                imageIcon = new ImageIcon(Constants.BLINKY_L0_URL);
                 break;
             case BLINKY_D1:
                 imageIcon = new ImageIcon(Constants.BLINKY_D1_URL);
                 break;
-            case BLINKY_D2:
-                imageIcon = new ImageIcon(Constants.BLINKY_D2_URL);
+            case BLINKY_D0:
+                imageIcon = new ImageIcon(Constants.BLINKY_D0_URL);
                 break;
             case PINKY_R1:
                 imageIcon = new ImageIcon(Constants.PINKY_R1_URL);
                 break;
-            case PINKY_R2:
-                imageIcon = new ImageIcon(Constants.PINKY_R2_URL);
+            case PINKY_R0:
+                imageIcon = new ImageIcon(Constants.PINKY_R0_URL);
                 break;
             case PINKY_U1:
                 imageIcon = new ImageIcon(Constants.PINKY_U1_URL);
                 break;
-            case PINKY_U2:
-                imageIcon = new ImageIcon(Constants.PINKY_U2_URL);
+            case PINKY_U0:
+                imageIcon = new ImageIcon(Constants.PINKY_U0_URL);
                 break;
             case PINKY_L1:
                 imageIcon = new ImageIcon(Constants.PINKY_L1_URL);
                 break;
-            case PINKY_L2:
-                imageIcon = new ImageIcon(Constants.PINKY_L2_URL);
+            case PINKY_L0:
+                imageIcon = new ImageIcon(Constants.PINKY_L0_URL);
                 break;
             case PINKY_D1:
                 imageIcon = new ImageIcon(Constants.PINKY_D1_URL);
                 break;
-            case PINKY_D2:
-                imageIcon = new ImageIcon(Constants.PINKY_D2_URL);
+            case PINKY_D0:
+                imageIcon = new ImageIcon(Constants.PINKY_D0_URL);
                 break;
             case FRIGHTENED0:
                 imageIcon = new ImageIcon(Constants.FRIGHTENED0_URL);
