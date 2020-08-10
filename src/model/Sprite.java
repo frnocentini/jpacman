@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class Sprite {
 
-    private Image image;
-    private boolean dead;
+    protected Image image;
+    protected boolean dead;
     protected int x;
     protected int y;
     protected int w;

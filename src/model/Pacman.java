@@ -4,6 +4,7 @@ import constants.Constants;
 import image.Image;
 import image.ImageFactory;
 import image.ImageSet;
+import image.PacmanImageSet;
 import utility.CoordManager;
 import utility.Coordinate;
 
@@ -15,7 +16,7 @@ import static utility.Direction.*;
 
 public class Pacman extends Character {
 
-    private ImageSet imageSet;
+    private PacmanImageSet imageSet;
     private Timer timer;
     private int keyPressed;
     private int lives;
@@ -48,10 +49,15 @@ public class Pacman extends Character {
     @Override
     public void move() {
         if(CoordManager.checkEmpty(x,y,dir)){
-            x += dx;
-            y += dy;
-            if(dx != 0 || dy != 0){
-                ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+            if(!this.dead){
+                x += dx;
+                y += dy;
+                if(dx != 0 || dy != 0){
+                    ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+                    setImage(imageIcon.getImage());
+                }
+            } else {
+                ImageIcon imageIcon = this.imageSet.getNextFrameDeath();
                 setImage(imageIcon.getImage());
             }
         }
@@ -75,6 +81,7 @@ public class Pacman extends Character {
         ArrayList<ImageIcon> down = new ArrayList<>();
         ArrayList<ImageIcon> left = new ArrayList<>();
         ArrayList<ImageIcon> right = new ArrayList<>();
+        ArrayList<ImageIcon> death = new ArrayList<>();
         ImageIcon a0 = ImageFactory.createImage(Image.PACMAN_A0);
         up.add(a0);
         up.add(ImageFactory.createImage(Image.PACMAN_U1));
@@ -88,7 +95,18 @@ public class Pacman extends Character {
         right.add(a0);
         right.add(ImageFactory.createImage(Image.PACMAN_R1));
         right.add(ImageFactory.createImage(Image.PACMAN_R2));
-        this.imageSet = new ImageSet(up,down,left,right,1);
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH0));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH1));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH2));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH3));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH4));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH5));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH6));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH7));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH8));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH9));
+        death.add(ImageFactory.createImage(Image.PACMAN_DEATH10));
+        this.imageSet = new PacmanImageSet(up,down,left,right,1,this,death,7);
     }
 
     public void keyPressed(KeyEvent e) {

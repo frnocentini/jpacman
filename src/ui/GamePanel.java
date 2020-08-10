@@ -3,20 +3,19 @@ package ui;
 import callbacks.GameEventListener;
 import constants.Constants;
 import model.*;
-import sound.Sound;
-import sound.SoundFactory;
 import sound.SoundPlayer;
 import utility.CoordManager;
-import utility.State;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 
 import static java.awt.event.KeyEvent.VK_ENTER;
 import static sound.Sound.*;
-import static utility.Direction.*;
 import static utility.State.*;
 
 public class GamePanel extends JPanel {
@@ -31,19 +30,23 @@ public class GamePanel extends JPanel {
     private long startTime;
     private long portalTime;
     private int level;
+    private int lives;
     private boolean munch;
     private int consecutiveGhosts;
     private JLabel pointsLabel;
+    private JLabel livesLabel;
+    private boolean pacmanDead;
 
-    public GamePanel(GameMainFrame frame, int level, int points){
+    public GamePanel(GameMainFrame frame, int level, int points, int lives){
         this.frame = frame;
-        initializeVariables(level,points);
+        initializeVariables(level,points,lives);
         initializeLayout();
     }
 
-    private void initializeVariables(int level, int points) {
+    private void initializeVariables(int level, int points, int lives) {
         CoordManager.populateMaze();
         this.level = level;
+        this.lives = lives;
         System.out.println(level);
         this.inGame = true;
         this.pacmanStart = false;
@@ -63,16 +66,17 @@ public class GamePanel extends JPanel {
         this.pointsLabel = new JLabel("Points: "+points);
         pointsLabel.setBounds(10,440,100,20);
         add(pointsLabel);
+        this.livesLabel = new JLabel("Lives: "+lives);
+        livesLabel.setBounds(10,428,100,20);
+        add(livesLabel);
     }
 
     private void restartLevel(){
-        this.level++;
+        SoundPlayer.stopAll();
         this.pacmanStart = false;
-        CoordManager.populateMaze();
         System.out.println(level);
         this.inGame = true;
         this.munch = true;
-        SoundPlayer.playMusic(GAME_START);
         this.startTime = System.currentTimeMillis();
         this.portalTime = System.currentTimeMillis();
         this.pacman.returnToSpawnPoint();
@@ -200,27 +204,79 @@ public class GamePanel extends JPanel {
 
     private void drawPacman(Graphics g) {
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), this);
-    }
-
-    private void drawGhosts(Graphics g) {
-        for(Ghost ghost : this.ghosts){
-            g.drawImage(ghost.getImage(), ghost.getX(), ghost.getY(), this);
-            if(CoordManager.checkCollision(pacman,ghost)){
-                if(ghost.getState() == FRIGHTENED){
-                    ghost.becomeEaten();
-                    SoundPlayer.playEffect(EAT_GHOST);
-                    this.pacman.addPoints(ghost.getPoints() * (2^this.consecutiveGhosts));
-                    this.consecutiveGhosts++;
+        if(pacmanDead){
+            if(this.pacman.isDead()){
+                pacmanDead = true;
+            } else {
+                pacmanDead = false;
+                this.lives--;
+                livesLabel.setText("Lives: " + this.lives);
+                // controllo game over
+                if (this.lives == 0) {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    restartApplication();
                 }
+                // pacman e fantasmi spawnpoint
+                restartLevel();
             }
         }
     }
 
+    private void drawGhosts(Graphics g) {
+        for(Ghost ghost : this.ghosts){
+            if(!this.pacman.isDead()) {
+                g.drawImage(ghost.getImage(), ghost.getX(), ghost.getY(), this);
+                if (CoordManager.checkCollision(pacman, ghost)) {
+                    switch (ghost.getState()) {
+                        case CHASE:
+                        case SCATTER:
+                            // fermare tutti i suoni
+                            SoundPlayer.stopAll();
+                            SoundPlayer.playEffect(DEATH);
+                            // rendiamo fantasmi invisibili
+                            // animazione + suono morte
+                            this.pacman.setDead(true);
+                            this.pacmanDead = true;
+                            break;
+                        case FRIGHTENED:
+                            ghost.becomeEaten();
+                            SoundPlayer.playEffect(EAT_GHOST);
+                            this.pacman.addPoints(ghost.getPoints() * (2 ^ this.consecutiveGhosts));
+                            this.consecutiveGhosts++;
+                            break;
+                    }
+                }
+            } else {
+                g.drawImage(null, ghost.getX(), ghost.getY(), this);
+            }
+        }
+    }
+
+    private void restartApplication() {
+        StringBuilder cmd = new StringBuilder();
+        cmd.append(System.getProperty("java.home") + File.separator + "bin" + File.separator + "java ");
+        for (String jvmArg : ManagementFactory.getRuntimeMXBean().getInputArguments()) {
+            cmd.append(jvmArg + " ");
+        }
+        cmd.append("-cp ").append(ManagementFactory.getRuntimeMXBean().getClassPath()).append(" ");
+        cmd.append(Window.class.getName()).append(" ");
+
+        try {
+            Runtime.getRuntime().exec(cmd.toString());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.exit(0);
+    }
+
     public void doOneLoop() {
         update();
-        //System.out.println("Update");
         repaint();
-        //System.out.println("Repaint");
     }
 
     private void update() {
@@ -237,17 +293,17 @@ public class GamePanel extends JPanel {
                     eaten = true;
                 }
             }
-            SoundPlayer.playBackgroundMusic(frightened,eaten);
+            if(!this.pacman.isDead()){
+                SoundPlayer.playBackgroundMusic(frightened,eaten);
+            }
             if(CoordManager.maze.getAlivePills() == 0){
                 SoundPlayer.stopAll();
                 endGame();
             }
         }else{
             long test = System.currentTimeMillis();
-            for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
-                CoordManager.maze.getPill(i).setDead(false);
-            }
             if(test >= (this.startTime + 4*1000)) { //multiply by 1000 to get milliseconds
+                SoundPlayer.removeMusic(DEATH);
                 SoundPlayer.removeMusic(GAME_START);
                 this.pacmanStart=true;
                 for(Ghost ghost : this.ghosts) {
@@ -264,6 +320,11 @@ public class GamePanel extends JPanel {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        this.level++;
+        CoordManager.populateMaze();
+        for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
+            CoordManager.maze.getPill(i).setDead(false);
+        }
         restartLevel();
     }
 
@@ -273,6 +334,7 @@ public class GamePanel extends JPanel {
             int keyPressed = e.getKeyCode();
             if(keyPressed == VK_ENTER){
                 if(timer.isRunning()){
+                    SoundPlayer.stopAll();
                     timer.stop();
                 } else {
                     timer.start();
