@@ -31,6 +31,7 @@ public class SoundPlayer {
 
     public static void playMusic(Sound sound) {
         if(!muteMusic){
+            stopAll();
             SoundClip sc = sf.chooseSound(sound);
             sf.playSound(sc);
             library.add(new SoundClip(sound,sc.getClip(),sc.getAis()));
@@ -69,10 +70,10 @@ public class SoundPlayer {
     }
 
     public static void stopAll(){
-        for(SoundClip sc : library){
-            sf.stopSound(sc);
+        for(int i=0;i<library.size();i++){
+            sf.stopSound(library.get(i));
+            library.remove(i);
         }
-        library.clear();
     }
 
     public static void playBackgroundMusic(boolean frightened, boolean eaten) {

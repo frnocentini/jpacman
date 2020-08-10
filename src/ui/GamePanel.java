@@ -205,9 +205,7 @@ public class GamePanel extends JPanel {
     private void drawPacman(Graphics g) {
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), this);
         if(pacmanDead){
-            if(this.pacman.isDead()){
-                pacmanDead = true;
-            } else {
+            if(!this.pacman.isDead()){
                 pacmanDead = false;
                 this.lives--;
                 livesLabel.setText("Lives: " + this.lives);
@@ -219,9 +217,9 @@ public class GamePanel extends JPanel {
                         e.printStackTrace();
                     }
                     restartApplication();
+                }else{
+                    restartLevel();
                 }
-                // pacman e fantasmi spawnpoint
-                restartLevel();
             }
         }
     }
@@ -257,10 +255,17 @@ public class GamePanel extends JPanel {
     }
 
     private void restartApplication() {
-        frame.dispose();
+        this.gameEventListener = null;
+        this.timer.stop();
+        this.pacman.setDead(true);
+        this.inGame = false;
+        System.gc();
+        SoundPlayer.stopAll();
+        frame.initializeGameMenu();
     }
 
     public void doOneLoop() {
+        this.requestFocus();
         update();
         repaint();
     }
@@ -288,7 +293,7 @@ public class GamePanel extends JPanel {
             }
         }else{
             long test = System.currentTimeMillis();
-            if(test >= (this.startTime + 4*1000)) { //multiply by 1000 to get milliseconds
+            if(test >= (this.startTime + 1*4000)) { //multiply by 1000 to get milliseconds
                 SoundPlayer.removeMusic(DEATH);
                 SoundPlayer.removeMusic(GAME_START);
                 this.pacmanStart=true;

@@ -48,7 +48,6 @@ public class MenuPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 SoundPlayer.stopMusic(STARTUP);
                 SoundPlayer.playEffect(CREDIT);
-                gameMainFrame.dispose();
                 gameMainFrame.initializeLayout();
             }
         });

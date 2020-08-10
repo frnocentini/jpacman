@@ -13,21 +13,29 @@ public class GameMainFrame extends JFrame{
     private int level;
     private int gamePoints;
     private int lives;
+    private JLayeredPane layeredPane;
 
     public GameMainFrame(){
+        this.setLocationRelativeTo(null);
+        SoundPlayer.initialize();
         level = 1;
         gamePoints = 0;
-        lives = 3;
-        SoundPlayer.initialize();
+        lives = 2;
+        this.layeredPane = new JLayeredPane();
+        layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
         initializeGameMenu();
     }
 
     public void initializeGameMenu() {
-
+        layeredPane.removeAll();
         MenuPanel menuPanel = new MenuPanel(this);
-        menuPanel.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
+        menuPanel.setBounds( 0,0,Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40);
+
+        layeredPane.add(menuPanel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
+
         this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
-        this.setContentPane(menuPanel);
+        this.setContentPane(layeredPane);
         this.setVisible(true);
         this.setTitle(Constants.TITLE);
 
@@ -39,14 +47,14 @@ public class GameMainFrame extends JFrame{
     }
 
     public void initializeLayout(){
-
+        layeredPane.removeAll();
         //Sottoclasse di JPanel che attraverso un GridLayout crea il labirinto
         BGPanel bgPanel = new BGPanel(new GridLayout(21, 19),1);
         //Sottoclasse di JPanel dove posizioniamo le entità della mappa (Pac-Man, fantasmi, frutta, ecc...)
         GamePanel gamePanel = new GamePanel(this, this.level, this.gamePoints, this.lives);
         this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         //Creiamo il JPanel stratificato
-        JLayeredPane layeredPane = new JLayeredPane();
+
 
 
         //bgPanel.setOpaque(false);
@@ -67,7 +75,6 @@ public class GameMainFrame extends JFrame{
         this.pack();
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
         this.setResizable(false);
 
     }
