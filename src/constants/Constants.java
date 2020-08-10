@@ -17,7 +17,7 @@ public class Constants {
 
     //speed of the application
     public static final int GAME_SPEED = 10;
-    public static final int PACMAN_SPEED = 2;
+    public static final int PACMAN_SPEED = 1;
     public static final int GHOST_SPEED = 1;
 
     //Ghost related constants
@@ -63,6 +63,22 @@ public class Constants {
     public static final String PINKY_U1_URL = "resources/images/pinky/u1.png";
     public static final String PINKY_D0_URL = "resources/images/pinky/d0.png";
     public static final String PINKY_D1_URL = "resources/images/pinky/d1.png";
+    public static final String INKY_R0_URL = "resources/images/inky/r0.png";
+    public static final String INKY_R1_URL = "resources/images/inky/r1.png";
+    public static final String INKY_L0_URL = "resources/images/inky/l0.png";
+    public static final String INKY_L1_URL = "resources/images/inky/l1.png";
+    public static final String INKY_U0_URL = "resources/images/inky/u0.png";
+    public static final String INKY_U1_URL = "resources/images/inky/u1.png";
+    public static final String INKY_D0_URL = "resources/images/inky/d0.png";
+    public static final String INKY_D1_URL = "resources/images/inky/d1.png";
+    public static final String CLYDE_R0_URL = "resources/images/clyde/r0.png";
+    public static final String CLYDE_R1_URL = "resources/images/clyde/r1.png";
+    public static final String CLYDE_L0_URL = "resources/images/clyde/l0.png";
+    public static final String CLYDE_L1_URL = "resources/images/clyde/l1.png";
+    public static final String CLYDE_U0_URL = "resources/images/clyde/u0.png";
+    public static final String CLYDE_U1_URL = "resources/images/clyde/u1.png";
+    public static final String CLYDE_D0_URL = "resources/images/clyde/d0.png";
+    public static final String CLYDE_D1_URL = "resources/images/clyde/d1.png";
     public static final String FRIGHTENED0_URL = "resources/images/frightened/0.png";
     public static final String FRIGHTENED1_URL = "resources/images/frightened/1.png";
     public static final String FRIGHTENED2_URL = "resources/images/frightened/2.png";

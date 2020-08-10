@@ -14,8 +14,8 @@ public class PacmanImageSet extends ImageSet{
     private final int DEATH_SIZE;
     private final int DEATH_DELAY_LIMIT;
 
-    public PacmanImageSet(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int index, Pacman pacman, ArrayList<ImageIcon> death, int deathDelayLimit) {
-        super(up, down, left, right, index);
+    public PacmanImageSet(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int index, int delayLimit, Pacman pacman, ArrayList<ImageIcon> death, int deathDelayLimit) {
+        super(up, down, left, right, index, delayLimit);
         this.pacman = pacman;
         this.death = death;
         this.deathIndex = 0;

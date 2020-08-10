@@ -63,7 +63,7 @@ public class Pinky extends Ghost{
         ImageIcon eatenDown = ImageFactory.createImage(Image.EATEN_D);
         ImageIcon eatenLeft = ImageFactory.createImage(Image.EATEN_L);
         ImageIcon eatenRight = ImageFactory.createImage(Image.EATEN_R);
-        this.imageSet = new GhostImageSet(up,down,left,right,frightened,eatenUp,eatenDown,eatenLeft,eatenRight);
+        this.imageSet = new GhostImageSet(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,4);
     }
 
     @Override

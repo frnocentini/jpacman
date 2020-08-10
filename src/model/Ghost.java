@@ -29,12 +29,15 @@ public abstract class Ghost extends Character {
     protected GhostLoop ghostLoop;
     protected long frightTime;
     protected Timer timer;
+    protected long pausedTime;
+    protected long pauseClock;
 
     public Ghost(Pacman pacman) {
         setW(Constants.GHOST_WIDTH);
         setH(Constants.GHOST_HEIGHT);
         ghostLoop = new GhostLoop(this,1);
         this.points = Constants.GHOST_POINTS;
+        this.pausedTime = 0;
         this.timer = new Timer(1,ghostLoop);
         this.pacman = pacman;
         this.target = new Coordinate(0,0);
@@ -57,7 +60,7 @@ public abstract class Ghost extends Character {
                 setImage(imageIcon.getImage());
                 break;
             case FRIGHTENED:
-                if(System.currentTimeMillis() > this.frightTime + 6000){
+                if(System.currentTimeMillis() > this.frightTime + 6000 + this.pausedTime){
                     imageIcon = this.imageSet.getNextFrameFrightened(true);
                     setImage(imageIcon.getImage());
                 } else {
@@ -210,8 +213,9 @@ public abstract class Ghost extends Character {
                 this.target.setY(this.scatterTarget.getY());
                 break;
             case EATEN:
-                this.target.setX(this.spawnPoint.getX());
-                this.target.setY(this.spawnPoint.getY());
+                Coordinate start = CoordManager.getObjCoord('1');
+                this.target.setX(start.getX());
+                this.target.setY(start.getY());
                 break;
             case FRIGHTENED:
                 break;
@@ -310,5 +314,21 @@ public abstract class Ghost extends Character {
 
     public void setFrightTime() {
         this.frightTime = System.currentTimeMillis();
+    }
+
+    public long getPausedTime() {
+        return pausedTime;
+    }
+
+    public void setPausedTime(long pausedTime) {
+        this.pausedTime = pausedTime;
+    }
+
+    public void pause() {
+        this.pauseClock = System.currentTimeMillis();
+    }
+
+    public void resume() {
+        this.pausedTime += System.currentTimeMillis()-this.pauseClock;
     }
 }

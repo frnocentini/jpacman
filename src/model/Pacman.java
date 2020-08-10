@@ -106,7 +106,7 @@ public class Pacman extends Character {
         death.add(ImageFactory.createImage(Image.PACMAN_DEATH8));
         death.add(ImageFactory.createImage(Image.PACMAN_DEATH9));
         death.add(ImageFactory.createImage(Image.PACMAN_DEATH10));
-        this.imageSet = new PacmanImageSet(up,down,left,right,1,this,death,7);
+        this.imageSet = new PacmanImageSet(up,down,left,right,1,4,this,death,7);
     }
 
     public void keyPressed(KeyEvent e) {

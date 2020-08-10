@@ -61,6 +61,10 @@ public class GamePanel extends JPanel {
         this.ghosts = new ArrayList<>();
         Pinky pinky = new Pinky(this.pacman);
         Blinky blinky = new Blinky(this.pacman);
+        Inky inky = new Inky(this.pacman,blinky);
+        Clyde clyde = new Clyde(this.pacman);
+        this.ghosts.add(clyde);
+        this.ghosts.add(inky);
         this.ghosts.add(pinky);
         this.ghosts.add(blinky);
         this.pointsLabel = new JLabel("Points: "+points);
@@ -327,8 +331,16 @@ public class GamePanel extends JPanel {
                 if(timer.isRunning()){
                     SoundPlayer.stopAll();
                     timer.stop();
+                    for(Ghost ghost : this.ghosts) {
+                        ghost.getTimer().stop();
+                        ghost.pause();
+                    }
                 } else {
                     timer.start();
+                    for(Ghost ghost : this.ghosts) {
+                        ghost.resume();
+                        ghost.getTimer().start();
+                    }
                 }
             }
         }

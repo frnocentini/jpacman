@@ -14,14 +14,18 @@ public class ImageSet {
     protected int index;
     protected final int SIZE;
     protected boolean forward;
+    protected int delay;
+    protected final int DELAY_LIMIT;
 
-    public ImageSet(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int index) {
+    public ImageSet(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int index, int delayLimit) {
         this.up = up;
         this.down = down;
         this.left = left;
         this.right = right;
         this.SIZE = up.size();
         this.index = index;
+        this.DELAY_LIMIT = delayLimit;
+        this.delay = 0;
         this.forward = true;
     }
 
@@ -42,10 +46,14 @@ public class ImageSet {
                 break;
         }
         ImageIcon frame = movement.get(index);
-        if(forward){
-            index++;
-        }else{
-            index--;
+        delay++;
+        if(delay == this.DELAY_LIMIT) {
+            if(forward){
+                index++;
+            }else{
+                index--;
+            }
+            delay = 0;
         }
         if(index == this.SIZE-1){
             forward = false;

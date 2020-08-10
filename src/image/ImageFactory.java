@@ -152,6 +152,54 @@ public class ImageFactory {
             case PINKY_D0:
                 imageIcon = getFile(Constants.PINKY_D0_URL);
                 break;
+            case INKY_R1:
+                imageIcon = getFile(Constants.INKY_R1_URL);
+                break;
+            case INKY_R0:
+                imageIcon = getFile(Constants.INKY_R0_URL);
+                break;
+            case INKY_U1:
+                imageIcon = getFile(Constants.INKY_U1_URL);
+                break;
+            case INKY_U0:
+                imageIcon = getFile(Constants.INKY_U0_URL);
+                break;
+            case INKY_L1:
+                imageIcon = getFile(Constants.INKY_L1_URL);
+                break;
+            case INKY_L0:
+                imageIcon = getFile(Constants.INKY_L0_URL);
+                break;
+            case INKY_D1:
+                imageIcon = getFile(Constants.INKY_D1_URL);
+                break;
+            case INKY_D0:
+                imageIcon = getFile(Constants.INKY_D0_URL);
+                break;
+            case CLYDE_R1:
+                imageIcon = getFile(Constants.CLYDE_R1_URL);
+                break;
+            case CLYDE_R0:
+                imageIcon = getFile(Constants.CLYDE_R0_URL);
+                break;
+            case CLYDE_U1:
+                imageIcon = getFile(Constants.CLYDE_U1_URL);
+                break;
+            case CLYDE_U0:
+                imageIcon = getFile(Constants.CLYDE_U0_URL);
+                break;
+            case CLYDE_L1:
+                imageIcon = getFile(Constants.CLYDE_L1_URL);
+                break;
+            case CLYDE_L0:
+                imageIcon = getFile(Constants.CLYDE_L0_URL);
+                break;
+            case CLYDE_D1:
+                imageIcon = getFile(Constants.CLYDE_D1_URL);
+                break;
+            case CLYDE_D0:
+                imageIcon = getFile(Constants.CLYDE_D0_URL);
+                break;
             case FRIGHTENED0:
                 imageIcon = getFile(Constants.FRIGHTENED0_URL);
                 break;

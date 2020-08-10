@@ -55,5 +55,21 @@ public enum Image {
     EATEN_U,
     EATEN_D,
     EATEN_L,
-    EATEN_R;
+    EATEN_R,
+    INKY_R0,
+    INKY_R1,
+    INKY_L0,
+    INKY_L1,
+    INKY_U0,
+    INKY_U1,
+    INKY_D0,
+    INKY_D1,
+    CLYDE_R0,
+    CLYDE_R1,
+    CLYDE_L0,
+    CLYDE_L1,
+    CLYDE_U0,
+    CLYDE_U1,
+    CLYDE_D0,
+    CLYDE_D1;
 }

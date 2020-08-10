@@ -2,6 +2,7 @@ package model;
 
 import constants.Constants;
 import ui.GameMainFrame;
+import utility.CoordManager;
 import utility.Coordinate;
 import utility.State;
 
@@ -51,7 +52,8 @@ public class GhostLoop implements ActionListener {
                 counter++;
                 this.startTime = System.currentTimeMillis();
             } else if (counter < 7) {
-                if (System.currentTimeMillis() >= startTime + times[counter]) {
+                if (System.currentTimeMillis() >= startTime + times[counter] + this.ghost.getPausedTime()) {
+                    this.ghost.setPausedTime(0);
                     counter++;
                     this.startTime = System.currentTimeMillis();
                     if (this.ghost.getState() == CHASE) {
@@ -69,12 +71,13 @@ public class GhostLoop implements ActionListener {
             long temp = System.currentTimeMillis()-ghost.getFrightTime();
             this.startTime += temp - this.timeLost;
             this.timeLost = temp;
-            if(System.currentTimeMillis() >= ghost.getFrightTime()+8000){
+            if(System.currentTimeMillis() >= ghost.getFrightTime()+8000  + this.ghost.getPausedTime()){
+                this.ghost.setPausedTime(0);
                 System.out.println("Esco da frightened con backupState: "+this.backupState);
                 this.ghost.setState(this.backupState);
             }
         } else if (this.ghost.getState() == EATEN){
-            Coordinate sp = this.ghost.getSpawnPoint();
+            Coordinate sp = CoordManager.getObjCoord('1');
             Coordinate co = new Coordinate(this.ghost.getX(),this.ghost.getY());
             if(sp.equals(co)){
                 this.ghost.setState(this.backupState);

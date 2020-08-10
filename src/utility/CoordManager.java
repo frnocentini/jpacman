@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
 
@@ -144,5 +145,18 @@ public class CoordManager {
             return true;
         }
         return false;
+    }
+
+    public static boolean checkCircleCollision(Sprite a, Coordinate co, double length){
+        Rectangle2D ar = new Rectangle2D.Double(a.getX()+a.getW()/4, a.getY()+a.getH()/4, 3 * a.getW() / 4, 3 * a.getH() / 4);
+        Ellipse2D e = new Ellipse2D.Double(co.getX(),co.getY(),length,length);
+        if(e.intersects(ar)){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkCircleCollision(Sprite a, int x, int y, double length){
+        return checkCircleCollision(a,new Coordinate(x,y),length);
     }
 }

@@ -15,9 +15,11 @@ public class GhostImageSet extends ImageSet{
     protected boolean frightenedForward;
     protected int frightenedIndex;
     protected final int FRIGHTENED_SIZE;
+    protected int frightenedDelay;
+    protected final int FRIGHTENED_DELAY_LIMIT;
 
-    public GhostImageSet(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, ArrayList<ImageIcon> frightened, ImageIcon eatenUp, ImageIcon eatenDown, ImageIcon eatenLeft, ImageIcon eatenRight) {
-        super(up, down, left, right, 0);
+    public GhostImageSet(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int delayLimit, ArrayList<ImageIcon> frightened, ImageIcon eatenUp, ImageIcon eatenDown, ImageIcon eatenLeft, ImageIcon eatenRight, int frightenedDelayLimit) {
+        super(up, down, left, right, 0,delayLimit);
         this.frightened = frightened;
         this.eatenUp = eatenUp;
         this.eatenDown = eatenDown;
@@ -25,6 +27,8 @@ public class GhostImageSet extends ImageSet{
         this.eatenRight = eatenRight;
         this.frightenedIndex = 0;
         this.frightenedForward = true;
+        this.FRIGHTENED_DELAY_LIMIT = frightenedDelayLimit;
+        this.frightenedDelay = 0;
         this.FRIGHTENED_SIZE = frightened.size();
     }
 
@@ -38,10 +42,14 @@ public class GhostImageSet extends ImageSet{
             this.frightenedForward = true;
         }
         ImageIcon frame = frightened.get(this.frightenedIndex);
-        if(frightenedForward){
-            frightenedIndex++;
-        }else{
-            frightenedIndex--;
+        frightenedDelay++;
+        if(frightenedDelay == this.DELAY_LIMIT) {
+            if(frightenedForward){
+                frightenedIndex++;
+            }else{
+                frightenedIndex--;
+            }
+            frightenedDelay = 0;
         }
         if(timeOut){
             if(frightenedIndex == this.FRIGHTENED_SIZE-1){
