@@ -55,6 +55,10 @@ public class Blinky extends Ghost{
         right.add(ImageFactory.createImage(Image.BLINKY_R1));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED0));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED1));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED0));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED1));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED2));
+        frightened.add(ImageFactory.createImage(Image.FRIGHTENED3));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED2));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED3));
         ImageIcon eatenUp = ImageFactory.createImage(Image.EATEN_U);

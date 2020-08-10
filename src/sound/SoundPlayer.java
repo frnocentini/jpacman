@@ -40,7 +40,7 @@ public class SoundPlayer {
     public static void loopEffect(Sound sound) {
         int index = isPlaying(sound);
         if(!muteEffects && index == -1){
-            if(isPlaying(GAME_START) > -1){
+            if(isPlaying(GAME_START) == -1){
                 stopAll();
             }
             SoundClip sc = sf.chooseSound(sound);
@@ -61,7 +61,6 @@ public class SoundPlayer {
     private static int isPlaying(Sound sound){
         for(int i=0;i<library.size();i++){
             SoundClip sc = library.get(i);
-            System.out.println("Is now playing: "+sc.getName()+" contro il sound: "+sound);
             if(sc.getName() == sound){
                 return i;
             }
@@ -93,6 +92,15 @@ public class SoundPlayer {
             SoundPlayer.loopEffect(SIREN_5);
         } else if (CoordManager.maze.getAlivePills() == 0){
             SoundPlayer.stopAll();
+        }
+    }
+
+    public static void removeMusic(Sound sound) {
+        for(int i=0;i<library.size();i++){
+            SoundClip sc = library.get(i);
+            if(sc.getName() == sound){
+               library.remove(i);
+            }
         }
     }
 }

@@ -260,8 +260,8 @@ public abstract class Ghost extends Character {
         this.ghostLoop = null;
         this.ghostLoop = new GhostLoop(this,level);
         this.timer = new Timer(1,ghostLoop);
-        //ImageIcon imageIcon = this.imageSet.getFrameAt(0,dir);
-        //setImage(imageIcon.getImage());
+        ImageIcon imageIcon = this.imageSet.getFrameAt(0,dir);
+        setImage(imageIcon.getImage());
     }
 
     public State getState() {

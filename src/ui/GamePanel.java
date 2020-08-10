@@ -67,6 +67,7 @@ public class GamePanel extends JPanel {
 
     private void restartLevel(){
         this.level++;
+        this.pacmanStart = false;
         CoordManager.populateMaze();
         System.out.println(level);
         this.inGame = true;
@@ -247,7 +248,7 @@ public class GamePanel extends JPanel {
                 CoordManager.maze.getPill(i).setDead(false);
             }
             if(test >= (this.startTime + 4*1000)) { //multiply by 1000 to get milliseconds
-                SoundPlayer.stopMusic(STARTUP);
+                SoundPlayer.removeMusic(GAME_START);
                 this.pacmanStart=true;
                 for(Ghost ghost : this.ghosts) {
                     ghost.getTimer().start();
@@ -258,7 +259,6 @@ public class GamePanel extends JPanel {
 
     private void endGame(){
         System.out.println("fine livello");
-        this.pacmanStart = false;
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
