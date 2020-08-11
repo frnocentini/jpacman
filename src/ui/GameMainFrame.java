@@ -79,4 +79,22 @@ public class GameMainFrame extends JFrame{
 
     }
 
+    /*public void showPauseMenu(){
+        PausePanel pausePanel = new PausePanel(this);
+        pausePanel.setBounds( 0,0,Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40);
+
+        layeredPane.add(pausePanel, JLayeredPane.MODAL_LAYER);
+        layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
+
+        this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
+        this.setContentPane(layeredPane);
+        this.setVisible(true);
+        this.setTitle(Constants.TITLE);
+
+        this.pack();
+
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setResizable(false);
+    }*/
+
 }

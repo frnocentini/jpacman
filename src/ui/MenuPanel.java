@@ -36,14 +36,14 @@ public class MenuPanel extends JPanel {
     }
 
     private void drawButtons() {
-        JButton b = new JButton("Start Game");
-        b.setBackground(new Color(255, 255, 0));
-        b.setForeground(Color.RED);
-        b.setFocusPainted(false);
-        b.setBorder(new LineBorder(Color.RED));
-        b.setFont(new Font("Tahoma", Font.BOLD, 18));
-        b.setBounds(90,200,200,60);
-        b.addActionListener(new ActionListener() {
+        JButton startButton = new JButton("Start Game");
+        startButton.setBackground(new Color(255, 255, 0));
+        startButton.setForeground(Color.RED);
+        startButton.setFocusPainted(false);
+        startButton.setBorder(new LineBorder(Color.RED));
+        startButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+        startButton.setBounds(90,170,200,60);
+        startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SoundPlayer.stopMusic(STARTUP);
@@ -51,6 +51,60 @@ public class MenuPanel extends JPanel {
                 gameMainFrame.initializeLayout();
             }
         });
-        add(b);
+        add(startButton);
+        JButton muteMusicButton;
+        if(SoundPlayer.isMuteMusic()){
+            muteMusicButton  = new JButton("Enable Music");
+        } else {
+            muteMusicButton  = new JButton("Mute Music");
+        }
+        muteMusicButton.setBackground(new Color(255, 255, 0));
+        muteMusicButton.setForeground(Color.RED);
+        muteMusicButton.setFocusPainted(false);
+        muteMusicButton.setBorder(new LineBorder(Color.RED));
+        muteMusicButton.setBounds(90,245,90,60);
+        muteMusicButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SoundPlayer.playEffect(CREDIT);
+                if(!SoundPlayer.isMuteMusic()){
+                    SoundPlayer.stopMusic(STARTUP);
+                    SoundPlayer.removeMusic(STARTUP);
+                    SoundPlayer.setMuteMusic(true);
+                    muteMusicButton.setText("Enable Music");
+                } else {
+                    SoundPlayer.setMuteMusic(false);
+                    SoundPlayer.playMusic(STARTUP);
+                    muteMusicButton.setText("Mute Music");
+                }
+            }
+        });
+        add(muteMusicButton);
+        JButton muteEffectsButton;
+        if(SoundPlayer.isMuteEffects()){
+            muteEffectsButton  = new JButton("Enable Effects");
+        } else {
+            muteEffectsButton  = new JButton("Mute Effects");
+        }
+        muteEffectsButton.setBackground(new Color(255, 255, 0));
+        muteEffectsButton.setForeground(Color.RED);
+        muteEffectsButton.setFocusPainted(false);
+        muteEffectsButton.setBorder(new LineBorder(Color.RED));
+        muteEffectsButton.setBounds(200,245,90,60);
+        muteEffectsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!SoundPlayer.isMuteEffects()){
+                    SoundPlayer.stopAll();
+                    SoundPlayer.setMuteEffects(true);
+                    muteEffectsButton.setText("Enable Effects");
+                } else {
+                    SoundPlayer.setMuteEffects(false);
+                    SoundPlayer.playEffect(CREDIT);
+                    muteEffectsButton.setText("Mute Effects");
+                }
+            }
+        });
+        add(muteEffectsButton);
     }
 }

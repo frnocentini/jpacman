@@ -104,4 +104,20 @@ public class SoundPlayer {
             }
         }
     }
+
+    public static boolean isMuteEffects() {
+        return muteEffects;
+    }
+
+    public static void setMuteEffects(boolean muteEffects) {
+        SoundPlayer.muteEffects = muteEffects;
+    }
+
+    public static boolean isMuteMusic() {
+        return muteMusic;
+    }
+
+    public static void setMuteMusic(boolean muteMusic) {
+        SoundPlayer.muteMusic = muteMusic;
+    }
 }

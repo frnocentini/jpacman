@@ -17,7 +17,7 @@ public class Constants {
 
     //speed of the application
     public static final int GAME_SPEED = 10;
-    public static final int PACMAN_SPEED = 1;
+    public static final int PACMAN_SPEED = 2;
     public static final int GHOST_SPEED = 1;
 
     //Ghost related constants

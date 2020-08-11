@@ -132,7 +132,7 @@ public class GamePanel extends JPanel {
         g.drawImage(redPortal.getImage(), redPortal.getX(), redPortal.getY(), this);
         //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
         //System.out.println("Le coordinate del blu sono: "+redPortal.getOther().getX()+" e "+redPortal.getOther().getY());
-        if(System.currentTimeMillis() >= (this.portalTime + 400)){
+        if(System.currentTimeMillis() >= (this.portalTime + 400) && !this.pacman.isDead()){
             if(CoordManager.checkCollision(pacman,bluePortal)){
                 teleport(pacman,bluePortal);
             }else if(CoordManager.checkCollision(pacman,redPortal)){
@@ -334,6 +334,7 @@ public class GamePanel extends JPanel {
                     for(Ghost ghost : this.ghosts) {
                         ghost.getTimer().stop();
                         ghost.pause();
+                        showPauseMenu();
                     }
                 } else {
                     timer.start();
@@ -344,6 +345,10 @@ public class GamePanel extends JPanel {
                 }
             }
         }
+    }
+
+    private void showPauseMenu() {
+        //frame.showPauseMenu();
     }
 
     public void keyReleased(KeyEvent e) {
