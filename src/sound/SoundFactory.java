@@ -27,6 +27,9 @@ public class SoundFactory {
             case EAT_GHOST:
                 audio = createStream(EAT_GHOST_URL);
                 break;
+            case PAUSE_SOUND:
+                audio = createStream(PAUSE_SOUND_URL);
+                break;
             case GAME_START:
                 audio = createStream(GAME_START_URL);
                 break;

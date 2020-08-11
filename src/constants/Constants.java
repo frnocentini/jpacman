@@ -24,6 +24,9 @@ public class Constants {
     public static final int GHOST_HEIGHT = 20;
     public static final int GHOST_WIDTH = 20;
 
+    //Directory for the mazes
+    public static final String MAZES_DIR = "resources/mazes/";
+
     //images for pacman
     public static final String PACMAN_A0_URL = "resources/images/pacman/a0.png";
     public static final String PACMAN_R1_URL = "resources/images/pacman/r1.png";
@@ -98,6 +101,7 @@ public class Constants {
     public static final String FRIGHTENED_GHOST_IMAGE_URL = "resources/images/frightened.png";
     public static final String EATEN_GHOST_IMAGE_URL = "resources/images/eaten.png";
     public static final String MENU_IMAGE_URL = "resources/images/menu.png";
+    public static final String PAUSE_IMAGE_URL = "resources/images/pause.png";
     public static final String BLUE_PORTAL_IMAGE_URL = "resources/images/blue_portal.png";
     public static final String RED_PORTAL_IMAGE_URL = "resources/images/red_portal.png";
 
@@ -107,6 +111,7 @@ public class Constants {
     public static final String EAT_FRUIT_URL = "resources/sounds/eat_fruit.wav";
     public static final String EAT_GHOST_URL = "resources/sounds/eat_ghost.wav";
     public static final String GAME_START_URL = "resources/sounds/game_start.wav";
+    public static final String PAUSE_SOUND_URL = "resources/sounds/pause.wav";
     public static final String MUNCH_1_URL = "resources/sounds/munch_1.wav";
     public static final String MUNCH_2_URL = "resources/sounds/munch_2.wav";
     public static final String FRIGHT_SOUND_URL = "resources/sounds/fright_sound.wav";
@@ -129,4 +134,5 @@ public class Constants {
     public static final int PILL_POINTS = 10;
     public static final int POWERPILL_POINTS = 50;
     public static final int GHOST_POINTS = 200;
+    public static final int[] FRUIT_POINTS = {100,300,500,700,1000,2000,3000,5000};
 }

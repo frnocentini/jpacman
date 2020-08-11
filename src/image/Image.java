@@ -10,6 +10,7 @@ public enum Image {
     FRIGHTENED_GHOST,
     EATEN_GHOST,
     MENU,
+    PAUSE,
     BLUE_PORTAL,
     RED_PORTAL,
     PACMAN_A0,

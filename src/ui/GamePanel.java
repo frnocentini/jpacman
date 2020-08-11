@@ -67,12 +67,12 @@ public class GamePanel extends JPanel {
         this.ghosts.add(inky);
         this.ghosts.add(pinky);
         this.ghosts.add(blinky);
+        this.livesLabel = new JLabel("Lives: "+lives);
+        livesLabel.setBounds(10,425,100,20);
+        add(livesLabel);
         this.pointsLabel = new JLabel("Points: "+points);
         pointsLabel.setBounds(10,440,100,20);
         add(pointsLabel);
-        this.livesLabel = new JLabel("Lives: "+lives);
-        livesLabel.setBounds(10,428,100,20);
-        add(livesLabel);
     }
 
     private void restartLevel(){
@@ -258,7 +258,7 @@ public class GamePanel extends JPanel {
         }
     }
 
-    private void restartApplication() {
+    public void restartApplication() {
         this.gameEventListener = null;
         this.timer.stop();
         this.pacman.setDead(true);
@@ -328,27 +328,31 @@ public class GamePanel extends JPanel {
             this.pacman.keyPressed(e);
             int keyPressed = e.getKeyCode();
             if(keyPressed == VK_ENTER){
-                if(timer.isRunning()){
-                    SoundPlayer.stopAll();
-                    timer.stop();
-                    for(Ghost ghost : this.ghosts) {
-                        ghost.getTimer().stop();
-                        ghost.pause();
-                        showPauseMenu();
-                    }
+                if(timer.isRunning() && this.pacmanStart){
+                    pauseGame();
                 } else {
-                    timer.start();
-                    for(Ghost ghost : this.ghosts) {
-                        ghost.resume();
-                        ghost.getTimer().start();
-                    }
+                    resumeGame();
                 }
             }
         }
     }
 
-    private void showPauseMenu() {
-        //frame.showPauseMenu();
+    private void pauseGame() {
+        SoundPlayer.stopAll();
+        timer.stop();
+        for(Ghost ghost : this.ghosts) {
+            ghost.getTimer().stop();
+            ghost.pause();
+        }
+        frame.showPauseMenu();
+    }
+
+    public void resumeGame(){
+        timer.start();
+        for(Ghost ghost : this.ghosts) {
+            ghost.resume();
+            ghost.getTimer().start();
+        }
     }
 
     public void keyReleased(KeyEvent e) {

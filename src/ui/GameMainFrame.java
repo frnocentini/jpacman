@@ -14,13 +14,16 @@ public class GameMainFrame extends JFrame{
     private int gamePoints;
     private int lives;
     private JLayeredPane layeredPane;
+    private MenuPanel menuPanel;
+    private BGPanel bgPanel;
+    private GamePanel gamePanel;
+    private PausePanel pausePanel;
 
     public GameMainFrame(){
-        this.setLocationRelativeTo(null);
         SoundPlayer.initialize();
         level = 1;
         gamePoints = 0;
-        lives = 2;
+        lives = 3;
         this.layeredPane = new JLayeredPane();
         layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
         initializeGameMenu();
@@ -28,7 +31,7 @@ public class GameMainFrame extends JFrame{
 
     public void initializeGameMenu() {
         layeredPane.removeAll();
-        MenuPanel menuPanel = new MenuPanel(this);
+        this.menuPanel = new MenuPanel(this);
         menuPanel.setBounds( 0,0,Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40);
 
         layeredPane.add(menuPanel, JLayeredPane.DEFAULT_LAYER);
@@ -46,12 +49,12 @@ public class GameMainFrame extends JFrame{
         this.setResizable(false);
     }
 
-    public void initializeLayout(){
+    public void initializeLayout(int mazeNum){
         layeredPane.removeAll();
         //Sottoclasse di JPanel che attraverso un GridLayout crea il labirinto
-        BGPanel bgPanel = new BGPanel(new GridLayout(21, 19),1);
+        this.bgPanel = new BGPanel(new GridLayout(21, 19),mazeNum);
         //Sottoclasse di JPanel dove posizioniamo le entità della mappa (Pac-Man, fantasmi, frutta, ecc...)
-        GamePanel gamePanel = new GamePanel(this, this.level, this.gamePoints, this.lives);
+        this.gamePanel = new GamePanel(this, this.level, this.gamePoints, this.lives);
         this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         //Creiamo il JPanel stratificato
 
@@ -79,14 +82,13 @@ public class GameMainFrame extends JFrame{
 
     }
 
-    /*public void showPauseMenu(){
-        PausePanel pausePanel = new PausePanel(this);
+    public void showPauseMenu(){
+        this.pausePanel = new PausePanel(this);
         pausePanel.setBounds( 0,0,Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40);
 
         layeredPane.add(pausePanel, JLayeredPane.MODAL_LAYER);
         layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
 
-        this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         this.setContentPane(layeredPane);
         this.setVisible(true);
         this.setTitle(Constants.TITLE);
@@ -95,6 +97,14 @@ public class GameMainFrame extends JFrame{
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
-    }*/
+    }
 
+    public void resumeGame() {
+        layeredPane.remove(this.pausePanel);
+        this.gamePanel.resumeGame();
+    }
+
+    public void quitGame() {
+        this.gamePanel.restartApplication();
+    }
 }

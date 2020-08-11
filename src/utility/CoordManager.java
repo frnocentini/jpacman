@@ -19,7 +19,7 @@ public class CoordManager {
         char[][] inputMaze = new char[21][19];
         try {
             // IDE
-            FileReader lvlFile = new FileReader(new File("resources/mazes/maze"+mazeNum+".txt"));
+            FileReader lvlFile = new FileReader(new File(Constants.MAZES_DIR+"maze"+mazeNum+".txt"));
             BufferedReader br = new BufferedReader(lvlFile);  //Creation of BufferedReader object
             // JAR
             //BufferedReader br = new BufferedReader(new InputStreamReader(CoordManager.class.getClassLoader().getResourceAsStream("resources/mazes/maze"+mazeNum+".txt")));

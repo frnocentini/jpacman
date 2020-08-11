@@ -38,6 +38,9 @@ public class ImageFactory {
             case MENU:
                 imageIcon = getFile(Constants.MENU_IMAGE_URL);
                 break;
+            case PAUSE:
+                imageIcon = getFile(Constants.PAUSE_IMAGE_URL);
+                break;
             case BLUE_PORTAL:
                 imageIcon = getFile(Constants.BLUE_PORTAL_IMAGE_URL);
                 break;
