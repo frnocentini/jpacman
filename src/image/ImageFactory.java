@@ -227,6 +227,30 @@ public class ImageFactory {
             case EATEN_R:
                 imageIcon = getFile(Constants.EATEN_R_URL);
                 break;
+            case FRUIT0:
+                imageIcon = getFile(Constants.FRUIT0_URL);
+                break;
+            case FRUIT1:
+                imageIcon = getFile(Constants.FRUIT1_URL);
+                break;
+            case FRUIT2:
+                imageIcon = getFile(Constants.FRUIT2_URL);
+                break;
+            case FRUIT3:
+                imageIcon = getFile(Constants.FRUIT3_URL);
+                break;
+            case FRUIT4:
+                imageIcon = getFile(Constants.FRUIT4_URL);
+                break;
+            case FRUIT5:
+                imageIcon = getFile(Constants.FRUIT5_URL);
+                break;
+            case FRUIT6:
+                imageIcon = getFile(Constants.FRUIT6_URL);
+                break;
+            case FRUIT7:
+                imageIcon = getFile(Constants.FRUIT7_URL);
+                break;
             default:
                 return null;
         }

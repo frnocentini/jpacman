@@ -14,6 +14,8 @@ public class Constants {
     public static final int PILL_HEIGHT = 6;
     public static final int POWERPILL_WIDTH = 20;
     public static final int POWERPILL_HEIGHT = 20;
+    public static final int FRUIT_WIDTH = 20;
+    public static final int FRUIT_HEIGHT = 20;
 
     //speed of the application
     public static final int GAME_SPEED = 10;
@@ -105,6 +107,16 @@ public class Constants {
     public static final String BLUE_PORTAL_IMAGE_URL = "resources/images/blue_portal.png";
     public static final String RED_PORTAL_IMAGE_URL = "resources/images/red_portal.png";
 
+    //images for the fruit
+    public static final String FRUIT0_URL = "resources/images/fruit/0.png";
+    public static final String FRUIT1_URL = "resources/images/fruit/1.png";
+    public static final String FRUIT2_URL = "resources/images/fruit/2.png";
+    public static final String FRUIT3_URL = "resources/images/fruit/3.png";
+    public static final String FRUIT4_URL = "resources/images/fruit/4.png";
+    public static final String FRUIT5_URL = "resources/images/fruit/5.png";
+    public static final String FRUIT6_URL = "resources/images/fruit/6.png";
+    public static final String FRUIT7_URL = "resources/images/fruit/7.png";
+
     //sounds
     public static final String CREDIT_URL = "resources/sounds/credit.wav";
     public static final String DEATH_URL = "resources/sounds/death.wav";
@@ -124,6 +136,9 @@ public class Constants {
     public static final String STARTUP_URL = "resources/sounds/startup.wav";
     public static final String BLUE_PORTAL_SOUND_URL = "resources/sounds/blue_portal_sound.wav";
     public static final String RED_PORTAL_SOUND_URL = "resources/sounds/red_portal_sound.wav";
+
+    //font
+    public static final String ARMA_FONT = "resources/fonts/arma.ttf";
 
     //tempi chase-scatter dei livelli
     public static final long[] FIRST_TIMES = {7000,20000,7000,20000,5000,20000,5000};

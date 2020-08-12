@@ -72,5 +72,13 @@ public enum Image {
     CLYDE_U0,
     CLYDE_U1,
     CLYDE_D0,
-    CLYDE_D1;
+    CLYDE_D1,
+    FRUIT0,
+    FRUIT1,
+    FRUIT2,
+    FRUIT3,
+    FRUIT4,
+    FRUIT5,
+    FRUIT6,
+    FRUIT7;
 }

@@ -71,6 +71,7 @@ public class GhostLoop implements ActionListener {
             long temp = System.currentTimeMillis()-ghost.getFrightTime();
             this.startTime += temp - this.timeLost;
             this.timeLost = temp;
+            System.out.println("l'orario è "+System.currentTimeMillis()+" deve essere maggiore di "+(ghost.getFrightTime()+8000)+" + "+this.ghost.getPausedTime());
             if(System.currentTimeMillis() >= ghost.getFrightTime()+8000  + this.ghost.getPausedTime()){
                 this.ghost.setPausedTime(0);
                 System.out.println("Esco da frightened con backupState: "+this.backupState);

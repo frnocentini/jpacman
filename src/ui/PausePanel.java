@@ -1,5 +1,6 @@
 package ui;
 
+import callbacks.PauseEventListener;
 import constants.Constants;
 import image.Image;
 import image.ImageFactory;
@@ -10,18 +11,23 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 
+import static java.awt.event.KeyEvent.VK_ENTER;
 import static sound.Sound.*;
 
 public class PausePanel extends JPanel {
 
+    private PauseEventListener pauseEventListener;
     private GameMainFrame gameMainFrame;
 
     public PausePanel(GameMainFrame gameMainFrame){
         this.gameMainFrame = gameMainFrame;
         setLayout(null);
         SoundPlayer.playEffect(PAUSE_SOUND);
+        this.pauseEventListener = new PauseEventListener(this);
+        addKeyListener(this.pauseEventListener);
     }
 
     @Override
@@ -33,6 +39,7 @@ public class PausePanel extends JPanel {
 
     private void doDrawing() {
         drawLayout();
+        this.requestFocus();
         Toolkit.getDefaultToolkit().sync();
     }
 
@@ -117,5 +124,12 @@ public class PausePanel extends JPanel {
             }
         });
         add(quitButton);
+    }
+
+    public void keyPressed(KeyEvent e) {
+        int keyPressed = e.getKeyCode();
+        if(keyPressed == VK_ENTER){
+            gameMainFrame.resumeGame();
+        }
     }
 }

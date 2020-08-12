@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import static sound.Sound.*;
 
@@ -53,9 +54,9 @@ public class MenuPanel extends JPanel {
         mazeList.setBackground(Color.YELLOW);
         mazeList.setBounds(240,190,50,40);
         add(mazeList);
-        JLabel mazesLabel = new JLabel("Maze:");
+        JLabel mazesLabel = new JLabel("Maze");
         mazesLabel.setBounds(240,155,50,40);
-        mazesLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
+        mazesLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 11));
         mazesLabel.setForeground(Color.RED);
         add(mazesLabel);
         JButton startButton = new JButton("Start Game");
@@ -63,7 +64,7 @@ public class MenuPanel extends JPanel {
         startButton.setForeground(Color.RED);
         startButton.setFocusPainted(false);
         startButton.setBorder(new LineBorder(Color.RED));
-        startButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+        startButton.setFont(new Font("PF Arma Five", Font.BOLD, 18));
         startButton.setBounds(90,170,140,60);
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -83,6 +84,7 @@ public class MenuPanel extends JPanel {
         muteMusicButton.setBackground(Color.YELLOW);
         muteMusicButton.setForeground(Color.RED);
         muteMusicButton.setFocusPainted(false);
+        muteMusicButton.setFont(new Font("PF Arma Five", Font.BOLD, 11));
         muteMusicButton.setBorder(new LineBorder(Color.RED));
         muteMusicButton.setBounds(90,245,90,60);
         muteMusicButton.addActionListener(new ActionListener() {
@@ -112,6 +114,7 @@ public class MenuPanel extends JPanel {
         muteEffectsButton.setForeground(Color.RED);
         muteEffectsButton.setFocusPainted(false);
         muteEffectsButton.setBorder(new LineBorder(Color.RED));
+        muteEffectsButton.setFont(new Font("PF Arma Five", Font.BOLD, 11));
         muteEffectsButton.setBounds(200,245,90,60);
         muteEffectsButton.addActionListener(new ActionListener() {
             @Override

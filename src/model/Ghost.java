@@ -255,6 +255,7 @@ public abstract class Ghost extends Character {
         }
         ghostLoop.resetTimeLost();
         setFrightTime();
+        this.pausedTime = 0;
         this.state = FRIGHTENED;
     }
 

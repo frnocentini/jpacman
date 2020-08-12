@@ -73,6 +73,8 @@ public class GamePanel extends JPanel {
         this.pointsLabel = new JLabel("Points: "+points);
         pointsLabel.setBounds(10,440,100,20);
         add(pointsLabel);
+        FruitManager.initialize();
+        FruitManager.chooseFruit(level);
     }
 
     private void restartLevel(){
@@ -86,7 +88,9 @@ public class GamePanel extends JPanel {
         this.pacman.returnToSpawnPoint();
         for(Ghost ghost : this.ghosts) {
             ghost.returnToSpawnPoint(this.level);
+            ghost.setPausedTime(0);
         }
+        System.gc();
         timer.start();
     }
 
@@ -111,6 +115,7 @@ public class GamePanel extends JPanel {
             drawPills(g);
             drawPowerPills(g);
             drawPortals(g);
+            drawFruit(g);
             drawPacman(g);
             drawGhosts(g);
         } else{
@@ -121,6 +126,22 @@ public class GamePanel extends JPanel {
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
     }
+
+    private void drawFruit(Graphics g) {
+        Fruit f = FruitManager.getFruit();
+        if(f != null){
+            g.drawImage(f.getImage(), f.getX(), f.getY(), this);
+            if(CoordManager.checkCollision(pacman,f)){
+                f.setDead(true);
+                this.pacman.addPoints(f.getPoints());
+                SoundPlayer.playEffect(EAT_FRUIT);
+            }
+        }
+        /*else {
+            g.drawImage(null, f.getX(), f.getY(), this);
+        }*/
+    }
+
     private void drawPoints(){
         pointsLabel.setText("Points: "+this.pacman.getPoints());
     }
@@ -304,6 +325,7 @@ public class GamePanel extends JPanel {
                 for(Ghost ghost : this.ghosts) {
                     ghost.getTimer().start();
                 }
+                FruitManager.setGameStart();
             }
         }
     }
@@ -316,6 +338,7 @@ public class GamePanel extends JPanel {
             e.printStackTrace();
         }
         this.level++;
+        FruitManager.chooseFruit(this.level);
         CoordManager.populateMaze();
         for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
             CoordManager.maze.getPill(i).setDead(false);

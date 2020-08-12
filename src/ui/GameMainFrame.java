@@ -7,6 +7,8 @@ import sound.SoundPlayer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class GameMainFrame extends JFrame{
 
@@ -20,10 +22,20 @@ public class GameMainFrame extends JFrame{
     private PausePanel pausePanel;
 
     public GameMainFrame(){
+        Font f = null;
+        try {
+            f = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARMA_FONT));
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(f);
         SoundPlayer.initialize();
         level = 1;
         gamePoints = 0;
-        lives = 3;
+        lives = 999;
         this.layeredPane = new JLayeredPane();
         layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
         initializeGameMenu();
