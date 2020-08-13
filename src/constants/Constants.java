@@ -140,6 +140,9 @@ public class Constants {
     //font
     public static final String ARMA_FONT = "resources/fonts/arma.ttf";
 
+    //text file
+    public static final String HIGHSCORES = "resources/scores/highscore.txt";
+
     //tempi chase-scatter dei livelli
     public static final long[] FIRST_TIMES = {7000,20000,7000,20000,5000,20000,5000};
     public static final long[] SECOND_TIMES = {7000,20000,7000,20000,5000,18314,1};

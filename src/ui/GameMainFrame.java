@@ -7,14 +7,15 @@ import sound.SoundPlayer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class GameMainFrame extends JFrame{
 
     private int level;
     private int gamePoints;
     private int lives;
+    private int highScore;
     private JLayeredPane layeredPane;
     private MenuPanel menuPanel;
     private BGPanel bgPanel;
@@ -38,6 +39,7 @@ public class GameMainFrame extends JFrame{
         lives = 999;
         this.layeredPane = new JLayeredPane();
         layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
+        //this.highScore = this.readHighScore();
         initializeGameMenu();
     }
 
@@ -118,5 +120,38 @@ public class GameMainFrame extends JFrame{
 
     public void quitGame() {
         this.gamePanel.restartApplication();
+    }
+
+    public int readHighScore(){
+        int score = 0;
+        File f = new File(Constants.HIGHSCORES);
+        try {
+            Scanner sc = new Scanner(f);
+            score = sc.nextInt();
+        } catch (FileNotFoundException e) {
+            try {
+                f.createNewFile();
+                PrintWriter pw = new PrintWriter(f);
+                pw.print(0);
+                pw.flush();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+        return score;
+    }
+
+    public void writeHighScore(int points){
+        if(points > this.highScore) {
+            this.highScore = points;
+            PrintWriter pw = null;
+            try {
+                pw = new PrintWriter(new File(Constants.HIGHSCORES));
+                pw.print(points);
+                pw.flush();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

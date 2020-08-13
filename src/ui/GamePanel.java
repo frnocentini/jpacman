@@ -9,9 +9,6 @@ import utility.CoordManager;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
-import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 
 import static java.awt.event.KeyEvent.VK_ENTER;
