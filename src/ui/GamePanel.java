@@ -2,6 +2,8 @@ package ui;
 
 import callbacks.GameEventListener;
 import constants.Constants;
+import image.Image;
+import image.ImageFactory;
 import model.*;
 import sound.SoundPlayer;
 import utility.CoordManager;
@@ -28,20 +30,26 @@ public class GamePanel extends JPanel {
     private long portalTime;
     private int level;
     private int lives;
+    private int lifeCounter;
     private boolean munch;
     private int consecutiveGhosts;
+    private ImageIcon smallPanel;
     private JLabel pointsLabel;
-    private JLabel livesLabel;
+    private JLabel readyLabel;
+    private JLabel gameOverLabel;
+    //private JLabel livesLabel;
+    private JLabel highScoreLabel;
     private boolean pacmanDead;
 
-    public GamePanel(GameMainFrame frame, int level, int points, int lives){
+    public GamePanel(GameMainFrame frame, int level, int highScore, int lives){
         this.frame = frame;
-        initializeVariables(level,points,lives);
+        initializeVariables(level,highScore,lives);
         initializeLayout();
     }
 
-    private void initializeVariables(int level, int points, int lives) {
+    private void initializeVariables(int level, int highScore, int lives) {
         CoordManager.populateMaze();
+        this.lifeCounter = 1;
         this.level = level;
         this.lives = lives;
         System.out.println(level);
@@ -53,8 +61,8 @@ public class GamePanel extends JPanel {
         SoundPlayer.stopAll();
         SoundPlayer.playMusic(GAME_START);
         this.startTime = this.portalTime = System.currentTimeMillis();
+        FruitManager.setGameStart();
         this.pacman = new Pacman();
-        pacman.setPoints(points);
         this.ghosts = new ArrayList<>();
         Pinky pinky = new Pinky(this.pacman);
         Blinky blinky = new Blinky(this.pacman);
@@ -64,12 +72,25 @@ public class GamePanel extends JPanel {
         this.ghosts.add(inky);
         this.ghosts.add(pinky);
         this.ghosts.add(blinky);
-        this.livesLabel = new JLabel("Lives: "+lives);
-        livesLabel.setBounds(10,425,100,20);
-        add(livesLabel);
-        this.pointsLabel = new JLabel("Points: "+points);
-        pointsLabel.setBounds(10,440,100,20);
+        //this.livesLabel = new JLabel("Lives: "+lives);
+        //livesLabel.setBounds(10,425,100,20);
+        //add(livesLabel);
+        this.pointsLabel = new JLabel("Points: "+this.pacman.getPoints());
+        pointsLabel.setBounds(10,420,100,20);
+        pointsLabel.setForeground(Color.WHITE);
         add(pointsLabel);
+        this.highScoreLabel = new JLabel("High Score: "+highScore);
+        highScoreLabel.setBounds(10,438,100,20);
+        highScoreLabel.setForeground(Color.WHITE);
+        add(highScoreLabel);
+        this.readyLabel = new JLabel("Ready!");
+        readyLabel.setBounds(175,420,100,20);
+        readyLabel.setForeground(Color.YELLOW);
+        add(readyLabel);
+        this.gameOverLabel = new JLabel("");
+        gameOverLabel.setBounds(170,420,100,20);
+        gameOverLabel.setForeground(Color.RED);
+        add(gameOverLabel);
         FruitManager.initialize();
         FruitManager.chooseFruit(level);
     }
@@ -77,11 +98,13 @@ public class GamePanel extends JPanel {
     private void restartLevel(){
         SoundPlayer.stopAll();
         this.pacmanStart = false;
+        readyLabel.setText("Ready!");
         System.out.println(level);
         this.inGame = true;
         this.munch = true;
         this.startTime = System.currentTimeMillis();
         this.portalTime = System.currentTimeMillis();
+        FruitManager.setGameStart();
         this.pacman.returnToSpawnPoint();
         for(Ghost ghost : this.ghosts) {
             ghost.returnToSpawnPoint(this.level);
@@ -94,6 +117,7 @@ public class GamePanel extends JPanel {
     private void initializeLayout() {
         this.gameEventListener = new GameEventListener(this);
         addKeyListener(this.gameEventListener);
+        this.smallPanel = ImageFactory.createImage(Image.SMALL_PANEL);
         setFocusable(true);
         setLayout(null);
         requestFocusInWindow();
@@ -108,6 +132,7 @@ public class GamePanel extends JPanel {
 
     private void doDrawing(Graphics g){
         if(inGame){
+            drawSmallPanel(g);
             drawPoints();
             drawPills(g);
             drawPowerPills(g);
@@ -124,6 +149,10 @@ public class GamePanel extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    private void drawSmallPanel(Graphics g) {
+        g.drawImage(this.smallPanel.getImage(), 0, 420, this);
+    }
+
     private void drawFruit(Graphics g) {
         Fruit f = FruitManager.getFruit();
         if(f != null){
@@ -134,13 +163,16 @@ public class GamePanel extends JPanel {
                 SoundPlayer.playEffect(EAT_FRUIT);
             }
         }
-        /*else {
-            g.drawImage(null, f.getX(), f.getY(), this);
-        }*/
     }
 
     private void drawPoints(){
         pointsLabel.setText("Points: "+this.pacman.getPoints());
+        System.out.println(10000 * this.lifeCounter);
+        if(this.pacman.getPoints() >= 10000 * this.lifeCounter){
+            this.lives++;
+            //livesLabel.setText("Lives: " + this.lives);
+            this.lifeCounter++;
+        }
     }
 
     private void drawPortals(Graphics g) {
@@ -230,14 +262,9 @@ public class GamePanel extends JPanel {
             if(!this.pacman.isDead()){
                 pacmanDead = false;
                 this.lives--;
-                livesLabel.setText("Lives: " + this.lives);
+                //livesLabel.setText("Lives: " + this.lives);
                 // controllo game over
                 if (this.lives == 0) {
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     restartApplication();
                 }else{
                     restartLevel();
@@ -277,12 +304,20 @@ public class GamePanel extends JPanel {
     }
 
     public void restartApplication() {
+        int highScore = this.frame.writeHighScore(this.pacman.getPoints());
+        this.highScoreLabel.setText("High Score: "+highScore);
+        this.gameOverLabel.setText("Game Over!");
         this.gameEventListener = null;
         this.timer.stop();
         this.pacman.setDead(true);
         this.inGame = false;
         System.gc();
         SoundPlayer.stopAll();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         frame.initializeGameMenu();
     }
 
@@ -314,11 +349,11 @@ public class GamePanel extends JPanel {
                 endGame();
             }
         }else{
-            long test = System.currentTimeMillis();
-            if(test >= (this.startTime + 1*4000)) { //multiply by 1000 to get milliseconds
+            if(System.currentTimeMillis() >= (this.startTime + 1*4000)) { //multiply by 1000 to get milliseconds
                 SoundPlayer.removeMusic(DEATH);
                 SoundPlayer.removeMusic(GAME_START);
                 this.pacmanStart=true;
+                readyLabel.setText("");
                 for(Ghost ghost : this.ghosts) {
                     ghost.getTimer().start();
                 }
@@ -335,6 +370,8 @@ public class GamePanel extends JPanel {
             e.printStackTrace();
         }
         this.level++;
+        int highScore = this.frame.writeHighScore(this.pacman.getPoints());
+        this.highScoreLabel.setText("High Score: "+highScore);
         FruitManager.chooseFruit(this.level);
         CoordManager.populateMaze();
         for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){

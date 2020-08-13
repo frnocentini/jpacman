@@ -13,6 +13,7 @@ public enum Image {
     PAUSE,
     BLUE_PORTAL,
     RED_PORTAL,
+    SMALL_PANEL,
     PACMAN_A0,
     PACMAN_R1,
     PACMAN_R2,

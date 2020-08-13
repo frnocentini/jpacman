@@ -41,6 +41,9 @@ public class ImageFactory {
             case PAUSE:
                 imageIcon = getFile(Constants.PAUSE_IMAGE_URL);
                 break;
+            case SMALL_PANEL:
+                imageIcon = getFile(Constants.SMALL_PANEL_URL);
+                break;
             case BLUE_PORTAL:
                 imageIcon = getFile(Constants.BLUE_PORTAL_IMAGE_URL);
                 break;

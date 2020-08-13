@@ -104,6 +104,7 @@ public class Constants {
     public static final String EATEN_GHOST_IMAGE_URL = "resources/images/eaten.png";
     public static final String MENU_IMAGE_URL = "resources/images/menu.png";
     public static final String PAUSE_IMAGE_URL = "resources/images/pause.png";
+    public static final String SMALL_PANEL_URL = "resources/images/small_panel.png";
     public static final String BLUE_PORTAL_IMAGE_URL = "resources/images/blue_portal.png";
     public static final String RED_PORTAL_IMAGE_URL = "resources/images/red_portal.png";
 

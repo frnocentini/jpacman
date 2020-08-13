@@ -36,10 +36,10 @@ public class GameMainFrame extends JFrame{
         SoundPlayer.initialize();
         level = 1;
         gamePoints = 0;
-        lives = 999;
+        lives = 1;
         this.layeredPane = new JLayeredPane();
         layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
-        //this.highScore = this.readHighScore();
+        this.highScore = this.readHighScore();
         initializeGameMenu();
     }
 
@@ -68,7 +68,7 @@ public class GameMainFrame extends JFrame{
         //Sottoclasse di JPanel che attraverso un GridLayout crea il labirinto
         this.bgPanel = new BGPanel(new GridLayout(21, 19),mazeNum);
         //Sottoclasse di JPanel dove posizioniamo le entità della mappa (Pac-Man, fantasmi, frutta, ecc...)
-        this.gamePanel = new GamePanel(this, this.level, this.gamePoints, this.lives);
+        this.gamePanel = new GamePanel(this, this.level, this.highScore, this.lives);
         this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         //Creiamo il JPanel stratificato
 
@@ -141,7 +141,7 @@ public class GameMainFrame extends JFrame{
         return score;
     }
 
-    public void writeHighScore(int points){
+    public int writeHighScore(int points){
         if(points > this.highScore) {
             this.highScore = points;
             PrintWriter pw = null;
@@ -153,5 +153,6 @@ public class GameMainFrame extends JFrame{
                 e.printStackTrace();
             }
         }
+        return this.highScore;
     }
 }
