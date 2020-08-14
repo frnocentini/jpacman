@@ -56,7 +56,7 @@ public class MenuPanel extends JPanel {
         add(mazeList);
         JLabel mazesLabel = new JLabel("Maze");
         mazesLabel.setBounds(240,155,50,40);
-        mazesLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 11));
+        mazesLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         mazesLabel.setForeground(Color.RED);
         add(mazesLabel);
         JButton startButton = new JButton("Start Game");
@@ -64,7 +64,7 @@ public class MenuPanel extends JPanel {
         startButton.setForeground(Color.RED);
         startButton.setFocusPainted(false);
         startButton.setBorder(new LineBorder(Color.RED));
-        startButton.setFont(new Font("PF Arma Five", Font.BOLD, 18));
+        startButton.setFont(new Font("PF Arma Five", Font.BOLD, 20));
         startButton.setBounds(90,170,140,60);
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -77,14 +77,14 @@ public class MenuPanel extends JPanel {
         add(startButton);
         JButton muteMusicButton;
         if(SoundPlayer.isMuteMusic()){
-            muteMusicButton  = new JButton("Enable Music");
+            muteMusicButton  = new JButton("<html>Enable<br>Music</html>");
         } else {
-            muteMusicButton  = new JButton("Mute Music");
+            muteMusicButton  = new JButton("<html>Mute<br>Music</html>");
         }
         muteMusicButton.setBackground(Color.YELLOW);
         muteMusicButton.setForeground(Color.RED);
         muteMusicButton.setFocusPainted(false);
-        muteMusicButton.setFont(new Font("PF Arma Five", Font.BOLD, 11));
+        muteMusicButton.setFont(new Font("PF Arma Five", Font.PLAIN, 14));
         muteMusicButton.setBorder(new LineBorder(Color.RED));
         muteMusicButton.setBounds(90,245,90,60);
         muteMusicButton.addActionListener(new ActionListener() {
@@ -95,26 +95,26 @@ public class MenuPanel extends JPanel {
                     SoundPlayer.stopMusic(STARTUP);
                     SoundPlayer.removeMusic(STARTUP);
                     SoundPlayer.setMuteMusic(true);
-                    muteMusicButton.setText("Enable Music");
+                    muteMusicButton.setText("<html>Enable<br>Music</html>");
                 } else {
                     SoundPlayer.setMuteMusic(false);
                     SoundPlayer.playMusic(STARTUP);
-                    muteMusicButton.setText("Mute Music");
+                    muteMusicButton.setText("<html>Mute<br>Music</html>");
                 }
             }
         });
         add(muteMusicButton);
         JButton muteEffectsButton;
         if(SoundPlayer.isMuteEffects()){
-            muteEffectsButton  = new JButton("Enable Effects");
+            muteEffectsButton  = new JButton("<html>Enable<br>Effects</html>");
         } else {
-            muteEffectsButton  = new JButton("Mute Effects");
+            muteEffectsButton  = new JButton("<html>Mute<br>Effects</html>");
         }
         muteEffectsButton.setBackground(Color.YELLOW);
         muteEffectsButton.setForeground(Color.RED);
         muteEffectsButton.setFocusPainted(false);
         muteEffectsButton.setBorder(new LineBorder(Color.RED));
-        muteEffectsButton.setFont(new Font("PF Arma Five", Font.BOLD, 11));
+        muteEffectsButton.setFont(new Font("PF Arma Five", Font.PLAIN, 14));
         muteEffectsButton.setBounds(200,245,90,60);
         muteEffectsButton.addActionListener(new ActionListener() {
             @Override
@@ -122,11 +122,11 @@ public class MenuPanel extends JPanel {
                 if(!SoundPlayer.isMuteEffects()){
                     SoundPlayer.stopAll();
                     SoundPlayer.setMuteEffects(true);
-                    muteEffectsButton.setText("Enable Effects");
+                    muteEffectsButton.setText("<html>Enable<br>Effects</html>");
                 } else {
                     SoundPlayer.setMuteEffects(false);
                     SoundPlayer.playEffect(CREDIT);
-                    muteEffectsButton.setText("Mute Effects");
+                    muteEffectsButton.setText("<html>Mute<br>Effects</html>");
                 }
             }
         });

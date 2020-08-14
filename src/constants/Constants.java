@@ -96,6 +96,7 @@ public class Constants {
     //images for the objects
     public static final String EMPTY_IMAGE_URL = "resources/images/empty.png";
     public static final String WALL_IMAGE_URL = "resources/images/wall.png";
+    public static final String LIFE_IMAGE_URL = "resources/images/life.png";
     public static final String BLINKY_IMAGE_URL = "resources/images/blinky.png";
     public static final String PINKY_IMAGE_URL = "resources/images/pinky.png";
     public static final String PILL_IMAGE_URL = "resources/images/pill.png";
@@ -140,6 +141,7 @@ public class Constants {
 
     //font
     public static final String ARMA_FONT = "resources/fonts/arma.ttf";
+    public static final String VCR_FONT = "resources/fonts/vcr.ttf";
 
     //text file
     public static final String HIGHSCORES = "resources/scores/highscore.txt";

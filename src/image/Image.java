@@ -11,6 +11,7 @@ public enum Image {
     EATEN_GHOST,
     MENU,
     PAUSE,
+    LIFE,
     BLUE_PORTAL,
     RED_PORTAL,
     SMALL_PANEL,

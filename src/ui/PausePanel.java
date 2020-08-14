@@ -49,7 +49,7 @@ public class PausePanel extends JPanel {
         resumeButton.setForeground(Color.RED);
         resumeButton.setFocusPainted(false);
         resumeButton.setBorder(new LineBorder(Color.RED));
-        resumeButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+        resumeButton.setFont(new Font("PF Arma Five", Font.BOLD, 20));
         resumeButton.setBounds(90,90,200,60);
         resumeButton.addActionListener(new ActionListener() {
             @Override
@@ -61,13 +61,14 @@ public class PausePanel extends JPanel {
         add(resumeButton);
         JButton muteMusicButton;
         if(SoundPlayer.isMuteMusic()){
-            muteMusicButton  = new JButton("Enable Music");
+            muteMusicButton  = new JButton("<html>Enable<br>Music</html>");
         } else {
-            muteMusicButton  = new JButton("Mute Music");
+            muteMusicButton  = new JButton("<html>Mute<br>Music</html>");
         }
         muteMusicButton.setBackground(Color.YELLOW);
         muteMusicButton.setForeground(Color.RED);
         muteMusicButton.setFocusPainted(false);
+        muteMusicButton.setFont(new Font("PF Arma Five", Font.PLAIN, 14));
         muteMusicButton.setBorder(new LineBorder(Color.RED));
         muteMusicButton.setBounds(90,165,90,60);
         muteMusicButton.addActionListener(new ActionListener() {
@@ -75,36 +76,41 @@ public class PausePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 SoundPlayer.playEffect(CREDIT);
                 if(!SoundPlayer.isMuteMusic()){
+                    SoundPlayer.stopMusic(STARTUP);
+                    SoundPlayer.removeMusic(STARTUP);
                     SoundPlayer.setMuteMusic(true);
-                    muteMusicButton.setText("Enable Music");
+                    muteMusicButton.setText("<html>Enable<br>Music</html>");
                 } else {
                     SoundPlayer.setMuteMusic(false);
-                    muteMusicButton.setText("Mute Music");
+                    SoundPlayer.playMusic(STARTUP);
+                    muteMusicButton.setText("<html>Mute<br>Music</html>");
                 }
             }
         });
         add(muteMusicButton);
         JButton muteEffectsButton;
         if(SoundPlayer.isMuteEffects()){
-            muteEffectsButton  = new JButton("Enable Effects");
+            muteEffectsButton  = new JButton("<html>Enable<br>Effects</html>");
         } else {
-            muteEffectsButton  = new JButton("Mute Effects");
+            muteEffectsButton  = new JButton("<html>Mute<br>Effects</html>");
         }
         muteEffectsButton.setBackground(Color.YELLOW);
         muteEffectsButton.setForeground(Color.RED);
         muteEffectsButton.setFocusPainted(false);
         muteEffectsButton.setBorder(new LineBorder(Color.RED));
+        muteEffectsButton.setFont(new Font("PF Arma Five", Font.PLAIN, 14));
         muteEffectsButton.setBounds(200,165,90,60);
         muteEffectsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!SoundPlayer.isMuteEffects()){
+                    SoundPlayer.stopAll();
                     SoundPlayer.setMuteEffects(true);
-                    muteEffectsButton.setText("Enable Effects");
+                    muteEffectsButton.setText("<html>Enable<br>Effects</html>");
                 } else {
                     SoundPlayer.setMuteEffects(false);
                     SoundPlayer.playEffect(CREDIT);
-                    muteEffectsButton.setText("Mute Effects");
+                    muteEffectsButton.setText("<html>Mute<br>Effects</html>");
                 }
             }
         });
@@ -114,7 +120,7 @@ public class PausePanel extends JPanel {
         quitButton.setForeground(Color.RED);
         quitButton.setFocusPainted(false);
         quitButton.setBorder(new LineBorder(Color.RED));
-        quitButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+        quitButton.setFont(new Font("PF Arma Five", Font.BOLD, 20));
         quitButton.setBounds(90,240,200,60);
         quitButton.addActionListener(new ActionListener() {
             @Override

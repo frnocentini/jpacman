@@ -37,8 +37,11 @@ public class GamePanel extends JPanel {
     private JLabel pointsLabel;
     private JLabel readyLabel;
     private JLabel gameOverLabel;
-    //private JLabel livesLabel;
+    private JLabel levelLabel;
     private JLabel highScoreLabel;
+    private JLabel livesLabel;
+    private JLabel livesNumLabel;
+    private ArrayList<ImageIcon> livesIcons;
     private boolean pacmanDead;
 
     public GamePanel(GameMainFrame frame, int level, int highScore, int lives){
@@ -72,25 +75,46 @@ public class GamePanel extends JPanel {
         this.ghosts.add(inky);
         this.ghosts.add(pinky);
         this.ghosts.add(blinky);
-        //this.livesLabel = new JLabel("Lives: "+lives);
-        //livesLabel.setBounds(10,425,100,20);
-        //add(livesLabel);
+        this.levelLabel = new JLabel("");
+        levelLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
+        levelLabel.setBounds(165,420,100,20);
+        levelLabel.setForeground(Color.WHITE);
+        add(levelLabel);
         this.pointsLabel = new JLabel("Points: "+this.pacman.getPoints());
-        pointsLabel.setBounds(10,420,100,20);
+        pointsLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
+        pointsLabel.setBounds(10,420,200,20);
         pointsLabel.setForeground(Color.WHITE);
         add(pointsLabel);
         this.highScoreLabel = new JLabel("High Score: "+highScore);
-        highScoreLabel.setBounds(10,438,100,20);
+        highScoreLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
+        highScoreLabel.setBounds(10,438,200,20);
         highScoreLabel.setForeground(Color.WHITE);
         add(highScoreLabel);
         this.readyLabel = new JLabel("Ready!");
-        readyLabel.setBounds(175,420,100,20);
+        readyLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
+        readyLabel.setBounds(173,420,100,20);
         readyLabel.setForeground(Color.YELLOW);
         add(readyLabel);
         this.gameOverLabel = new JLabel("");
-        gameOverLabel.setBounds(170,420,100,20);
+        gameOverLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
+        gameOverLabel.setBounds(155,420,100,20);
         gameOverLabel.setForeground(Color.RED);
         add(gameOverLabel);
+        this.livesLabel = new JLabel("Lives:");
+        livesLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
+        livesLabel.setBounds(165,438,100,20);
+        livesLabel.setForeground(Color.WHITE);
+        add(livesLabel);
+        this.livesNumLabel = new JLabel("");
+        livesNumLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
+        livesNumLabel.setBounds(185,438,100,20);
+        livesNumLabel.setForeground(Color.WHITE);
+        add(livesNumLabel);
+        this.livesIcons = new ArrayList<>();
+        ImageIcon lifeIcon = ImageFactory.createImage(Image.LIFE);
+        for(int i=0;i<lives;i++){
+            livesIcons.add(lifeIcon);
+        }
         FruitManager.initialize();
         FruitManager.chooseFruit(level);
     }
@@ -98,6 +122,7 @@ public class GamePanel extends JPanel {
     private void restartLevel(){
         SoundPlayer.stopAll();
         this.pacmanStart = false;
+        levelLabel.setText("");
         readyLabel.setText("Ready!");
         System.out.println(level);
         this.inGame = true;
@@ -134,6 +159,7 @@ public class GamePanel extends JPanel {
         if(inGame){
             drawSmallPanel(g);
             drawPoints();
+            drawLifes(g);
             drawPills(g);
             drawPowerPills(g);
             drawPortals(g);
@@ -147,6 +173,10 @@ public class GamePanel extends JPanel {
         }
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    private void drawLifes(Graphics g) {
+
     }
 
     private void drawSmallPanel(Graphics g) {
@@ -170,7 +200,7 @@ public class GamePanel extends JPanel {
         System.out.println(10000 * this.lifeCounter);
         if(this.pacman.getPoints() >= 10000 * this.lifeCounter){
             this.lives++;
-            //livesLabel.setText("Lives: " + this.lives);
+            this.livesIcons.add(ImageFactory.createImage(Image.LIFE));
             this.lifeCounter++;
         }
     }
@@ -262,10 +292,9 @@ public class GamePanel extends JPanel {
             if(!this.pacman.isDead()){
                 pacmanDead = false;
                 this.lives--;
-                //livesLabel.setText("Lives: " + this.lives);
-                // controllo game over
+                livesIcons.remove(0);
                 if (this.lives == 0) {
-                    restartApplication();
+                    makeGameOver();
                 }else{
                     restartLevel();
                 }
@@ -303,21 +332,31 @@ public class GamePanel extends JPanel {
         }
     }
 
+    public void makeGameOver(){
+        levelLabel.setText("");
+        this.gameOverLabel.setText("Game Over!");
+        this.gameOverLabel.paintImmediately(this.gameOverLabel.getVisibleRect());
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        restartApplication();
+    }
+
     public void restartApplication() {
         int highScore = this.frame.writeHighScore(this.pacman.getPoints());
         this.highScoreLabel.setText("High Score: "+highScore);
-        this.gameOverLabel.setText("Game Over!");
         this.gameEventListener = null;
         this.timer.stop();
+        this.pacman.getTimer().stop();
+        for(Ghost ghost : this.ghosts) {
+            ghost.getTimer().stop();
+        }
         this.pacman.setDead(true);
         this.inGame = false;
         System.gc();
         SoundPlayer.stopAll();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         frame.initializeGameMenu();
     }
 
@@ -354,6 +393,7 @@ public class GamePanel extends JPanel {
                 SoundPlayer.removeMusic(GAME_START);
                 this.pacmanStart=true;
                 readyLabel.setText("");
+                levelLabel.setText("Level: "+level);
                 for(Ghost ghost : this.ghosts) {
                     ghost.getTimer().start();
                 }

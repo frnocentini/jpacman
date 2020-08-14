@@ -182,4 +182,12 @@ public class Pacman extends Character {
         ImageIcon imageIcon = this.imageSet.getFrameAt(1,dir);
         setImage(imageIcon.getImage());
     }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
 }
