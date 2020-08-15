@@ -21,34 +21,18 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/constants/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/constants/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/model/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/model/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/scores/highscore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/scores/highscore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/GameMainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/GamePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/GamePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/MenuPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/MenuPanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/MenuPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/MenuPanel$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/MenuPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/provapacman/ui/PausePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/mazes/maze2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/mazes/maze2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/scores/highscore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/scores/highscore.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/Image.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/ImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/ImageFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameMainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameMainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/PausePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/PausePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,21 +74,34 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="ProvaPacman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ProvaPacman" />
-      <module name="ProvaPacman" />
+    <configuration name="RunJPacman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RunJPacman" />
+      <module name="JPacman" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="JarApplication">
       <option name="ALTERNATIVE_JRE_PATH" />
-      <module name="ProvaPacman" />
+      <module name="JPacman" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ProvaPacman" />
+        <item itemvalue="Application.RunJPacman" />
       </list>
     </recent_temporary>
   </component>

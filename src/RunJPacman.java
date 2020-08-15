@@ -2,7 +2,7 @@ import ui.GameMainFrame;
 
 import java.awt.*;
 
-public class ProvaPacman {
+public class RunJPacman {
 
     public static void main(String[] args){
 
