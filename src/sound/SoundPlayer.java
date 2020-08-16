@@ -10,13 +10,15 @@ import static sound.Sound.*;
 
 public class SoundPlayer {
 
-    private static SoundFactory sf;
-    private static boolean muteEffects;
-    private static boolean muteMusic;
-    private static ArrayList<SoundClip> library;
+    private static SoundFactory sf; // Oggetto della classe che gestisce i file audio e i loro stream
+    private static boolean muteEffects; // true = effetti sonori mutati
+    private static boolean muteMusic; // true = musica mutata
+    private static ArrayList<SoundClip> library; // ArrayList che contiene il riferimento ai suoni che stanno
+                                                // venendo riprodotti (non viene sfruttato nel nostro caso)
 
     public static void initialize(){
         SoundPlayer.sf = new SoundFactory();
+        // Inizializiamo (a falso) le variabili che mutano gli effetti e la musica
         SoundPlayer.muteEffects = false;
         SoundPlayer.muteMusic = false;
         library = new ArrayList<>();
@@ -24,23 +26,29 @@ public class SoundPlayer {
 
     public static void playEffect(Sound sound){
         if(!muteEffects){
+            // Creiamo una SoundClip
             SoundClip sc = sf.chooseSound(sound);
+            // Apre la clip in SoundFactory
             sf.playSound(sc);
         }
     }
 
     public static void playMusic(Sound sound) {
         if(!muteMusic){
+            // Fermiamo le musiche e gli effetti loopati prima di riprodurre la nuova
             stopAll();
             SoundClip sc = sf.chooseSound(sound);
             sf.playSound(sc);
+            // Aggiungiamola all'ArrayList library
             library.add(new SoundClip(sound,sc.getClip(),sc.getAis()));
         }
     }
 
     public static void loopEffect(Sound sound) {
+        // Controlliamo che il suono non stia già venendo riprodotto
         int index = isPlaying(sound);
         if(!muteEffects && index == -1){
+            // Se è appena iniziata la partita non c'è bisogno di fermare tutti i suoni
             if(isPlaying(GAME_START) == -1){
                 stopAll();
             }
@@ -52,6 +60,7 @@ public class SoundPlayer {
 
     public static void stopMusic(Sound sound) {
         int index = isPlaying(sound);
+        // Se la clip è in riproduzione la fermiamo
         if(index > -1) {
             SoundClip sc = library.get(index);
             sf.stopSound(sc);
@@ -77,6 +86,7 @@ public class SoundPlayer {
     }
 
     public static void playBackgroundMusic(boolean frightened, boolean eaten) {
+        // A seconda delle condizioni dei fantasmi o delle pillole viene riprodotto un loop
         if(eaten){
             SoundPlayer.loopEffect(EATEN_SOUND);
         } else if (frightened){
@@ -97,6 +107,7 @@ public class SoundPlayer {
     }
 
     public static void removeMusic(Sound sound) {
+        // Rimuoviamo dall'ArrayList musiche già ferme
         for(int i=0;i<library.size();i++){
             SoundClip sc = library.get(i);
             if(sc.getName() == sound){

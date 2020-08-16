@@ -1,6 +1,7 @@
 package ui;
 
 import constants.Constants;
+import controller.MenuController;
 import image.Image;
 import image.ImageFactory;
 import sound.SoundPlayer;
@@ -18,13 +19,13 @@ import static sound.Sound.*;
 public class MenuPanel extends JPanel {
 
     private GameMainFrame gameMainFrame;
-    private int mazesNumber;
+    private MenuController controller;
 
     public MenuPanel(GameMainFrame gameMainFrame){
         this.gameMainFrame = gameMainFrame;
         setLayout(null);
         SoundPlayer.playMusic(STARTUP);
-        this.mazesNumber = loadMazes();
+        this.controller = new MenuController();
     }
 
     @Override
@@ -39,15 +40,8 @@ public class MenuPanel extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private int loadMazes() {
-        return new File(Constants.MAZES_DIR).list().length;
-    }
-
     private void drawLayout() {
-        String[] mazeStrings = new String[this.mazesNumber];
-        for(int i=0;i<this.mazesNumber;i++){
-            mazeStrings[i] = new String(""+(i+1));
-        }
+        String[] mazeStrings = controller.populateMazeStrings();
         JComboBox mazeList = new JComboBox(mazeStrings);
         mazeList.setSelectedIndex(0);
         mazeList.setBorder(new LineBorder(Color.RED));

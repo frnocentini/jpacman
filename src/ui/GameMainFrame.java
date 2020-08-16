@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class GameMainFrame extends JFrame{
 
     private int level;
-    private int gamePoints;
     private int lives;
     private int highScore;
     private JLayeredPane layeredPane;
@@ -23,6 +22,22 @@ public class GameMainFrame extends JFrame{
     private PausePanel pausePanel;
 
     public GameMainFrame(){
+        // Registriamo nell'ambiente grafico un font preso da un file .ttf
+        registerFont();
+        // Inizializiamo la classe che si occupa dei suoni
+        SoundPlayer.initialize();
+        level = Constants.START_LEVEL;
+        lives = Constants.START_LIVES;
+        // Creiamo un pannello stratificato
+        this.layeredPane = new JLayeredPane();
+        // Aggiungiamo un JPAnel fantoccio che rimuoveremo subito
+        layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
+        // Legge il file dell'highscore e se non esiste lo crea
+        this.highScore = this.readHighScore();
+        initializeGameMenu();
+    }
+
+    private void registerFont(){
         Font f = null;
         try {
             f = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARMA_FONT));
@@ -33,14 +48,6 @@ public class GameMainFrame extends JFrame{
         }
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(f);
-        SoundPlayer.initialize();
-        level = 1;
-        gamePoints = 0;
-        lives = 3;
-        this.layeredPane = new JLayeredPane();
-        layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
-        this.highScore = this.readHighScore();
-        initializeGameMenu();
     }
 
     public void initializeGameMenu() {
@@ -126,11 +133,13 @@ public class GameMainFrame extends JFrame{
 
     public int readHighScore(){
         int score = 0;
+        // Leggiamo il file dell'highscore
         File f = new File(Constants.HIGHSCORES);
         try {
             Scanner sc = new Scanner(f);
             score = sc.nextInt();
         } catch (FileNotFoundException e) {
+            // Se non esiste lo creiamo con il valore "0" al suo interno
             try {
                 f.createNewFile();
                 PrintWriter pw = new PrintWriter(f);

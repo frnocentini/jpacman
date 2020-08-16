@@ -46,20 +46,19 @@ public abstract class Ghost extends Character {
     @Override
     public void move(){
         int speed = Constants.GHOST_SPEED;
-        if(this.state == EATEN){
-            speed *= 2;
-            x -= x%(Constants.GHOST_SPEED*2);
-            y -= y%(Constants.GHOST_SPEED*2);
-        }
         setTarget();
         ImageIcon imageIcon = null;
         switch(this.state){
             case CHASE:
             case SCATTER:
+                x -= x%(Constants.GHOST_SPEED);
+                y -= y%(Constants.GHOST_SPEED);
                 imageIcon = this.imageSet.getNextFrame(dir);
                 setImage(imageIcon.getImage());
                 break;
             case FRIGHTENED:
+                x -= x%(Constants.GHOST_SPEED);
+                y -= y%(Constants.GHOST_SPEED);
                 if(System.currentTimeMillis() > this.frightTime + 6000 + this.pausedTime){
                     imageIcon = this.imageSet.getNextFrameFrightened(true);
                     setImage(imageIcon.getImage());
@@ -69,6 +68,9 @@ public abstract class Ghost extends Character {
                 }
                 break;
             case EATEN:
+                speed  = Constants.GHOST_SPEED_EATEN;
+                x -= x%(Constants.GHOST_SPEED_EATEN);
+                y -= y%(Constants.GHOST_SPEED_EATEN);
                 imageIcon = this.imageSet.getNextFrameEaten(dir);
                 setImage(imageIcon.getImage());
                 break;

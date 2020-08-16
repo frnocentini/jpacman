@@ -1,6 +1,7 @@
 package ui;
 
 import callbacks.GameEventListener;
+import callbacks.GameLoop;
 import constants.Constants;
 import image.Image;
 import image.ImageFactory;
@@ -107,7 +108,7 @@ public class GamePanel extends JPanel {
         add(livesLabel);
         this.livesNumLabel = new JLabel("");
         livesNumLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
-        livesNumLabel.setBounds(185,438,100,20);
+        livesNumLabel.setBounds(220,438,100,20);
         livesNumLabel.setForeground(Color.WHITE);
         add(livesNumLabel);
         this.livesIcons = new ArrayList<>();
@@ -159,7 +160,7 @@ public class GamePanel extends JPanel {
         if(inGame){
             drawSmallPanel(g);
             drawPoints();
-            drawLifes(g);
+            drawLives(g);
             drawPills(g);
             drawPowerPills(g);
             drawPortals(g);
@@ -175,8 +176,16 @@ public class GamePanel extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawLifes(Graphics g) {
-
+    private void drawLives(Graphics g) {
+        if(lives < 6){
+            livesNumLabel.setText("");
+            for(int i=0;i<this.livesIcons.size();i++){
+                g.drawImage(this.livesIcons.get(i).getImage(),205+(i*12),442,this);
+            }
+        } else if (lives != 0) {
+            g.drawImage(this.livesIcons.get(0).getImage(),205,442,this);
+            livesNumLabel.setText(""+lives);
+        }
     }
 
     private void drawSmallPanel(Graphics g) {
@@ -197,7 +206,6 @@ public class GamePanel extends JPanel {
 
     private void drawPoints(){
         pointsLabel.setText("Points: "+this.pacman.getPoints());
-        System.out.println(10000 * this.lifeCounter);
         if(this.pacman.getPoints() >= 10000 * this.lifeCounter){
             this.lives++;
             this.livesIcons.add(ImageFactory.createImage(Image.LIFE));

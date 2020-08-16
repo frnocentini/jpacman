@@ -5,9 +5,9 @@ import javax.sound.sampled.Clip;
 
 public class SoundClip {
 
-    private Sound name;
-    private Clip clip;
-    private AudioInputStream ais;
+    private Sound name; // Elemento dell'ENUM Sound
+    private Clip clip; // Clip associata al file audio
+    private AudioInputStream ais; // Stream associato alla Clip
 
     public SoundClip(Sound name, Clip clip, AudioInputStream ais) {
         this.name = name;

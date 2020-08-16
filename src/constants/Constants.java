@@ -16,15 +16,18 @@ public class Constants {
     public static final int POWERPILL_HEIGHT = 20;
     public static final int FRUIT_WIDTH = 20;
     public static final int FRUIT_HEIGHT = 20;
+    public static final int START_LIVES = 3;
+    public static final int START_LEVEL = 1;
 
     //speed of the application
     public static final int GAME_SPEED = 10;
     public static final int PACMAN_SPEED = 2;
-    public static final int GHOST_SPEED = 1;
 
     //Ghost related constants
     public static final int GHOST_HEIGHT = 20;
     public static final int GHOST_WIDTH = 20;
+    public static final int GHOST_SPEED = 1;
+    public static final int GHOST_SPEED_EATEN = 2;
 
     //Directory for the mazes
     public static final String MAZES_DIR = "resources/mazes/";

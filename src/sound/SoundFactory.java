@@ -11,7 +11,7 @@ import static sound.Sound.*;
 public class SoundFactory {
 
     public SoundClip chooseSound(Sound sound){
-        
+        // Abbina ad ogni elemento dell'ENUM Sound un oggetto SoundClip
         SoundClip audio = null;
 
         switch(sound){
@@ -75,6 +75,7 @@ public class SoundFactory {
     }
 
     private SoundClip createStream(String audioFilename){
+        // Dato un file audio ne crea Stream e Clip e li inserisce in un SoundClip
         SoundClip audio = null;
         try {
             // IDE
@@ -86,18 +87,20 @@ public class SoundFactory {
             audio = new SoundClip(null,c,ais);
         } catch (LineUnavailableException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return audio;
     }
 
     public void playSound(SoundClip sc){
+        // Se sta già venendo riprodotto lo fermo
         stopSound(sc);
         Clip c = sc.getClip();
         try {
+            // Apriamo la Clip nel suo Stream
             c.open(sc.getAis());
             c.start();
         } catch (LineUnavailableException e) {
@@ -109,9 +112,11 @@ public class SoundFactory {
 
     public void stopSound(SoundClip sc){
         Clip c = sc.getClip();
+        // Se sta già venendo riprodotto
         if (c.isOpen()) {
             c.close();
             try {
+                // Chiude anche lo Stream
                 sc.getAis().close();
             } catch (IOException e) {
                 e.printStackTrace();

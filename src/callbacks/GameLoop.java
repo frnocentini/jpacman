@@ -1,4 +1,6 @@
-package ui;
+package callbacks;
+
+import ui.GamePanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
