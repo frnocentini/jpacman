@@ -14,7 +14,7 @@ public class MainFrameController {
 
     private GameMainFrame frame;
 
-    public MainFrameController(GameMainFrame gameMainFrame) {
+    public MainFrameController(GameMainFrame frame) {
         this.frame = frame;
     }
 
