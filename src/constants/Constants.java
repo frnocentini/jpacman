@@ -18,7 +18,7 @@ public class Constants {
     public static final int POWERPILL_HEIGHT = 20;
     public static final int FRUIT_WIDTH = 20;
     public static final int FRUIT_HEIGHT = 20;
-    public static final int START_LIVES = 3;
+    public static final int START_LIVES = 8;
     public static final int START_LEVEL = 1;
 
     //speed of the application

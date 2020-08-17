@@ -139,7 +139,7 @@ public class GameController {
             collisionPills();
             killPacman();
             collisionGhosts();
-            if(!this.pacman.isDead()){
+            if(!this.pacman.isDead() && this.pacmanStart){
                 this.playBackgroundMusic(frightened,eaten);
             }
             if(CoordManager.getMaze().getAlivePills() == 0){
@@ -375,7 +375,7 @@ public class GameController {
         }
     }
 
-    public static void playBackgroundMusic(boolean frightened, boolean eaten) {
+    public void playBackgroundMusic(boolean frightened, boolean eaten) {
         // A seconda delle condizioni dei fantasmi o delle pillole viene riprodotto un loop
         if(eaten){
             SoundPlayer.loopEffect(EATEN_SOUND);

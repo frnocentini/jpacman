@@ -79,7 +79,7 @@ public class GamePanel extends JPanel {
         add(livesNumLabel);
         this.livesIcons = new ArrayList<>();
         ImageIcon lifeIcon = ImageFactory.createImage(image.Image.LIFE);
-        for(int i=0;i<this.controller.getLives();i++){
+        for(int i=0;i<this.controller.getLives()-1;i++){
             livesIcons.add(lifeIcon);
         }
     }
@@ -118,7 +118,6 @@ public class GamePanel extends JPanel {
         this.pointsLabel.setText("Points: "+this.controller.getPoints());
         this.highScoreLabel.setText(controller.getHighScoreString());
         this.readyLabel.setText(controller.getReadyString());
-        this.livesNumLabel.setText(controller.getLivesNumString());
         this.levelLabel.setText(controller.getLevelString());
     }
 
@@ -129,17 +128,17 @@ public class GamePanel extends JPanel {
 
     private void drawLives(Graphics g) {
         livesIcons.clear();
-        for(int i=0;i<this.controller.getLives();i++){
+        for(int i=0;i<this.controller.getLives()-1;i++){
             livesIcons.add(ImageFactory.createImage(image.Image.LIFE));
         }
-        if(this.controller.getLives() < 6){
+        if(this.controller.getLives() < 7){
             livesNumLabel.setText("");
             for(int i=0;i<this.livesIcons.size();i++){
                 g.drawImage(this.livesIcons.get(i).getImage(),205+(i*12),442,this);
             }
         } else if (this.controller.getLives() != 0) {
             g.drawImage(this.livesIcons.get(0).getImage(),205,442,this);
-            livesNumLabel.setText(""+this.controller.getLives());
+            livesNumLabel.setText(""+(this.controller.getLives()-1));
         }
     }
 
