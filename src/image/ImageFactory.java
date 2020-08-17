@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 public class ImageFactory {
 
+    // Prende un elemento dell'ENUM Image  e ne restituisce la relativa ImageIcon
     public static ImageIcon createImage(Image image) {
 
         ImageIcon imageIcon = null;
@@ -263,6 +264,7 @@ public class ImageFactory {
         return imageIcon;
     }
 
+    // Dato un filename recupera l'immagine e ci crea un ImageIcon
     private static ImageIcon getFile(String filename){
         // IDE
         return (new ImageIcon(filename));

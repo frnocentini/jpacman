@@ -18,8 +18,8 @@ import static sound.Sound.*;
 
 public class MenuPanel extends JPanel {
 
-    private GameMainFrame gameMainFrame;
-    private MenuController controller;
+    private GameMainFrame gameMainFrame; // Riferimento al nostro JFrame
+    private MenuController controller; // Riferimento al controller relaivo a questo pannello
 
     public MenuPanel(GameMainFrame gameMainFrame){
         this.gameMainFrame = gameMainFrame;
@@ -31,17 +31,22 @@ public class MenuPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+        // Disegnamo l'immagine del menù
         g.drawImage(ImageFactory.createImage(Image.MENU).getImage(), 0,0,null);
         doDrawing();
     }
 
     private void doDrawing() {
+        // Creiamo i bottoni
         drawLayout();
+        // Metodo che sincronizza tutte le componenti grafiche
         Toolkit.getDefaultToolkit().sync();
     }
 
     private void drawLayout() {
+        // Popoliamo l'Array di Stringhe
         String[] mazeStrings = controller.populateMazeStrings();
+        // Creiamo con questo array la ComboBox
         JComboBox mazeList = new JComboBox(mazeStrings);
         mazeList.setSelectedIndex(0);
         mazeList.setBorder(new LineBorder(Color.RED));
@@ -53,6 +58,7 @@ public class MenuPanel extends JPanel {
         mazesLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         mazesLabel.setForeground(Color.RED);
         add(mazesLabel);
+        // Creiamo il bottone per avviare il gioco
         JButton startButton = new JButton("Start Game");
         startButton.setBackground(Color.YELLOW);
         startButton.setForeground(Color.RED);
@@ -60,11 +66,14 @@ public class MenuPanel extends JPanel {
         startButton.setBorder(new LineBorder(Color.RED));
         startButton.setFont(new Font("PF Arma Five", Font.BOLD, 20));
         startButton.setBounds(90,170,140,60);
+        // Aggiungiamo le azioni da eseguire alla sua pressione
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Ferma la musica, fa sentire credit e richiama il metodo per creare la schermata di gioco
                 SoundPlayer.stopMusic(STARTUP);
                 SoundPlayer.playEffect(CREDIT);
+                //
                 gameMainFrame.initializeLayout(mazeList.getSelectedIndex()+1);
             }
         });

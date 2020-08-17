@@ -30,10 +30,9 @@ public class GameMainFrame extends JFrame{
         lives = Constants.START_LIVES;
         // Creiamo un pannello stratificato
         this.layeredPane = new JLayeredPane();
-        // Aggiungiamo un JPAnel fantoccio che rimuoveremo subito
-        layeredPane.add(new JPanel(), JLayeredPane.DEFAULT_LAYER);
         // Legge il file dell'highscore e se non esiste lo crea
         this.highScore = this.readHighScore();
+        // Avviamo il metodo
         initializeGameMenu();
     }
 
@@ -53,6 +52,7 @@ public class GameMainFrame extends JFrame{
     public void initializeGameMenu() {
         layeredPane.removeAll();
         System.gc();
+        // Creiamo il pannello del Menù e lo aggiungiamo al LayeredPane
         this.menuPanel = new MenuPanel(this);
         menuPanel.setBounds( 0,0,Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40);
 
@@ -79,11 +79,6 @@ public class GameMainFrame extends JFrame{
         //Sottoclasse di JPanel dove posizioniamo le entità della mappa (Pac-Man, fantasmi, frutta, ecc...)
         this.gamePanel = new GamePanel(this, this.level, this.highScore, this.lives);
         this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
-        //Creiamo il JPanel stratificato
-
-
-
-        //bgPanel.setOpaque(false);
         //Imposto la grandezza del background e lo inserisco nello strato più basso del layeredPane
         bgPanel.setBounds(0, 0, Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE);
         layeredPane.add(bgPanel, JLayeredPane.DEFAULT_LAYER);

@@ -1,5 +1,7 @@
 package constants;
 
+import sound.SoundPlayer;
+
 public class Constants {
 
     public static final String TITLE = "JPacman";
@@ -28,6 +30,10 @@ public class Constants {
     public static final int GHOST_WIDTH = 20;
     public static final int GHOST_SPEED = 1;
     public static final int GHOST_SPEED_EATEN = 2;
+
+    //Sound related booleans
+    public static final boolean EFFECTS_STATE = false;
+    public static final boolean MUSIC_STATE = false;
 
     //Directory for the mazes
     public static final String MAZES_DIR = "resources/mazes/";

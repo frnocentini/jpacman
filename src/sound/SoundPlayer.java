@@ -1,5 +1,6 @@
 package sound;
 
+import constants.Constants;
 import utility.CoordManager;
 
 import javax.sound.sampled.Clip;
@@ -19,8 +20,8 @@ public class SoundPlayer {
     public static void initialize(){
         SoundPlayer.sf = new SoundFactory();
         // Inizializiamo (a falso) le variabili che mutano gli effetti e la musica
-        SoundPlayer.muteEffects = false;
-        SoundPlayer.muteMusic = false;
+        SoundPlayer.muteEffects = Constants.EFFECTS_STATE;
+        SoundPlayer.muteMusic = Constants.MUSIC_STATE;
         library = new ArrayList<>();
     }
 
