@@ -33,64 +33,12 @@
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/callbacks/GameEventListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/callbacks/GameLoop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/controller/GameController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/GhostImageSet$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/GhostImageSet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/ImageSet$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/ImageSet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/PacmanImageSet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Blinky.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Character.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Clyde.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Fruit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/FruitManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Ghost$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Ghost.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/GhostLoop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Inky$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Inky.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Maze.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Pacman.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/PacmanLoop.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Pill.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Pinky$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Pinky.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Portal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/PowerPill.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/model/Sprite.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JPacman/sound/SoundPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sound/SoundPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/BGPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/BGPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/GamePanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/GamePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/utility/CoordManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/utility/CoordManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/utility/CoordManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/utility/CoordManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/callbacks/GameEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/callbacks/GameEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/callbacks/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/callbacks/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/GhostImageSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteManagers/GhostFrameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/ImageSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteManagers/FrameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/PacmanImageSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteManagers/PacmanFrameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Blinky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Blinky.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Clyde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Clyde.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Fruit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/FruitManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteManagers/FruitManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/GhostLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/callbacks/GhostLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Inky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Inky.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Pacman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PacmanLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/callbacks/PacmanLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Pill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Pinky.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Pinky.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Portal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Portal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/PowerPill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/PowerPill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Sprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/BGPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/BGPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/SoundPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GameMainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameMainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/CoordManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/CoordManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +149,7 @@
       <workItem from="1597487560027" duration="781000" />
       <workItem from="1597568490169" duration="1084000" />
       <workItem from="1597583473946" duration="12968000" />
-      <workItem from="1597652815467" duration="21678000" />
+      <workItem from="1597652815467" duration="23958000" />
     </task>
     <servers />
   </component>
@@ -250,25 +198,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597085310767" />
-    <state width="1493" height="270" key="GridCell.Tab.0.bottom" timestamp="1597682116024">
+    <state width="1493" height="270" key="GridCell.Tab.0.bottom" timestamp="1597691979712">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597682116024" />
+    <state width="1493" height="270" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597691979712" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="270" key="GridCell.Tab.0.center" timestamp="1597682116024">
+    <state width="1493" height="270" key="GridCell.Tab.0.center" timestamp="1597691979712">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597682116024" />
+    <state width="1493" height="270" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597691979712" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="270" key="GridCell.Tab.0.left" timestamp="1597682116024">
+    <state width="1493" height="270" key="GridCell.Tab.0.left" timestamp="1597691979712">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597682116024" />
+    <state width="1493" height="270" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597691979712" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="270" key="GridCell.Tab.0.right" timestamp="1597682116024">
+    <state width="1493" height="270" key="GridCell.Tab.0.right" timestamp="1597691979712">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597682116024" />
+    <state width="1493" height="270" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597691979712" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1597335912314">
       <screen x="0" y="0" width="1536" height="824" />

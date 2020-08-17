@@ -86,27 +86,6 @@ public class SoundPlayer {
         }
     }
 
-    public static void playBackgroundMusic(boolean frightened, boolean eaten) {
-        // A seconda delle condizioni dei fantasmi o delle pillole viene riprodotto un loop
-        if(eaten){
-            SoundPlayer.loopEffect(EATEN_SOUND);
-        } else if (frightened){
-            SoundPlayer.loopEffect(FRIGHT_SOUND);
-        }else if(CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 4/5){
-            SoundPlayer.loopEffect(SIREN_1);
-        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 3/5) {
-            SoundPlayer.loopEffect(SIREN_2);
-        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 2/5) {
-            SoundPlayer.loopEffect(SIREN_3);
-        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() / 5) {
-            SoundPlayer.loopEffect(SIREN_4);
-        } else if (CoordManager.getMaze().getAlivePills() > 0) {
-            SoundPlayer.loopEffect(SIREN_5);
-        } else if (CoordManager.getMaze().getAlivePills() == 0){
-            SoundPlayer.stopAll();
-        }
-    }
-
     public static void removeMusic(Sound sound) {
         // Rimuoviamo dall'ArrayList musiche già ferme
         for(int i=0;i<library.size();i++){

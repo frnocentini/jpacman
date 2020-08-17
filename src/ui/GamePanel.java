@@ -84,26 +84,6 @@ public class GamePanel extends JPanel {
         }
     }
 
-    /*private void restartLevel(){
-        SoundPlayer.stopAll();
-        this.pacmanStart = false;
-        levelLabel.setText("");
-        readyLabel.setText("Ready!");
-        System.out.println(level);
-        this.inGame = true;
-        this.munch = true;
-        this.startTime = System.currentTimeMillis();
-        this.portalTime = System.currentTimeMillis();
-        FruitManager.setGameStart();
-        this.pacman.returnToSpawnPoint();
-        for(Ghost ghost : this.ghosts) {
-            ghost.returnToSpawnPoint(this.level);
-            ghost.setPausedTime(0);
-        }
-        System.gc();
-        timer.start();
-    }*/
-
     private void initializeLayout() {
         this.gameEventListener = new GameEventListener(this);
         addKeyListener(this.gameEventListener);
@@ -134,13 +114,17 @@ public class GamePanel extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawLabels() {
-        pointsLabel.setText("Points: "+this.controller.getPoints());
+    public void drawLabels() {
+        this.pointsLabel.setText("Points: "+this.controller.getPoints());
+        this.highScoreLabel.setText(controller.getHighScoreString());
+        this.readyLabel.setText(controller.getReadyString());
+        this.livesNumLabel.setText(controller.getLivesNumString());
+        this.levelLabel.setText(controller.getLevelString());
+    }
+
+    public void showGameOver(){
+        this.gameOverLabel.setText(controller.getGameOverString());
         this.gameOverLabel.paintImmediately(this.gameOverLabel.getVisibleRect());
-        this.readyLabel.paintImmediately(this.readyLabel.getVisibleRect());
-        this.levelLabel.paintImmediately(this.levelLabel.getVisibleRect());
-        this.highScoreLabel.paintImmediately(this.highScoreLabel.getVisibleRect());
-        this.livesLabel.paintImmediately(this.livesLabel.getVisibleRect());
     }
 
     private void drawLives(Graphics g) {
@@ -211,94 +195,16 @@ public class GamePanel extends JPanel {
         }
     }
 
-    /*public void makeGameOver(){
-        levelLabel.setText("");
-        this.gameOverLabel.setText("Game Over!");
-        this.gameOverLabel.paintImmediately(this.gameOverLabel.getVisibleRect());
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        restartApplication();
-    }
-
-    public void restartApplication() {
-        int highScore = this.frame.writeHighScore(this.pacman.getPoints());
-        this.highScoreLabel.setText("High Score: "+highScore);
-        this.gameEventListener = null;
-        this.timer.stop();
-        this.pacman.getTimer().stop();
-        for(Ghost ghost : this.ghosts) {
-            ghost.getTimer().stop();
-        }
-        this.pacman.setDead(true);
-        this.inGame = false;
-        System.gc();
-        SoundPlayer.stopAll();
-        frame.initializeGameMenu();
-    }*/
-
-    /*private void update() {
-        if(this.pacmanStart && this.inGame){
-            boolean frightened = false;
-            boolean eaten = false;
-            this.pacman.move();
-            for(Ghost ghost : this.ghosts) {
-                ghost.move();
-                if(ghost.getState() == FRIGHTENED){
-                    frightened = true;
-                }
-                if(ghost.getState() == EATEN){
-                    eaten = true;
-                }
-            }
-            if(!this.pacman.isDead()){
-                SoundPlayer.playBackgroundMusic(frightened,eaten);
-            }
-            if(CoordManager.getMaze().getAlivePills() == 0){
-                SoundPlayer.stopAll();
-                endGame();
-            }
-        }else{
-            if(System.currentTimeMillis() >= (this.startTime + 1*4000)) { //multiply by 1000 to get milliseconds
-                SoundPlayer.removeMusic(DEATH);
-                SoundPlayer.removeMusic(GAME_START);
-                this.pacmanStart=true;
-                readyLabel.setText("");
-                levelLabel.setText("Level: "+level);
-                for(Ghost ghost : this.ghosts) {
-                    ghost.getTimer().start();
-                }
-                FruitManager.setGameStart();
-            }
-        }
-    }
-
-    private void endGame(){
-        System.out.println("fine livello");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        this.level++;
-        int highScore = this.frame.writeHighScore(this.pacman.getPoints());
-        this.highScoreLabel.setText("High Score: "+highScore);
-        FruitManager.chooseFruit(this.level);
-        CoordManager.populateMaze();
-        for(int i = 0; i< CoordManager.getMaze().getPillsNum(); i++){
-            CoordManager.getMaze().getPill(i).setDead(false);
-        }
-        restartLevel();
-    }*/
-
     public void keyPressed(KeyEvent e) {
         this.controller.keyPressed(e);
     }
 
     public void resumeGame(){
         this.controller.resumeGame();
+    }
+
+    public void restartApplication(){
+        this.controller.restartApplication();
     }
 
 }

@@ -146,7 +146,7 @@ public class GameMainFrame extends JFrame{
         return score;
     }
 
-    public int writeHighScore(int points){
+    public void writeHighScore(int points){
         if(points > this.highScore) {
             this.highScore = points;
             PrintWriter pw = null;
@@ -158,6 +158,5 @@ public class GameMainFrame extends JFrame{
                 e.printStackTrace();
             }
         }
-        return this.highScore;
     }
 }

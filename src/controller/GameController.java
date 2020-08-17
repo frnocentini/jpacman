@@ -87,15 +87,15 @@ public class GameController {
     }
 
     private void restartLevel(){
-        SoundPlayer.stopAll();
+        this.startTime = System.currentTimeMillis();
+        this.portalTime = System.currentTimeMillis();
         this.pacmanStart = false;
+        SoundPlayer.stopAll();
         levelString = "";
         readyString= "Ready!";
         System.out.println(level);
         this.inGame = true;
         this.munch = true;
-        this.startTime = System.currentTimeMillis();
-        this.portalTime = System.currentTimeMillis();
         FruitManager.setGameStart();
         this.pacman.returnToSpawnPoint();
         for(Ghost ghost : this.ghosts) {
@@ -104,6 +104,62 @@ public class GameController {
         }
         System.gc();
         timer.start();
+    }
+
+    public void doOneLoop() {
+        this.gamePanel.requestFocus();
+        update();
+        if(inGame){
+            this.gamePanel.repaint();
+        }else{
+            if(timer.isRunning()){
+                timer.stop();
+            }
+        }
+    }
+
+    private void update() {
+        if(this.pacmanStart && this.inGame){
+            boolean frightened = false;
+            boolean eaten = false;
+            this.pacman.move();
+            for(Ghost ghost : this.ghosts) {
+                ghost.move();
+                if(ghost.getState() == FRIGHTENED){
+                    frightened = true;
+                }
+                if(ghost.getState() == EATEN){
+                    eaten = true;
+                }
+            }
+            collisionFruit();
+            getExtraLife();
+            collisionPortals();
+            collisionPowerPills();
+            collisionPills();
+            killPacman();
+            collisionGhosts();
+            if(!this.pacman.isDead()){
+                this.playBackgroundMusic(frightened,eaten);
+            }
+            if(CoordManager.getMaze().getAlivePills() == 0){
+                SoundPlayer.stopAll();
+                endGame();
+            }
+
+        }else{
+            if(System.currentTimeMillis() >= (this.startTime + 1*4000)) { //multiply by 1000 to get milliseconds
+                SoundPlayer.removeMusic(DEATH);
+                SoundPlayer.removeMusic(GAME_START);
+                this.pacmanStart=true;
+                readyString = "";
+                levelString = "Level: "+level;
+                for(Ghost ghost : this.ghosts) {
+                    ghost.getTimer().start();
+                }
+                FruitManager.setGameStart();
+            }
+        }
     }
 
     private void collisionFruit() {
@@ -217,7 +273,7 @@ public class GameController {
         }
     }
 
-    private void collisionGhosts(Graphics g) {
+    private void collisionGhosts() {
         for(Ghost ghost : this.ghosts){
             if(!this.pacman.isDead()) {
                 if (CoordManager.checkCollision(pacman, ghost)) {
@@ -247,7 +303,7 @@ public class GameController {
     public void makeGameOver(){
         levelString = "";
         gameOverString = "Game Over!";
-        this.gameOverLabel.paintImmediately(this.gameOverLabel.getVisibleRect());
+        this.gamePanel.showGameOver();
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -257,9 +313,7 @@ public class GameController {
     }
 
     public void restartApplication() {
-        int highScore = this.frame.writeHighScore(this.pacman.getPoints());
-        this.highScoreLabel.setText("High Score: "+highScore);
-        this.gameEventListener = null;
+        this.frame.writeHighScore(this.pacman.getPoints());
         this.timer.stop();
         this.pacman.getTimer().stop();
         for(Ghost ghost : this.ghosts) {
@@ -272,55 +326,6 @@ public class GameController {
         frame.initializeGameMenu();
     }
 
-    public void doOneLoop() {
-        this.gamePanel.requestFocus();
-        update();
-        if(inGame){
-            this.gamePanel.repaint();
-        }else{
-            if(timer.isRunning()){
-                timer.stop();
-            }
-        }
-    }
-
-    private void update() {
-        if(this.pacmanStart && this.inGame){
-            boolean frightened = false;
-            boolean eaten = false;
-            this.pacman.move();
-            for(Ghost ghost : this.ghosts) {
-                ghost.move();
-                if(ghost.getState() == FRIGHTENED){
-                    frightened = true;
-                }
-                if(ghost.getState() == EATEN){
-                    eaten = true;
-                }
-            }
-            if(!this.pacman.isDead()){
-                SoundPlayer.playBackgroundMusic(frightened,eaten);
-            }
-            if(CoordManager.getMaze().getAlivePills() == 0){
-                SoundPlayer.stopAll();
-                endGame();
-            }
-
-        }else{
-            if(System.currentTimeMillis() >= (this.startTime + 1*4000)) { //multiply by 1000 to get milliseconds
-                SoundPlayer.removeMusic(DEATH);
-                SoundPlayer.removeMusic(GAME_START);
-                this.pacmanStart=true;
-                readyLabel.setText("");
-                levelLabel.setText("Level: "+level);
-                for(Ghost ghost : this.ghosts) {
-                    ghost.getTimer().start();
-                }
-                FruitManager.setGameStart();
-            }
-        }
-    }
-
     private void endGame(){
         System.out.println("fine livello");
         try {
@@ -329,8 +334,7 @@ public class GameController {
             e.printStackTrace();
         }
         this.level++;
-        int highScore = this.frame.writeHighScore(this.pacman.getPoints());
-        this.highScoreLabel.setText("High Score: "+highScore);
+        this.frame.writeHighScore(this.pacman.getPoints());
         FruitManager.chooseFruit(this.level);
         CoordManager.populateMaze();
         for(int i = 0; i< CoordManager.getMaze().getPillsNum(); i++){
@@ -368,6 +372,27 @@ public class GameController {
         for(Ghost ghost : this.ghosts) {
             ghost.resume();
             ghost.getTimer().start();
+        }
+    }
+
+    public static void playBackgroundMusic(boolean frightened, boolean eaten) {
+        // A seconda delle condizioni dei fantasmi o delle pillole viene riprodotto un loop
+        if(eaten){
+            SoundPlayer.loopEffect(EATEN_SOUND);
+        } else if (frightened){
+            SoundPlayer.loopEffect(FRIGHT_SOUND);
+        }else if(CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 4/5){
+            SoundPlayer.loopEffect(SIREN_1);
+        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 3/5) {
+            SoundPlayer.loopEffect(SIREN_2);
+        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 2/5) {
+            SoundPlayer.loopEffect(SIREN_3);
+        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() / 5) {
+            SoundPlayer.loopEffect(SIREN_4);
+        } else if (CoordManager.getMaze().getAlivePills() > 0) {
+            SoundPlayer.loopEffect(SIREN_5);
+        } else if (CoordManager.getMaze().getAlivePills() == 0){
+            SoundPlayer.stopAll();
         }
     }
 
