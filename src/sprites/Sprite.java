@@ -4,7 +4,7 @@ import utility.Direction;
 
 import java.awt.*;
 
-public class Sprite {
+public abstract class Sprite {
 
     protected Image image;
     protected boolean dead;

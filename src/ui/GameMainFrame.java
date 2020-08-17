@@ -1,6 +1,7 @@
 package ui;
 
 import constants.Constants;
+import controller.MainFrameController;
 import image.Image;
 import image.ImageFactory;
 import sound.SoundPlayer;
@@ -15,6 +16,7 @@ public class GameMainFrame extends JFrame{
     private int level;
     private int lives;
     private int highScore;
+    private MainFrameController controller;
     private JLayeredPane layeredPane;
     private MenuPanel menuPanel;
     private BGPanel bgPanel;
@@ -22,8 +24,9 @@ public class GameMainFrame extends JFrame{
     private PausePanel pausePanel;
 
     public GameMainFrame(){
+        this.controller = new MainFrameController(this);
         // Registriamo nell'ambiente grafico un font preso da un file .ttf
-        registerFont();
+        this.controller.registerFont();
         // Inizializiamo la classe che si occupa dei suoni
         SoundPlayer.initialize();
         level = Constants.START_LEVEL;
@@ -34,19 +37,6 @@ public class GameMainFrame extends JFrame{
         this.highScore = this.readHighScore();
         // Avviamo il metodo
         initializeGameMenu();
-    }
-
-    private void registerFont(){
-        Font f = null;
-        try {
-            f = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARMA_FONT));
-        } catch (FontFormatException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(f);
     }
 
     public void initializeGameMenu() {
@@ -126,37 +116,18 @@ public class GameMainFrame extends JFrame{
     }
 
     public int readHighScore(){
-        int score = 0;
-        // Leggiamo il file dell'highscore
-        File f = new File(Constants.HIGHSCORES);
-        try {
-            Scanner sc = new Scanner(f);
-            score = sc.nextInt();
-        } catch (FileNotFoundException e) {
-            // Se non esiste lo creiamo con il valore "0" al suo interno
-            try {
-                f.createNewFile();
-                PrintWriter pw = new PrintWriter(f);
-                pw.print(0);
-                pw.flush();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
-        return score;
+        return this.controller.readHighScore();
     }
 
     public void writeHighScore(int points){
-        if(points > this.highScore) {
-            this.highScore = points;
-            PrintWriter pw = null;
-            try {
-                pw = new PrintWriter(new File(Constants.HIGHSCORES));
-                pw.print(points);
-                pw.flush();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+        this.controller.writeHighScore(points);
+    }
+
+    public int getHighScore() {
+        return highScore;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
     }
 }
