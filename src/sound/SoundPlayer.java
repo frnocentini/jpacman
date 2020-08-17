@@ -92,17 +92,17 @@ public class SoundPlayer {
             SoundPlayer.loopEffect(EATEN_SOUND);
         } else if (frightened){
             SoundPlayer.loopEffect(FRIGHT_SOUND);
-        }else if(CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() * 4/5){
+        }else if(CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 4/5){
             SoundPlayer.loopEffect(SIREN_1);
-        } else if (CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() * 3/5) {
+        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 3/5) {
             SoundPlayer.loopEffect(SIREN_2);
-        } else if (CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() * 2/5) {
+        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() * 2/5) {
             SoundPlayer.loopEffect(SIREN_3);
-        } else if (CoordManager.maze.getAlivePills() > CoordManager.maze.getPillsNum() / 5) {
+        } else if (CoordManager.getMaze().getAlivePills() > CoordManager.getMaze().getPillsNum() / 5) {
             SoundPlayer.loopEffect(SIREN_4);
-        } else if (CoordManager.maze.getAlivePills() > 0) {
+        } else if (CoordManager.getMaze().getAlivePills() > 0) {
             SoundPlayer.loopEffect(SIREN_5);
-        } else if (CoordManager.maze.getAlivePills() == 0){
+        } else if (CoordManager.getMaze().getAlivePills() == 0){
             SoundPlayer.stopAll();
         }
     }

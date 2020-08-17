@@ -20,20 +20,21 @@ import static utility.State.*;
 
 public class GamePanel extends JPanel {
 
-    private GameMainFrame frame;
-    private GameEventListener gameEventListener;
-    private Pacman pacman;
-    private ArrayList<Ghost> ghosts;
-    boolean inGame;
-    private Timer timer;
-    private boolean pacmanStart;
-    private long startTime;
-    private long portalTime;
-    private int level;
-    private int lives;
-    private int lifeCounter;
-    private boolean munch;
-    private int consecutiveGhosts;
+    private GameMainFrame frame;                    // Riferimento al nostro JFrame
+    private GameEventListener gameEventListener;    // Listener della tastiera
+    private Pacman pacman;                          // Oggetto che rappresenta Pacman
+    private ArrayList<Ghost> ghosts;                // ArrayList che contiene i fantasmi
+    private boolean inGame;                         // Comunica ad alcuni controlli se in gioco è attivo o meno
+    private boolean munch;                          // Gestisce i suoni alternati "waka-waka"
+    private boolean pacmanDead;                     // Comunica se Pacman era morto nel ciclo prcedente
+    private boolean pacmanStart;                    // Comunica che la partita si è avviata (passati 4 sec.)
+    private Timer timer;                            // Timer che scandisce i cicli update-repaint
+    private long startTime;                         // Orario in cui è inizata la partita (4 sec. inclusi)
+    private long portalTime;                        // Orario dell'ultima volta che si è attivato un portale
+    private int level;                              // Livello del gioco
+    private int lives;                              // Vite rimanenti
+    private int lifeCounter;                        // Prossimo migliaio in cui dovrà scattare una vita extra
+    private int consecutiveGhosts;                  // Conta quanti fantasmi si sono mangiati dopo una singola PowerPill
     private ImageIcon smallPanel;
     private JLabel pointsLabel;
     private JLabel readyLabel;
@@ -43,7 +44,6 @@ public class GamePanel extends JPanel {
     private JLabel livesLabel;
     private JLabel livesNumLabel;
     private ArrayList<ImageIcon> livesIcons;
-    private boolean pacmanDead;
 
     public GamePanel(GameMainFrame frame, int level, int highScore, int lives){
         this.frame = frame;
@@ -214,8 +214,8 @@ public class GamePanel extends JPanel {
     }
 
     private void drawPortals(Graphics g) {
-        Portal bluePortal = CoordManager.maze.getBluePortal();
-        Portal redPortal = CoordManager.maze.getRedPortal();
+        Portal bluePortal = CoordManager.getMaze().getBluePortal();
+        Portal redPortal = CoordManager.getMaze().getRedPortal();
         g.drawImage(bluePortal.getImage(), bluePortal.getX(), bluePortal.getY(), this);
         g.drawImage(redPortal.getImage(), redPortal.getX(), redPortal.getY(), this);
         //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
@@ -249,12 +249,12 @@ public class GamePanel extends JPanel {
     }
 
     private void drawPowerPills(Graphics g) {
-        for(int i = 0; i< CoordManager.maze.getPowerPillsNum(); i++){
-            PowerPill pp = CoordManager.maze.getPowerPill(i);
+        for(int i = 0; i< CoordManager.getMaze().getPowerPillsNum(); i++){
+            PowerPill pp = CoordManager.getMaze().getPowerPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
             if(CoordManager.checkCollision(pacman,pp)){
                 if(!pp.isDead()){
-                    CoordManager.maze.removeAlivePowerPill();
+                    CoordManager.getMaze().removeAlivePowerPill();
                     this.pacman.addPoints(pp.getPoints());
                     this.consecutiveGhosts = 0;
                     for(Ghost ghost : this.ghosts) {
@@ -272,12 +272,12 @@ public class GamePanel extends JPanel {
     }
 
     private void drawPills(Graphics g) {
-        for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
-            Pill p = CoordManager.maze.getPill(i);
+        for(int i = 0; i< CoordManager.getMaze().getPillsNum(); i++){
+            Pill p = CoordManager.getMaze().getPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
             if(CoordManager.checkCollision(pacman,p)){
                 if(!p.isDead()){
-                    CoordManager.maze.removeAlivePill();
+                    CoordManager.getMaze().removeAlivePill();
                     this.pacman.addPoints(p.getPoints());
                     if(munch){
                         SoundPlayer.playEffect(MUNCH_1);
@@ -296,11 +296,15 @@ public class GamePanel extends JPanel {
 
     private void drawPacman(Graphics g) {
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), this);
+        // Se Pacman era morto nell'ultima rilevazione (lo scorso ciclo)
         if(pacmanDead){
+            // Se ora Pacman ha finito l'animazione di morte ed è tornato vivo...
             if(!this.pacman.isDead()){
                 pacmanDead = false;
+                // Scaliamo una vita
                 this.lives--;
                 livesIcons.remove(0);
+                // Se le vite sono a 0 Game Over, altrimenti riparte il livello
                 if (this.lives == 0) {
                     makeGameOver();
                 }else{
@@ -391,7 +395,7 @@ public class GamePanel extends JPanel {
             if(!this.pacman.isDead()){
                 SoundPlayer.playBackgroundMusic(frightened,eaten);
             }
-            if(CoordManager.maze.getAlivePills() == 0){
+            if(CoordManager.getMaze().getAlivePills() == 0){
                 SoundPlayer.stopAll();
                 endGame();
             }
@@ -422,8 +426,8 @@ public class GamePanel extends JPanel {
         this.highScoreLabel.setText("High Score: "+highScore);
         FruitManager.chooseFruit(this.level);
         CoordManager.populateMaze();
-        for(int i = 0; i< CoordManager.maze.getPillsNum(); i++){
-            CoordManager.maze.getPill(i).setDead(false);
+        for(int i = 0; i< CoordManager.getMaze().getPillsNum(); i++){
+            CoordManager.getMaze().getPill(i).setDead(false);
         }
         restartLevel();
     }

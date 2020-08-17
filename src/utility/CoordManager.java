@@ -13,31 +13,32 @@ import java.io.*;
 
 public class CoordManager {
 
-    public static Maze maze;
+    private static Maze maze; // Oggetto che corrisponde alla matrice di char del Maze
 
+    // Crea la matrice di char corrispondente al labirinto
     public static void createMaze(int mazeNum) {
         char[][] inputMaze = new char[21][19];
         try {
             // IDE
             FileReader lvlFile = new FileReader(new File(Constants.MAZES_DIR+"maze"+mazeNum+".txt"));
-            BufferedReader br = new BufferedReader(lvlFile);  //Creation of BufferedReader object
+            BufferedReader br = new BufferedReader(lvlFile);
             // JAR
             //BufferedReader br = new BufferedReader(new InputStreamReader(CoordManager.class.getClassLoader().getResourceAsStream("resources/mazes/maze"+mazeNum+".txt")));
             int c,i,j;
-            c = i = j = 0;
+            i = j = 0;
             while((c = br.read()) != -1){
-                char character = (char) c;          //converting integer to char
+                // converto l'integer in un char
+                char character = (char) c;
                 if(character == '\n'){
                     i++;
                     j = 0;
-                }else{
-                    if(character != '\r'){
-                        inputMaze[i][j] = character;
-                        j++;
-                    }
+                }else if(character != '\r'){
+                    // La newline è \n\r perciò controllo solo \n e ignoro \r
+                    inputMaze[i][j] = character;
+                    j++;
                 }
             }
-            CoordManager.maze = new Maze(inputMaze);
+            CoordManager.maze = new Maze(inputMaze); // Crea l'attributo Maze
         } catch (FileNotFoundException e) {
             System.err.println("Il file del livello non è stato trovato");
             e.printStackTrace();
@@ -158,5 +159,9 @@ public class CoordManager {
 
     public static boolean checkCircleCollision(Sprite a, int x, int y, double length){
         return checkCircleCollision(a,new Coordinate(x,y),length);
+    }
+
+    public static Maze getMaze() {
+        return maze;
     }
 }

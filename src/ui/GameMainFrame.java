@@ -78,12 +78,11 @@ public class GameMainFrame extends JFrame{
         this.bgPanel = new BGPanel(new GridLayout(21, 19),mazeNum);
         //Sottoclasse di JPanel dove posizioniamo le entità della mappa (Pac-Man, fantasmi, frutta, ecc...)
         this.gamePanel = new GamePanel(this, this.level, this.highScore, this.lives);
-        this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
         //Imposto la grandezza del background e lo inserisco nello strato più basso del layeredPane
         bgPanel.setBounds(0, 0, Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE);
         layeredPane.add(bgPanel, JLayeredPane.DEFAULT_LAYER);
 
-        //Imposto la trasparenza la grandezza del gamePanel e lo inserisco nello strato successivo del layeredPane
+        //Imposto la trasparenza  e la grandezza del gamePanel e lo inserisco nello strato successivo del layeredPane
         gamePanel.setOpaque(false);
         gamePanel.setBounds(0, 0, Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40);
         layeredPane.add(gamePanel, JLayeredPane.PALETTE_LAYER);

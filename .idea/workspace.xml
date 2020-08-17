@@ -33,12 +33,12 @@
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/ImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/ImageFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/callbacks/GameEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/callbacks/GameEventListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sound/SoundPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/SoundPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/BGPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/BGPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/GameMainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameMainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/CoordManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/CoordManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +136,7 @@
       <workItem from="1597487560027" duration="781000" />
       <workItem from="1597568490169" duration="1084000" />
       <workItem from="1597583473946" duration="12968000" />
-      <workItem from="1597652815467" duration="5074000" />
+      <workItem from="1597652815467" duration="10771000" />
     </task>
     <servers />
   </component>
@@ -168,10 +168,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="725" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1597154159205" />
-    <state x="612" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1597590403867">
+    <state x="612" y="162" key="#com.intellij.ide.util.MemberChooser" timestamp="1597668635397">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="612" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1597590403867" />
+    <state x="612" y="162" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1597668635397" />
     <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1597241865034" />
     <state x="690" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1597066067049">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -181,25 +181,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597085310767" />
-    <state width="1493" height="270" key="GridCell.Tab.0.bottom" timestamp="1597660034194">
+    <state width="1493" height="270" key="GridCell.Tab.0.bottom" timestamp="1597668774200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597660034194" />
+    <state width="1493" height="270" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597668774200" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="270" key="GridCell.Tab.0.center" timestamp="1597660034194">
+    <state width="1493" height="270" key="GridCell.Tab.0.center" timestamp="1597668774200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597660034194" />
+    <state width="1493" height="270" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597668774200" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="270" key="GridCell.Tab.0.left" timestamp="1597660034194">
+    <state width="1493" height="270" key="GridCell.Tab.0.left" timestamp="1597668774200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597660034194" />
+    <state width="1493" height="270" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597668774200" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="270" key="GridCell.Tab.0.right" timestamp="1597660034194">
+    <state width="1493" height="270" key="GridCell.Tab.0.right" timestamp="1597668774200">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="270" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597660034194" />
+    <state width="1493" height="270" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597668774200" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1597335912314">
       <screen x="0" y="0" width="1536" height="824" />
