@@ -1,5 +1,6 @@
 package callbacks;
 
+import controller.GameController;
 import ui.GamePanel;
 
 import java.awt.event.ActionEvent;
@@ -7,14 +8,14 @@ import java.awt.event.ActionListener;
 
 public class GameLoop implements ActionListener {
 
-    private GamePanel gamePanel;
+    private GameController gameController;
 
-    public GameLoop(GamePanel gamePanel){
-        this.gamePanel = gamePanel;
+    public GameLoop(GameController gameController){
+        this.gameController = gameController;
     }
 
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        this.gamePanel.doOneLoop();
+        this.gameController.doOneLoop();
     }
 }

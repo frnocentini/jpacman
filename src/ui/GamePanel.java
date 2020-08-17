@@ -1,42 +1,30 @@
 package ui;
 
 import callbacks.GameEventListener;
-import callbacks.GameLoop;
 import constants.Constants;
+import controller.GameController;
+import spriteManagers.FruitManager;
 import image.Image;
 import image.ImageFactory;
-import model.*;
-import sound.SoundPlayer;
+import sprites.Fruit;
+import sprites.Ghost;
+import sprites.Pacman;
+import sprites.Pill;
+import sprites.Portal;
+import sprites.PowerPill;
 import utility.CoordManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
-import static java.awt.event.KeyEvent.VK_ENTER;
-import static sound.Sound.*;
-import static utility.State.*;
-
 public class GamePanel extends JPanel {
 
     private GameMainFrame frame;                    // Riferimento al nostro JFrame
+    private GameController controller;
     private GameEventListener gameEventListener;    // Listener della tastiera
-    private Pacman pacman;                          // Oggetto che rappresenta Pacman
-    private ArrayList<Ghost> ghosts;                // ArrayList che contiene i fantasmi
-    private boolean inGame;                         // Comunica ad alcuni controlli se in gioco è attivo o meno
-    private boolean munch;                          // Gestisce i suoni alternati "waka-waka"
-    private boolean pacmanDead;                     // Comunica se Pacman era morto nel ciclo prcedente
-    private boolean pacmanStart;                    // Comunica che la partita si è avviata (passati 4 sec.)
-    private Timer timer;                            // Timer che scandisce i cicli update-repaint
-    private long startTime;                         // Orario in cui è inizata la partita (4 sec. inclusi)
-    private long portalTime;                        // Orario dell'ultima volta che si è attivato un portale
-    private int level;                              // Livello del gioco
-    private int lives;                              // Vite rimanenti
-    private int lifeCounter;                        // Prossimo migliaio in cui dovrà scattare una vita extra
-    private int consecutiveGhosts;                  // Conta quanti fantasmi si sono mangiati dopo una singola PowerPill
-    private ImageIcon smallPanel;
-    private JLabel pointsLabel;
+    private ImageIcon smallPanel;                   // Immagine del pannelo inferiore
+    private JLabel pointsLabel;                     //
     private JLabel readyLabel;
     private JLabel gameOverLabel;
     private JLabel levelLabel;
@@ -47,56 +35,34 @@ public class GamePanel extends JPanel {
 
     public GamePanel(GameMainFrame frame, int level, int highScore, int lives){
         this.frame = frame;
-        initializeVariables(level,highScore,lives);
+        this.controller = new GameController(frame,this,level,highScore,lives);
+        initializeVariables();
         initializeLayout();
     }
 
-    private void initializeVariables(int level, int highScore, int lives) {
-        CoordManager.populateMaze();
-        this.lifeCounter = 1;
-        this.level = level;
-        this.lives = lives;
-        System.out.println(level);
-        this.inGame = true;
-        this.pacmanStart = false;
-        this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
-        this.timer.start();
-        this.munch = true;
-        SoundPlayer.stopAll();
-        SoundPlayer.playMusic(GAME_START);
-        this.startTime = this.portalTime = System.currentTimeMillis();
-        FruitManager.setGameStart();
-        this.pacman = new Pacman();
-        this.ghosts = new ArrayList<>();
-        Pinky pinky = new Pinky(this.pacman);
-        Blinky blinky = new Blinky(this.pacman);
-        Inky inky = new Inky(this.pacman,blinky);
-        Clyde clyde = new Clyde(this.pacman);
-        this.ghosts.add(clyde);
-        this.ghosts.add(inky);
-        this.ghosts.add(pinky);
-        this.ghosts.add(blinky);
-        this.levelLabel = new JLabel("");
+    private void initializeVariables() {
+        this.levelLabel = new JLabel(controller.getLevelString());
         levelLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         levelLabel.setBounds(165,420,100,20);
         levelLabel.setForeground(Color.WHITE);
         add(levelLabel);
-        this.pointsLabel = new JLabel("Points: "+this.pacman.getPoints());
+        int points = this.controller.getPoints();
+        this.pointsLabel = new JLabel("Points: "+points);;
         pointsLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         pointsLabel.setBounds(10,420,200,20);
         pointsLabel.setForeground(Color.WHITE);
         add(pointsLabel);
-        this.highScoreLabel = new JLabel("High Score: "+highScore);
+        this.highScoreLabel = new JLabel(controller.getHighScoreString());
         highScoreLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         highScoreLabel.setBounds(10,438,200,20);
         highScoreLabel.setForeground(Color.WHITE);
         add(highScoreLabel);
-        this.readyLabel = new JLabel("Ready!");
+        this.readyLabel = new JLabel(controller.getReadyString());
         readyLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         readyLabel.setBounds(173,420,100,20);
         readyLabel.setForeground(Color.YELLOW);
         add(readyLabel);
-        this.gameOverLabel = new JLabel("");
+        this.gameOverLabel = new JLabel(controller.getGameOverString());
         gameOverLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         gameOverLabel.setBounds(155,420,100,20);
         gameOverLabel.setForeground(Color.RED);
@@ -106,21 +72,19 @@ public class GamePanel extends JPanel {
         livesLabel.setBounds(165,438,100,20);
         livesLabel.setForeground(Color.WHITE);
         add(livesLabel);
-        this.livesNumLabel = new JLabel("");
+        this.livesNumLabel = new JLabel(controller.getLivesNumString());
         livesNumLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
         livesNumLabel.setBounds(220,438,100,20);
         livesNumLabel.setForeground(Color.WHITE);
         add(livesNumLabel);
         this.livesIcons = new ArrayList<>();
-        ImageIcon lifeIcon = ImageFactory.createImage(Image.LIFE);
-        for(int i=0;i<lives;i++){
+        ImageIcon lifeIcon = ImageFactory.createImage(image.Image.LIFE);
+        for(int i=0;i<this.controller.getLives();i++){
             livesIcons.add(lifeIcon);
         }
-        FruitManager.initialize();
-        FruitManager.chooseFruit(level);
     }
 
-    private void restartLevel(){
+    /*private void restartLevel(){
         SoundPlayer.stopAll();
         this.pacmanStart = false;
         levelLabel.setText("");
@@ -138,7 +102,7 @@ public class GamePanel extends JPanel {
         }
         System.gc();
         timer.start();
-    }
+    }*/
 
     private void initializeLayout() {
         this.gameEventListener = new GameEventListener(this);
@@ -157,34 +121,41 @@ public class GamePanel extends JPanel {
     }
 
     private void doDrawing(Graphics g){
-        if(inGame){
-            drawSmallPanel(g);
-            drawPoints();
-            drawLives(g);
-            drawPills(g);
-            drawPowerPills(g);
-            drawPortals(g);
-            drawFruit(g);
-            drawPacman(g);
-            drawGhosts(g);
-        } else{
-            if(timer.isRunning()){
-                timer.stop();
-            }
-        }
+        drawSmallPanel(g);
+        drawLives(g);
+        drawPills(g);
+        drawPowerPills(g);
+        drawPortals(g);
+        drawFruit(g);
+        drawPacman(g);
+        drawGhosts(g);
+        drawLabels();
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
     }
 
+    private void drawLabels() {
+        pointsLabel.setText("Points: "+this.controller.getPoints());
+        this.gameOverLabel.paintImmediately(this.gameOverLabel.getVisibleRect());
+        this.readyLabel.paintImmediately(this.readyLabel.getVisibleRect());
+        this.levelLabel.paintImmediately(this.levelLabel.getVisibleRect());
+        this.highScoreLabel.paintImmediately(this.highScoreLabel.getVisibleRect());
+        this.livesLabel.paintImmediately(this.livesLabel.getVisibleRect());
+    }
+
     private void drawLives(Graphics g) {
-        if(lives < 6){
+        livesIcons.clear();
+        for(int i=0;i<this.controller.getLives();i++){
+            livesIcons.add(ImageFactory.createImage(image.Image.LIFE));
+        }
+        if(this.controller.getLives() < 6){
             livesNumLabel.setText("");
             for(int i=0;i<this.livesIcons.size();i++){
                 g.drawImage(this.livesIcons.get(i).getImage(),205+(i*12),442,this);
             }
-        } else if (lives != 0) {
+        } else if (this.controller.getLives() != 0) {
             g.drawImage(this.livesIcons.get(0).getImage(),205,442,this);
-            livesNumLabel.setText(""+lives);
+            livesNumLabel.setText(""+this.controller.getLives());
         }
     }
 
@@ -196,20 +167,6 @@ public class GamePanel extends JPanel {
         Fruit f = FruitManager.getFruit();
         if(f != null){
             g.drawImage(f.getImage(), f.getX(), f.getY(), this);
-            if(CoordManager.checkCollision(pacman,f)){
-                f.setDead(true);
-                this.pacman.addPoints(f.getPoints());
-                SoundPlayer.playEffect(EAT_FRUIT);
-            }
-        }
-    }
-
-    private void drawPoints(){
-        pointsLabel.setText("Points: "+this.pacman.getPoints());
-        if(this.pacman.getPoints() >= 10000 * this.lifeCounter){
-            this.lives++;
-            this.livesIcons.add(ImageFactory.createImage(Image.LIFE));
-            this.lifeCounter++;
         }
     }
 
@@ -218,54 +175,13 @@ public class GamePanel extends JPanel {
         Portal redPortal = CoordManager.getMaze().getRedPortal();
         g.drawImage(bluePortal.getImage(), bluePortal.getX(), bluePortal.getY(), this);
         g.drawImage(redPortal.getImage(), redPortal.getX(), redPortal.getY(), this);
-        //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
-        //System.out.println("Le coordinate del blu sono: "+redPortal.getOther().getX()+" e "+redPortal.getOther().getY());
-        if(System.currentTimeMillis() >= (this.portalTime + 400) && !this.pacman.isDead()){
-            if(CoordManager.checkCollision(pacman,bluePortal)){
-                teleport(pacman,bluePortal);
-            }else if(CoordManager.checkCollision(pacman,redPortal)){
-                teleport(pacman,redPortal);
-            }else{
-                for(Ghost ghost : this.ghosts) {
-                    if (CoordManager.checkCollision(ghost, bluePortal)) {
-                        teleport(ghost, bluePortal);
-                    } else if (CoordManager.checkCollision(ghost, redPortal)) {
-                        teleport(ghost, redPortal);
-                    }
-                }
-            }
-        }
-    }
-
-    private void teleport(Sprite a, Portal p){
-        a.setX(p.getOther().getX());
-        a.setY(p.getOther().getY());
-        if(p.getColor().equals("BLUE")){
-            SoundPlayer.playEffect(BLUE_PORTAL_SOUND);
-        }else{
-            SoundPlayer.playEffect(RED_PORTAL_SOUND);
-        }
-        this.portalTime = System.currentTimeMillis();
     }
 
     private void drawPowerPills(Graphics g) {
         for(int i = 0; i< CoordManager.getMaze().getPowerPillsNum(); i++){
             PowerPill pp = CoordManager.getMaze().getPowerPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
-            if(CoordManager.checkCollision(pacman,pp)){
-                if(!pp.isDead()){
-                    CoordManager.getMaze().removeAlivePowerPill();
-                    this.pacman.addPoints(pp.getPoints());
-                    this.consecutiveGhosts = 0;
-                    for(Ghost ghost : this.ghosts) {
-                        if (ghost.getState() != EATEN) {
-                            ghost.becomeFrightened();
-                            System.out.println("Passo a frightened");
-                        }
-                    }
-                }
-                pp.setDead(true);
-            } else if(!pp.isDead()){
+            if(!pp.isDead()){
                 g.drawImage(pp.getImage(), pp.getX(), pp.getY(), this);
             }
         }
@@ -274,77 +190,28 @@ public class GamePanel extends JPanel {
     private void drawPills(Graphics g) {
         for(int i = 0; i< CoordManager.getMaze().getPillsNum(); i++){
             Pill p = CoordManager.getMaze().getPill(i);
-            // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
-            if(CoordManager.checkCollision(pacman,p)){
-                if(!p.isDead()){
-                    CoordManager.getMaze().removeAlivePill();
-                    this.pacman.addPoints(p.getPoints());
-                    if(munch){
-                        SoundPlayer.playEffect(MUNCH_1);
-                        munch = false;
-                    } else {
-                        SoundPlayer.playEffect(MUNCH_2);
-                        munch = true;
-                    }
-                }
-                p.setDead(true);
-            } else if(!p.isDead()){
+            if(!p.isDead()){
                 g.drawImage(p.getImage(), p.getX(), p.getY(), this);
             }
         }
     }
 
     private void drawPacman(Graphics g) {
+        Pacman pacman = this.controller.getPacman();
         g.drawImage(pacman.getImage(), pacman.getX(), pacman.getY(), this);
-        // Se Pacman era morto nell'ultima rilevazione (lo scorso ciclo)
-        if(pacmanDead){
-            // Se ora Pacman ha finito l'animazione di morte ed è tornato vivo...
-            if(!this.pacman.isDead()){
-                pacmanDead = false;
-                // Scaliamo una vita
-                this.lives--;
-                livesIcons.remove(0);
-                // Se le vite sono a 0 Game Over, altrimenti riparte il livello
-                if (this.lives == 0) {
-                    makeGameOver();
-                }else{
-                    restartLevel();
-                }
-            }
-        }
     }
 
     private void drawGhosts(Graphics g) {
-        for(Ghost ghost : this.ghosts){
-            if(!this.pacman.isDead()) {
+        ArrayList<Ghost> ghosts = this.controller.getGhosts();
+        Pacman pacman = this.controller.getPacman();
+        for(Ghost ghost : ghosts){
+            if(!pacman.isDead()) {
                 g.drawImage(ghost.getImage(), ghost.getX(), ghost.getY(), this);
-                if (CoordManager.checkCollision(pacman, ghost)) {
-                    switch (ghost.getState()) {
-                        case CHASE:
-                        case SCATTER:
-                            // fermare tutti i suoni
-                            SoundPlayer.stopAll();
-                            SoundPlayer.playEffect(DEATH);
-                            // rendiamo fantasmi invisibili
-                            // animazione + suono morte
-                            this.pacman.setDead(true);
-                            this.pacmanDead = true;
-                            break;
-                        case FRIGHTENED:
-                            ghost.becomeEaten();
-                            SoundPlayer.playEffect(EAT_GHOST);
-                            this.pacman.addPoints(ghost.getPoints() * (2 ^ this.consecutiveGhosts));
-                            this.consecutiveGhosts++;
-                            break;
-                    }
-                }
-            } else {
-                g.drawImage(null, ghost.getX(), ghost.getY(), this);
             }
         }
     }
 
-    public void makeGameOver(){
+    /*public void makeGameOver(){
         levelLabel.setText("");
         this.gameOverLabel.setText("Game Over!");
         this.gameOverLabel.paintImmediately(this.gameOverLabel.getVisibleRect());
@@ -370,15 +237,9 @@ public class GamePanel extends JPanel {
         System.gc();
         SoundPlayer.stopAll();
         frame.initializeGameMenu();
-    }
+    }*/
 
-    public void doOneLoop() {
-        this.requestFocus();
-        update();
-        repaint();
-    }
-
-    private void update() {
+    /*private void update() {
         if(this.pacmanStart && this.inGame){
             boolean frightened = false;
             boolean eaten = false;
@@ -430,41 +291,14 @@ public class GamePanel extends JPanel {
             CoordManager.getMaze().getPill(i).setDead(false);
         }
         restartLevel();
-    }
+    }*/
 
     public void keyPressed(KeyEvent e) {
-        if(inGame){
-            this.pacman.keyPressed(e);
-            int keyPressed = e.getKeyCode();
-            if(keyPressed == VK_ENTER){
-                if(timer.isRunning() && this.pacmanStart){
-                    pauseGame();
-                } else {
-                    resumeGame();
-                }
-            }
-        }
-    }
-
-    private void pauseGame() {
-        SoundPlayer.stopAll();
-        timer.stop();
-        for(Ghost ghost : this.ghosts) {
-            ghost.getTimer().stop();
-            ghost.pause();
-        }
-        frame.showPauseMenu();
+        this.controller.keyPressed(e);
     }
 
     public void resumeGame(){
-        timer.start();
-        for(Ghost ghost : this.ghosts) {
-            ghost.resume();
-            ghost.getTimer().start();
-        }
+        this.controller.resumeGame();
     }
 
-    public void keyReleased(KeyEvent e) {
-
-    }
 }

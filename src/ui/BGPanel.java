@@ -1,17 +1,12 @@
 package ui;
 
-import callbacks.GameEventListener;
 import constants.Constants;
 import image.Image;
 import image.ImageFactory;
-import model.Pacman;
-import model.Portal;
 import utility.CoordManager;
-import utility.Coordinate;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class BGPanel extends JPanel {
 

@@ -19,8 +19,4 @@ public class GameEventListener extends KeyAdapter {
         this.gamePanel.keyPressed(e);
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
-        this.gamePanel.keyReleased(e);
-    }
 }
