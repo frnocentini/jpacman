@@ -8,10 +8,8 @@ title __SPRITES's Class Diagram__\n
       }
       abstract class sprites.Character {
           {abstract} + addFrameManager()
-          + getSpawnPoint()
           {abstract} + move()
           + returnToSpawnPoint()
-          + setSpawnPoint()
       }
       class sprites.Clyde {
           + Clyde()
@@ -35,7 +33,6 @@ title __SPRITES's Class Diagram__\n
           + calcDist()
           + changeDir()
           + changeToRandDir()
-          + returnToSpawnPoint()
           {abstract} + setChaseTarget()
       }
       class sprites.Inky {
@@ -50,7 +47,6 @@ title __SPRITES's Class Diagram__\n
           + changeLoop()
           + doOneLoop()
           + keyPressed()
-          + returnToSpawnPoint()
       }
       class sprites.Pill {
           + Pill()

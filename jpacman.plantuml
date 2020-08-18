@@ -2,400 +2,172 @@
 
 title __JPACMAN's Class Diagram__\n
 
-  namespace  {
-    class RunJPacman {
-    }
-  }
-  
-
-  namespace  {
-    namespace onstants {
-      class constants.Constants {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace rameManagers {
+    /' namespace frameManagers {
       class frameManagers.FrameManager {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace rameManagers {
+    namespace frameManagers {
       class frameManagers.GhostFrameManager {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace rameManagers {
+    namespace frameManagers {
       class frameManagers.PacmanFrameManager {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace mage {
-      enum Image {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace mage {
-      class image.ImageFactory {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace eylisteners {
+    namespace keylisteners {
       class keylisteners.GameEventListener {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace eylisteners {
+    namespace keylisteners {
       class keylisteners.PauseEventListener {
       }
-    }
-  }
-  
-
-  namespace  {
-    namespace ogic {
+    } '/
+    namespace logic {
       class logic.GameLogic {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace ogic {
+    namespace logic {
       class logic.MainFrameLogic {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace ogic {
+    namespace logic {
       class logic.MenuLogic {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace oops {
+    /' namespace loops {
       class loops.GameLoop {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace oops {
+    namespace loops {
       class loops.GhostLoop {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace oops {
+    namespace loops {
       class loops.PacmanLoop {
       }
-    }
-  }
-  
-
-  namespace  {
-    namespace ound {
-      enum Sound {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace ound {
-      class sound.SoundClip {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace ound {
-      class sound.SoundFactory {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace ound {
-      class sound.SoundPlayer {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    } '/
+    namespace sprites {
       class sprites.Blinky {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       abstract class sprites.Character {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.Clyde {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       enum Direction {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.Fruit {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       abstract class sprites.Ghost {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.Inky {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.Pacman {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.Pill {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.Pinky {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.Portal {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       class sprites.PowerPill {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
+    namespace sprites {
       abstract class sprites.Sprite {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace prites {
-      enum State {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace tructure {
-      class structure.Coordinate {
-      }
-    }
-  }
-  
-
-  namespace  {
-    namespace tructure {
+    namespace structure {
       class structure.Maze {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace tructure {
+    namespace structure {
       class structure.MazeManager {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace i {
+    namespace ui {
       class ui.BGPanel {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace i {
+    namespace ui {
       class ui.GameMainFrame {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace i {
+    namespace ui {
       class ui.GamePanel {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace i {
+    namespace ui {
       class ui.MenuPanel {
       }
     }
-  }
-  
-
-  namespace  {
-    namespace i {
+    namespace ui {
       class ui.PausePanel {
       }
     }
-  }
   
 
-  frameManagers.GhostFrameManager -up-|> frameManagers.FrameManager
-  frameManagers.PacmanFrameManager -up-|> frameManagers.FrameManager
-  frameManagers.PacmanFrameManager o-- sprites.Pacman : pacman
-  keylisteners.GameEventListener -up-|> java.awt.event.KeyAdapter
-  keylisteners.GameEventListener o-- ui.GamePanel : gamePanel
-  keylisteners.PauseEventListener -up-|> java.awt.event.KeyAdapter
-  keylisteners.PauseEventListener o-- ui.PausePanel : board
-  logic.GameLogic o-- ui.GameMainFrame : frame
-  logic.GameLogic o-- ui.GamePanel : gamePanel
+  ' frameManagers.GhostFrameManager -up-|> frameManagers.FrameManager
+  ' frameManagers.PacmanFrameManager -up-|> frameManagers.FrameManager
   logic.GameLogic o-- structure.Maze : maze
   logic.GameLogic o-- sprites.Pacman : pacman
-  logic.MainFrameLogic o-- ui.GameMainFrame : frame
-  loops.GameLoop .up.|> java.awt.event.ActionListener
-  loops.GameLoop o-- logic.GameLogic : gameLogic
-  loops.GhostLoop .up.|> java.awt.event.ActionListener
-  loops.GhostLoop o-- sprites.State : backupState
-  loops.GhostLoop o-- sprites.Ghost : ghost
-  loops.PacmanLoop .up.|> java.awt.event.ActionListener
-  loops.PacmanLoop o-- sprites.Pacman : pacman
-  sound.SoundClip o-- sound.Sound : name
+  logic.GameLogic o-- sprites.Ghost : ghosts
+  ' loops.GameLoop o-- logic.GameLogic : gameLogic
+  ' loops.PacmanLoop o-- sprites.Pacman : pacman
   sprites.Blinky -up-|> sprites.Ghost
   sprites.Character -up-|> sprites.Sprite
-  sprites.Character o-- structure.Coordinate : spawnPoint
   sprites.Clyde -up-|> sprites.Ghost
   sprites.Fruit -up-|> sprites.Sprite
   sprites.Ghost -up-|> sprites.Character
-  sprites.Ghost o-- frameManagers.GhostFrameManager : frameManager
-  sprites.Ghost o-- loops.GhostLoop : ghostLoop
+  ' sprites.Ghost o-- frameManagers.GhostFrameManager : frameManager
+  ' sprites.Ghost o-- loops.GhostLoop : ghostLoop
   sprites.Ghost o-- sprites.Pacman : pacman
-  sprites.Ghost o-- structure.Coordinate : scatterTarget
-  sprites.Ghost o-- sprites.State : state
-  sprites.Ghost o-- structure.Coordinate : target
   sprites.Inky -up-|> sprites.Ghost
   sprites.Inky o-- sprites.Blinky : blinky
   sprites.Pacman -up-|> sprites.Character
-  sprites.Pacman o-- frameManagers.PacmanFrameManager : frameManager
+  ' sprites.Pacman o-- frameManagers.PacmanFrameManager : frameManager
   sprites.Pill -up-|> sprites.Sprite
   sprites.Pinky -up-|> sprites.Ghost
   sprites.Portal -up-|> sprites.Sprite
   sprites.Portal o-- sprites.Portal : other
   sprites.PowerPill -up-|> sprites.Sprite
   sprites.Sprite o-- sprites.Direction : dir
-  structure.Maze o-- sprites.Portal : bluePortal
-  structure.Maze o-- sprites.Portal : redPortal
-  ui.BGPanel -up-|> javax.swing.JPanel
-  ui.GameMainFrame -up-|> javax.swing.JFrame
+  structure.Maze o-- sprites.Portal : bluePortal / redPortal
+  structure.Maze o-- sprites.Pill : pills
+  structure.Maze o-- sprites.Fruit : fruit
+  structure.Maze o-- sprites.PowerPill : powerPills
   ui.GameMainFrame o-- ui.BGPanel : bgPanel
   ui.GameMainFrame o-- ui.GamePanel : gamePanel
-  ui.GameMainFrame o-- logic.MainFrameLogic : logic
   ui.GameMainFrame o-- ui.MenuPanel : menuPanel
   ui.GameMainFrame o-- ui.PausePanel : pausePanel
-  ui.GamePanel -up-|> javax.swing.JPanel
-  ui.GamePanel o-- ui.GameMainFrame : frame
-  ui.GamePanel o-- keylisteners.GameEventListener : gameEventListener
+  ui.GameMainFrame o-- logic.MainFrameLogic : logic
+  ' ui.GamePanel o-- keylisteners.GameEventListener : gameEventListener
   ui.GamePanel o-- logic.GameLogic : logic
-  ui.MenuPanel -up-|> javax.swing.JPanel
-  ui.MenuPanel o-- ui.GameMainFrame : gameMainFrame
   ui.MenuPanel o-- logic.MenuLogic : logic
-  ui.PausePanel -up-|> javax.swing.JPanel
-  ui.PausePanel o-- ui.GameMainFrame : gameMainFrame
-  ui.PausePanel o-- keylisteners.PauseEventListener : pauseEventListener
+  ' ui.PausePanel o-- keylisteners.PauseEventListener : pauseEventListener
 
 
-right footer
 
-
-PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
-For more information about this tool, please contact philippe.mesmeur@gmail.com
-endfooter
 
 @enduml
