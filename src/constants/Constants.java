@@ -20,6 +20,8 @@ public class Constants {
     public static final int FRUIT_HEIGHT = 20;
     public static final int START_LIVES = 8;
     public static final int START_LEVEL = 1;
+    public static final int MAZE_LENGTH = 21;
+    public static final int MAZE_WIDTH = 19;
 
     //speed of the application
     public static final int GAME_SPEED = 10;

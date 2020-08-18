@@ -159,22 +159,22 @@ public class GamePanel extends JPanel {
     }
 
     public void drawFruit(Graphics g) {
-        Fruit f = MazeManager.getMaze().getFruit();
+        Fruit f = this.logic.getMaze().getFruit();
         if(f != null){
             g.drawImage(f.getImage(), f.getX(), f.getY(), this);
         }
     }
 
     public void drawPortals(Graphics g) {
-        Portal bluePortal = MazeManager.getMaze().getBluePortal();
-        Portal redPortal = MazeManager.getMaze().getRedPortal();
+        Portal bluePortal = this.logic.getMaze().getBluePortal();
+        Portal redPortal = this.logic.getMaze().getRedPortal();
         g.drawImage(bluePortal.getImage(), bluePortal.getX(), bluePortal.getY(), this);
         g.drawImage(redPortal.getImage(), redPortal.getX(), redPortal.getY(), this);
     }
 
     public void drawPowerPills(Graphics g) {
-        for(int i = 0; i< MazeManager.getMaze().getPowerPillsNum(); i++){
-            PowerPill pp = MazeManager.getMaze().getPowerPill(i);
+        for(int i = 0; i< this.logic.getMaze().getPowerPillsNum(); i++){
+            PowerPill pp = this.logic.getMaze().getPowerPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
             if(!pp.isDead()){
                 g.drawImage(pp.getImage(), pp.getX(), pp.getY(), this);
@@ -183,8 +183,8 @@ public class GamePanel extends JPanel {
     }
 
     public void drawPills(Graphics g) {
-        for(int i = 0; i< MazeManager.getMaze().getPillsNum(); i++){
-            Pill p = MazeManager.getMaze().getPill(i);
+        for(int i = 0; i< this.logic.getMaze().getPillsNum(); i++){
+            Pill p = this.logic.getMaze().getPill(i);
             if(!p.isDead()){
                 g.drawImage(p.getImage(), p.getX(), p.getY(), this);
             }

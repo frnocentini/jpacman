@@ -1,0 +1,75 @@
+@startuml
+
+title __UI's Class Diagram__\n
+
+namespace ui {
+      class ui.BGPanel {
+          + BGPanel()
+          + initializeMaze()
+          + paintComponent()
+      }
+      class ui.GameMainFrame {
+          - layeredPane : JLayeredPane
+          + GameMainFrame()
+          + getHighScore()
+          + initializeGameMenu()
+          + initializeLayout()
+          + quitGame()
+          + readHighScore()
+          + resumeGame()
+          + setHighScore()
+          + showPauseMenu()
+          + writeHighScore()
+      }
+      class ui.GamePanel {
+          + GamePanel()
+          + doDrawing()
+          + drawFruit()
+          + drawGhosts()
+          + drawLabels()
+          + drawLives()
+          + drawPacman()
+          + drawPills()
+          + drawPortals()
+          + drawPowerPills()
+          + drawSmallPanel()
+          + initializeLabels()
+          + initializeLayout()
+          + keyPressed()
+          + restartApplication()
+          + resumeGame()
+          + showGameOver()
+          + paintComponent()
+      }
+      class ui.MenuPanel {
+          + MenuPanel()
+          + doDrawing()
+          + drawLayout()
+          + paintComponent()
+      }
+
+      class ui.PausePanel {
+          + PausePanel()
+          + doDrawing()
+          + drawLayout()
+          + keyPressed()
+          + paintComponent()
+      }
+    }
+  
+
+  ui.GameMainFrame o-- ui.BGPanel : bgPanel
+  ui.GameMainFrame o-- ui.GamePanel : gamePanel
+  ui.GameMainFrame o-- logic.MainFrameLogic : logic
+  ui.GameMainFrame o-- ui.MenuPanel : menuPanel
+  ui.GameMainFrame o-- ui.PausePanel : pausePanel
+  ui.GamePanel o-- ui.GameMainFrame : frame
+  ui.GamePanel o-- keylisteners.GameEventListener : gameEventListener
+  ui.GamePanel o-- logic.GameLogic : logic
+  ui.MenuPanel o-- ui.GameMainFrame : gameMainFrame
+  ui.MenuPanel o-- logic.MenuLogic : logic
+  ui.PausePanel o-- ui.GameMainFrame : gameMainFrame
+  ui.PausePanel o-- keylisteners.PauseEventListener : pauseEventListener
+
+
+@enduml

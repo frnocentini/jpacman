@@ -1,0 +1,266 @@
+@startuml
+
+title __SPRITES's Class Diagram__\n
+
+  namespace  {
+    namespace prites {
+      class sprites.Blinky {
+          + Blinky()
+          + addFrameManager()
+          + setChaseTarget()
+          - initialize()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      abstract class sprites.Character {
+          {abstract} + addFrameManager()
+          + getSpawnPoint()
+          {abstract} + move()
+          + returnToSpawnPoint()
+          + setSpawnPoint()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.Clyde {
+          + Clyde()
+          + addFrameManager()
+          + setChaseTarget()
+          - initialize()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      enum Direction {
+        DOWN
+        LEFT
+        RIGHT
+        UP
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.Fruit {
+          + Fruit()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      abstract class sprites.Ghost {
+          # frightTime : long
+          # pauseClock : long
+          # pausedTime : long
+          # timer : Timer
+          + Ghost()
+          + becomeEaten()
+          + becomeFrightened()
+          + calcDist()
+          + changeDir()
+          + changeToRandDir()
+          + getFrightTime()
+          + getPacman()
+          + getPausedTime()
+          + getScatterTarget()
+          + getState()
+          + getTarget()
+          + getTimer()
+          + move()
+          + pause()
+          + resume()
+          + returnToSpawnPoint()
+          {abstract} + setChaseTarget()
+          + setFrightTime()
+          + setPacman()
+          + setPausedTime()
+          + setScatterTarget()
+          + setState()
+          + setTarget()
+          + setTarget()
+          + setTimer()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.Inky {
+          + Inky()
+          + addFrameManager()
+          + setChaseTarget()
+          - initialize()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.Pacman {
+          - keyPressed : int
+          - lives : int
+          - timer : Timer
+          + Pacman()
+          + addFrameManager()
+          + addPoints()
+          + changeLoop()
+          + decreaseLives()
+          + doOneLoop()
+          + getLives()
+          + getTimer()
+          + increaseLives()
+          + keyPressed()
+          + move()
+          + returnToSpawnPoint()
+          + setLives()
+          + setTimer()
+          - initialize()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.Pill {
+          + Pill()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.Pinky {
+          + Pinky()
+          + addFrameManager()
+          + setChaseTarget()
+          - initialize()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.Portal {
+          ~ color : String
+          + Portal()
+          + getColor()
+          + getOther()
+          + setColor()
+          + setOther()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      class sprites.PowerPill {
+          + PowerPill()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      abstract class sprites.Sprite {
+          # dead : boolean
+          # dx : int
+          # dy : int
+          # h : int
+          # image : Image
+          # points : int
+          # w : int
+          # x : int
+          # y : int
+          + Sprite()
+          + Sprite()
+          + die()
+          + getDir()
+          + getDx()
+          + getDy()
+          + getH()
+          + getImage()
+          + getPoints()
+          + getW()
+          + getX()
+          + getY()
+          + isDead()
+          + setDead()
+          + setDir()
+          + setDx()
+          + setDy()
+          + setH()
+          + setImage()
+          + setPoints()
+          + setW()
+          + setX()
+          + setY()
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace prites {
+      enum State {
+        CHASE
+        EATEN
+        FRIGHTENED
+        SCATTER
+      }
+    }
+  }
+  
+
+  sprites.Blinky -up-|> sprites.Ghost
+  sprites.Character -up-|> sprites.Sprite
+  sprites.Character o-- structure.Coordinate : spawnPoint
+  sprites.Clyde -up-|> sprites.Ghost
+  sprites.Fruit -up-|> sprites.Sprite
+  sprites.Ghost -up-|> sprites.Character
+  sprites.Ghost o-- frameManagers.GhostFrameManager : frameManager
+  sprites.Ghost o-- loops.GhostLoop : ghostLoop
+  sprites.Ghost o-- sprites.Pacman : pacman
+  sprites.Ghost o-- structure.Coordinate : scatterTarget
+  sprites.Ghost o-- sprites.State : state
+  sprites.Ghost o-- structure.Coordinate : target
+  sprites.Inky -up-|> sprites.Ghost
+  sprites.Inky o-- sprites.Blinky : blinky
+  sprites.Pacman -up-|> sprites.Character
+  sprites.Pacman o-- frameManagers.PacmanFrameManager : frameManager
+  sprites.Pill -up-|> sprites.Sprite
+  sprites.Pinky -up-|> sprites.Ghost
+  sprites.Portal -up-|> sprites.Sprite
+  sprites.Portal o-- sprites.Portal : other
+  sprites.PowerPill -up-|> sprites.Sprite
+  sprites.Sprite o-- sprites.Direction : dir
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

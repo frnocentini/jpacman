@@ -18,8 +18,8 @@ public class MazeManager {
     private static Maze maze; // Oggetto che corrisponde alla matrice di char del Maze
 
     // Crea la matrice di char corrispondente al labirinto
-    public static void createMaze(int mazeNum) {
-        char[][] inputMaze = new char[21][19];
+    public static char[][] createMaze(int mazeNum) {
+        char[][] inputMaze = new char[Constants.MAZE_LENGTH][Constants.MAZE_WIDTH];
         try {
             // IDE
             FileReader lvlFile = new FileReader(new File(Constants.MAZES_DIR+"maze"+mazeNum+".txt"));
@@ -40,7 +40,8 @@ public class MazeManager {
                     j++;
                 }
             }
-            MazeManager.maze = new Maze(inputMaze); // Crea l'attributo Maze
+            MazeManager.maze = new Maze(inputMaze);
+            return inputMaze; // Crea l'attributo Maze
         } catch (FileNotFoundException e) {
             System.err.println("Il file del livello non è stato trovato");
             e.printStackTrace();
@@ -48,9 +49,10 @@ public class MazeManager {
             System.err.println("Errore nella lettura dei file su disco");
             e.printStackTrace();
         }
+        return null;
     }
 
-    public static void populateMaze() {
+    public static Maze populateMaze() {
         // Metodo che azzera gli ArrayList delle pill e powerpill
         MazeManager.maze.initializeMaze();
         Portal bluePortal = null;
@@ -82,6 +84,7 @@ public class MazeManager {
         redPortal.setOther(bluePortal);
         MazeManager.maze.setBluePortal(bluePortal);
         MazeManager.maze.setRedPortal(redPortal);
+        return MazeManager.maze;
     }
 
     public static Coordinate getObjCoord(char c){
@@ -164,9 +167,5 @@ public class MazeManager {
 
     public static boolean checkCircleCollision(Sprite a, int x, int y, double length){
         return checkCircleCollision(a,new Coordinate(x,y),length);
-    }
-
-    public static Maze getMaze() {
-        return maze;
     }
 }

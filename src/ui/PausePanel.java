@@ -29,19 +29,19 @@ public class PausePanel extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics g){
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(ImageFactory.createImage(Image.PAUSE).getImage(), 0,0,null);
         doDrawing();
     }
 
-    private void doDrawing() {
+    public void doDrawing() {
         drawLayout();
         this.requestFocus();
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawLayout() {
+    public void drawLayout() {
         JButton resumeButton = new JButton("Resume Game");
         resumeButton.setBackground(Color.YELLOW);
         resumeButton.setForeground(Color.RED);

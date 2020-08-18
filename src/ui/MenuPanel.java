@@ -26,21 +26,21 @@ public class MenuPanel extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics g){
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
         // Disegnamo l'immagine del menù
         g.drawImage(ImageFactory.createImage(Image.MENU).getImage(), 0,0,null);
         doDrawing();
     }
 
-    private void doDrawing() {
+    public void doDrawing() {
         // Creiamo i bottoni
         drawLayout();
         // Metodo che sincronizza tutte le componenti grafiche
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawLayout() {
+    public void drawLayout() {
         // Popoliamo l'Array di Stringhe
         String[] mazeStrings = logic.populateMazeStrings();
         // Creiamo con questo array la ComboBox

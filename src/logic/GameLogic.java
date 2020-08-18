@@ -4,6 +4,7 @@ import loops.GameLoop;
 import constants.Constants;
 import sound.SoundPlayer;
 import sprites.*;
+import structure.Maze;
 import structure.MazeManager;
 import ui.GameMainFrame;
 import ui.GamePanel;
@@ -22,6 +23,7 @@ public class GameLogic {
     private GameMainFrame frame;                    // Riferimento al nostro JFrame
     private GamePanel gamePanel;                    // Riferimento al nostro JPanel
     private Pacman pacman;                          // Oggetto che rappresenta Pacman
+    private Maze maze;
     private ArrayList<Ghost> ghosts;                // ArrayList che contiene i fantasmi
     private boolean inGame;                         // Comunica ad alcuni controlli se in gioco è attivo o meno
     private boolean munch;                          // Gestisce i suoni alternati "waka-waka"
@@ -48,7 +50,7 @@ public class GameLogic {
 
     private void initializeVariables(int level, int highScore, int lives) {
         // Richiamiamo il metodo di MazeManager per popolare il labirinto di sprite statici (pillole, portali, frutta)
-        MazeManager.populateMaze();
+        this.maze = MazeManager.populateMaze();
         this.lifeCounter = 1;
         this.level = level;
         this.lives = lives;
@@ -62,7 +64,7 @@ public class GameLogic {
         SoundPlayer.stopAll();
         SoundPlayer.playMusic(GAME_START);
         this.startTime = this.portalTime = System.currentTimeMillis();
-        MazeManager.getMaze().setGameStart();
+        this.maze.setGameStart();
         this.pacman = new Pacman();
         this.ghosts = new ArrayList<>();
         Pinky pinky = new Pinky(this.pacman);
@@ -79,7 +81,7 @@ public class GameLogic {
         this.gameOverString = new String("");
         this.livesNumString = new String("");
         // Sceglie che frutto mostrare in questo livello
-        MazeManager.getMaze().chooseFruit(level);
+        this.maze.chooseFruit(level);
     }
 
     private void restartLevel(){
@@ -92,7 +94,7 @@ public class GameLogic {
         System.out.println(level);
         this.inGame = true;
         this.munch = true;
-        MazeManager.getMaze().setGameStart();
+        this.maze.setGameStart();
         this.pacman.returnToSpawnPoint();
         for(Ghost ghost : this.ghosts) {
             ghost.returnToSpawnPoint(this.level);
@@ -128,17 +130,12 @@ public class GameLogic {
                     eaten = true;
                 }
             }
-            collisionFruit();
-            getExtraLife();
-            collisionPortals();
-            collisionPowerPills();
-            collisionPills();
+            checkCollision();
             killPacman();
-            collisionGhosts();
             if(!this.pacman.isDead() && this.pacmanStart){
                 this.playBackgroundMusic(frightened,eaten);
             }
-            if(MazeManager.getMaze().getAlivePills() == 0){
+            if(this.maze.getAlivePills() == 0){
                 SoundPlayer.stopAll();
                 endGame();
             }
@@ -153,12 +150,21 @@ public class GameLogic {
             for(Ghost ghost : this.ghosts) {
                 ghost.getTimer().start();
             }
-            MazeManager.getMaze().setGameStart();
+            this.maze.setGameStart();
         }
     }
 
+    public void checkCollision(){
+        collisionFruit();
+        getExtraLife();
+        collisionPortals();
+        collisionPowerPills();
+        collisionPills();
+        collisionGhosts();
+    }
+
     private void collisionFruit() {
-        Fruit f = MazeManager.getMaze().getFruit();
+        Fruit f = this.maze.getFruit();
         if(f != null){
             if(MazeManager.checkCollision(pacman,f)){
                 f.setDead(true);
@@ -176,8 +182,8 @@ public class GameLogic {
     }
 
     private void collisionPortals() {
-        Portal bluePortal = MazeManager.getMaze().getBluePortal();
-        Portal redPortal = MazeManager.getMaze().getRedPortal();
+        Portal bluePortal = this.maze.getBluePortal();
+        Portal redPortal = this.maze.getRedPortal();
         //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
         //System.out.println("Le coordinate del blu sono: "+redPortal.getOther().getX()+" e "+redPortal.getOther().getY());
         if(System.currentTimeMillis() >= (this.portalTime + 400) && !this.pacman.isDead()){
@@ -209,12 +215,12 @@ public class GameLogic {
     }
 
     private void collisionPowerPills() {
-        for(int i = 0; i< MazeManager.getMaze().getPowerPillsNum(); i++){
-            PowerPill pp = MazeManager.getMaze().getPowerPill(i);
+        for(int i = 0; i< this.maze.getPowerPillsNum(); i++){
+            PowerPill pp = this.maze.getPowerPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
             if(MazeManager.checkCollision(pacman,pp)){
                 if(!pp.isDead()){
-                    MazeManager.getMaze().removeAlivePowerPill();
+                    this.maze.removeAlivePowerPill();
                     this.pacman.addPoints(pp.getPoints());
                     this.consecutiveGhosts = 0;
                     for(Ghost ghost : this.ghosts) {
@@ -230,12 +236,12 @@ public class GameLogic {
     }
 
     private void collisionPills() {
-        for(int i = 0; i< MazeManager.getMaze().getPillsNum(); i++){
-            Pill p = MazeManager.getMaze().getPill(i);
+        for(int i = 0; i< this.maze.getPillsNum(); i++){
+            Pill p = this.maze.getPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
             if(MazeManager.checkCollision(pacman,p)){
                 if(!p.isDead()){
-                    MazeManager.getMaze().removeAlivePill();
+                    this.maze.removeAlivePill();
                     this.pacman.addPoints(p.getPoints());
                     if(munch){
                         SoundPlayer.playEffect(MUNCH_1);
@@ -330,10 +336,10 @@ public class GameLogic {
         }
         this.level++;
         this.frame.writeHighScore(this.pacman.getPoints());
-        MazeManager.getMaze().chooseFruit(this.level);
+        this.maze.chooseFruit(this.level);
         MazeManager.populateMaze();
-        for(int i = 0; i< MazeManager.getMaze().getPillsNum(); i++){
-            MazeManager.getMaze().getPill(i).setDead(false);
+        for(int i = 0; i< this.maze.getPillsNum(); i++){
+            this.maze.getPill(i).setDead(false);
         }
         restartLevel();
     }
@@ -376,17 +382,17 @@ public class GameLogic {
             SoundPlayer.loopEffect(EATEN_SOUND);
         } else if (frightened){
             SoundPlayer.loopEffect(FRIGHT_SOUND);
-        }else if(MazeManager.getMaze().getAlivePills() > MazeManager.getMaze().getPillsNum() * 4/5){
+        }else if(this.maze.getAlivePills() > this.maze.getPillsNum() * 4/5){
             SoundPlayer.loopEffect(SIREN_1);
-        } else if (MazeManager.getMaze().getAlivePills() > MazeManager.getMaze().getPillsNum() * 3/5) {
+        } else if (this.maze.getAlivePills() > this.maze.getPillsNum() * 3/5) {
             SoundPlayer.loopEffect(SIREN_2);
-        } else if (MazeManager.getMaze().getAlivePills() > MazeManager.getMaze().getPillsNum() * 2/5) {
+        } else if (this.maze.getAlivePills() > this.maze.getPillsNum() * 2/5) {
             SoundPlayer.loopEffect(SIREN_3);
-        } else if (MazeManager.getMaze().getAlivePills() > MazeManager.getMaze().getPillsNum() / 5) {
+        } else if (this.maze.getAlivePills() > this.maze.getPillsNum() / 5) {
             SoundPlayer.loopEffect(SIREN_4);
-        } else if (MazeManager.getMaze().getAlivePills() > 0) {
+        } else if (this.maze.getAlivePills() > 0) {
             SoundPlayer.loopEffect(SIREN_5);
-        } else if (MazeManager.getMaze().getAlivePills() == 0){
+        } else if (this.maze.getAlivePills() == 0){
             SoundPlayer.stopAll();
         }
     }
@@ -425,5 +431,9 @@ public class GameLogic {
 
     public ArrayList<Ghost> getGhosts() {
         return ghosts;
+    }
+
+    public Maze getMaze() {
+        return maze;
     }
 }

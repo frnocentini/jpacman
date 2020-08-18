@@ -21,18 +21,18 @@ public class BGPanel extends JPanel {
         initializeMaze(mazeNum);
     }
 
-    private void initializeMaze(int mazeNum) {
+    public void initializeMaze(int mazeNum) {
         // Richiamiamo il metodo statico che trasforma il file del labirinto in un labirinto nel nostro gioco
-        MazeManager.createMaze(mazeNum);
+        char[][] maze = MazeManager.createMaze(mazeNum);
         // Creiamo le ImageIcon del pavimento e del muro
         ImageIcon empty = ImageFactory.createImage(Image.EMPTY);
         ImageIcon wall = ImageFactory.createImage(Image.WALL);
         // Creo per ogni cella della matrice una JLabel e inseirsco un muro o un pavimento
-        for (int i = 0; i< MazeManager.getMaze().getMazeHeight(); i++){
-            for(int j = 0; j< MazeManager.getMaze().getMazeWidth(); j++){
+        for (int i = 0; i< maze.length; i++){
+            for(int j = 0; j< maze[0].length; j++){
                 JLabel label = new JLabel();
                 this.add(label);
-                if(MazeManager.getMaze().getMazeValue(i,j)=='W') {
+                if(maze[i][j] == 'W') {
                     label.setIcon(wall);
                 }else{
                     label.setIcon(empty);
@@ -43,7 +43,7 @@ public class BGPanel extends JPanel {
 
 
     @Override
-    protected void paintComponent(Graphics g){
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
     }
 }
