@@ -1,17 +1,17 @@
 package sprites;
 
 import constants.Constants;
-import spriteManagers.GhostFrameManager;
+import frameManagers.GhostFrameManager;
 import image.Image;
 import image.ImageFactory;
-import utility.CoordManager;
-import utility.Coordinate;
+import structure.MazeManager;
+import structure.Coordinate;
 
 import javax.swing.*;
 
 import java.util.ArrayList;
 
-import static utility.Direction.*;
+import static sprites.Direction.*;
 
 public class Blinky extends Ghost{
 
@@ -27,7 +27,7 @@ public class Blinky extends Ghost{
         ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
-        Coordinate start = CoordManager.getObjCoord('1');
+        Coordinate start = MazeManager.getObjCoord('1');
 
         setX(start.getX());
         setY(start.getY());

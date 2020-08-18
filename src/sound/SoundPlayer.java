@@ -1,11 +1,8 @@
 package sound;
 
 import constants.Constants;
-import utility.CoordManager;
 
-import javax.sound.sampled.Clip;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static sound.Sound.*;
 

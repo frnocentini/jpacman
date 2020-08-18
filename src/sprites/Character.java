@@ -1,6 +1,6 @@
 package sprites;
 
-import utility.Coordinate;
+import structure.Coordinate;
 
 public abstract class Character extends Sprite{
 

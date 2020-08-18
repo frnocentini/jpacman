@@ -1,7 +1,6 @@
 package ui;
 
-import constants.Constants;
-import controller.MenuController;
+import logic.MenuLogic;
 import image.Image;
 import image.ImageFactory;
 import sound.SoundPlayer;
@@ -11,21 +10,19 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
 import static sound.Sound.*;
 
 public class MenuPanel extends JPanel {
 
     private GameMainFrame gameMainFrame; // Riferimento al nostro JFrame
-    private MenuController controller; // Riferimento al controller relaivo a questo pannello
+    private MenuLogic logic; // Riferimento al controller relaivo a questo pannello
 
     public MenuPanel(GameMainFrame gameMainFrame){
         this.gameMainFrame = gameMainFrame;
         setLayout(null);
         SoundPlayer.playMusic(STARTUP);
-        this.controller = new MenuController();
+        this.logic = new MenuLogic();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class MenuPanel extends JPanel {
 
     private void drawLayout() {
         // Popoliamo l'Array di Stringhe
-        String[] mazeStrings = controller.populateMazeStrings();
+        String[] mazeStrings = logic.populateMazeStrings();
         // Creiamo con questo array la ComboBox
         JComboBox mazeList = new JComboBox(mazeStrings);
         mazeList.setSelectedIndex(0);

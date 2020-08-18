@@ -1,7 +1,6 @@
 package ui;
 
-import callbacks.PauseEventListener;
-import constants.Constants;
+import keylisteners.PauseEventListener;
 import image.Image;
 import image.ImageFactory;
 import sound.SoundPlayer;
@@ -12,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.File;
 
 import static java.awt.event.KeyEvent.VK_ENTER;
 import static sound.Sound.*;

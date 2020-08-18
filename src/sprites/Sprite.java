@@ -1,8 +1,6 @@
 package sprites;
 
-import utility.Direction;
-
-import java.awt.*;
+import java.awt.Image;
 
 public abstract class Sprite {
 

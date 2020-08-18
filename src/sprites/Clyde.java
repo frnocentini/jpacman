@@ -1,16 +1,16 @@
 package sprites;
 
 import constants.Constants;
-import spriteManagers.GhostFrameManager;
+import frameManagers.GhostFrameManager;
 import image.Image;
 import image.ImageFactory;
-import utility.CoordManager;
-import utility.Coordinate;
+import structure.MazeManager;
+import structure.Coordinate;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
-import static utility.Direction.RIGHT;
+import static sprites.Direction.RIGHT;
 
 public class Clyde extends Ghost{
 
@@ -26,7 +26,7 @@ public class Clyde extends Ghost{
         ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
-        Coordinate start = CoordManager.getObjCoord('4');
+        Coordinate start = MazeManager.getObjCoord('4');
 
         setX(start.getX());
         setY(start.getY());
@@ -67,7 +67,7 @@ public class Clyde extends Ghost{
 
     @Override
     public void setChaseTarget() {
-        if(CoordManager.checkCircleCollision(this,this.pacman.getX(),this.pacman.getY(),8*Constants.BLOCK_DIM)){
+        if(MazeManager.checkCircleCollision(this,this.pacman.getX(),this.pacman.getY(),8*Constants.BLOCK_DIM)){
             this.target.setX(this.scatterTarget.getX());
             this.target.setY(this.scatterTarget.getX());
         }else{

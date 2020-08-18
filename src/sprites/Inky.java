@@ -1,16 +1,16 @@
 package sprites;
 
 import constants.Constants;
-import spriteManagers.GhostFrameManager;
+import frameManagers.GhostFrameManager;
 import image.Image;
 import image.ImageFactory;
-import utility.CoordManager;
-import utility.Coordinate;
+import structure.MazeManager;
+import structure.Coordinate;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
-import static utility.Direction.LEFT;
+import static sprites.Direction.LEFT;
 
 public class Inky extends Ghost{
 
@@ -29,7 +29,7 @@ public class Inky extends Ghost{
         ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
-        Coordinate start = CoordManager.getObjCoord('3');
+        Coordinate start = MazeManager.getObjCoord('3');
 
         setX(start.getX());
         setY(start.getY());

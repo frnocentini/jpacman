@@ -1,32 +1,30 @@
 package ui;
 
 import constants.Constants;
-import controller.MainFrameController;
+import logic.MainFrameLogic;
 import image.Image;
 import image.ImageFactory;
 import sound.SoundPlayer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
-import java.util.Scanner;
 
 public class GameMainFrame extends JFrame{
 
-    private int level;
-    private int lives;
-    private int highScore;
-    private MainFrameController controller;
-    private JLayeredPane layeredPane;
-    private MenuPanel menuPanel;
-    private BGPanel bgPanel;
-    private GamePanel gamePanel;
-    private PausePanel pausePanel;
+    private int level;                          // Numero del livello da cui si parte
+    private int lives;                          // Numero delle vite con cui si parte
+    private int highScore;                      // Punteggio massimo raggiunto
+    private MainFrameLogic logic;               // Oggetto contenente metodi logici di supporto al GameMainFrame
+    private JLayeredPane layeredPane;           // Pannello stratificato su cui inserire gli altri JPanel
+    private MenuPanel menuPanel;                // Pannello del Menù principale
+    private BGPanel bgPanel;                    // Pannello del labirinto
+    private GamePanel gamePanel;                // Pannello in cui vengono disegnati gli sprite
+    private PausePanel pausePanel;              // Pannello del menù di pausa
 
     public GameMainFrame(){
-        this.controller = new MainFrameController(this);
+        this.logic = new MainFrameLogic(this);
         // Registriamo nell'ambiente grafico un font preso da un file .ttf
-        this.controller.registerFont();
+        this.logic.registerFont();
         // Inizializiamo la classe che si occupa dei suoni
         SoundPlayer.initialize();
         level = Constants.START_LEVEL;
@@ -116,11 +114,11 @@ public class GameMainFrame extends JFrame{
     }
 
     public int readHighScore(){
-        return this.controller.readHighScore();
+        return this.logic.readHighScore();
     }
 
     public void writeHighScore(int points){
-        this.controller.writeHighScore(points);
+        this.logic.writeHighScore(points);
     }
 
     public int getHighScore() {

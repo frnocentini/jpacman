@@ -1,21 +1,19 @@
 package sprites;
 
-import callbacks.GhostLoop;
+import loops.GhostLoop;
 import constants.Constants;
-import spriteManagers.GhostFrameManager;
-import utility.CoordManager;
-import utility.Coordinate;
-import utility.Direction;
-import utility.State;
+import frameManagers.GhostFrameManager;
+import structure.MazeManager;
+import structure.Coordinate;
 
 import javax.swing.*;
 
 import java.util.HashMap;
 import java.util.Random;
 
-import static utility.Direction.*;
-import static utility.Direction.UP;
-import static utility.State.*;
+import static sprites.Direction.*;
+import static sprites.Direction.UP;
+import static sprites.State.*;
 
 public abstract class Ghost extends Character {
 
@@ -73,7 +71,7 @@ public abstract class Ghost extends Character {
                 setImage(imageIcon.getImage());
                 break;
         }
-        if(CoordManager.canIMove(x,y)){
+        if(MazeManager.canIMove(x,y)){
             if(this.state != FRIGHTENED){
                 changeDir();
             } else {
@@ -104,28 +102,28 @@ public abstract class Ghost extends Character {
         while(!check){
             int pick = new Random().nextInt(Direction.values().length);
             dir = Direction.values()[pick];
-            check = CoordManager.checkEmpty(this.x,this.y,dir);
+            check = MazeManager.checkEmpty(this.x,this.y,dir);
             switch(dir){
                 case UP:
-                    trapped = !CoordManager.checkEmpty(this.x,this.y,DOWN) && !CoordManager.checkEmpty(this.x,this.y,RIGHT) && !CoordManager.checkEmpty(this.x,this.y,LEFT);
+                    trapped = !MazeManager.checkEmpty(this.x,this.y,DOWN) && !MazeManager.checkEmpty(this.x,this.y,RIGHT) && !MazeManager.checkEmpty(this.x,this.y,LEFT);
                     if(this.dir == DOWN && !trapped){
                         check = false;
                     }
                     break;
                 case DOWN:
-                    trapped = !CoordManager.checkEmpty(this.x,this.y,UP) && !CoordManager.checkEmpty(this.x,this.y,RIGHT) && !CoordManager.checkEmpty(this.x,this.y,LEFT);
+                    trapped = !MazeManager.checkEmpty(this.x,this.y,UP) && !MazeManager.checkEmpty(this.x,this.y,RIGHT) && !MazeManager.checkEmpty(this.x,this.y,LEFT);
                     if(this.dir == UP && !trapped){
                         check = false;
                     }
                     break;
                 case LEFT:
-                    trapped = !CoordManager.checkEmpty(this.x,this.y,UP) && !CoordManager.checkEmpty(this.x,this.y,DOWN) && !CoordManager.checkEmpty(this.x,this.y,RIGHT);
+                    trapped = !MazeManager.checkEmpty(this.x,this.y,UP) && !MazeManager.checkEmpty(this.x,this.y,DOWN) && !MazeManager.checkEmpty(this.x,this.y,RIGHT);
                     if(this.dir == RIGHT && !trapped){
                         check = false;
                     }
                     break;
                 case RIGHT:
-                    trapped = !CoordManager.checkEmpty(this.x,this.y,UP) && !CoordManager.checkEmpty(this.x,this.y,LEFT) && !CoordManager.checkEmpty(this.x,this.y,DOWN);
+                    trapped = !MazeManager.checkEmpty(this.x,this.y,UP) && !MazeManager.checkEmpty(this.x,this.y,LEFT) && !MazeManager.checkEmpty(this.x,this.y,DOWN);
                     if(this.dir == LEFT && !trapped){
                         check = false;
                     }
@@ -138,7 +136,7 @@ public abstract class Ghost extends Character {
     public void changeDir() {
         HashMap<Direction, Boolean> dirs = new HashMap<Direction, Boolean>();
         for (Direction dir : Direction.values()) {
-            dirs.put(dir,CoordManager.checkEmpty(x,y,dir));
+            dirs.put(dir, MazeManager.checkEmpty(x,y,dir));
         }
         switch(this.dir){
             case UP:
@@ -213,7 +211,7 @@ public abstract class Ghost extends Character {
                 this.target.setY(this.scatterTarget.getY());
                 break;
             case EATEN:
-                Coordinate start = CoordManager.getObjCoord('1');
+                Coordinate start = MazeManager.getObjCoord('1');
                 this.target.setX(start.getX());
                 this.target.setY(start.getY());
                 break;
@@ -232,22 +230,22 @@ public abstract class Ghost extends Character {
         if(this.state != FRIGHTENED){
             switch(this.dir){
                 case UP:
-                    if(CoordManager.checkEmpty(x,y,DOWN)){
+                    if(MazeManager.checkEmpty(x,y,DOWN)){
                         this.dir = DOWN;
                     }
                     break;
                 case RIGHT:
-                    if(CoordManager.checkEmpty(x,y,LEFT)){
+                    if(MazeManager.checkEmpty(x,y,LEFT)){
                         this.dir = LEFT;
                     }
                     break;
                 case DOWN:
-                    if(CoordManager.checkEmpty(x,y,UP)){
+                    if(MazeManager.checkEmpty(x,y,UP)){
                         this.dir = UP;
                     }
                     break;
                 case LEFT:
-                    if(CoordManager.checkEmpty(x,y,RIGHT)){
+                    if(MazeManager.checkEmpty(x,y,RIGHT)){
                         this.dir = RIGHT;
                     }
                     break;

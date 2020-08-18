@@ -1,17 +1,17 @@
 package sprites;
 
-import callbacks.PacmanLoop;
+import loops.PacmanLoop;
 import constants.Constants;
 import image.Image;
 import image.ImageFactory;
-import spriteManagers.PacmanFrameManager;
-import utility.CoordManager;
+import frameManagers.PacmanFrameManager;
+import structure.MazeManager;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import static utility.Direction.*;
+import static sprites.Direction.*;
 
 public class Pacman extends Character {
 
@@ -32,7 +32,7 @@ public class Pacman extends Character {
         ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
-        this.spawnPoint = CoordManager.getObjCoord('S');
+        this.spawnPoint = MazeManager.getObjCoord('S');
 
         setX(this.spawnPoint.getX());
         setY(this.spawnPoint.getY());
@@ -48,7 +48,7 @@ public class Pacman extends Character {
     @Override
     public void move() {
         if(!this.dead){
-            if(CoordManager.checkEmpty(x,y,dir)) {
+            if(MazeManager.checkEmpty(x,y,dir)) {
                 x += dx;
                 y += dy;
                 if (dx != 0 || dy != 0) {
@@ -121,7 +121,7 @@ public class Pacman extends Character {
         switch (this.keyPressed) {
             case KeyEvent.VK_UP:
                 if(dir != UP && dir != DOWN){
-                    if(!CoordManager.canIMove(x,y) || !CoordManager.checkEmpty(x,y,UP)){
+                    if(!MazeManager.canIMove(x,y) || !MazeManager.checkEmpty(x,y,UP)){
                         break;
                     }
                 }
@@ -131,7 +131,7 @@ public class Pacman extends Character {
                 break;
             case KeyEvent.VK_DOWN:
                 if(dir != UP && dir != DOWN){
-                    if(!CoordManager.canIMove(x,y) || !CoordManager.checkEmpty(x,y,DOWN)){
+                    if(!MazeManager.canIMove(x,y) || !MazeManager.checkEmpty(x,y,DOWN)){
                         break;
                     }
                 }
@@ -141,7 +141,7 @@ public class Pacman extends Character {
                 break;
             case KeyEvent.VK_RIGHT:
                 if(dir != RIGHT && dir != LEFT){
-                    if(!CoordManager.canIMove(x,y) || !CoordManager.checkEmpty(x,y,RIGHT)){
+                    if(!MazeManager.canIMove(x,y) || !MazeManager.checkEmpty(x,y,RIGHT)){
                         break;
                     }
                 }
@@ -151,7 +151,7 @@ public class Pacman extends Character {
                 break;
             case KeyEvent.VK_LEFT:
                 if(dir != RIGHT && dir != LEFT){
-                    if(!CoordManager.canIMove(x,y)|| !CoordManager.checkEmpty(x,y,LEFT)){
+                    if(!MazeManager.canIMove(x,y)|| !MazeManager.checkEmpty(x,y,LEFT)){
                         break;
                     }
                 }
