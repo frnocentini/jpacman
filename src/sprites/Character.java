@@ -8,7 +8,7 @@ public abstract class Character extends Sprite{
 
     public abstract void move();
 
-    public abstract void addImageSet();
+    public abstract void addFrameManager();
 
     public Coordinate getSpawnPoint() {
         return spawnPoint;

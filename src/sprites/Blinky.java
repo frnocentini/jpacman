@@ -21,10 +21,10 @@ public class Blinky extends Ghost{
     }
 
     private void initialize(){
-        addImageSet();
+        addFrameManager();
 
         dir = UP;
-        ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+        ImageIcon imageIcon = this.frameManager.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
         Coordinate start = MazeManager.getObjCoord('1');
@@ -38,7 +38,7 @@ public class Blinky extends Ghost{
     }
 
     @Override
-    public void addImageSet() {
+    public void addFrameManager() {
         ArrayList<ImageIcon> up = new ArrayList<>();
         ArrayList<ImageIcon> down = new ArrayList<>();
         ArrayList<ImageIcon> left = new ArrayList<>();
@@ -64,7 +64,7 @@ public class Blinky extends Ghost{
         ImageIcon eatenDown = ImageFactory.createImage(Image.EATEN_D);
         ImageIcon eatenLeft = ImageFactory.createImage(Image.EATEN_L);
         ImageIcon eatenRight = ImageFactory.createImage(Image.EATEN_R);
-        this.imageSet = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,4);
+        this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,4);
     }
 
     @Override

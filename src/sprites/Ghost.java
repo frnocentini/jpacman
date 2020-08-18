@@ -17,7 +17,7 @@ import static sprites.State.*;
 
 public abstract class Ghost extends Character {
 
-    protected GhostFrameManager imageSet;
+    protected GhostFrameManager frameManager;
     protected State state;
     protected Coordinate target;
     protected Coordinate scatterTarget;
@@ -49,17 +49,17 @@ public abstract class Ghost extends Character {
             case SCATTER:
                 x -= x%(Constants.GHOST_SPEED);
                 y -= y%(Constants.GHOST_SPEED);
-                imageIcon = this.imageSet.getNextFrame(dir);
+                imageIcon = this.frameManager.getNextFrame(dir);
                 setImage(imageIcon.getImage());
                 break;
             case FRIGHTENED:
                 x -= x%(Constants.GHOST_SPEED);
                 y -= y%(Constants.GHOST_SPEED);
                 if(System.currentTimeMillis() > this.frightTime + 6000 + this.pausedTime){
-                    imageIcon = this.imageSet.getNextFrameFrightened(true);
+                    imageIcon = this.frameManager.getNextFrameFrightened(true);
                     setImage(imageIcon.getImage());
                 } else {
-                    imageIcon = this.imageSet.getNextFrameFrightened(false);
+                    imageIcon = this.frameManager.getNextFrameFrightened(false);
                     setImage(imageIcon.getImage());
                 }
                 break;
@@ -67,7 +67,7 @@ public abstract class Ghost extends Character {
                 speed  = Constants.GHOST_SPEED_EATEN;
                 x -= x%(Constants.GHOST_SPEED_EATEN);
                 y -= y%(Constants.GHOST_SPEED_EATEN);
-                imageIcon = this.imageSet.getNextFrameEaten(dir);
+                imageIcon = this.frameManager.getNextFrameEaten(dir);
                 setImage(imageIcon.getImage());
                 break;
         }
@@ -263,7 +263,7 @@ public abstract class Ghost extends Character {
         this.ghostLoop = null;
         this.ghostLoop = new GhostLoop(this,level);
         this.timer = new Timer(1,ghostLoop);
-        ImageIcon imageIcon = this.imageSet.getFrameAt(0,dir);
+        ImageIcon imageIcon = this.frameManager.getFrameAt(0,dir);
         setImage(imageIcon.getImage());
     }
 

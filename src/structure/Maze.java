@@ -13,16 +13,16 @@ import java.util.ArrayList;
 
 public class Maze {
 
-    private char[][] maze;                      // Matrice di char che rappresenta il labirinto
-    private ArrayList<Pill> pills;              // ArrayList che contiene gli sprite delle pillole
-    private ArrayList<PowerPill> powerPills;
-    private int alivePills;
-    private int alivePowerPills;
-    private Portal bluePortal;
-    private Portal redPortal;
-    private static ArrayList<ImageIcon> fruitList;
-    private static Fruit fruit;
-    private static long gameStart;
+    private char[][] maze;                          // Matrice di char che rappresenta il labirinto
+    private ArrayList<Pill> pills;                  // ArrayList che contiene gli oggetti pillole
+    private ArrayList<PowerPill> powerPills;        // ArrayList che contiene gli oggetti powerpill
+    private int alivePills;                         // Numero delle pillole rimaste da mangiare
+    private int alivePowerPills;                    // Numero delle powerpill rimaste da mangiare
+    private Portal bluePortal;                      // Oggetto portale blu
+    private Portal redPortal;                       // Oggetto Portale rooso
+    private static ArrayList<ImageIcon> fruitList;  // ArrayList di immagini della frutta (una per livello)
+    private static Fruit fruit;                     // Oggetto frutto
+    private static long gameStart;                  // Orario di inizio movimento dei personaggi
 
     public Maze(char[][] maze) {
         this.maze = new char[21][19];
@@ -31,13 +31,6 @@ public class Maze {
                 this.maze[i][j] = maze[i][j];
             }
         }
-    }
-
-    public void initializeMaze(){
-        this.alivePills=0;
-        this.alivePowerPills=0;
-        this.pills = new ArrayList<>();
-        this.powerPills = new ArrayList<>();
         fruitList = new ArrayList<>();
         fruitList.add(ImageFactory.createImage(Image.FRUIT0));
         fruitList.add(ImageFactory.createImage(Image.FRUIT1));
@@ -47,6 +40,13 @@ public class Maze {
         fruitList.add(ImageFactory.createImage(Image.FRUIT5));
         fruitList.add(ImageFactory.createImage(Image.FRUIT6));
         fruitList.add(ImageFactory.createImage(Image.FRUIT7));
+    }
+
+    public void initializeMaze(){
+        this.alivePills=0;
+        this.alivePowerPills=0;
+        this.pills = new ArrayList<>();
+        this.powerPills = new ArrayList<>();
     }
 
     public static void chooseFruit(int level){

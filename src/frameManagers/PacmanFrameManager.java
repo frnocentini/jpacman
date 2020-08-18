@@ -2,7 +2,7 @@ package frameManagers;
 
 import sprites.Pacman;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 import java.util.ArrayList;
 
 public class PacmanFrameManager extends FrameManager {

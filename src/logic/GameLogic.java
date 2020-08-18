@@ -20,7 +20,7 @@ import static sprites.State.FRIGHTENED;
 public class GameLogic {
 
     private GameMainFrame frame;                    // Riferimento al nostro JFrame
-    private GamePanel gamePanel;
+    private GamePanel gamePanel;                    // Riferimento al nostro JPanel
     private Pacman pacman;                          // Oggetto che rappresenta Pacman
     private ArrayList<Ghost> ghosts;                // ArrayList che contiene i fantasmi
     private boolean inGame;                         // Comunica ad alcuni controlli se in gioco è attivo o meno
@@ -34,8 +34,8 @@ public class GameLogic {
     private int lives;                              // Vite rimanenti
     private int lifeCounter;                        // Prossimo migliaio in cui dovrà scattare una vita extra
     private int consecutiveGhosts;                  // Conta quanti fantasmi si sono mangiati dopo una singola PowerPill
-    private String readyString;
-    private String gameOverString;
+    private String readyString;                     // Stringhe che riportano i valori da stampare
+    private String gameOverString;                  // nelle label del GamePanel
     private String levelString;
     private String highScoreString;
     private String livesNumString;
@@ -47,13 +47,15 @@ public class GameLogic {
     }
 
     private void initializeVariables(int level, int highScore, int lives) {
+        // Richiamiamo il metodo di MazeManager per popolare il labirinto di sprite statici (pillole, portali, frutta)
         MazeManager.populateMaze();
         this.lifeCounter = 1;
         this.level = level;
         this.lives = lives;
-        System.out.println(level);
+        // System.out.println(level);
         this.inGame = true;
         this.pacmanStart = false;
+        // Oggetto che farà chiamare doOneLoop() ogni tot millisecondi
         this.timer = new Timer(Constants.GAME_SPEED,new GameLoop(this));
         this.timer.start();
         this.munch = true;
@@ -76,6 +78,7 @@ public class GameLogic {
         this.readyString = new String("Ready!");
         this.gameOverString = new String("");
         this.livesNumString = new String("");
+        // Sceglie che frutto mostrare in questo livello
         MazeManager.getMaze().chooseFruit(level);
     }
 
@@ -140,18 +143,17 @@ public class GameLogic {
                 endGame();
             }
 
-        }else{
-            if(System.currentTimeMillis() >= (this.startTime + 1*4000)) { //multiply by 1000 to get milliseconds
-                SoundPlayer.removeMusic(DEATH);
-                SoundPlayer.removeMusic(GAME_START);
-                this.pacmanStart=true;
-                readyString = "";
-                levelString = "Level: "+level;
-                for(Ghost ghost : this.ghosts) {
-                    ghost.getTimer().start();
-                }
-                MazeManager.getMaze().setGameStart();
+        }else if(System.currentTimeMillis() >= (this.startTime + 4*1000)) {
+            // Se sono passati 4 secondi, il gioco inizia
+            SoundPlayer.removeMusic(DEATH);
+            SoundPlayer.removeMusic(GAME_START);
+            this.pacmanStart=true;
+            readyString = "";
+            levelString = "Level: "+level;
+            for(Ghost ghost : this.ghosts) {
+                ghost.getTimer().start();
             }
+            MazeManager.getMaze().setGameStart();
         }
     }
 

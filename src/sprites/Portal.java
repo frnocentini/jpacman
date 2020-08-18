@@ -7,8 +7,8 @@ import javax.swing.*;
 
 public class Portal extends Sprite{
 
-    String color;
-    Portal other;
+    String color;   // Colore del portale
+    Portal other;   // Riferimento all'altro portale
 
     public Portal(int x, int y, int w, int h, String color){
         this.x = x;

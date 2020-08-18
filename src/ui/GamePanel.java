@@ -1,7 +1,6 @@
 package ui;
 
 import keylisteners.GameEventListener;
-import constants.Constants;
 import logic.GameLogic;
 import image.Image;
 import image.ImageFactory;
@@ -20,17 +19,20 @@ import java.util.ArrayList;
 public class GamePanel extends JPanel {
 
     private GameMainFrame frame;                    // Riferimento al nostro JFrame
-    private GameLogic logic;
+    private GameLogic logic;                        // Oggetto che gestisce il ciclo update-repaint e
+                                                    // si occupa della parte logica del gioco che il
+                                                    // GamePanel dovrà solo stampare su schermo
     private GameEventListener gameEventListener;    // Listener della tastiera
     private ImageIcon smallPanel;                   // Immagine del pannelo inferiore
-    private JLabel pointsLabel;                     //
-    private JLabel readyLabel;
-    private JLabel gameOverLabel;
-    private JLabel levelLabel;
-    private JLabel highScoreLabel;
-    private JLabel livesLabel;
-    private JLabel livesNumLabel;
-    private ArrayList<ImageIcon> livesIcons;
+    private JLabel pointsLabel;                     // Label dei punti
+    private JLabel readyLabel;                      // Label della scritta Raedy
+    private JLabel gameOverLabel;                   // Label della scritta Game Over
+    private JLabel levelLabel;                      // Label del numero del livello
+    private JLabel highScoreLabel;                  // Label del massimo punteggio ottenuto
+    private JLabel livesLabel;                      // Label della scritta Lives
+    private JLabel livesNumLabel;                   // Label delle vite rimanenti
+    private ArrayList<ImageIcon> livesIcons;        // ArrayList di ImageIcon da stampare accanto
+                                                    // alla label delle vite
 
     public GamePanel(GameMainFrame frame, int level, int highScore, int lives){
         this.frame = frame;
@@ -84,13 +86,14 @@ public class GamePanel extends JPanel {
     }
 
     public void initializeLayout() {
+        // Aggiungiamo il listener della tastiera
         this.gameEventListener = new GameEventListener(this);
-        addKeyListener(this.gameEventListener);
+        this.addKeyListener(this.gameEventListener);
+        // Creiamo l'immagine del pannellino inferiore
         this.smallPanel = ImageFactory.createImage(Image.SMALL_PANEL);
         setFocusable(true);
         setLayout(null);
         requestFocusInWindow();
-        setPreferredSize(new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE));
     }
 
     @Override
@@ -100,14 +103,23 @@ public class GamePanel extends JPanel {
     }
 
     public void doDrawing(Graphics g){
+        // Disegna il pannellino
         drawSmallPanel(g);
+        // Disegna le vite rimanenti nel pannellino
         drawLives(g);
+        // Disegna le pillole rimanenti
         drawPills(g);
+        // Disegna le powerpill rimanenti
         drawPowerPills(g);
+        // Disegna i portali di teletrasporto
         drawPortals(g);
+        // Disegna la frutta
         drawFruit(g);
+        // Disegna Pacman
         drawPacman(g);
+        // Disegna i fantasmi
         drawGhosts(g);
+        // Aggiorna le JLabel
         drawLabels();
         //Metodo che si assicura che tutto si sia aggiornato
         Toolkit.getDefaultToolkit().sync();
@@ -120,6 +132,7 @@ public class GamePanel extends JPanel {
         this.levelLabel.setText(logic.getLevelString());
     }
 
+    // Aggiorna la label per mostrare Game Over
     public void showGameOver(){
         this.gameOverLabel.setText(logic.getGameOverString());
         this.gameOverLabel.paintImmediately(this.gameOverLabel.getVisibleRect());

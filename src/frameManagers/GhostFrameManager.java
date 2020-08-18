@@ -2,7 +2,7 @@ package frameManagers;
 
 import sprites.Direction;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 import java.util.ArrayList;
 
 public class GhostFrameManager extends FrameManager {

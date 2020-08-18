@@ -7,15 +7,16 @@ import java.util.ArrayList;
 
 public class FrameManager {
 
-    protected ArrayList<ImageIcon> up;
-    protected ArrayList<ImageIcon> down;
-    protected ArrayList<ImageIcon> left;
-    protected ArrayList<ImageIcon> right;
-    protected int index;
-    protected final int SIZE;
-    protected boolean forward;
-    protected int delay;
-    protected final int DELAY_LIMIT;
+    protected ArrayList<ImageIcon> up;      // Frame dell'animazione rivolta verso l'alto
+    protected ArrayList<ImageIcon> down;    // il basso
+    protected ArrayList<ImageIcon> left;    // la sinistra
+    protected ArrayList<ImageIcon> right;   // la destra
+    protected int index;                    // Indice che permette di capire qual è il prossimo frame da restituire
+    protected final int SIZE;               // Dimensione degli ArrayList
+    protected boolean forward;              // Booleana che indica se eseguire l'animazione al dritto o al rovescio
+    protected int delay;                    // Contatore che implementa un ritardo nell'incrmento o
+                                            // il decremento dell'index
+    protected final int DELAY_LIMIT;        // Massimo ritardo
 
     public FrameManager(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int index, int delayLimit) {
         this.up = up;

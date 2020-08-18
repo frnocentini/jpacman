@@ -51,9 +51,11 @@ public class MazeManager {
     }
 
     public static void populateMaze() {
+        // Metodo che azzera gli ArrayList delle pill e powerpill
         MazeManager.maze.initializeMaze();
         Portal bluePortal = null;
         Portal redPortal = null;
+        // Sulla base della matrice del Maze popoliamo gli ArrayList delle pill e creiamo i portali
         for (int i = 0; i< MazeManager.maze.getMazeHeight(); i++){
             for(int j = 0; j< MazeManager.maze.getMazeWidth(); j++){
                 Coordinate co = MazeManager.convertCoords(j,i);
@@ -75,6 +77,7 @@ public class MazeManager {
                 }
             }
         }
+        // Assegnamo ad ogni portale la sua controparte
         bluePortal.setOther(redPortal);
         redPortal.setOther(bluePortal);
         MazeManager.maze.setBluePortal(bluePortal);

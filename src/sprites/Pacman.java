@@ -15,21 +15,22 @@ import static sprites.Direction.*;
 
 public class Pacman extends Character {
 
-    private PacmanFrameManager imageSet;
-    private Timer timer;
-    private int keyPressed;
-    private int lives;
+    private PacmanFrameManager frameManager;    // Oggetto che si occupa nel fornire l'immagine a Pacman
+                                                // per creare un effetto di animazione
+    private Timer timer;                        // Timer che permette di cambiare direzione in quella
+                                                // richiesta dal giocatore non appena possibile
+    private int keyPressed;                     // Ultima direzione richiesta dal giocatore
+    private int lives;                          // Numero delle vite rimanenti
 
     public Pacman(){
         initialize();
     }
 
     private void initialize(){
-
-        addImageSet();
+        addFrameManager();
 
         dir = LEFT;
-        ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+        ImageIcon imageIcon = this.frameManager.getNextFrame(dir);
         setImage(imageIcon.getImage());
 
         this.spawnPoint = MazeManager.getObjCoord('S');
@@ -52,12 +53,12 @@ public class Pacman extends Character {
                 x += dx;
                 y += dy;
                 if (dx != 0 || dy != 0) {
-                    ImageIcon imageIcon = this.imageSet.getNextFrame(dir);
+                    ImageIcon imageIcon = this.frameManager.getNextFrame(dir);
                     setImage(imageIcon.getImage());
                 }
             }
         } else {
-            ImageIcon imageIcon = this.imageSet.getNextFrameDeath();
+            ImageIcon imageIcon = this.frameManager.getNextFrameDeath();
             setImage(imageIcon.getImage());
         }
         if(x<0){
@@ -75,7 +76,7 @@ public class Pacman extends Character {
     }
 
     @Override
-    public void addImageSet() {
+    public void addFrameManager() {
         ArrayList<ImageIcon> up = new ArrayList<>();
         ArrayList<ImageIcon> down = new ArrayList<>();
         ArrayList<ImageIcon> left = new ArrayList<>();
@@ -105,7 +106,7 @@ public class Pacman extends Character {
         death.add(ImageFactory.createImage(Image.PACMAN_DEATH8));
         death.add(ImageFactory.createImage(Image.PACMAN_DEATH9));
         death.add(ImageFactory.createImage(Image.PACMAN_DEATH10));
-        this.imageSet = new PacmanFrameManager(up,down,left,right,1,4,this,death,7);
+        this.frameManager = new PacmanFrameManager(up,down,left,right,1,4,this,death,7);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -178,7 +179,7 @@ public class Pacman extends Character {
         this.dir = LEFT;
         dx = -Constants.PACMAN_SPEED;
         dy = 0;
-        ImageIcon imageIcon = this.imageSet.getFrameAt(1,dir);
+        ImageIcon imageIcon = this.frameManager.getFrameAt(1,dir);
         setImage(imageIcon.getImage());
     }
 
@@ -188,5 +189,21 @@ public class Pacman extends Character {
 
     public void setTimer(Timer timer) {
         this.timer = timer;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public void increaseLives(){
+        this.lives++;
+    }
+
+    public void decreaseLives(){
+        this.lives--;
     }
 }
