@@ -96,48 +96,43 @@ public abstract class Ghost extends Character {
     }
 
     public void changeToRandDir() {
-        boolean trapped = false;
-        boolean check = false;
-        Direction dir = null;
-        while(!check){
+        HashMap<Direction, Boolean> dirs = this.getAvailableDirs();
+        boolean check;
+        Direction dirPick;
+        // Finché la direzione non è disponibile non esco dal ciclo
+        do{
             int pick = new Random().nextInt(Direction.values().length);
-            dir = Direction.values()[pick];
-            check = MazeManager.checkEmpty(this.x,this.y,dir);
-            switch(dir){
-                case UP:
-                    trapped = !MazeManager.checkEmpty(this.x,this.y,DOWN) && !MazeManager.checkEmpty(this.x,this.y,RIGHT) && !MazeManager.checkEmpty(this.x,this.y,LEFT);
-                    if(this.dir == DOWN && !trapped){
-                        check = false;
-                    }
-                    break;
-                case DOWN:
-                    trapped = !MazeManager.checkEmpty(this.x,this.y,UP) && !MazeManager.checkEmpty(this.x,this.y,RIGHT) && !MazeManager.checkEmpty(this.x,this.y,LEFT);
-                    if(this.dir == UP && !trapped){
-                        check = false;
-                    }
-                    break;
-                case LEFT:
-                    trapped = !MazeManager.checkEmpty(this.x,this.y,UP) && !MazeManager.checkEmpty(this.x,this.y,DOWN) && !MazeManager.checkEmpty(this.x,this.y,RIGHT);
-                    if(this.dir == RIGHT && !trapped){
-                        check = false;
-                    }
-                    break;
-                case RIGHT:
-                    trapped = !MazeManager.checkEmpty(this.x,this.y,UP) && !MazeManager.checkEmpty(this.x,this.y,LEFT) && !MazeManager.checkEmpty(this.x,this.y,DOWN);
-                    if(this.dir == LEFT && !trapped){
-                        check = false;
-                    }
-                    break;
-            }
-        }
-        this.dir = dir;
+            dirPick = Direction.values()[pick];
+            check = dirs.get(dirPick);
+        }while(!check);
+        this.dir = dirPick;
     }
 
     public void changeDir() {
+        HashMap<Direction, Boolean> dirs = this.getAvailableDirs();
+        // Controlliamo quale, tra le direzioni disponibili, è la più vicina in linea d'aria
+        int minValue, tempDist;
+        Direction tempDir = null;
+        minValue = Integer.MAX_VALUE;
+        for (Direction dir : Direction.values()) {
+            if(dirs.get(dir)){
+                tempDist = calcDist(dir);
+                if(tempDist < minValue){
+                    minValue = tempDist;
+                    tempDir = dir;
+                }
+            }
+        }
+        this.dir = tempDir;
+    }
+
+    public HashMap<Direction, Boolean> getAvailableDirs(){
         HashMap<Direction, Boolean> dirs = new HashMap<Direction, Boolean>();
         for (Direction dir : Direction.values()) {
-            dirs.put(dir, MazeManager.checkEmpty(x,y,dir));
+            dirs.put(dir, MazeManager.checkEmpty(this.x,this.y,dir));
+            // etichetta: DIREZIONE - valore: BOOLEANA
         }
+        // Controlliamo che non sia in trappola, in caso escludiamo la possibilità di dietrofront
         switch(this.dir){
             case UP:
                 if(dirs.get(UP) || dirs.get(LEFT) || dirs.get(RIGHT)){
@@ -164,19 +159,7 @@ public abstract class Ghost extends Character {
                 }
                 break;
         }
-        int minValue, tempDist;
-        Direction tempDir = null;
-        minValue = Integer.MAX_VALUE;
-        for (Direction dir : Direction.values()) {
-            if(dirs.get(dir)){
-                tempDist = calcDist(dir);
-                if(tempDist < minValue){
-                    minValue = tempDist;
-                    tempDir = dir;
-                }
-            }
-        }
-        this.dir = tempDir;
+        return dirs;
     }
 
     public int calcDist(Direction dir) {

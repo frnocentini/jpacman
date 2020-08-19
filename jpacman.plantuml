@@ -59,10 +59,6 @@ title __JPACMAN's Class Diagram__\n
       }
     }
     namespace sprites {
-      enum Direction {
-      }
-    }
-    namespace sprites {
       class sprites.Fruit {
       }
     }
@@ -152,7 +148,6 @@ title __JPACMAN's Class Diagram__\n
   sprites.Portal -up-|> sprites.Sprite
   sprites.Portal o-- sprites.Portal : other
   sprites.PowerPill -up-|> sprites.Sprite
-  sprites.Sprite o-- sprites.Direction : dir
   structure.Maze o-- sprites.Portal : bluePortal / redPortal
   structure.Maze o-- sprites.Pill : pills
   structure.Maze o-- sprites.Fruit : fruit

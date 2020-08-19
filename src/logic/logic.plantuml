@@ -5,7 +5,6 @@ title __LOGIC's Class Diagram__\n
 namespace logic {
       class logic.GameLogic {
           - consecutiveGhosts : int
-          - ghosts : ArrayList<Ghost>
           - inGame : boolean
           - level : int
           - pacmanDead : boolean

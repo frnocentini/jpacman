@@ -2,56 +2,52 @@
 
 title __UI's Class Diagram__\n
 
-
 namespace ui {
-  class ui.BGPanel {
-      + BGPanel()
-      + initializeMaze()
-      + paintComponent()
-  }
+      class ui.BGPanel {
+          + BGPanel()
+          + initializeMaze()
+          + paintComponent()
+      }
+      class ui.GameMainFrame {
+          - layeredPane : JLayeredPane
+          + GameMainFrame()
+          + getHighScore()
+          + initializeGameMenu()
+          + initializeLayout()
+          + quitGame()
+          + readHighScore()
+          + resumeGame()
+          + setHighScore()
+          + showPauseMenu()
+          + writeHighScore()
+      }
+      class ui.GamePanel {
+          + GamePanel()
+          + doDrawing()
+          + initializeLabels()
+          + initializeLayout()
+          + keyPressed()
+          + restartApplication()
+          + resumeGame()
+          + showGameOver()
+          + paintComponent()
+      }
+      class ui.MenuPanel {
+          + MenuPanel()
+          + doDrawing()
+          + drawLayout()
+          + paintComponent()
+      }
 
-
-  class ui.GameMainFrame {
-      - highScore : int
-      - layeredPane : JLayeredPane
-      - level : int
-      - lives : int
-      + GameMainFrame()
-      + initializeGameMenu()
-      + initializeLayout()
-      + quitGame()
-      + resumeGame()
-      + showPauseMenu()
-  }
-
-  class ui.GamePanel {
-      + GamePanel()
-      + doDrawing()
-      + initializeLabels()
-      + initializeLayout()
-      + keyPressed()
-      + restartApplication()
-      + resumeGame()
-      + showGameOver()
-      + paintComponent()
-  }
-
-  class ui.MenuPanel {
-      + MenuPanel()
-      + drawLayout()
-      + paintComponent()
-  }
-
-
-  class ui.PausePanel {
-      + PausePanel()
-      + drawLayout()
-      + keyPressed()
-      + paintComponent()
-  }
-}
-
-
+      class ui.PausePanel {
+          + PausePanel()
+          + doDrawing()
+          + drawLayout()
+          + keyPressed()
+          + paintComponent()
+      }
+    }
+  
 
   ui.GameMainFrame o-- ui.BGPanel : bgPanel
   ui.GameMainFrame o-- ui.GamePanel : gamePanel
@@ -65,7 +61,6 @@ namespace ui {
   ui.MenuPanel o-- logic.MenuLogic : logic
   ui.PausePanel o-- ui.GameMainFrame : gameMainFrame
   ui.PausePanel o-- keylisteners.PauseEventListener : pauseEventListener
-
 
 
 @enduml

@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 public class GhostFrameManager extends FrameManager {
 
-    protected ArrayList<ImageIcon> frightened;
-    protected ImageIcon eatenUp;
-    protected ImageIcon eatenDown;
-    protected ImageIcon eatenLeft;
-    protected ImageIcon eatenRight;
-    protected boolean frightenedForward;
-    protected int frightenedIndex;
-    protected final int FRIGHTENED_SIZE;
-    protected int frightenedDelay;
-    protected final int FRIGHTENED_DELAY_LIMIT;
+    private ArrayList<ImageIcon> frightened;
+    private ImageIcon eatenUp;
+    private ImageIcon eatenDown;
+    private ImageIcon eatenLeft;
+    private ImageIcon eatenRight;
+    private boolean frightenedForward;
+    private int frightenedIndex;
+    private final int FRIGHTENED_SIZE;
+    private int frightenedDelay;
+    private final int FRIGHTENED_DELAY_LIMIT;
 
     public GhostFrameManager(ArrayList<ImageIcon> up, ArrayList<ImageIcon> down, ArrayList<ImageIcon> left, ArrayList<ImageIcon> right, int delayLimit, ArrayList<ImageIcon> frightened, ImageIcon eatenUp, ImageIcon eatenDown, ImageIcon eatenLeft, ImageIcon eatenRight, int frightenedDelayLimit) {
         super(up, down, left, right, 0,delayLimit);

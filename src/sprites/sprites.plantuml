@@ -101,6 +101,10 @@ title __SPRITES's Class Diagram__\n
   sprites.Portal o-- sprites.Portal : other
   sprites.PowerPill -up-|> sprites.Sprite
   sprites.Sprite o-- sprites.Direction : dir
+  structure.Maze o-- sprites.Portal : bluePortal / redPortal
+    structure.Maze o-- sprites.Pill : pills
+    structure.Maze o-- sprites.Fruit : fruit
+    structure.Maze o-- sprites.PowerPill : powerPills
 
 
 @enduml

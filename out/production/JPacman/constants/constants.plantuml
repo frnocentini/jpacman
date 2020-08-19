@@ -77,6 +77,8 @@ title __CONSTANTS's Class Diagram__\n
           {static} + INKY_U1_URL : String
           {static} + LIFE_IMAGE_URL : String
           {static} + MAZES_DIR : String
+          {static} + MAZE_LENGTH : int
+          {static} + MAZE_WIDTH : int
           {static} + MENU_IMAGE_URL : String
           {static} + MUNCH_1_URL : String
           {static} + MUNCH_2_URL : String

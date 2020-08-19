@@ -20,9 +20,9 @@ public class Maze {
     private int alivePowerPills;                    // Numero delle powerpill rimaste da mangiare
     private Portal bluePortal;                      // Oggetto portale blu
     private Portal redPortal;                       // Oggetto Portale rooso
-    private static ArrayList<ImageIcon> fruitList;  // ArrayList di immagini della frutta (una per livello)
-    private static Fruit fruit;                     // Oggetto frutto
-    private static long gameStart;                  // Orario di inizio movimento dei personaggi
+    private ArrayList<ImageIcon> fruitList;         // ArrayList di immagini della frutta (una per livello)
+    private Fruit fruit;                            // Oggetto frutto
+    private long gameStart;                         // Orario di inizio movimento dei personaggi
 
     public Maze(char[][] maze) {
         this.maze = new char[21][19];
@@ -49,16 +49,16 @@ public class Maze {
         this.powerPills = new ArrayList<>();
     }
 
-    public static void chooseFruit(int level){
+    public void chooseFruit(int level){
         int i = ((level-1) % fruitList.size());
         fruit = new Fruit(Constants.FRUIT_POINTS[i],fruitList.get(i));
     }
 
-    public static void setGameStart(){
+    public void setGameStart(){
         gameStart = System.currentTimeMillis();
     }
 
-    public static Fruit getFruit(){
+    public Fruit getFruit(){
         if(System.currentTimeMillis() >= gameStart + 15000 && System.currentTimeMillis() <= gameStart + 21000 && !fruit.isDead()){
             return fruit;
         }

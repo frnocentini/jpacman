@@ -54,17 +54,13 @@ public class Blinky extends Ghost{
         right.add(ImageFactory.createImage(Image.BLINKY_R1));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED0));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED1));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED0));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED1));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED2));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED3));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED2));
         frightened.add(ImageFactory.createImage(Image.FRIGHTENED3));
         ImageIcon eatenUp = ImageFactory.createImage(Image.EATEN_U);
         ImageIcon eatenDown = ImageFactory.createImage(Image.EATEN_D);
         ImageIcon eatenLeft = ImageFactory.createImage(Image.EATEN_L);
         ImageIcon eatenRight = ImageFactory.createImage(Image.EATEN_R);
-        this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,4);
+        this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,8);
     }
 
     @Override
