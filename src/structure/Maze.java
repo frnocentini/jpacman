@@ -23,6 +23,8 @@ public class Maze {
     private ArrayList<ImageIcon> fruitList;         // ArrayList di immagini della frutta (una per livello)
     private Fruit fruit;                            // Oggetto frutto
     private long gameStart;                         // Orario di inizio movimento dei personaggi
+    private long pausedTime;                      // Tempo passato mentre il gioco era in pausa
+    private long pauseClock;                      // Istante in cui il gioco è stato messo in pausa l'ultima volta
 
     public Maze(char[][] maze) {
         this.maze = new char[21][19];
@@ -51,15 +53,24 @@ public class Maze {
 
     public void chooseFruit(int level){
         int i = ((level-1) % fruitList.size());
-        fruit = new Fruit(Constants.FRUIT_POINTS[i],fruitList.get(i));
+        this.fruit = new Fruit(Constants.FRUIT_POINTS[i],fruitList.get(i));
     }
 
     public void setGameStart(){
-        gameStart = System.currentTimeMillis();
+        this.gameStart = System.currentTimeMillis();
+        this.pausedTime = 0;
+    }
+
+    public void pause() {
+        this.pauseClock = System.currentTimeMillis();
+    }
+
+    public void resume() {
+        this.pausedTime += System.currentTimeMillis()-this.pauseClock;
     }
 
     public Fruit getFruit(){
-        if(System.currentTimeMillis() >= gameStart + 15000 && System.currentTimeMillis() <= gameStart + 21000 && !fruit.isDead()){
+        if(System.currentTimeMillis() >= gameStart + 15000 + this.pausedTime && System.currentTimeMillis() <= gameStart + 21000 + this.pausedTime && !fruit.isDead()){
             return fruit;
         }
         return null;

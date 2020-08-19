@@ -364,6 +364,7 @@ public class GameLogic {
             ghost.getTimer().stop();
             ghost.pause();
         }
+        maze.pause();
         frame.showPauseMenu();
     }
 
@@ -373,6 +374,7 @@ public class GameLogic {
             ghost.resume();
             ghost.getTimer().start();
         }
+        maze.resume();
     }
 
     public void playBackgroundMusic(boolean frightened, boolean eaten) {

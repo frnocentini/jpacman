@@ -67,21 +67,23 @@ public class GhostLoop implements ActionListener {
                     }
                 }
             }
-        } else if(this.ghost.getState() == FRIGHTENED){
+        } else{
             long temp = System.currentTimeMillis()-ghost.getFrightTime();
             this.startTime += temp - this.timeLost;
             this.timeLost = temp;
-            //System.out.println("l'orario è "+System.currentTimeMillis()+" deve essere maggiore di "+(ghost.getFrightTime()+8000)+" + "+this.ghost.getPausedTime());
-            if(System.currentTimeMillis() >= ghost.getFrightTime()+8000  + this.ghost.getPausedTime()){
-                this.ghost.setPausedTime(0);
-                System.out.println("Esco da frightened con backupState: "+this.backupState);
-                this.ghost.setState(this.backupState);
-            }
-        } else if (this.ghost.getState() == EATEN){
-            Coordinate sp = MazeManager.getObjCoord('1');
-            Coordinate co = new Coordinate(this.ghost.getX(),this.ghost.getY());
-            if(sp.equals(co)){
-                this.ghost.setState(this.backupState);
+            if(this.ghost.getState() == FRIGHTENED){
+                //System.out.println("l'orario è "+System.currentTimeMillis()+" deve essere maggiore di "+(ghost.getFrightTime()+8000)+" + "+this.ghost.getPausedTime());
+                if(System.currentTimeMillis() >= ghost.getFrightTime()+8000  + this.ghost.getPausedTime()){
+                    this.ghost.setPausedTime(0);
+                    System.out.println("Esco da frightened con backupState: "+this.backupState);
+                    this.ghost.setState(this.backupState);
+                }
+            } else if (this.ghost.getState() == EATEN){
+                Coordinate sp = MazeManager.getObjCoord('1');
+                Coordinate co = new Coordinate(this.ghost.getX(),this.ghost.getY());
+                if(sp.equals(co)){
+                    this.ghost.setState(this.backupState);
+                }
             }
         }
     }

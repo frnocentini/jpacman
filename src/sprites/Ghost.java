@@ -217,6 +217,7 @@ public abstract class Ghost extends Character {
 
     public void becomeFrightened(){
         if(this.state != FRIGHTENED){
+            this.state = FRIGHTENED;
             switch(this.dir){
                 case UP:
                     if(MazeManager.checkEmpty(x,y,DOWN)){
@@ -243,7 +244,6 @@ public abstract class Ghost extends Character {
         ghostLoop.resetTimeLost();
         setFrightTime();
         this.pausedTime = 0;
-        this.state = FRIGHTENED;
     }
 
     public void returnToSpawnPoint(int level){
