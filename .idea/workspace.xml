@@ -33,13 +33,7 @@
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/logic/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/logic/GameLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Ghost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/structure/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/structure/Maze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/GameLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/loops/GhostLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/loops/GhostLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprites/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/structure/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/structure/Maze.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +153,7 @@
       <workItem from="1597784206460" duration="196000" />
       <workItem from="1597823747914" duration="1071000" />
       <workItem from="1597826363617" duration="8333000" />
-      <workItem from="1597840218252" duration="14360000" />
+      <workItem from="1597840218252" duration="15898000" />
     </task>
     <servers />
   </component>
