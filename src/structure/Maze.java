@@ -1,7 +1,7 @@
 package structure;
 
 import constants.Constants;
-import image.Image;
+import image.ImageList;
 import image.ImageFactory;
 import sprites.Fruit;
 import sprites.Pill;
@@ -32,14 +32,14 @@ public class Maze {
             }
         }
         fruitList = new ArrayList<>();
-        fruitList.add(ImageFactory.createImage(Image.FRUIT0));
-        fruitList.add(ImageFactory.createImage(Image.FRUIT1));
-        fruitList.add(ImageFactory.createImage(Image.FRUIT2));
-        fruitList.add(ImageFactory.createImage(Image.FRUIT3));
-        fruitList.add(ImageFactory.createImage(Image.FRUIT4));
-        fruitList.add(ImageFactory.createImage(Image.FRUIT5));
-        fruitList.add(ImageFactory.createImage(Image.FRUIT6));
-        fruitList.add(ImageFactory.createImage(Image.FRUIT7));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT0));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT1));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT2));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT3));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT4));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT5));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT6));
+        fruitList.add(ImageFactory.createImage(ImageList.FRUIT7));
     }
 
     public void initializeMaze(){

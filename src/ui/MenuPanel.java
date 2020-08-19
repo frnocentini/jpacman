@@ -1,7 +1,7 @@
 package ui;
 
 import logic.MenuLogic;
-import image.Image;
+import image.ImageList;
 import image.ImageFactory;
 import sound.SoundPlayer;
 
@@ -29,7 +29,7 @@ public class MenuPanel extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         // Disegnamo l'immagine del menù
-        g.drawImage(ImageFactory.createImage(Image.MENU).getImage(), 0,0,null);
+        g.drawImage(ImageFactory.createImage(ImageList.MENU).getImage(), 0,0,null);
         doDrawing();
     }
 

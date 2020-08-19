@@ -4,7 +4,7 @@ import structure.Coordinate;
 
 public abstract class Character extends Sprite{
 
-    protected Coordinate spawnPoint;
+    protected Coordinate spawnPoint; // Punto di generazione del personaggio
 
     public abstract void move();
 
@@ -18,11 +18,10 @@ public abstract class Character extends Sprite{
         this.spawnPoint = spawnPoint;
     }
 
+    // Rimanda il personaggio al punto di nascita
     public void returnToSpawnPoint() {
         this.x = this.spawnPoint.getX();
         this.y = this.spawnPoint.getY();
-        this.dx = 0;
-        this.dy = 0;
     }
 
 }

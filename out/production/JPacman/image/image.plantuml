@@ -94,7 +94,7 @@ title __IMAGE's Class Diagram__\n
 
   namespace  {
     namespace mage {
-      class image.ImageFactory {
+      class imageList.ImageFactory {
           {static} + createImage()
           {static} - getFile()
       }

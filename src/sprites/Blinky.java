@@ -2,7 +2,7 @@ package sprites;
 
 import constants.Constants;
 import frameManagers.GhostFrameManager;
-import image.Image;
+import image.ImageList;
 import image.ImageFactory;
 import structure.MazeManager;
 import structure.Coordinate;
@@ -44,22 +44,22 @@ public class Blinky extends Ghost{
         ArrayList<ImageIcon> left = new ArrayList<>();
         ArrayList<ImageIcon> right = new ArrayList<>();
         ArrayList<ImageIcon> frightened = new ArrayList<>();
-        up.add(ImageFactory.createImage(Image.BLINKY_U0));
-        up.add(ImageFactory.createImage(Image.BLINKY_U1));
-        down.add(ImageFactory.createImage(Image.BLINKY_D0));
-        down.add(ImageFactory.createImage(Image.BLINKY_D1));
-        left.add(ImageFactory.createImage(Image.BLINKY_L0));
-        left.add(ImageFactory.createImage(Image.BLINKY_L1));
-        right.add(ImageFactory.createImage(Image.BLINKY_R0));
-        right.add(ImageFactory.createImage(Image.BLINKY_R1));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED0));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED1));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED2));
-        frightened.add(ImageFactory.createImage(Image.FRIGHTENED3));
-        ImageIcon eatenUp = ImageFactory.createImage(Image.EATEN_U);
-        ImageIcon eatenDown = ImageFactory.createImage(Image.EATEN_D);
-        ImageIcon eatenLeft = ImageFactory.createImage(Image.EATEN_L);
-        ImageIcon eatenRight = ImageFactory.createImage(Image.EATEN_R);
+        up.add(ImageFactory.createImage(ImageList.BLINKY_U0));
+        up.add(ImageFactory.createImage(ImageList.BLINKY_U1));
+        down.add(ImageFactory.createImage(ImageList.BLINKY_D0));
+        down.add(ImageFactory.createImage(ImageList.BLINKY_D1));
+        left.add(ImageFactory.createImage(ImageList.BLINKY_L0));
+        left.add(ImageFactory.createImage(ImageList.BLINKY_L1));
+        right.add(ImageFactory.createImage(ImageList.BLINKY_R0));
+        right.add(ImageFactory.createImage(ImageList.BLINKY_R1));
+        frightened.add(ImageFactory.createImage(ImageList.FRIGHTENED0));
+        frightened.add(ImageFactory.createImage(ImageList.FRIGHTENED1));
+        frightened.add(ImageFactory.createImage(ImageList.FRIGHTENED2));
+        frightened.add(ImageFactory.createImage(ImageList.FRIGHTENED3));
+        ImageIcon eatenUp = ImageFactory.createImage(ImageList.EATEN_U);
+        ImageIcon eatenDown = ImageFactory.createImage(ImageList.EATEN_D);
+        ImageIcon eatenLeft = ImageFactory.createImage(ImageList.EATEN_L);
+        ImageIcon eatenRight = ImageFactory.createImage(ImageList.EATEN_R);
         this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,8);
     }
 

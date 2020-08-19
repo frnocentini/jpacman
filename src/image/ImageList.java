@@ -1,6 +1,6 @@
 package image;
 
-public enum Image {
+public enum ImageList {
     EMPTY,
     WALL,
     BLINKY,

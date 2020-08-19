@@ -7,9 +7,10 @@ import java.util.ArrayList;
 
 public class PacmanFrameManager extends FrameManager {
 
-    private Pacman pacman;
-    private ArrayList<ImageIcon> death;
-    private int deathIndex;
+    private Pacman pacman;                  // Riferimento a pacman, ci servirà per reimpostarlo come vivo una volta
+                                            // finita l'animazione
+    private ArrayList<ImageIcon> death;     // Frame dell'animazione della morte
+    private int deathIndex;                 // Stessi attributi del FrameManager classico ma per la morte
     private int deathDelay;
     private final int DEATH_SIZE;
     private final int DEATH_DELAY_LIMIT;
@@ -24,6 +25,7 @@ public class PacmanFrameManager extends FrameManager {
         this.deathDelay = 0;
     }
 
+    // Restituisce i frame necessari per l'animazione della morte
     public ImageIcon getNextFrameDeath(){
         ImageIcon frame = this.death.get(deathIndex);
         deathDelay++;
@@ -31,6 +33,7 @@ public class PacmanFrameManager extends FrameManager {
             deathIndex++;
             deathDelay = 0;
         }
+        // A fine animazione imposta il Pacman come vivo
         if(deathIndex == this.DEATH_SIZE){
             this.pacman.setDead(false);
             this.deathIndex = 0;

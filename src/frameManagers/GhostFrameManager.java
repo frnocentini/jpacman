@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class GhostFrameManager extends FrameManager {
 
-    private ArrayList<ImageIcon> frightened;
-    private ImageIcon eatenUp;
+    private ArrayList<ImageIcon> frightened;    // Frame del fantasma spaventato
+    private ImageIcon eatenUp;                  // Immagini del fantasma mangiato
     private ImageIcon eatenDown;
     private ImageIcon eatenLeft;
     private ImageIcon eatenRight;
-    private boolean frightenedForward;
+    private boolean frightenedForward;          // Attributi analoghi a quelli classici ma per l'animazione spaventata
     private int frightenedIndex;
     private final int FRIGHTENED_SIZE;
     private int frightenedDelay;
@@ -33,6 +33,8 @@ public class GhostFrameManager extends FrameManager {
     }
 
     public ImageIcon getNextFrameFrightened(boolean timeOut){
+        //timeOut indica che va usata la seconda metà dell'ArrayList (fantasmi intermittenti)
+        // Portiamo l'index tra i limit consentiti (tra 0 e la metà se timeOut == false)
         if(!timeOut && this.frightenedIndex > (this.FRIGHTENED_SIZE/2)-1){
             this.frightenedIndex = (this.FRIGHTENED_SIZE/2)-1;
             this.frightenedForward = false;
@@ -51,6 +53,7 @@ public class GhostFrameManager extends FrameManager {
             }
             frightenedDelay = 0;
         }
+        // L'index è in grado di raggiungere la seconda metà solo se timeOut == true
         if(timeOut){
             if(frightenedIndex == this.FRIGHTENED_SIZE-1){
                 frightenedForward = false;

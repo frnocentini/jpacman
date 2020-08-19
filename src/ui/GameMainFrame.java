@@ -1,8 +1,8 @@
 package ui;
 
 import constants.Constants;
+import image.ImageList;
 import logic.MainFrameLogic;
-import image.Image;
 import image.ImageFactory;
 import sound.SoundPlayer;
 
@@ -47,7 +47,7 @@ public class GameMainFrame extends JFrame{
         layeredPane.add(menuPanel, JLayeredPane.DEFAULT_LAYER);
         layeredPane.setPreferredSize( new Dimension(Constants.BOARD_WIDTH * Constants.SCALE, Constants.BOARD_HEIGHT * Constants.SCALE + 40) );
 
-        this.setIconImage((ImageFactory.createImage(Image.PACMAN_R1).getImage()));
+        this.setIconImage((ImageFactory.createImage(ImageList.PACMAN_R1).getImage()));
         this.setContentPane(layeredPane);
         this.setVisible(true);
         this.setTitle(Constants.TITLE);

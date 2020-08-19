@@ -6,12 +6,12 @@ import javax.swing.ImageIcon;
 
 public class ImageFactory {
 
-    // Prende un elemento dell'ENUM Image  e ne restituisce la relativa ImageIcon
-    public static ImageIcon createImage(Image image) {
+    // Prende un elemento dell'ENUM ImageList  e ne restituisce la relativa ImageIcon
+    public static ImageIcon createImage(ImageList imageList) {
 
         ImageIcon imageIcon = null;
 
-        switch (image){
+        switch (imageList){
             case EMPTY:
                 imageIcon = getFile(Constants.EMPTY_IMAGE_URL);
                 break;

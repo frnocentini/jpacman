@@ -1,8 +1,8 @@
 package ui;
 
+import image.ImageList;
 import keylisteners.GameEventListener;
 import logic.GameLogic;
-import image.Image;
 import image.ImageFactory;
 import sprites.Fruit;
 import sprites.Ghost;
@@ -10,7 +10,6 @@ import sprites.Pacman;
 import sprites.Pill;
 import sprites.Portal;
 import sprites.PowerPill;
-import structure.MazeManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,7 +78,7 @@ public class GamePanel extends JPanel {
         livesNumLabel.setForeground(Color.WHITE);
         add(livesNumLabel);
         this.livesIcons = new ArrayList<>();
-        ImageIcon lifeIcon = ImageFactory.createImage(image.Image.LIFE);
+        ImageIcon lifeIcon = ImageFactory.createImage(ImageList.LIFE);
         for(int i=0;i<this.logic.getLives()-1;i++){
             livesIcons.add(lifeIcon);
         }
@@ -90,7 +89,7 @@ public class GamePanel extends JPanel {
         this.gameEventListener = new GameEventListener(this);
         this.addKeyListener(this.gameEventListener);
         // Creiamo l'immagine del pannellino inferiore
-        this.smallPanel = ImageFactory.createImage(Image.SMALL_PANEL);
+        this.smallPanel = ImageFactory.createImage(ImageList.SMALL_PANEL);
         setFocusable(true);
         setLayout(null);
         requestFocusInWindow();
@@ -141,7 +140,7 @@ public class GamePanel extends JPanel {
     public void drawLives(Graphics g) {
         livesIcons.clear();
         for(int i=0;i<this.logic.getLives()-1;i++){
-            livesIcons.add(ImageFactory.createImage(image.Image.LIFE));
+            livesIcons.add(ImageFactory.createImage(ImageList.LIFE));
         }
         if(this.logic.getLives() < 7){
             livesNumLabel.setText("");

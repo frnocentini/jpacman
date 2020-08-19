@@ -33,7 +33,6 @@ public class GameLogic {
     private long startTime;                         // Orario in cui è inizata la partita (4 sec. inclusi)
     private long portalTime;                        // Orario dell'ultima volta che si è attivato un portale
     private int level;                              // Livello del gioco
-    private int lives;                              // Vite rimanenti
     private int lifeCounter;                        // Prossimo migliaio in cui dovrà scattare una vita extra
     private int consecutiveGhosts;                  // Conta quanti fantasmi si sono mangiati dopo una singola PowerPill
     private String readyString;                     // Stringhe che riportano i valori da stampare
@@ -53,7 +52,8 @@ public class GameLogic {
         this.maze = MazeManager.populateMaze();
         this.lifeCounter = 1;
         this.level = level;
-        this.lives = lives;
+        this.pacman = new Pacman();
+        this.pacman.setLives(lives);
         // System.out.println(level);
         this.inGame = true;
         this.pacmanStart = false;
@@ -65,7 +65,6 @@ public class GameLogic {
         SoundPlayer.playMusic(GAME_START);
         this.startTime = this.portalTime = System.currentTimeMillis();
         this.maze.setGameStart();
-        this.pacman = new Pacman();
         this.ghosts = new ArrayList<>();
         Pinky pinky = new Pinky(this.pacman);
         Blinky blinky = new Blinky(this.pacman);
@@ -176,7 +175,7 @@ public class GameLogic {
 
     private void getExtraLife(){
         if(this.pacman.getPoints() >= 10000 * this.lifeCounter){
-            this.lives++;
+            this.pacman.increaseLives();
             this.lifeCounter++;
         }
     }
@@ -263,9 +262,9 @@ public class GameLogic {
             if(!this.pacman.isDead()){
                 pacmanDead = false;
                 // Scaliamo una vita
-                this.lives--;
+                this.pacman.decreaseLives();
                 // Se le vite sono a 0 Game Over, altrimenti riparte il livello
-                if (this.lives == 0) {
+                if (this.pacman.getLives() == 0) {
                     makeGameOver();
                 }else{
                     restartLevel();
@@ -418,7 +417,7 @@ public class GameLogic {
     }
 
     public int getLives() {
-        return lives;
+        return this.pacman.getLives();
     }
 
     public int getPoints() {

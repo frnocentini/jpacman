@@ -1,8 +1,8 @@
 package sprites;
 
+import image.ImageList;
 import loops.PacmanLoop;
 import constants.Constants;
-import image.Image;
 import image.ImageFactory;
 import frameManagers.PacmanFrameManager;
 import structure.MazeManager;
@@ -19,7 +19,7 @@ public class Pacman extends Character {
                                                 // per creare un effetto di animazione
     private Timer timer;                        // Timer che permette di cambiare direzione in quella
                                                 // richiesta dal giocatore non appena possibile
-    private int keyPressed;                     // Ultima direzione richiesta dal giocatore
+    private int keyCode;                        // Ultima direzione richiesta dal giocatore
     private int lives;                          // Numero delle vite rimanenti
 
     public Pacman(){
@@ -27,19 +27,20 @@ public class Pacman extends Character {
     }
 
     private void initialize(){
+        // Creiamo e aggiungiamo le immagini al FrameManager
         addFrameManager();
-
+        // Gli impostiamo la prima immagine
         dir = LEFT;
         ImageIcon imageIcon = this.frameManager.getNextFrame(dir);
         setImage(imageIcon.getImage());
-
+        // Assegnamo ilpunto di generazione
         this.spawnPoint = MazeManager.getObjCoord('S');
 
         setX(this.spawnPoint.getX());
         setY(this.spawnPoint.getY());
         setW(Constants.PACMAN_WIDTH);
         setH(Constants.PACMAN_HEIGHT);
-
+        // Timer chiama ogni millisecondo PacmanLoop, necessario al cambio di direzione
         this.timer = new Timer(1,new PacmanLoop(this));
 
         dx = -Constants.PACMAN_SPEED;
@@ -47,15 +48,16 @@ public class Pacman extends Character {
     }
 
     @Override
-    public void move() {
+    public void move() { //Richiamato dal GameLoop ad ogni update()
+        // Se Pacman è morto si avvia l'animazione della morte ad ogni chiamata del move()
         if(!this.dead){
-            if(MazeManager.checkEmpty(x,y,dir)) {
+            // Se può andare avanti, lo fa
+            if(MazeManager.checkEmpty(this.x,this.y,this.dir)) {
                 x += dx;
                 y += dy;
-                if (dx != 0 || dy != 0) {
-                    ImageIcon imageIcon = this.frameManager.getNextFrame(dir);
-                    setImage(imageIcon.getImage());
-                }
+                // Cambio il frame dell'animazione
+                ImageIcon imageIcon = this.frameManager.getNextFrame(dir);
+                setImage(imageIcon.getImage());
             }
         } else {
             ImageIcon imageIcon = this.frameManager.getNextFrameDeath();
@@ -82,53 +84,66 @@ public class Pacman extends Character {
         ArrayList<ImageIcon> left = new ArrayList<>();
         ArrayList<ImageIcon> right = new ArrayList<>();
         ArrayList<ImageIcon> death = new ArrayList<>();
-        ImageIcon a0 = ImageFactory.createImage(Image.PACMAN_A0);
+        ImageIcon a0 = ImageFactory.createImage(ImageList.PACMAN_A0);
         up.add(a0);
-        up.add(ImageFactory.createImage(Image.PACMAN_U1));
-        up.add(ImageFactory.createImage(Image.PACMAN_U2));
+        up.add(ImageFactory.createImage(ImageList.PACMAN_U1));
+        up.add(ImageFactory.createImage(ImageList.PACMAN_U2));
         down.add(a0);
-        down.add(ImageFactory.createImage(Image.PACMAN_D1));
-        down.add(ImageFactory.createImage(Image.PACMAN_D2));
+        down.add(ImageFactory.createImage(ImageList.PACMAN_D1));
+        down.add(ImageFactory.createImage(ImageList.PACMAN_D2));
         left.add(a0);
-        left.add(ImageFactory.createImage(Image.PACMAN_L1));
-        left.add(ImageFactory.createImage(Image.PACMAN_L2));
+        left.add(ImageFactory.createImage(ImageList.PACMAN_L1));
+        left.add(ImageFactory.createImage(ImageList.PACMAN_L2));
         right.add(a0);
-        right.add(ImageFactory.createImage(Image.PACMAN_R1));
-        right.add(ImageFactory.createImage(Image.PACMAN_R2));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH0));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH1));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH2));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH3));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH4));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH5));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH6));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH7));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH8));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH9));
-        death.add(ImageFactory.createImage(Image.PACMAN_DEATH10));
+        right.add(ImageFactory.createImage(ImageList.PACMAN_R1));
+        right.add(ImageFactory.createImage(ImageList.PACMAN_R2));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH0));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH1));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH2));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH3));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH4));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH5));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH6));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH7));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH8));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH9));
+        death.add(ImageFactory.createImage(ImageList.PACMAN_DEATH10));
         this.frameManager = new PacmanFrameManager(up,down,left,right,1,4,this,death,7);
     }
 
     public void keyPressed(KeyEvent e) {
-        this.keyPressed = e.getKeyCode();
+        this.keyCode = e.getKeyCode();
+        // Il timer per cambiare direzione viene avviato
         if(timer.isRunning()){
             timer.stop();
         }
         timer.start();
     }
 
+    public void doOneLoop() {
+        if(timer.isRunning()){
+            changeLoop();
+        }
+    }
+
     public void changeLoop(){
         int speed = Constants.PACMAN_SPEED;
-        switch (this.keyPressed) {
+        switch (this.keyCode) {
             case KeyEvent.VK_UP:
+                // Se la direzione non è quella attuale o la sua inversa devo controllare che io possa
+                // cambiare direzione (le mie coordinate sono multiplo della dimensione dei blocchi)
                 if(dir != UP && dir != DOWN){
                     if(!MazeManager.canIMove(x,y) || !MazeManager.checkEmpty(x,y,UP)){
                         break;
                     }
                 }
+                // Cambio le velocità
                 dy = -speed;
                 dx = 0;
                 setDir(UP);
+                if(timer.isRunning()){
+                    timer.stop();
+                }
                 break;
             case KeyEvent.VK_DOWN:
                 if(dir != UP && dir != DOWN){
@@ -139,6 +154,9 @@ public class Pacman extends Character {
                 dy = speed;
                 dx = 0;
                 setDir(DOWN);
+                if(timer.isRunning()){
+                    timer.stop();
+                }
                 break;
             case KeyEvent.VK_RIGHT:
                 if(dir != RIGHT && dir != LEFT){
@@ -149,6 +167,9 @@ public class Pacman extends Character {
                 dx = speed;
                 dy = 0;
                 setDir(RIGHT);
+                if(timer.isRunning()){
+                    timer.stop();
+                }
                 break;
             case KeyEvent.VK_LEFT:
                 if(dir != RIGHT && dir != LEFT){
@@ -159,13 +180,10 @@ public class Pacman extends Character {
                 dx = -speed;
                 dy = 0;
                 setDir(LEFT);
+                if(timer.isRunning()){
+                    timer.stop();
+                }
                 break;
-        }
-    }
-
-    public void doOneLoop() {
-        if(timer.isRunning()){
-            changeLoop();
         }
     }
 

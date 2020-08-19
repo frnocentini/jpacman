@@ -1,7 +1,7 @@
 package ui;
 
 import constants.Constants;
-import image.Image;
+import image.ImageList;
 import image.ImageFactory;
 import structure.MazeManager;
 
@@ -25,8 +25,8 @@ public class BGPanel extends JPanel {
         // Richiamiamo il metodo statico che trasforma il file del labirinto in un labirinto nel nostro gioco
         char[][] maze = MazeManager.createMaze(mazeNum);
         // Creiamo le ImageIcon del pavimento e del muro
-        ImageIcon empty = ImageFactory.createImage(Image.EMPTY);
-        ImageIcon wall = ImageFactory.createImage(Image.WALL);
+        ImageIcon empty = ImageFactory.createImage(ImageList.EMPTY);
+        ImageIcon wall = ImageFactory.createImage(ImageList.WALL);
         // Creo per ogni cella della matrice una JLabel e inseirsco un muro o un pavimento
         for (int i = 0; i< maze.length; i++){
             for(int j = 0; j< maze[0].length; j++){

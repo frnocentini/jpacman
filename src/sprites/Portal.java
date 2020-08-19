@@ -1,6 +1,6 @@
 package sprites;
 
-import image.Image;
+import image.ImageList;
 import image.ImageFactory;
 
 import javax.swing.*;
@@ -17,10 +17,10 @@ public class Portal extends Sprite{
         this.h = h;
         this.color = color;
         if(color.equals("BLUE")){
-            ImageIcon imageIcon = ImageFactory.createImage(Image.BLUE_PORTAL);
+            ImageIcon imageIcon = ImageFactory.createImage(ImageList.BLUE_PORTAL);
             setImage(imageIcon.getImage());
         } else {
-            ImageIcon imageIcon = ImageFactory.createImage(Image.RED_PORTAL);
+            ImageIcon imageIcon = ImageFactory.createImage(ImageList.RED_PORTAL);
             setImage(imageIcon.getImage());
         }
     }

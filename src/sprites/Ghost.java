@@ -17,16 +17,17 @@ import static sprites.State.*;
 
 public abstract class Ghost extends Character {
 
-    protected GhostFrameManager frameManager;
-    protected State state;
-    protected Coordinate target;
-    protected Coordinate scatterTarget;
-    protected Pacman pacman;
-    protected GhostLoop ghostLoop;
-    protected long frightTime;
+    protected GhostFrameManager frameManager;   // FrameManager del Ghost
+    protected State state;                      // Stato del fantasma (CHASE / SCATTER / FRIGHTENED / EATEN)
+    protected Coordinate target;                // Coordinata verso cui andare nello spostamento
+    protected Coordinate scatterTarget;         // Coordinata da usare come target nella modalità Scatter
+    protected Pacman pacman;                    // Riferimento a Pacman necessario per il calcolo del Chase Target
+    protected GhostLoop ghostLoop;              // Con timer definisce le caratteristiche temporali dei
+                                                // fantasmi (es. passaggio scatter / target)
     protected Timer timer;
-    protected long pausedTime;
-    protected long pauseClock;
+    protected long frightTime;                  // Ultimo istante in cui pacman ha mangiato una powerpill
+    protected long pausedTime;                  // Tempo passato mentre il gioco era in pausa
+    protected long pauseClock;                  // Istante in cui il gioco è stato messo in pausa l'ultima volta
 
     public Ghost(Pacman pacman) {
         setW(Constants.GHOST_WIDTH);
@@ -42,19 +43,21 @@ public abstract class Ghost extends Character {
     @Override
     public void move(){
         int speed = Constants.GHOST_SPEED;
+        // Impostiamo il nuovo target, a seconda dello spostamento di Pacman o dello stato
         setTarget();
-        ImageIcon imageIcon = null;
+        ImageIcon imageIcon;
         switch(this.state){
             case CHASE:
             case SCATTER:
-                x -= x%(Constants.GHOST_SPEED);
-                y -= y%(Constants.GHOST_SPEED);
+                x -= x%speed;
+                y -= y%speed;
                 imageIcon = this.frameManager.getNextFrame(dir);
                 setImage(imageIcon.getImage());
                 break;
             case FRIGHTENED:
-                x -= x%(Constants.GHOST_SPEED);
-                y -= y%(Constants.GHOST_SPEED);
+                x -= x%speed;
+                y -= y%speed;
+                // Se sono passati 6 secondi mostriamo l'intermittenza del fantasma
                 if(System.currentTimeMillis() > this.frightTime + 6000 + this.pausedTime){
                     imageIcon = this.frameManager.getNextFrameFrightened(true);
                     setImage(imageIcon.getImage());
@@ -65,12 +68,13 @@ public abstract class Ghost extends Character {
                 break;
             case EATEN:
                 speed  = Constants.GHOST_SPEED_EATEN;
-                x -= x%(Constants.GHOST_SPEED_EATEN);
-                y -= y%(Constants.GHOST_SPEED_EATEN);
+                x -= x%speed;
+                y -= y%speed;
                 imageIcon = this.frameManager.getNextFrameEaten(dir);
                 setImage(imageIcon.getImage());
                 break;
         }
+        // Se si trova a coordinate multiple della dimensione del blocco (= 20)
         if(MazeManager.canIMove(x,y)){
             if(this.state != FRIGHTENED){
                 changeDir();
@@ -187,6 +191,7 @@ public abstract class Ghost extends Character {
     public void setTarget() {
         switch(this.state){
             case CHASE:
+                // Metodo astratto in Ghost in quanto si implementa in modo dierso per ogni fantasma
                 setChaseTarget();
                 break;
             case SCATTER:
@@ -194,6 +199,7 @@ public abstract class Ghost extends Character {
                 this.target.setY(this.scatterTarget.getY());
                 break;
             case EATEN:
+                // Il target è lo SpawnPoint di Blinky
                 Coordinate start = MazeManager.getObjCoord('1');
                 this.target.setX(start.getX());
                 this.target.setY(start.getY());

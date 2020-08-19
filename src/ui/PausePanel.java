@@ -1,7 +1,7 @@
 package ui;
 
 import keylisteners.PauseEventListener;
-import image.Image;
+import image.ImageList;
 import image.ImageFactory;
 import sound.SoundPlayer;
 
@@ -31,7 +31,7 @@ public class PausePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawImage(ImageFactory.createImage(Image.PAUSE).getImage(), 0,0,null);
+        g.drawImage(ImageFactory.createImage(ImageList.PAUSE).getImage(), 0,0,null);
         doDrawing();
     }
 
