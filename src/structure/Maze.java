@@ -23,8 +23,8 @@ public class Maze {
     private ArrayList<ImageIcon> fruitList;         // ArrayList di immagini della frutta (una per livello)
     private Fruit fruit;                            // Oggetto frutto
     private long gameStart;                         // Orario di inizio movimento dei personaggi
-    private long pausedTime;                      // Tempo passato mentre il gioco era in pausa
-    private long pauseClock;                      // Istante in cui il gioco è stato messo in pausa l'ultima volta
+    private long pausedTime;                        // Tempo passato mentre il gioco era in pausa
+    private long pauseClock;                        // Istante in cui il gioco è stato messo in pausa l'ultima volta
 
     public Maze(char[][] maze) {
         this.maze = new char[21][19];
@@ -44,6 +44,7 @@ public class Maze {
         fruitList.add(ImageFactory.createImage(ImageList.FRUIT7));
     }
 
+    // Riporta tutte le Pill e le PowerPill a zero
     public void initializeMaze(){
         this.alivePills=0;
         this.alivePowerPills=0;
@@ -51,11 +52,13 @@ public class Maze {
         this.powerPills = new ArrayList<>();
     }
 
+    // A seconda del livello crea il frutto da far apparire
     public void chooseFruit(int level){
         int i = ((level-1) % fruitList.size());
         this.fruit = new Fruit(Constants.FRUIT_POINTS[i],fruitList.get(i));
     }
 
+    // Avvia il timer per far apparire e sparire la frutta
     public void setGameStart(){
         this.gameStart = System.currentTimeMillis();
         this.pausedTime = 0;
@@ -69,6 +72,8 @@ public class Maze {
         this.pausedTime += System.currentTimeMillis()-this.pauseClock;
     }
 
+    // Restituisce il frutto da stampare al GameLogic se il tempo è compreso tra gli intervalli e
+    // non è già stato mangiato
     public Fruit getFruit(){
         if(System.currentTimeMillis() >= gameStart + 15000 + this.pausedTime && System.currentTimeMillis() <= gameStart + 21000 + this.pausedTime && !fruit.isDead()){
             return fruit;
@@ -76,6 +81,7 @@ public class Maze {
         return null;
     }
 
+    // Aggiunge una Pill al labirinto
     public void addPill(int x, int y){
         pills.add(new Pill(x,y, Constants.PILL_WIDTH, Constants.PILL_HEIGHT ,Constants.PILL_POINTS));
         alivePills++;
@@ -101,6 +107,7 @@ public class Maze {
         this.alivePills = alivePills;
     }
 
+    // Aggiunge una PowerPill al labirinto
     public void addPowerPill(int x, int y){
         powerPills.add(new PowerPill(x,y, Constants.POWERPILL_WIDTH, Constants.POWERPILL_HEIGHT ,Constants.POWERPILL_POINTS));
         alivePowerPills++;

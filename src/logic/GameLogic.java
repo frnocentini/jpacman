@@ -40,6 +40,9 @@ public class GameLogic {
     private String levelString;
     private String highScoreString;
     private String livesNumString;
+    private long lastPillTime;                      // Valore che ci permette di implementare un piccolo ritardo
+                                                    // a fine partita
+    private final long LAST_PILL_TIME_MAX = Long.MAX_VALUE-1000;
 
     public GameLogic(GameMainFrame frame, GamePanel gamePanel, int level, int highScore, int lives){
         this.frame = frame;
@@ -81,6 +84,7 @@ public class GameLogic {
         this.livesNumString = new String("");
         // Sceglie che frutto mostrare in questo livello
         this.maze.chooseFruit(level);
+        this.lastPillTime = startTime;
     }
 
     private void restartLevel(){
@@ -96,11 +100,12 @@ public class GameLogic {
         this.maze.setGameStart();
         this.pacman.returnToSpawnPoint();
         for(Ghost ghost : this.ghosts) {
-            ghost.returnToSpawnPoint(this.level);
+            ghost.returnToSpawnPoint();
             ghost.setPausedTime(0);
         }
         System.gc();
         timer.start();
+        this.lastPillTime = startTime;
     }
 
     public void doOneLoop() {
@@ -135,10 +140,16 @@ public class GameLogic {
                 this.playBackgroundMusic(frightened,eaten);
             }
             if(this.maze.getAlivePills() == 0){
-                SoundPlayer.stopAll();
-                endGame();
+                // Se è rimasto col valore con cui è stato inizializzato
+                // lo usiamo per registrare l'istante
+                // Dopo 50 millisecondi il gioco può finire
+                if(lastPillTime == startTime){
+                    lastPillTime = System.currentTimeMillis();
+                }else if(System.currentTimeMillis() > lastPillTime + 50){
+                    SoundPlayer.stopAll();
+                    endGame();
+                }
             }
-
         }else if(System.currentTimeMillis() >= (this.startTime + 4*1000)) {
             // Se sono passati 4 secondi, il gioco inizia
             SoundPlayer.removeMusic(DEATH);
@@ -275,7 +286,7 @@ public class GameLogic {
 
     private void collisionGhosts() {
         for(Ghost ghost : this.ghosts){
-            if(!this.pacman.isDead()) {
+            if(!this.pacman.isDead() && !pacmanDead) {
                 if (MazeManager.checkCollision(pacman, ghost)) {
                     switch (ghost.getState()) {
                         case CHASE:
@@ -334,6 +345,9 @@ public class GameLogic {
             e.printStackTrace();
         }
         this.level++;
+        for(Ghost ghost : this.ghosts) {
+            ghost.resetGhostLoop(this.level);
+        }
         this.frame.writeHighScore(this.pacman.getPoints());
         this.maze.chooseFruit(this.level);
         MazeManager.populateMaze();

@@ -101,6 +101,8 @@ title __SPRITES's Class Diagram__\n
   sprites.Portal o-- sprites.Portal : other
   sprites.PowerPill -up-|> sprites.Sprite
   sprites.Sprite o-- sprites.Direction : dir
+  logic.GameLogic o-- sprites.Pacman : pacman
+    logic.GameLogic o-- sprites.Ghost : ghosts
   structure.Maze o-- sprites.Portal : bluePortal / redPortal
     structure.Maze o-- sprites.Pill : pills
     structure.Maze o-- sprites.Fruit : fruit

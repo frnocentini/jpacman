@@ -61,6 +61,8 @@ public class Clyde extends Ghost{
         this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,8);
     }
 
+    // Il target è Pacman finché non entra nella circonferenza di raggio 8 blocchi
+    // e centro Pacman, in tal caso diventa lo scatterTarget
     @Override
     public void setChaseTarget() {
         if(MazeManager.checkCircleCollision(this,this.pacman.getX(),this.pacman.getY(),8*Constants.BLOCK_DIM)){

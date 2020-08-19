@@ -215,6 +215,8 @@ public abstract class Ghost extends Character {
 
     public abstract void setChaseTarget();
 
+    // Metodo che permette di avviare lo stato di Frightened, fa fare dietrofront al fantasma
+    // e registra il frightTime
     public void becomeFrightened(){
         if(this.state != FRIGHTENED){
             this.state = FRIGHTENED;
@@ -246,14 +248,19 @@ public abstract class Ghost extends Character {
         this.pausedTime = 0;
     }
 
-    public void returnToSpawnPoint(int level){
+    // Oltre a farlo ritornare al suo SP cambia anche il GhostLoop con uno nuovo
+    public void returnToSpawnPoint(){
         super.returnToSpawnPoint();
+        ImageIcon imageIcon = this.frameManager.getFrameAt(0,dir);
+        setImage(imageIcon.getImage());
+    }
+
+    // Crea un nuovo GhostLoop con il livello aggiornato
+    public void resetGhostLoop(int level){
         this.timer.stop();
         this.ghostLoop = null;
         this.ghostLoop = new GhostLoop(this,level);
         this.timer = new Timer(1,ghostLoop);
-        ImageIcon imageIcon = this.frameManager.getFrameAt(0,dir);
-        setImage(imageIcon.getImage());
     }
 
     public State getState() {

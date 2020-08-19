@@ -64,6 +64,8 @@ public class Inky extends Ghost{
         this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,8);
     }
 
+    // Il target è, preso come riferimento due caselle di fronte Pacman,
+    // la posizione di Blinky girata di 180° rispetto al riferimento
     @Override
     public void setChaseTarget() {
         int xRIF = this.pacman.getX();

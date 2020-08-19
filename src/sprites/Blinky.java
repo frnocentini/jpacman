@@ -63,6 +63,7 @@ public class Blinky extends Ghost{
         this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,8);
     }
 
+    // Il target è Pacman
     @Override
     public void setChaseTarget() {
         this.target.setX(this.pacman.getX());
