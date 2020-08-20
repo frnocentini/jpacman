@@ -32,8 +32,8 @@ public abstract class Sprite {
         this.dead = false;
     }
 
+    // Controlla che due sprite si stiano toccando
     public boolean checkCollision(Sprite a) {
-        // Find the bounds of the rectangle intersection
         Rectangle2D ar = new Rectangle2D.Double(a.getX()+a.getW()/4, a.getY()+a.getH()/4, 3 * a.getW() / 4, 3 * a.getH() / 4);
         Rectangle2D br = new Rectangle2D.Double(this.getX()+this.getW()/4, this.getY()+this.getH()/4, 3 * this.getW() / 4, 3 * this.getH() / 4);
         if(ar.intersects(br)){
@@ -42,6 +42,7 @@ public abstract class Sprite {
         return false;
     }
 
+    // Controlla che lo sprite si stia toccando con un cerchio di centro co e lunghezza length
     public boolean checkCircleCollision(Coordinate co, double length){
         Rectangle2D ar = new Rectangle2D.Double(this.getX()+this.getW()/4, this.getY()+this.getH()/4, 3 * this.getW() / 4, 3 * this.getH() / 4);
         Ellipse2D e = new Ellipse2D.Double(co.getX(),co.getY(),length,length);

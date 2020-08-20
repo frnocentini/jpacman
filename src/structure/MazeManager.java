@@ -52,6 +52,7 @@ public class MazeManager {
         return null;
     }
 
+    // Popola il labirinto di elementi
     public static Maze populateMaze() {
         // Metodo che azzera gli ArrayList delle pill e powerpill
         MazeManager.maze.initializeMaze();

@@ -28,6 +28,7 @@ public class GameLogic {
     private boolean inGame;                         // Comunica ad alcuni controlli se in gioco è attivo o meno
     private boolean munch;                          // Gestisce i suoni alternati "waka-waka"
     private boolean pacmanDead;                     // Comunica se Pacman era morto nel ciclo prcedente
+                                                    // Tornerà false una volta che Pacman tornerà al suo Spawn Point
     private boolean pacmanStart;                    // Comunica che la partita si è avviata (passati 4 sec.)
     private Timer timer;                            // Timer che scandisce i cicli update-repaint
     private long startTime;                         // Orario in cui è inizata la partita (4 sec. inclusi)
@@ -49,7 +50,7 @@ public class GameLogic {
         initializeVariables(level,highScore,lives);
     }
 
-    private void initializeVariables(int level, int highScore, int lives) {
+    public void initializeVariables(int level, int highScore, int lives) {
         // Richiamiamo il metodo di MazeManager per popolare il labirinto di sprite statici (pillole, portali, frutta)
         this.maze = MazeManager.populateMaze();
         this.lifeCounter = 1;
@@ -86,7 +87,7 @@ public class GameLogic {
         this.lastPillTime = 0;
     }
 
-    private void restartLevel(){
+    public void restartLevel(){
         this.startTime = System.currentTimeMillis();
         this.portalTime = System.currentTimeMillis();
         this.pacmanStart = false;
@@ -121,7 +122,7 @@ public class GameLogic {
         }
     }
 
-    private void update() {
+    public void update() {
         // Finché non sono passati dall'inizio 4 secondi non entreremo
         if(this.pacmanStart && this.inGame){
             boolean frightened = false;
@@ -179,7 +180,8 @@ public class GameLogic {
         collisionGhosts();
     }
 
-    private void collisionFruit() {
+    public void collisionFruit() {
+        // Se l'oggetto restituito non è null controlla se esiste una collisione con Pacman
         Fruit f = this.maze.getFruit();
         if(f != null){
             if(f.checkCollision(pacman)){
@@ -190,19 +192,19 @@ public class GameLogic {
         }
     }
 
-    private void getExtraLife(){
+    public void getExtraLife(){
         if(this.pacman.getPoints() >= 10000 * this.lifeCounter){
             this.pacman.increaseLives();
             this.lifeCounter++;
         }
     }
 
-    private void collisionPortals() {
+    public void collisionPortals() {
+        // Se un fantasma o Pacman collidono con uno dei portali vengono trasportati all'altro
         Portal bluePortal = this.maze.getBluePortal();
         Portal redPortal = this.maze.getRedPortal();
-        //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
-        //System.out.println("Le coordinate del blu sono: "+redPortal.getOther().getX()+" e "+redPortal.getOther().getY());
-        if(System.currentTimeMillis() >= (this.portalTime + 400) && !this.pacman.isDead()){
+        // Implementiamo un piccolo ritardo per consentire di uscire dal secondo portale
+        if(System.currentTimeMillis() >= (this.portalTime + 400) && !pacmanDead){
             if(bluePortal.checkCollision(pacman)){
                 teleport(pacman,bluePortal);
             }else if(redPortal.checkCollision(pacman)){
@@ -219,7 +221,8 @@ public class GameLogic {
         }
     }
 
-    private void teleport(Sprite a, Portal p){
+    public void teleport(Sprite a, Portal p){
+        // Trasportiamo lo sprite che collide con il portale alle cordinate dell'altro
         a.setX(p.getOther().getX());
         a.setY(p.getOther().getY());
         if(p.getColor().equals("BLUE")){
@@ -230,20 +233,20 @@ public class GameLogic {
         this.portalTime = System.currentTimeMillis();
     }
 
-    private void collisionPowerPills() {
+    public void collisionPowerPills() {
+        // Se Pacman collide con una powerpill essa sprisce con setDead(true) e i fantasmi passano allo stato di
+        // frightened a meno che non siano nello stato di eaten
         for(int i = 0; i< this.maze.getPowerPillsNum(); i++){
             PowerPill pp = this.maze.getPowerPill(i);
-            // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
-            if(pp.checkCollision(pacman)){
-                if(!pp.isDead()){
-                    this.maze.removeAlivePowerPill();
-                    this.pacman.addPoints(pp.getPoints());
-                    this.consecutiveGhosts = 0;
-                    for(Ghost ghost : this.ghosts) {
-                        if (ghost.getState() != EATEN) {
-                            ghost.becomeFrightened();
-                            System.out.println("Passo a frightened");
-                        }
+            // Rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
+            if(!pp.isDead() && pp.checkCollision(pacman)){
+                this.maze.removeAlivePowerPill();
+                this.pacman.addPoints(pp.getPoints());
+                this.consecutiveGhosts = 0;
+                for(Ghost ghost : this.ghosts) {
+                    if (ghost.getState() != EATEN) {
+                        ghost.becomeFrightened();
+                        System.out.println("Passo a frightened");
                     }
                 }
                 pp.setDead(true);
@@ -251,28 +254,28 @@ public class GameLogic {
         }
     }
 
-    private void collisionPills() {
+    public void collisionPills() {
+        // Se Pacman collide con una pill essa sprisce e viene riprodotto uno dei due suoni suoni MUNCH a seconda della
+        // booleana munch
         for(int i = 0; i< this.maze.getPillsNum(); i++){
             Pill p = this.maze.getPill(i);
-            // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
-            if(p.checkCollision(pacman)){
-                if(!p.isDead()){
-                    this.maze.removeAlivePill();
-                    this.pacman.addPoints(p.getPoints());
-                    if(munch){
-                        SoundPlayer.playEffect(MUNCH_1);
-                        munch = false;
-                    } else {
-                        SoundPlayer.playEffect(MUNCH_2);
-                        munch = true;
-                    }
+            // Rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
+            if(!p.isDead() && p.checkCollision(pacman)){
+                this.maze.removeAlivePill();
+                this.pacman.addPoints(p.getPoints());
+                if(munch){
+                    SoundPlayer.playEffect(MUNCH_1);
+                    munch = false;
+                } else {
+                    SoundPlayer.playEffect(MUNCH_2);
+                    munch = true;
                 }
                 p.setDead(true);
             }
         }
     }
 
-    private void killPacman() {
+    public void killPacman() {
         // Se Pacman era morto nell'ultima rilevazione (lo scorso ciclo)
         if(pacmanDead){
             // Se ora Pacman ha finito l'animazione di morte ed è tornato vivo...
@@ -290,29 +293,29 @@ public class GameLogic {
         }
     }
 
-    private void collisionGhosts() {
+    public void collisionGhosts() {
         for(Ghost ghost : this.ghosts){
-            // Controllo che sia morto e tornato allo spawn
-            if(!pacmanDead) {
-                if (ghost.checkCollision(pacman)) {
-                    switch (ghost.getState()) {
-                        case CHASE:
-                        case SCATTER:
-                            // fermare tutti i suoni
-                            SoundPlayer.stopAll();
-                            SoundPlayer.playEffect(DEATH);
-                            // rendiamo fantasmi invisibili
-                            // animazione + suono morte
-                            this.pacman.setDead(true);
-                            this.pacmanDead = true;
-                            break;
-                        case FRIGHTENED:
-                            ghost.becomeEaten();
-                            SoundPlayer.playEffect(EAT_GHOST);
-                            this.pacman.addPoints(ghost.getPoints() * (2 ^ this.consecutiveGhosts));
-                            this.consecutiveGhosts++;
-                            break;
-                    }
+            // Controllo che, in caso sia morto, è tornato allo spawn
+            if(!pacmanDead && ghost.checkCollision(pacman)) {
+                switch (ghost.getState()) {
+                    // Se è Chase / Scatter allora Pacman inizia l'animazione di morte
+                    case CHASE:
+                    case SCATTER:
+                        // fermare tutti i suoni
+                        SoundPlayer.stopAll();
+                        SoundPlayer.playEffect(DEATH);
+                        // rendiamo fantasmi invisibili
+                        // animazione + suono morte
+                        this.pacman.setDead(true);
+                        this.pacmanDead = true;
+                        break;
+                    // Se è Frightened allora diventa Eaten
+                    case FRIGHTENED:
+                        ghost.becomeEaten();
+                        SoundPlayer.playEffect(EAT_GHOST);
+                        this.pacman.addPoints(ghost.getPoints() * (2 ^ this.consecutiveGhosts));
+                        this.consecutiveGhosts++;
+                        break;
                 }
             }
         }

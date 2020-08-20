@@ -174,7 +174,6 @@ public class GamePanel extends JPanel {
     public void drawPowerPills(Graphics g) {
         for(int i = 0; i< this.logic.getMaze().getPowerPillsNum(); i++){
             PowerPill pp = this.logic.getMaze().getPowerPill(i);
-            // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
             if(!pp.isDead()){
                 g.drawImage(pp.getImage(), pp.getX(), pp.getY(), this);
             }

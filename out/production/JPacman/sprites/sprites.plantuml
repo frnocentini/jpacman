@@ -72,6 +72,8 @@ title __SPRITES's Class Diagram__\n
           # x : int
           # y : int
           + Sprite()
+          + checkCollision()
+          + checkCircleCollision()
           + die()
       }
       enum State {

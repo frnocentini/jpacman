@@ -29,8 +29,6 @@ title __STRUCTURE's Class Diagram__\n
       class structure.MazeManager {
           {static} - maze : Maze
           {static} + canIMove()
-          {static} + checkCircleCollision()
-          {static} + checkCollision()
           {static} + checkEmpty()
           {static} + convertCoords()
           {static} + createMaze()

@@ -15,14 +15,16 @@ import static sound.Sound.*;
 
 public class MenuPanel extends JPanel {
 
-    private GameMainFrame gameMainFrame; // Riferimento al nostro JFrame
-    private MenuLogic logic; // Riferimento al controller relaivo a questo pannello
+    private GameMainFrame gameMainFrame;    // Riferimento al nostro JFrame
+    private MenuLogic logic;                // Riferimento al controller relaivo a questo pannello
+    private int index;                      // Serve a tener traccia del labirinto selezionato
 
     public MenuPanel(GameMainFrame gameMainFrame){
         this.gameMainFrame = gameMainFrame;
         setLayout(null);
         SoundPlayer.playMusic(STARTUP);
         this.logic = new MenuLogic();
+        this.index = 0;
     }
 
     @Override
@@ -43,26 +45,14 @@ public class MenuPanel extends JPanel {
     public void drawLayout() {
         // Popoliamo l'Array di Stringhe
         String[] mazeStrings = logic.populateMazeStrings();
-        // Creiamo con questo array la ComboBox
-        JComboBox mazeList = new JComboBox(mazeStrings);
-        mazeList.setSelectedIndex(0);
-        mazeList.setBorder(new LineBorder(Color.RED));
-        mazeList.setBackground(Color.YELLOW);
-        mazeList.setBounds(240,190,50,40);
-        add(mazeList);
-        JLabel mazesLabel = new JLabel("Maze");
-        mazesLabel.setBounds(240,155,50,40);
-        mazesLabel.setFont(new Font("PF Arma Five", Font.PLAIN, 12));
-        mazesLabel.setForeground(Color.RED);
-        add(mazesLabel);
         // Creiamo il bottone per avviare il gioco
-        JButton startButton = new JButton("Start Game");
+        JButton startButton = new JButton("Start Maze 1");
         startButton.setBackground(Color.YELLOW);
         startButton.setForeground(Color.RED);
         startButton.setFocusPainted(false);
         startButton.setBorder(new LineBorder(Color.RED));
         startButton.setFont(new Font("PF Arma Five", Font.BOLD, 20));
-        startButton.setBounds(90,170,140,60);
+        startButton.setBounds(90,170,200,60);
         // Aggiungiamo le azioni da eseguire alla sua pressione
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -70,11 +60,52 @@ public class MenuPanel extends JPanel {
                 // Ferma la musica, fa sentire credit e richiama il metodo per creare la schermata di gioco
                 SoundPlayer.stopMusic(STARTUP);
                 SoundPlayer.playEffect(CREDIT);
-                //
-                gameMainFrame.initializeLayout(mazeList.getSelectedIndex()+1);
+                gameMainFrame.initializeLayout(index+1);
             }
         });
         add(startButton);
+        // La lettera b nel font Arrows è la freccia sinistra
+        JButton backButton = new JButton("<html><h1 style='padding-top:5px'>b</h1></html>");
+        backButton.setBackground(Color.YELLOW);
+        backButton.setForeground(Color.RED);
+        backButton.setFocusPainted(false);
+        backButton.setBorder(new LineBorder(Color.RED));
+        backButton.setFont(new Font("Arrows", Font.BOLD, 30));
+        backButton.setBounds(90,240,95,30);
+        // Selezioniamo il labirinto precedente
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SoundPlayer.playEffect(CREDIT);
+                index--;
+                if(index < 0){
+                    index = mazeStrings.length-1;
+                }
+                startButton.setText("Start Maze "+mazeStrings[index]);
+            }
+        });
+        add(backButton);
+        // La lettera a nel font Arrows è la freccia destra
+        JButton forthButton = new JButton("<html><h1 style='padding-top:5px'>a</h1></html>");
+        forthButton.setBackground(Color.YELLOW);
+        forthButton.setForeground(Color.RED);
+        forthButton.setFocusPainted(false);
+        forthButton.setBorder(new LineBorder(Color.RED));
+        forthButton.setFont(new Font("Arrows", Font.BOLD, 30));
+        forthButton.setBounds(195,240,95,30);
+        // Selezioniamo il labirinto successivo
+        forthButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SoundPlayer.playEffect(CREDIT);
+                index++;
+                if(index > mazeStrings.length-1){
+                    index = 0;
+                }
+                startButton.setText("Start Maze "+mazeStrings[index]);
+            }
+        });
+        add(forthButton);
         JButton muteMusicButton;
         if(SoundPlayer.isMuteMusic()){
             muteMusicButton  = new JButton("<html>Enable<br>Music</html>");
@@ -86,7 +117,7 @@ public class MenuPanel extends JPanel {
         muteMusicButton.setFocusPainted(false);
         muteMusicButton.setFont(new Font("PF Arma Five", Font.PLAIN, 14));
         muteMusicButton.setBorder(new LineBorder(Color.RED));
-        muteMusicButton.setBounds(90,245,90,60);
+        muteMusicButton.setBounds(90,280,95,60);
         muteMusicButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,7 +146,7 @@ public class MenuPanel extends JPanel {
         muteEffectsButton.setFocusPainted(false);
         muteEffectsButton.setBorder(new LineBorder(Color.RED));
         muteEffectsButton.setFont(new Font("PF Arma Five", Font.PLAIN, 14));
-        muteEffectsButton.setBounds(200,245,90,60);
+        muteEffectsButton.setBounds(195,280,95,60);
         muteEffectsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

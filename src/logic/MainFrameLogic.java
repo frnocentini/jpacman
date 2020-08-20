@@ -20,8 +20,10 @@ public class MainFrameLogic {
 
     public void registerFont(){
         Font f = null;
+        Font fa = null;
         try {
             f = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARMA_FONT));
+            fa = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARROWS_FONT));
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -29,6 +31,7 @@ public class MainFrameLogic {
         }
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(f);
+        ge.registerFont(fa);
     }
 
     public int readHighScore(){

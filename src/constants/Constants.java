@@ -152,7 +152,7 @@ public class Constants {
 
     //font
     public static final String ARMA_FONT = "resources/fonts/arma.ttf";
-    public static final String VCR_FONT = "resources/fonts/vcr.ttf";
+    public static final String ARROWS_FONT = "resources/fonts/arrows.ttf";
 
     //text file
     public static final String HIGHSCORES = "resources/scores/highscore.txt";
