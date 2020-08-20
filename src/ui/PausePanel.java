@@ -15,6 +15,8 @@ import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.VK_ENTER;
 import static sound.Sound.*;
 
+// Molto analogo a MenuPanel, stampa solo i bottoni e richiama altri metodi di altre classi, non ha una parte logica
+// Tuttavia ha un keyListener che permette di uscirne se si preme Invio
 public class PausePanel extends JPanel {
 
     private PauseEventListener pauseEventListener;

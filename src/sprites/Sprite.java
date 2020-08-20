@@ -1,6 +1,10 @@
 package sprites;
 
+import structure.Coordinate;
+
 import java.awt.Image;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public abstract class Sprite {
 
@@ -26,6 +30,29 @@ public abstract class Sprite {
 
     public Sprite() {
         this.dead = false;
+    }
+
+    public boolean checkCollision(Sprite a) {
+        // Find the bounds of the rectangle intersection
+        Rectangle2D ar = new Rectangle2D.Double(a.getX()+a.getW()/4, a.getY()+a.getH()/4, 3 * a.getW() / 4, 3 * a.getH() / 4);
+        Rectangle2D br = new Rectangle2D.Double(this.getX()+this.getW()/4, this.getY()+this.getH()/4, 3 * this.getW() / 4, 3 * this.getH() / 4);
+        if(ar.intersects(br)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkCircleCollision(Coordinate co, double length){
+        Rectangle2D ar = new Rectangle2D.Double(this.getX()+this.getW()/4, this.getY()+this.getH()/4, 3 * this.getW() / 4, 3 * this.getH() / 4);
+        Ellipse2D e = new Ellipse2D.Double(co.getX(),co.getY(),length,length);
+        if(e.intersects(ar)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkCircleCollision(int x, int y, double length){
+        return checkCircleCollision(new Coordinate(x,y),length);
     }
 
     public void die() {

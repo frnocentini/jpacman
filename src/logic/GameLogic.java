@@ -33,7 +33,7 @@ public class GameLogic {
     private long startTime;                         // Orario in cui è inizata la partita (4 sec. inclusi)
     private long portalTime;                        // Orario dell'ultima volta che si è attivato un portale
     private int level;                              // Livello del gioco
-    private int lifeCounter;                        // Prossimo migliaio in cui dovrà scattare una vita extra
+    private int lifeCounter;                        // Prossimo decamigliaio in cui dovrà scattare una vita extra
     private int consecutiveGhosts;                  // Conta quanti fantasmi si sono mangiati dopo una singola PowerPill
     private String readyString;                     // Stringhe che riportano i valori da stampare
     private String gameOverString;                  // nelle label del GamePanel
@@ -42,7 +42,6 @@ public class GameLogic {
     private String livesNumString;
     private long lastPillTime;                      // Valore che ci permette di implementare un piccolo ritardo
                                                     // a fine partita
-    private final long LAST_PILL_TIME_MAX = Long.MAX_VALUE-1000;
 
     public GameLogic(GameMainFrame frame, GamePanel gamePanel, int level, int highScore, int lives){
         this.frame = frame;
@@ -84,7 +83,7 @@ public class GameLogic {
         this.livesNumString = new String("");
         // Sceglie che frutto mostrare in questo livello
         this.maze.chooseFruit(level);
-        this.lastPillTime = startTime;
+        this.lastPillTime = 0;
     }
 
     private void restartLevel(){
@@ -105,10 +104,12 @@ public class GameLogic {
         }
         System.gc();
         timer.start();
-        this.lastPillTime = startTime;
+        this.lastPillTime = 0;
     }
 
+    // Viene chimato periodicamente dal Timer con GameLoop
     public void doOneLoop() {
+        // Richiede il focus della tastiera su GamePanel
         this.gamePanel.requestFocus();
         update();
         if(inGame){
@@ -121,9 +122,11 @@ public class GameLogic {
     }
 
     private void update() {
+        // Finché non sono passati dall'inizio 4 secondi non entreremo
         if(this.pacmanStart && this.inGame){
             boolean frightened = false;
             boolean eaten = false;
+            // Pacman e i fantasmi vengono fatti muovere e cambiare frame di animazione
             this.pacman.move();
             for(Ghost ghost : this.ghosts) {
                 ghost.move();
@@ -134,16 +137,19 @@ public class GameLogic {
                     eaten = true;
                 }
             }
+            // Ad ogni decamigliaio di punti Pacman ottiene una vita extra
+            getExtraLife();
+            // Metodo che controlla tutte le collisioni tra gli sprite
             checkCollision();
             killPacman();
-            if(!this.pacman.isDead() && this.pacmanStart){
+            if(!pacmanDead && this.pacmanStart){
                 this.playBackgroundMusic(frightened,eaten);
             }
             if(this.maze.getAlivePills() == 0){
                 // Se è rimasto col valore con cui è stato inizializzato
                 // lo usiamo per registrare l'istante
                 // Dopo 50 millisecondi il gioco può finire
-                if(lastPillTime == startTime){
+                if(lastPillTime == 0){
                     lastPillTime = System.currentTimeMillis();
                 }else if(System.currentTimeMillis() > lastPillTime + 50){
                     SoundPlayer.stopAll();
@@ -157,6 +163,7 @@ public class GameLogic {
             this.pacmanStart=true;
             readyString = "";
             levelString = "Level: "+level;
+            // Viene avviato il timer dei fantasmi e della frutta nel maze
             for(Ghost ghost : this.ghosts) {
                 ghost.getTimer().start();
             }
@@ -166,7 +173,6 @@ public class GameLogic {
 
     public void checkCollision(){
         collisionFruit();
-        getExtraLife();
         collisionPortals();
         collisionPowerPills();
         collisionPills();
@@ -176,7 +182,7 @@ public class GameLogic {
     private void collisionFruit() {
         Fruit f = this.maze.getFruit();
         if(f != null){
-            if(MazeManager.checkCollision(pacman,f)){
+            if(f.checkCollision(pacman)){
                 f.setDead(true);
                 this.pacman.addPoints(f.getPoints());
                 SoundPlayer.playEffect(EAT_FRUIT);
@@ -197,15 +203,15 @@ public class GameLogic {
         //System.out.println("Le coordinate del rosso sono: "+bluePortal.getOther().getX()+" e "+bluePortal.getOther().getY());
         //System.out.println("Le coordinate del blu sono: "+redPortal.getOther().getX()+" e "+redPortal.getOther().getY());
         if(System.currentTimeMillis() >= (this.portalTime + 400) && !this.pacman.isDead()){
-            if(MazeManager.checkCollision(pacman,bluePortal)){
+            if(bluePortal.checkCollision(pacman)){
                 teleport(pacman,bluePortal);
-            }else if(MazeManager.checkCollision(pacman,redPortal)){
+            }else if(redPortal.checkCollision(pacman)){
                 teleport(pacman,redPortal);
             }else{
                 for(Ghost ghost : this.ghosts) {
-                    if (MazeManager.checkCollision(ghost, bluePortal)) {
+                    if (bluePortal.checkCollision(ghost)) {
                         teleport(ghost, bluePortal);
-                    } else if (MazeManager.checkCollision(ghost, redPortal)) {
+                    } else if (redPortal.checkCollision(ghost)) {
                         teleport(ghost, redPortal);
                     }
                 }
@@ -228,7 +234,7 @@ public class GameLogic {
         for(int i = 0; i< this.maze.getPowerPillsNum(); i++){
             PowerPill pp = this.maze.getPowerPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
-            if(MazeManager.checkCollision(pacman,pp)){
+            if(pp.checkCollision(pacman)){
                 if(!pp.isDead()){
                     this.maze.removeAlivePowerPill();
                     this.pacman.addPoints(pp.getPoints());
@@ -249,7 +255,7 @@ public class GameLogic {
         for(int i = 0; i< this.maze.getPillsNum(); i++){
             Pill p = this.maze.getPill(i);
             // rimuovere le pill direttamente dall'ArrayList causava una fastidiosa intermittenza delle altre
-            if(MazeManager.checkCollision(pacman,p)){
+            if(p.checkCollision(pacman)){
                 if(!p.isDead()){
                     this.maze.removeAlivePill();
                     this.pacman.addPoints(p.getPoints());
@@ -286,8 +292,9 @@ public class GameLogic {
 
     private void collisionGhosts() {
         for(Ghost ghost : this.ghosts){
-            if(!this.pacman.isDead() && !pacmanDead) {
-                if (MazeManager.checkCollision(pacman, ghost)) {
+            // Controllo che sia morto e tornato allo spawn
+            if(!pacmanDead) {
+                if (ghost.checkCollision(pacman)) {
                     switch (ghost.getState()) {
                         case CHASE:
                         case SCATTER:
@@ -337,7 +344,8 @@ public class GameLogic {
         frame.initializeGameMenu();
     }
 
-    private void endGame(){
+    // Pacman ha vinto il livello
+    public void endGame(){
         System.out.println("fine livello");
         try {
             Thread.sleep(2000);
@@ -348,12 +356,11 @@ public class GameLogic {
         for(Ghost ghost : this.ghosts) {
             ghost.resetGhostLoop(this.level);
         }
+        // Scrivo il punteggio massimo
         this.frame.writeHighScore(this.pacman.getPoints());
+        // Ripopolo il labirinto
+        this.maze = MazeManager.populateMaze();
         this.maze.chooseFruit(this.level);
-        MazeManager.populateMaze();
-        for(int i = 0; i< this.maze.getPillsNum(); i++){
-            this.maze.getPill(i).setDead(false);
-        }
         restartLevel();
     }
 

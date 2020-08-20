@@ -62,7 +62,7 @@ public class Pinky extends Ghost{
         this.frameManager = new GhostFrameManager(up,down,left,right,4,frightened,eatenUp,eatenDown,eatenLeft,eatenRight,8);
     }
 
-    // Quattro caselle di fronte a Pacman
+    // Il target è quattro caselle di fronte a Pacman
     @Override
     public void setChaseTarget() {
         int x = this.pacman.getX();

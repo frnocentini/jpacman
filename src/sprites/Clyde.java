@@ -65,7 +65,7 @@ public class Clyde extends Ghost{
     // e centro Pacman, in tal caso diventa lo scatterTarget
     @Override
     public void setChaseTarget() {
-        if(MazeManager.checkCircleCollision(this,this.pacman.getX(),this.pacman.getY(),8*Constants.BLOCK_DIM)){
+        if(this.checkCircleCollision(this.pacman.getX(),this.pacman.getY(),8*Constants.BLOCK_DIM)){
             this.target.setX(this.scatterTarget.getX());
             this.target.setY(this.scatterTarget.getX());
         }else{

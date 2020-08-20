@@ -146,26 +146,4 @@ public class MazeManager {
         return false;
     }
 
-    public static boolean checkCollision(Sprite a, Sprite b) {
-        // Find the bounds of the rectangle intersection
-        Rectangle2D ar = new Rectangle2D.Double(a.getX()+a.getW()/4, a.getY()+a.getH()/4, 3 * a.getW() / 4, 3 * a.getH() / 4);
-        Rectangle2D br = new Rectangle2D.Double(b.getX()+a.getW()/4, b.getY()+a.getH()/4, 3 * b.getW() / 4, 3 * b.getH() / 4);
-        if(ar.intersects(br)){
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean checkCircleCollision(Sprite a, Coordinate co, double length){
-        Rectangle2D ar = new Rectangle2D.Double(a.getX()+a.getW()/4, a.getY()+a.getH()/4, 3 * a.getW() / 4, 3 * a.getH() / 4);
-        Ellipse2D e = new Ellipse2D.Double(co.getX(),co.getY(),length,length);
-        if(e.intersects(ar)){
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean checkCircleCollision(Sprite a, int x, int y, double length){
-        return checkCircleCollision(a,new Coordinate(x,y),length);
-    }
 }
