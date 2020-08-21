@@ -43,7 +43,8 @@ title __STRUCTURE's Class Diagram__\n
   structure.Maze o-- sprites.Pill : pills
   structure.Maze o-- sprites.PowerPill : powerPills
   structure.Maze o-- sprites.Fruit : fruit
-
+  logic.GameLogic o-- structure.Maze : maze
+  structure.MazeManager o-- structure.Maze : maze
 
 
 @enduml

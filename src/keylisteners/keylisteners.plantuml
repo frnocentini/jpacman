@@ -17,9 +17,7 @@ title __KEYLISTENERS's Class Diagram__\n
   
 
   keylisteners.GameEventListener -up-|> java.awt.event.KeyAdapter
-  keylisteners.GameEventListener o-- ui.GamePanel : gamePanel
   keylisteners.PauseEventListener -up-|> java.awt.event.KeyAdapter
-  keylisteners.PauseEventListener o-- ui.PausePanel : board
   ui.GamePanel o-- keylisteners.GameEventListener : gameEventListener
   ui.PausePanel o-- keylisteners.PauseEventListener : pauseEventListener
 
