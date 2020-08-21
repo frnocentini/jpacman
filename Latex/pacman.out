@@ -1,0 +1,17 @@
+\BOOKMARK [0][-]{chapter.1}{Descrizione del Problema}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Il Videogioco Arcade Pac-Man}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{L'applicazione JPacman}{chapter.1}% 3
+\BOOKMARK [0][-]{chapter.2}{Specifica dei Requisiti}{}% 4
+\BOOKMARK [0][-]{chapter.3}{Progetto}{}% 5
+\BOOKMARK [1][-]{section.3.1}{Architettura del Sistema Software}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.2}{UI}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.3}{Logic}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.4}{Sprites}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.5}{Structure}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.6}{Loops}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.7}{FrameManagers}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.8}{KeyListeners}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.9}{Sound}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.10}{Image}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.11}{Problemi Riscontrati}{chapter.3}% 16
+\BOOKMARK [0][-]{chapter.4}{Conclusioni e sviluppi futuri}{}% 17

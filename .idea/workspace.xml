@@ -32,8 +32,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JPacman_jar.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.log" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.out" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.synctex(busy)" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.toc" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,17 +92,6 @@
     <configuration name="RunJPacman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RunJPacman" />
       <module name="JPacman" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,6 +162,7 @@
       <workItem from="1598005899204" duration="306000" />
       <workItem from="1598019947504" duration="2204000" />
       <workItem from="1598030507338" duration="2661000" />
+      <workItem from="1598038171276" duration="1195000" />
     </task>
     <servers />
   </component>
