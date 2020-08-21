@@ -94,7 +94,7 @@ public class GameLogic {
         SoundPlayer.stopAll();
         levelString = "";
         readyString= "Ready!";
-        System.out.println(level);
+        //System.out.println(level);
         this.inGame = true;
         this.munch = true;
         this.maze.setGameStart();
@@ -246,7 +246,7 @@ public class GameLogic {
                 for(Ghost ghost : this.ghosts) {
                     if (ghost.getState() != EATEN) {
                         ghost.becomeFrightened();
-                        System.out.println("Passo a frightened");
+                        //System.out.println("Passo a frightened");
                     }
                 }
                 pp.setDead(true);
@@ -349,7 +349,7 @@ public class GameLogic {
 
     // Pacman ha vinto il livello
     public void endGame(){
-        System.out.println("fine livello");
+        //System.out.println("fine livello");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
