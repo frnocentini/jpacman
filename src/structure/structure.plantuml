@@ -24,10 +24,8 @@ title __STRUCTURE's Class Diagram__\n
           + removeAlivePill()
           + removeAlivePowerPill()
           + setGameStart()
-          + setRedPortal()
       }
       class structure.MazeManager {
-          {static} - maze : Maze
           {static} + canIMove()
           {static} + checkEmpty()
           {static} + convertCoords()

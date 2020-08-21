@@ -1,7 +1,0 @@
-\babel@toc {italian}{}
-\babel@toc {italian}{}
-\contentsline {chapter}{\numberline {1}Descrizione del Problema}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Il Videogioco Arcade Pac-Man}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}L'applicazione JPacman}{3}{section.1.2}%
-\contentsline {chapter}{\numberline {2}Specifica dei Requisiti}{5}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Bibliografia}{7}{chapter.3}%

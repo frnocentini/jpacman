@@ -33,9 +33,26 @@
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.blg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.log" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.out" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.toc" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/frameManagers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/jpacman.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/keylisteners.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/logic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/loops.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/sound.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/structure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UMLs/ui.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/structure/structure.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/src/structure/structure.plantuml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,6 +169,7 @@
       <workItem from="1597950164077" duration="4432000" />
       <workItem from="1597994957815" duration="6688000" />
       <workItem from="1598005899204" duration="306000" />
+      <workItem from="1598019947504" duration="2204000" />
     </task>
     <servers />
   </component>
@@ -204,11 +222,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1597741594543" />
-    <state x="592" y="218" key="FileChooserDialogImpl" timestamp="1598004523035">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1598027571351">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="592" y="218" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1598004523035" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597085310767" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598027571351" />
     <state width="1493" height="230" key="GridCell.Tab.0.bottom" timestamp="1598005591327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
