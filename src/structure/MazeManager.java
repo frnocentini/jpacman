@@ -7,11 +7,7 @@ import sprites.Sprite;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class MazeManager {
 
@@ -22,10 +18,10 @@ public class MazeManager {
         char[][] inputMaze = new char[Constants.MAZE_LENGTH][Constants.MAZE_WIDTH];
         try {
             // IDE
-            FileReader lvlFile = new FileReader(new File(Constants.MAZES_DIR+"maze"+mazeNum+".txt"));
-            BufferedReader br = new BufferedReader(lvlFile);
+            //FileReader lvlFile = new FileReader(new File(Constants.MAZES_DIR+"maze"+mazeNum+".txt"));
             // JAR
-            //BufferedReader br = new BufferedReader(new InputStreamReader(MazeManager.class.getClassLoader().getResourceAsStream("resources/mazes/maze"+mazeNum+".txt")));
+            FileReader lvlFile = new FileReader(new File(System.getProperty("user.dir"),"mazes/maze"+mazeNum+".txt"));
+            BufferedReader br = new BufferedReader(lvlFile);
             int c,i,j;
             i = j = 0;
             while((c = br.read()) != -1){
