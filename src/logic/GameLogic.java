@@ -280,13 +280,13 @@ public class GameLogic {
         if(pacmanDead){
             // Se ora Pacman ha finito l'animazione di morte ed è tornato vivo...
             if(!this.pacman.isDead()){
-                pacmanDead = false;
                 // Scaliamo una vita
                 this.pacman.decreaseLives();
                 // Se le vite sono a 0 Game Over, altrimenti riparte il livello
                 if (this.pacman.getLives() == 0) {
                     makeGameOver();
                 }else{
+                    pacmanDead = false;
                     restartLevel();
                 }
             }

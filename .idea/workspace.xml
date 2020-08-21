@@ -33,16 +33,9 @@
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UMLs/keylisteners.png" beforeDir="false" afterPath="$PROJECT_DIR$/UMLs/keylisteners.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UMLs/sound.png" beforeDir="false" afterPath="$PROJECT_DIR$/UMLs/sound.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UMLs/sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/UMLs/sprites.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UMLs/structure.png" beforeDir="false" afterPath="$PROJECT_DIR$/UMLs/structure.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/structure/structure.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/structure/structure.plantuml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/mazes/maze3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/mazes/maze3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/image.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/image.plantuml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keylisteners/keylisteners.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/src/keylisteners/keylisteners.plantuml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/sound.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/sound.plantuml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/structure/structure.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/src/structure/structure.plantuml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/GameLogic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,17 +84,6 @@
     <configuration name="RunJPacman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RunJPacman" />
       <module name="JPacman" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -168,7 +150,8 @@
       <workItem from="1597925286759" duration="594000" />
       <workItem from="1597937420233" duration="4998000" />
       <workItem from="1597950164077" duration="4432000" />
-      <workItem from="1597994957815" duration="6257000" />
+      <workItem from="1597994957815" duration="6688000" />
+      <workItem from="1598005899204" duration="306000" />
     </task>
     <servers />
   </component>
@@ -226,25 +209,25 @@
     </state>
     <state x="592" y="218" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1598004523035" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597085310767" />
-    <state width="1493" height="230" key="GridCell.Tab.0.bottom" timestamp="1597996861804">
+    <state width="1493" height="230" key="GridCell.Tab.0.bottom" timestamp="1598005591327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597996861804" />
+    <state width="1493" height="230" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="230" key="GridCell.Tab.0.center" timestamp="1597996861804">
+    <state width="1493" height="230" key="GridCell.Tab.0.center" timestamp="1598005591327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597996861804" />
+    <state width="1493" height="230" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="230" key="GridCell.Tab.0.left" timestamp="1597996861804">
+    <state width="1493" height="230" key="GridCell.Tab.0.left" timestamp="1598005591327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597996861804" />
+    <state width="1493" height="230" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
-    <state width="1493" height="230" key="GridCell.Tab.0.right" timestamp="1597996861804">
+    <state width="1493" height="230" key="GridCell.Tab.0.right" timestamp="1598005591327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="230" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597996861804" />
+    <state width="1493" height="230" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597324170809" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1597335912314">
       <screen x="0" y="0" width="1536" height="824" />
