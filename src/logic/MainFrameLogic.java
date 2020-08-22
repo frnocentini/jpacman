@@ -23,11 +23,11 @@ public class MainFrameLogic {
         Font fa = null;
         try {
             // IDE
-            //f = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARMA_FONT));
-            //fa = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARROWS_FONT));
+            f = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARMA_FONT));
+            fa = Font.createFont(Font.TRUETYPE_FONT, new File(Constants.ARROWS_FONT));
             // JAR
-            f = Font.createFont(Font.TRUETYPE_FONT, Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.ARMA_FONT));
-            fa = Font.createFont(Font.TRUETYPE_FONT, Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.ARROWS_FONT));
+            //f = Font.createFont(Font.TRUETYPE_FONT, Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.ARMA_FONT));
+            //fa = Font.createFont(Font.TRUETYPE_FONT, Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.ARROWS_FONT));
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -42,9 +42,9 @@ public class MainFrameLogic {
         int score = 0;
         // Leggiamo il file dell'highscore
         // IDE
-        //File f = new File(Constants.HIGHSCORES);
+        File f = new File(Constants.HIGHSCORES);
         // JAR
-        File f = new File(System.getProperty("user.dir"),"highScore.txt");
+        //File f = new File(System.getProperty("user.dir"),"highScore.txt");
         try {
             Scanner sc = new Scanner(f);
             score = sc.nextInt();
@@ -64,9 +64,9 @@ public class MainFrameLogic {
 
     public void writeHighScore(int points){
         // IDE
-        //File f = new File(Constants.HIGHSCORES);
+        File f = new File(Constants.HIGHSCORES);
         // JAR
-        File f = new File(System.getProperty("user.dir"),"highScore.txt");
+        //File f = new File(System.getProperty("user.dir"),"highScore.txt");
         if(points > this.frame.getHighScore()) {
             this.frame.setHighScore(points);
             PrintWriter pw = null;

@@ -9,11 +9,12 @@
 \contentsline {section}{\numberline {3.2}UI}{10}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Logic}{11}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Sprites}{12}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Structure}{15}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Loops}{16}{section.3.6}%
-\contentsline {section}{\numberline {3.7}FrameManagers}{17}{section.3.7}%
-\contentsline {section}{\numberline {3.8}KeyListeners}{18}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Sound}{19}{section.3.9}%
-\contentsline {section}{\numberline {3.10}Image}{20}{section.3.10}%
-\contentsline {section}{\numberline {3.11}Problemi Riscontrati}{20}{section.3.11}%
-\contentsline {chapter}{\numberline {4}Conclusioni e sviluppi futuri}{24}{chapter.4}%
+\contentsline {section}{\numberline {3.5}Structure}{17}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Loops}{18}{section.3.6}%
+\contentsline {section}{\numberline {3.7}FrameManagers}{19}{section.3.7}%
+\contentsline {section}{\numberline {3.8}KeyListeners}{20}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Sound}{21}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Image}{23}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Problemi Riscontrati}{23}{section.3.11}%
+\contentsline {chapter}{\numberline {4}Possibilità di estensione e\newline personalizzazione}{25}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Bibliografia}{27}{chapter.5}%

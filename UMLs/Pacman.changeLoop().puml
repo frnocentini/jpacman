@@ -1,0 +1,17 @@
+@startuml
+(*)  --> "Il giocatore preme un tasto della tastiera"
+--> "Il valore viene salvato in Pacman.keyCode"
+--> "Si avvia il timer che richiama periodicamente Pacman.changeLoop()"
+If "Il tasto salvato è\nuna freccia direzionale" then
+--> [Si] If "Le coordinate di Pac-Man\nsono entrambe multiple della\ndimensione dei blocchi e\npuò muoversi nella\ndirezione richiesta" then
+   --> [Si] "Cambia la velocità di movimento di\nPac-Man e la sua direzione"
+   --> "Ferma il timer"
+   else
+   --> [No] "Torna a GameLogic"
+   Endif
+else
+--> [No] "Ferma il timer"
+--> "Torna a GameLogic"
+Endif
+-->(*)
+@enduml

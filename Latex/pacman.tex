@@ -200,6 +200,7 @@ L'applicazione JPacman che si intende realizzare dovrà soddisfare i seguenti re
 % Architettura del Sistema Software [start]
 %-------------------------------------------
 \section{Architettura del Sistema Software}\label{ch:arch}
+% Architettura del Sistema Software [end]
 Nello sviluppo dell’applicazione siamo partiti con l'idea di sviluppare un gioco altamente modulare, che ci offrisse oggetti da poter riutilizzare senza troppe modifiche in altri ambiti e con funzionalità che potessero essere rimosse ed aggiunte all’occorrenza. Anziché seguire pattern come quello del Model-View-Controller abbiamo cercato di inglobare il comportamento di ogni entità all’interno di singole classi a sé stanti: ogni personaggio ed elemento dell’applicativo contiene infatti non solo le informazioni sul suo stato, la sua posizione e il frame dell’animazione, calcolato con un apposito oggetto, ma anche un Timer che gli permette di implementare un cambio dinamico dei suoi valori a seconda dei casi che gli vengono notificati.
 
 Si è perciò arrivati allo sviluppo di un effettivo motore di gioco per videogame che implementano labirinti: poter creare un nuovo oggetto con cui interagire, un nuovo personaggio o addirittura un altro gioco, basandosi sulle strutture e le classi astratte da noi create, appare decisamente semplice una volta capita la logica di interazione. Sono poi presenti classi di supporto, come il gestore dei suoni e quello delle immagini memorizzate nel File System, classi che implementano KeyListener, ActionListener e classi che permettono la gestione delle animazioni con facilità (omesse dalla rappresentazione grafica riportata qui sopra).
@@ -221,13 +222,13 @@ Possiamo osservare come la nostra applicazione sia composta da quattro moduli pr
 \end{itemize}
 
 
-% Architettura del Sistema Software [end]
+% Architettura del Sistema Software [stop]
 %-------------------------------------------
 
 % UI [start]
 %-------------------------------------------
-
 \section{UI}\label{se:arch.ui}
+% UI [end]
 In Fig.~\ref{fig:ui} viene illustrato il digramma di classe del modulo UI.\newline
 
 Le classi facenti parte di questo package sono le uniche che, escludendo il riferimento alla loro immagine attuale degli sprite, operano con delle componenti grafiche e si occupano di stamparle su schermo. Eccetto GameMainFrame che estende JFrame, tutte estendono JPanel. Nel GameMainFrame infatti ci occuperemo di impilare questi quattro pannelli, con l’ausuilio di un JLayeredPane, a seconda delle necessità: mentre l’unico presente all’avvio sarà MenuPanel, che mostrerà appunto il menù principale, appena il gioco verrà avviato questo verrà sostituito da BGPanel, con la struttura del labirinto, con sopra GamePanel per mostrare gli sprite presenti in esso e le JLabel di stato. Alla pressione del tasto Invio sopra i due pannelli verrà posto PausePanel che mostrerà il menù di pausa con le sue opzioni.
@@ -238,12 +239,13 @@ Le classi facenti parte di questo package sono le uniche che, escludendo il rife
   \label{fig:ui}
 \end{figure}
 
-% UI [end]
+% UI [stop]
 %-------------------------------------------
 
 % Logic [start]
 %-------------------------------------------
 \section{Logic}\label{se:arch.logic}
+% Logic [end]
 In Fig.~\ref{fig:logic} viene illustrato il digramma di classe del modulo Logic.\newline
 
 Le classi del “logic” si occupano dell'effettiva logica con cui le classi del “ui” mostrano le componenti e le immagini. Mentre MenuLogic, che popola la ComboBox per la scelta del labirinto nel menù principale, e MainFrameLogic, che registra il font nell’ambiente grafico e registra l’HighScore, sono solo un supporto alle loro controparti UI, GameLogic è effettivamente una delle classi più importanti dell’applicazione, in quanto si occupa di scandire i cicli effettivi Update / Repaint (nota a piè pagina: ciclo in cui vengono aggiornate le coordinate e gli stati degli oggetti, successivamente vengono stampati) del gioco e di inserire gli sprite all’interno dell’ambiente e di stabilire ciò che accade se avviene una collisione tra di essi. Mostriamo ora alcuni dei suoi metodi che vengono chiamati quando si inizia una partita:
@@ -262,21 +264,22 @@ Le classi del “logic” si occupano dell'effettiva logica con cui le classi de
   \label{fig:logic}
 \end{figure}
 
-% Logic [end]
+% Logic [stop]
 %-------------------------------------------
 
 % Sprites [start]
 %-------------------------------------------
 \section{Sprites}\label{se:arch.sprites}
+% Sprites [end]
 In Fig.~\ref{fig:sprites} viene illustrato il digramma di classe del modulo Sprites.\newline
 
 Nel package “sprites” ogni classe estende la classe astratta Sprite e rappresenta un’entità all’interno del labirinto con tutti i valori che la descrivono (posizione, incremento del movimento, dimensioni, immagine, punti, visibilità). Le classi non astratte che estendono Sprite in maniera diretta rappresentano tutte entità fisse. Infatti, per Pill, PowerPill, Fruit e Portal, non viene definito nelle classi un vero e proprio comportamento, ma saranno Maze e il GameLogic a definire rispettivamente quando quelli potranno apparire e ciò che succede quando un’entità mobile verrà a contatto con esse tramite il suo metodo checkCollision() (es. Pac-Man entra a contatto con una PowerPill, questa sparisce e ai fantasmi viene notificata l’entrata in stato di Frightened).
 
 Mentre gli oggetti delle classi successive, in quanto personaggi, verranno inseriti nel GameLogic direttamente come attributi, gli sprite sopracitati saranno dapprima inseriti nell’oggetto Maze, attributo in GameLogic. Ciò semplifica sia la gestione che il ripristino alla fine del livello.
 
-Character estende Sprite ma è una classe astratta: fornisce una struttura e metodi comuni per i personaggi del labirinto come returnToSpawnPoint() per ritornare alla posizione iniziale e gli astratti move() e addFrameManager().
+Character estende Sprite ma è una classe astratta: fornisce una struttura e metodi comuni per i personaggi del labirinto come returnToSpawnPoint() per ritornare alla posizione iniziale e gli astratti move() (Fig.~\ref{fig:pacman_move} e Fig.~\ref{fig:ghost_move})  e addFrameManager().
 
-La prima classe ad estendere Character è Pacman: il keyListener di GamePanel gli notifica i tasti premuti dal giocatore: se sono frecce direzionali Pacman salva il codice dell’ultima premuta in keyPressed e avvia il suo timer collegato a PacmanLoop, con il metodo changeLoop() cambierà direzione in quella richiesta non appena questa sarà disponibile e fermerà il timer.
+La prima classe ad estendere Character è Pacman: il keyListener di GamePanel gli notifica i tasti premuti dal giocatore: se sono frecce direzionali Pacman salva il codice dell’ultima premuta in keyPressed e avvia il suo timer collegato a PacmanLoop, con il metodo changeLoop() (Fig.~\ref{fig:pacman_changeLoop}) cambierà direzione in quella richiesta non appena questa sarà disponibile e fermerà il timer.
 
 La seconda classe, seppur astratta, è Ghost: la classe implementa la logica del movimento dei fantasmi in tutti i loro stati grazie ad un sistema di coordinate target per cui sceglieranno la direzione più breve in linea d’aria senza avere la possibilità di fare dietrofront. I target sono diversi a seconda dello stato dei fantasmi:
 \begin{itemize}
@@ -298,15 +301,33 @@ Tutti i Character controllano la possibilità di muoversi avanti o di cambiare d
   \caption{Diagramma di classe del modulo Sprites}
   \label{fig:sprites}
 \end{figure}
+\begin{figure}[tbp]
+\centering
+ \includegraphics[width=\textwidth,height=0.4\textheight,keepaspectratio]{pacman_move}
+  \caption{Diagramma d'azione del metodo move() di Pacman}
+  \label{fig:pacman_move}
+\vspace*{\floatsep}
+\includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{pacman_changeLoop}
+  \caption{Diagramma d'azione del metodo changeLoop() di Pacman}
+  \label{fig:pacman_changeLoop}
+\end{figure}
+\begin{figure}[tbp]
+\begin{center}
+ \centerline{ \includegraphics[width=17cm]{ghost_move}}
+\end{center}
+  \caption{Diagramma d'azione del metodo move() di Ghost}
+  \label{fig:ghost_move}
+\end{figure}
 
 \newpage
 
-% Sprites [end]
+% Sprites [stop]
 %-------------------------------------------
 
 % Structure [start]
 %-------------------------------------------
 \section{Structure}\label{se:arch.structure}
+% Structure [end]
 In Fig.~\ref{fig:structure} viene illustrato il digramma di classe del modulo Structure.\newline
 
 Il package structure ci permette di creare la struttura del labirinto partendo da un file txt nel File System e di gestire il movimento dei personaggi al suo interno e gli elementi di gioco fissi con cui i primi possono interagire.
@@ -316,7 +337,7 @@ Troviamo poi metodi statici la cui utilità è quella di permettere ai Character
 \begin{itemize}
  \item \textbf{canIMove()}: I Character, essendo grossi esattamente le dimensioni di un blocco, potranno muoversi esclusivamente quando la loro coordinate saranno entrambe multipli di tale dimensione, questo metodo controlla ciò e restituisce un esito booleano.
  \item \textbf{checkEmpty()}: Date le coordinate e la direzione di un Character, controlliamo che il prossimo blocco in quella direzione sia vuoto o sia un muro.
- \item \textbf{getObjCoord()}': Dato un char, restituisce la coordinata di dove si trova nella struttura labirintica (es. lo Spawn Point di Pac-Man è rappresentato con “S”).
+ \item \textbf{getObjCoord()}: Dato un char, restituisce la coordinata di dove si trova nella struttura labirintica (es. lo Spawn Point di Pac-Man è rappresentato con “S”).
  \item \textbf{whichBlock()}: date le coordinate di un blocco del labirinto, restituisce il char corrispondente a quel blocco.
 \end{itemize}
 
@@ -333,12 +354,13 @@ La classe Coordinate serve solo per memorizzare coppie di interi per utilizzarle
 \end{figure}
 
 
-% Structure [end]
+% Structure [stop]
 %-------------------------------------------
 
 % Loops [start]
 %-------------------------------------------
 \section{Loops}\label{se:arch.loops}
+% Loops [end]
 In Fig.~\ref{fig:loops} viene illustrato il digramma di classe del modulo Loops.\newline
 
 Nel package loops sono contenute le classi che vengono richiamate periodicamente nelle classi in cui è contenuto il loro riferimento, con l’ausilio di un timer. PacmanLoop e GameLoop richiamano il metodo doOneLoop() rispettivamente di PacmanLogic e GameLogic di cui si è già trattato in precedenza.
@@ -353,12 +375,13 @@ GhostLoop, d’altro canto, è sicuramente la classe più corposa e complessa de
   \label{fig:loops}
 \end{figure}
 
-% Loops [end]
+% Loops [stop]
 %-------------------------------------------
 
 % FrameManagers [start]
 %-------------------------------------------
 \section{FrameManagers}\label{se:arch.frameManagers}
+% FrameManagers [end]
 In Fig.~\ref{fig:frameManagers} viene illustrato il digramma di classe del modulo FrameManagers.\newline
 
 FrameManager permette di implementare effetti di animazione dei personaggi. Infatti i Character, a ogni chiamata del loro metodo move() andranno a richiamare getNextFrame(), il quale, a seconda del caso e sulla base del frame precedente, è in grado di restituire una nuova immagine da applicare allo sprite, che verrà poi stampata su GamePanel. 
@@ -374,12 +397,13 @@ Data la ciclicità delle animazioni - eccetto quella della morte del Pacman - gl
   \label{fig:frameManagers}
 \end{figure}
 
-% FrameManagers [end]
+% FrameManagers [stop]
 %-------------------------------------------
 
 % KeyListeners [start]
 %-------------------------------------------
 \section{KeyListeners}\label{se:arch.keyListeners}
+% KeyListeners [end]
 In Fig.~\ref{fig:keyListeners} viene illustrato il digramma di classe del modulo KeyListeners.\newline
 
 Semplici KeyListener aggiunti a GamePanel, per inviare i comandi a Pac-Man o mettere pausa con il tasto Invio, e PausePanel, per uscire dalla pausa sempre con Invio. \newpage
@@ -392,45 +416,49 @@ Semplici KeyListener aggiunti a GamePanel, per inviare i comandi a Pac-Man o met
   \label{fig:keyListeners}
 \end{figure}
 
-% KeyListeners [end]
+% KeyListeners [stop]
 %-------------------------------------------
 
 % Sound [start]
 %-------------------------------------------
 \section{Sound}\label{se:arch.sound}
+% Sound [end]
 In Fig.~\ref{fig:sound} viene illustrato il digramma di classe del modulo Sound.\newline
 
-Il Package sound mette a disposizione metodi per l’avvio di effetti sonori e sottofondi musicali, permette all’utente di disattivarli e attivarli a piacimento e, tramite SoundFactory, gestisce il caricamento dal File System e la gestione dello stream audio.
-Il SoundPlayer tiene inoltre traccia di tutti gli effetti musicali in riproduzione e gli effetti sonori in loop in quel dato istante in modo da evitare sovrapposizione con conseguente distorsione.
-Per riprodurre una Clip, SoundPlayer utilizza un oggetto di classe SoundFactory, che richiama dapprima il metodo chooseSound() per creare un SoundClip dato l’elemento corrispondente nell’Enum Sound, contenente i nomi dei file audio. L’oggetto creato viene dato in input a playSound(), che apre lo stream e vi riproduce la Clip.\newpage
-
-\begin{figure}[tb]
+\begin{figure}[tbp]
 \begin{center}
-  \includegraphics[width=0.5\linewidth]{sound}
+  \includegraphics[width= 10cm]{sound}
 \end{center}
   \caption{Diagramma di classe del modulo Sound}
   \label{fig:sound}
 \end{figure}
 
-% Sound [end]
+Il Package sound mette a disposizione metodi per l’avvio di effetti sonori e sottofondi musicali, permette all’utente di disattivarli e attivarli a piacimento e, tramite SoundFactory, gestisce il caricamento dal File System e la gestione dello stream audio.
+Le tracce audio sono rappresentate da oggetti SoundClip, i quali non sono altro che contenitori per oggetti Clip con associato un AudioInputStream e un elemento dell'ENUM Sound che rappresenta il nome del file audio.
+Il SoundPlayer tiene traccia di tutti gli effetti musicali in riproduzione e gli effetti sonori in loop in quel dato istante in modo da evitare sovrapposizione con conseguente distorsione.
+Per riprodurre una Clip, SoundPlayer utilizza un oggetto di classe SoundFactory, che richiama dapprima il metodo chooseSound() per creare un SoundClip dato l’elemento corrispondente nell’Enum Sound. L’oggetto creato viene dato in input a playSound(), che apre lo stream e vi riproduce la Clip.\newpage
+
+
+% Sound [stop]
 %-------------------------------------------
 
 % Image [start]
 %-------------------------------------------
 \section{Image}\label{se:arch.image}
+% Image [end]
 In Fig.~\ref{fig:image} viene illustrato il digramma di classe del modulo Image.\newline
 
 ImageFactory si occupa semplicemente di creare una ImageIcon dato un elemento dell’Enum ImageList, che corrisponde a un file su disco.
 
 \begin{figure}[tb]
 \begin{center}
-  \includegraphics[width=15cm]{image}
+  \includegraphics[width=7cm]{image}
 \end{center}
   \caption{Diagramma di classe del modulo Image}
   \label{fig:image}
 \end{figure}
 
-% Image [end]
+% Image [stop]
 %-------------------------------------------
 
 
@@ -462,12 +490,32 @@ A partire dal fatto che inizialmente, per riavviare il gioco non appena Pacman e
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     Conclusioni e sviluppi futuri [start]     %
+%    Possibilità di estensione e personalizzazione [start]     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Conclusioni e sviluppi futuri}\label{ch:conc-svil-fut}
-\lipsum[29-30]
+\chapter{Possibilità di estensione e\newline personalizzazione}\label{ch:est-pers}
+
+JPacman è stato progettato in modo tale da poter garantire anche all’utente di poter realizzare un proprio labirinto personalizzato: è infatti possibile creando un file di testo e salvandolo nella cartella mazes del programma come “mazesN.txt” (dove N rappresenta il suo numero progressivo nella lista). Nel file dovranno essere inserite a mo’ di matrice 19x21 delle lettere ben precise che corrispondono alla struttura e agli elementi del labirinto:
+\begin{itemize}
+ \item \textbf{W}: Muro
+ \item \textbf{O}: Pill \textit{(150)}
+ \item \textbf{P}: PowerPill \textit{(4)}
+ \item \textbf{E}: Spazio vuoto
+ \item \textbf{R}: Portale rosso \textit{(1)}
+ \item \textbf{B}: Portale blu \textit{(1)}
+ \item \textbf{S}: Spawn Point, punto di generazione di Pacman \textit{(1)}
+ \item \textbf{1}: Spawn Point di Blinky \textit{(1)}
+ \item \textbf{2}: Spawn Point di Pinky \textit{(1)}
+ \item \textbf{3}: Spawn Point di Inky \textit{(1)}
+ \item \textbf{4}: Spawn Point di Clyde \textit{(1)}
+\end{itemize}
+In questo modo, tramite l’apposito pannello di inizio gioco è possibile creare il labirinto desiderato. E’ necessario ovviamente prestare attenzione a eventuali vicoli ciechi o possibili loop che possono intrappolare i fantasmi. 
+
+Come già accennato sopra, il codice del videogioco è sufficientemente modulare, da consentire l’aggiunta di nuovi personaggi o elementi di gioco senza particolare difficoltà. 
+Infatti è possibile aggiungere nuove classi che estendono Character (se sono personaggi dinamici) o Sprite (se sono elementi statici). Nel primo caso ovviamente è necessario un override dei metodi astratti di Character, cioè move() e addFrameManager(), a seconda di quale comportamento voglia implementi il personaggio e di quale animazione dovrà eseguire.
+Nel secondo caso invece basterà aggiungere il riferimento dell’elemento nell’oggetto Maze e implementare in esso eventuali criteri di restituzione. Dopo di ciò, in entrambi i casi, dovremo aggiungere un metodo che disegni la nuova entità in GamePanel e uno che gestisca le relazioni con gli altri in GameLogic, e il gioco sarà fatto.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     Conclusioni e sviluppi futuri [end]     %
+%     Possibilità di estensione e personalizzazionei [end]     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

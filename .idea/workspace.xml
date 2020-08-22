@@ -35,14 +35,20 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Latex/pacman.blg" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.blg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.log" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.out" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Latex/pacman.synctex(busy)" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.toc" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JPacman_jar.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/image/ImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/ImageFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/MainFrameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/MainFrameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/MenuLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/MenuLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/SoundFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/SoundFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprites/Pacman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Pacman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/structure/MazeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/structure/MazeManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +59,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="UML Activity" />
       </list>
     </option>
   </component>
@@ -67,6 +74,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultPlantUmlFileTemplate" value="UML Activity" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -76,7 +84,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Latex/figures" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -92,6 +100,17 @@
     <configuration name="RunJPacman" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RunJPacman" />
       <module name="JPacman" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -162,7 +181,9 @@
       <workItem from="1598005899204" duration="306000" />
       <workItem from="1598019947504" duration="2204000" />
       <workItem from="1598030507338" duration="2661000" />
-      <workItem from="1598038171276" duration="1195000" />
+      <workItem from="1598038171276" duration="1792000" />
+      <workItem from="1598089921975" duration="590000" />
+      <workItem from="1598101821626" duration="9432000" />
     </task>
     <servers />
   </component>
@@ -227,31 +248,31 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1597741594543" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1598031113214">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1598113835557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="592" y="218" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1598004523035" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598031113214" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1598032870333">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1598113835557" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1598111990297">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="230" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598032870333" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1598032870333">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598111990297" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1598111990296">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="230" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598032870333" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1598032870333">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598111990296" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1598111990296">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="230" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598032870333" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1598032870333">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598111990296" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1598111990296">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="230" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598005591327" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598032870333" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598111990296" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1597335912314">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -272,11 +293,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="483" y="95" key="PlantUMLSettings/0.0.1536.824@0.0.1536.824" timestamp="1597780474070" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1598031390247">
+    <state x="440" y="94" key="SettingsEditor" timestamp="1598107106538">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="237" y="41" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597739584625" />
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598031390247" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598107106538" />
     <state width="840" height="822" key="com.intellij.byteCodeViewer.ShowByteCodeAction" timestamp="1597589154704">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

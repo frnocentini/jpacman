@@ -1,0 +1,26 @@
+@startuml
+(*)  --> "Ghost.move() è chiamato da\nupdate() di GameLogic"
+--> "Si imposta il nuovo Target a\nseconda dello stato del Ghost"
+If "Lo stato del Ghost è" then
+--> [Chase / Scatter] "Si richiede il prossimo\nframe della animazione di default"
+--> "Si sottrae alle coordinate il modulo tra coordinata e velocità"
+else
+--> [Frightened] "Si richiede il prossimo\nframe della animazione di Frightened"
+--> "Si sottrae alle coordinate il modulo tra coordinata e velocità"
+else
+--> [Eaten] "Si richiede il prossimo\nframe della animazione di Eaten"
+--> "Si sottrae alle coordinate il modulo tra coordinata e velocità"
+Endif
+--> If "Le coordinate di Ghost sono\nmultiple della dimensione del blocco" then
+--> [Si] If "Il Ghost è Frightened" then
+--> [Si] "Si cambia direzione prendendone\nuna a caso tra quelle disponibili"
+--> "Cambiamo le coordinate a seconda della direzione\nmuovendo quindi il Ghost"
+else
+--> [No] "Si cambia direzione prendendo,\ntra quelle disponibili, quella più vicina\nin linea d'aria al target"
+--> "Cambiamo le coordinate a seconda della direzione\nmuovendo quindi il Ghost"
+Endif
+else
+--> [No] "Cambiamo le coordinate a seconda della direzione\nmuovendo quindi il Ghost"
+Endif
+-->(*)
+@enduml

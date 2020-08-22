@@ -1,0 +1,16 @@
+@startuml
+(*)  --> "Pacman.move() è chiamato da\nupdate() di GameLogic"
+
+If "Pac-Man è morto" then
+--> [No] If "Il prossimo blocco nella\ndirezione di Pac-Man è vuoto" then
+    --> [Si] "Aggiunge alle coordinate con la\nvelocità di movimento di Pac-Man"
+    --> "Torna a GameLogic"
+    else
+    --> [No] "Torna a GameLogic"
+    Endif
+else
+--> [Si] "Prendi il prossimo frame\ndell'animazione della morte"
+--> "Torna a GameLogic"
+Endif
+-->(*)
+@enduml

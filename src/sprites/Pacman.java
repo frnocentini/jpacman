@@ -184,6 +184,10 @@ public class Pacman extends Character {
                     timer.stop();
                 }
                 break;
+            default:
+                if(timer.isRunning()){
+                    timer.stop();
+                }
         }
     }
 

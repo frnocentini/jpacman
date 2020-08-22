@@ -267,8 +267,8 @@ public class ImageFactory {
     // Dato un filename recupera l'immagine e ci crea un ImageIcon
     private static ImageIcon getFile(String filename){
         // IDE
-        //return (new ImageIcon(filename));
+        return (new ImageIcon(filename));
         // JAR
-        return (new ImageIcon(ClassLoader.getSystemResource(filename)));
+        //return (new ImageIcon(ClassLoader.getSystemResource(filename)));
     }
 }
