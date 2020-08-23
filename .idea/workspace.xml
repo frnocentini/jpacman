@@ -32,91 +32,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46479e27-cb29-4f0b-a18a-0d2bc41df8d6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Latex/figures/ghost_move.png" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/figures/ghost_move.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Latex/figures/pacman_move.png" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/figures/pacman_move.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Latex/pacman.aux" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.log" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Latex/pacman.tex" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Latex/pacman.toc" beforeDir="false" afterPath="$PROJECT_DIR$/Latex/pacman.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UMLs/Ghost.move().puml" beforeDir="false" afterPath="$PROJECT_DIR$/UMLs/Ghost.move().puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UMLs/Pacman.move().puml" beforeDir="false" afterPath="$PROJECT_DIR$/UMLs/Pacman.move().puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar/JPacman.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JPacman_jar/JPacman.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JPacman_jar/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar/StartGame.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar/mazes/maze1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar/mazes/maze2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/JPacman_jar/mazes/maze3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/RunJPacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/RunJPacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/constants/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/constants/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/frameManagers/FrameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/frameManagers/FrameManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/frameManagers/FrameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/frameManagers/FrameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/frameManagers/GhostFrameManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/frameManagers/GhostFrameManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/frameManagers/GhostFrameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/frameManagers/GhostFrameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/frameManagers/PacmanFrameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/frameManagers/PacmanFrameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/ImageFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/image/ImageFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/ImageFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/image/ImageFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/image/ImageList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/image/ImageList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/keylisteners/GameEventListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/keylisteners/GameEventListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/keylisteners/PauseEventListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/keylisteners/PauseEventListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/logic/GameLogic$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/logic/GameLogic$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/logic/GameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/logic/GameLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/logic/MainFrameLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/logic/MainFrameLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/logic/MenuLogic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/logic/MenuLogic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/loops/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/loops/GameLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/loops/GhostLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/loops/GhostLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/loops/PacmanLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/loops/PacmanLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sound/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sound/Sound.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sound/SoundClip.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sound/SoundClip.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sound/SoundFactory$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sound/SoundFactory$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sound/SoundFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sound/SoundFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sound/SoundPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sound/SoundPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Blinky.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Blinky.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Character.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Clyde.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Clyde.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Direction.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Direction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Fruit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Fruit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Ghost$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Ghost$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Ghost.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Ghost.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Inky$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Inky$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Inky.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Inky.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Pacman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Pacman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Pill.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Pill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Pinky$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Pinky$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Pinky.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Pinky.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Portal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Portal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/PowerPill.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/PowerPill.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/Sprite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/Sprite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/sprites/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/sprites/State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/structure/Coordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/structure/Coordinate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/structure/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/structure/Maze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/structure/MazeManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/structure/MazeManager$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/structure/MazeManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/structure/MazeManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/BGPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/BGPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/GameMainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/MenuPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JPacman/ui/PausePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/image/ImageFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/image/ImageFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/MainFrameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/MainFrameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/MenuLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/MenuLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/SoundFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sound/SoundFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprites/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprites/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/structure/MazeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/structure/MazeManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

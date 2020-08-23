@@ -582,6 +582,8 @@ Come già accennato sopra, il codice del videogioco è sufficientemente modulare
 Infatti è possibile aggiungere nuove classi che estendono Character (se sono personaggi dinamici) o Sprite (se sono elementi statici). Nel primo caso ovviamente è necessario un override dei metodi astratti di Character, cioè move() e addFrameManager(), a seconda di quale comportamento si desidera implementi il personaggio e di quale animazione dovrà eseguire.
 Nel secondo caso invece basterà aggiungere il riferimento dell’elemento nell’oggetto Maze e implementare in esso eventuali criteri di restituzione. Dopo di ciò, in entrambi i casi, dovremo aggiungere un metodo che disegni la nuova entità in GamePanel e uno che gestisca le relazioni con gli altri in GameLogic, e il gioco sarà fatto.
 
+Siamo inoltre in grado di affermare con certezza che sarebbe possibile realizzare un clone di un gioco arcade basato su labirinti, come ad esempio Tower of Druaga, senza particolari modifiche al strutturali al codice.
+
 \begin{figure}[hb!]
 \begin{subfigure}{.32\textwidth}
   \centering
