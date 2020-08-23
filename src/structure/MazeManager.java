@@ -18,10 +18,9 @@ public class MazeManager {
         char[][] inputMaze = new char[Constants.MAZE_LENGTH][Constants.MAZE_WIDTH];
         try {
             // IDE
-            FileReader lvlFile = new FileReader(new File(Constants.MAZES_DIR+"maze"+mazeNum+".txt"));
+            //FileReader lvlFile = new FileReader(new File(Constants.MAZES_DIR+"maze"+mazeNum+".txt"));
             // JAR
-            //FileReader lvlFile = new FileReader(new File(System.getProperty("user.dir"),"mazes/maze"+mazeNum+".txt"));
-
+            FileReader lvlFile = new FileReader(new File(System.getProperty("user.dir"),"mazes/maze"+mazeNum+".txt"));
             BufferedReader br = new BufferedReader(lvlFile);
             int c,i,j;
             i = j = 0;

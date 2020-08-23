@@ -2,19 +2,19 @@
 \babel@toc {italian}{}
 \contentsline {chapter}{\numberline {1}Descrizione del Problema}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Il Videogioco Arcade Pac-Man}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}L'applicazione JPacman}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.2}L`applicazione JPacman}{3}{section.1.2}%
 \contentsline {chapter}{\numberline {2}Specifica dei Requisiti}{5}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Progetto}{7}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Architettura del Sistema Software}{7}{section.3.1}%
 \contentsline {section}{\numberline {3.2}UI}{10}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Logic}{11}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Sprites}{12}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Structure}{17}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Loops}{18}{section.3.6}%
-\contentsline {section}{\numberline {3.7}FrameManagers}{19}{section.3.7}%
-\contentsline {section}{\numberline {3.8}KeyListeners}{20}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Sound}{21}{section.3.9}%
-\contentsline {section}{\numberline {3.10}Image}{23}{section.3.10}%
-\contentsline {section}{\numberline {3.11}Problemi Riscontrati}{23}{section.3.11}%
-\contentsline {chapter}{\numberline {4}Possibilità di estensione e\newline personalizzazione}{25}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Bibliografia}{27}{chapter.5}%
+\contentsline {section}{\numberline {3.4}Sprites}{13}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Structure}{18}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Loops}{19}{section.3.6}%
+\contentsline {section}{\numberline {3.7}FrameManagers}{20}{section.3.7}%
+\contentsline {section}{\numberline {3.8}KeyListeners}{21}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Sound}{22}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Image}{24}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Problemi Riscontrati}{24}{section.3.11}%
+\contentsline {chapter}{\numberline {4}Possibilità di estensione e\newline personalizzazione}{26}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Bibliografia}{28}{chapter.5}%

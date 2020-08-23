@@ -25,9 +25,9 @@ public class MenuLogic {
     // il numero di file (e quindi di labirinti)
     private int loadMazes() {
         // IDE
-        return new File(Constants.MAZES_DIR).list().length;
+        //return new File(Constants.MAZES_DIR).list().length;
         // JAR
-        //return new File(System.getProperty("user.dir"),"mazes").list().length;
+        return new File(System.getProperty("user.dir"),"mazes").list().length;
     }
 
     // Creiamo l'array di Stringhe per popolare la ComboBox di selezione labirinto

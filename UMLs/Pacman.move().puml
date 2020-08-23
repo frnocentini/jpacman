@@ -3,7 +3,7 @@
 
 If "Pac-Man è morto" then
 --> [No] If "Il prossimo blocco nella\ndirezione di Pac-Man è vuoto" then
-    --> [Si] "Aggiunge alle coordinate con la\nvelocità di movimento di Pac-Man"
+    --> [Si] "Aggiunge alle coordinate la\nvelocità di movimento di Pac-Man"
     --> "Torna a GameLogic"
     else
     --> [No] "Torna a GameLogic"

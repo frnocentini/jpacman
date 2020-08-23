@@ -43,8 +43,6 @@ public abstract class Ghost extends Character {
     @Override
     public void move(){
         int speed = Constants.GHOST_SPEED;
-        // Impostiamo il nuovo target, a seconda dello spostamento di Pacman o dello stato
-        setTarget();
         ImageIcon imageIcon;
         switch(this.state){
             case CHASE:
@@ -82,7 +80,8 @@ public abstract class Ghost extends Character {
                 changeToRandDir();
             }
         }
-
+        // Impostiamo il nuovo target, a seconda dello spostamento di Pacman o dello stato
+        setTarget();
         switch(dir){
             case UP:
                 y -= speed;
